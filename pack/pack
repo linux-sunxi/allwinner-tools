@@ -142,6 +142,12 @@ do_pack_crane()
 do_pack_linux()
 {
     printf "!!!Packing for linux!!!\n"
+
+    if [ -z "$LICHEE_OUT" ]; then
+        LICHEE_OUT=`cd ../../out; pwd`
+        echo benn - $LICHEE_OUT
+    fi
+
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/ 2>/dev/null
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
@@ -183,13 +189,6 @@ do_pack_linux()
     cd -
 }
 
-
 do_prepare
 do_pack_${PACK_PLATFORM}
-
-
-
-
-
-
 

@@ -171,8 +171,10 @@ do_pack_linux()
     echo "" >> image.cfg
 
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
-    ln -s $LICHEE_OUT/uImage kernel.fex
+    #ln -s $LICHEE_OUT/uImage kernel.fex
+    cp $LICHEE_OUT/uImage kernel.fex
     ln -s ../wboot/diskfs.fex .
+    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
 
 
     busybox dos2unix sys_config.fex

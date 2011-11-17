@@ -355,7 +355,7 @@ num     = 5
 ;      verify_file  = VERIFY_000000000
 ;********************************************************************************************************************
 [down_num]
-down_num    = 2
+down_num    = 3
 
 [download0]
 part_name   = bootfs
@@ -363,6 +363,11 @@ pkt_name    = BOOTFS_000000000
 encrypt     = 0
 
 [download1]
+part_name   = kernel
+pkt_name    = KERNEL_000000000
+encrypt     = 0
+
+[download2]
 part_name   = rootfs
 pkt_name    = ROOTFS_000000000
 encrypt     = 0

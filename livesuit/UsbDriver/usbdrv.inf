@@ -1,0 +1,54 @@
+;-------------------------------------------------------------------------------
+;
+; USBDRV.Inf - install information file for windows XP
+;
+; scott 2009-02-23 9:51:03
+;
+;-------------------------------------------------------------------------------
+
+
+[Version]
+Signature="$Windows NT$"		;Signature="$CHICAGO$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%USBDRV%
+LayoutFile=layout.inf
+DriverVer=13/11/2008,1.0.1.0
+
+[DestinationDirs]				;文件复制目录
+DefaultDestDir=12				;%windir%\system32\drivers
+
+[Manufacturer]
+%USBDRV%=USBDRV					;调用model节
+
+[USBDRV]						;model节开始
+%USB\VID_1f3a&PID_efe8.DeviceDesc%=USBDRV.Dev, USB\VID_1f3a&PID_efe8 
+
+[USBDRV.Dev.NT]					;DDinstall节开始
+CopyFiles=USBDRV.Files.Ext		;调用CopyFiles节
+CopyFiles=USBDRV.Files.Inf		;调用CopyFiles节
+AddReg=LaunchRegSection			;调用AddReg节
+
+[USBDRV.Files.Ext]				;CopyFiles节开始
+USBDrv.sys
+
+[USBDRV.Files.Inf]				;CopyFiles节开始
+USBDrv.inf
+
+[LaunchRegSection]				;AddReg节开始
+HKR, "Parameters","Coordinates",FLG_ADDREG_TYPE_DWORD,0
+
+[USBDRV.Dev.NT.Services]		;DDInstall.Service节开始
+AddService=usbUDisc,2,USBDRV_Service_Inst
+
+[USBDRV_Service_Inst]
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\USBDrv.sys
+
+[Strings]
+USBDRV="USB Devices"
+USB\VID_1f3a&PID_efe8.DeviceDesc="USB Device(VID_1f3a_PID_efe8)" 
+
+

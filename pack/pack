@@ -1,0 +1,195 @@
+#!/bin/bash
+
+ROOT_DIR=$PWD
+TOOLS_DIR=${ROOT_DIR}/pctools/linux
+PACK_CHIP=""
+PACK_PALTFORM=""
+PACK_BOARD=""
+PACK_BOOT="nand"
+
+export PATH=${TOOLS_DIR}/mod_update:${TOOLS_DIR}/eDragonEx:${TOOLS_DIR}/fsbuild200:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${TOOLS_DIR}/libs
+
+
+show_help()
+{
+printf "
+NAME
+    pack-new - The pack tools for linux firmware
+
+SYNOPSIS
+    pack [-h] [-c chip] [-p platform] [-b board]
+
+OPTIONS
+    -h                  Display help message
+    -c [chip_type]      Chip type, e.g. sun3i, sun4i, sun5i,...
+    -p [platform_type]  Platform type, e.g. linux, crane,...
+    -b [board_type]     Board type, e.g. evb1.1, evb1.2, ...
+    -B [boot_type]      Boot type, e.g. nand, sdcard, ...
+
+All available chips, platfroms, boards are list below
+
+CHIP  PLATFORM   BOARD
+--------------------------------
+"
+
+for chipp in $(find configs/ -mindepth 1 -maxdepth 1 -type d )
+do
+    chip=`basename $chipp`
+    printf "$chip\n"
+
+    for platformp in $(find configs/$chip/ -mindepth 1 -maxdepth 1 -type d)
+    do
+        platform=`basename $platformp`
+        printf "      $platform\n"
+
+        for boardp in $(find configs/$chip/$platform/ -mindepth 1 -maxdepth 1 -type d)
+        do
+            board=`basename $boardp`
+            printf "                $board\n"
+        done
+    done
+
+done
+}
+
+while getopts hc:p:b:B:o: OPTION
+do
+    case $OPTION in
+    h) show_help
+    exit 0
+    ;;
+    c) PACK_CHIP=$OPTARG
+    ;;
+    b) PACK_BOARD=$OPTARG
+    ;;
+    p) PACK_PLATFORM=$OPTARG
+    ;;
+    B) PACK_BOOT=$OPTARG
+    ;;
+    *) show_help
+    exit 0
+    ;;
+esac
+done
+
+do_prepare()
+{
+    if [ -z "$PACK_CHIP" -o -z "$PACK_BOARD" -o -z "$PACK_PLATFORM" ]; then
+	printf "Invalid Parameter\n"
+	show_help
+	exit 1
+    fi
+
+#FIXME: do some basic check
+
+    if [ -d out ]; then
+	rm -rf out/
+    fi
+    mkdir out/
+}
+
+do_pack_crane()
+{
+    printf "!!!Packing for crane!!!\n"
+
+    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/ 2>/dev/null
+    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
+    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
+
+    cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
+	eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
+	wboot/bootfs wboot/bootfs.ini \
+	out/
+
+    cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
+    cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+
+    cd out/
+
+    sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
+    sed -i 's/\\\\/\//g' image.cfg
+    sed -i 's/imagename/;imagename/g' image.cfg
+
+    IMG_NAME="crane_${PACK_BOARD}.img"
+    echo "imagename = $IMG_NAME" >> image.cfg
+    echo "" >> image.cfg
+
+#FIXME: change
+    ln -s $CRANE_OUT/root.img root.fex
+    ln -s $CRANE_OUT/system.img system.fex
+
+    busybox dos2unix sys_config.fex
+    script_old sys_config.fex
+    script sys_config1.fex
+    update_23 sys_config1.bin boot0.bin boot1.bin
+    update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+    cp sys_config1.bin bootfs/script0.bin
+    cp sys_config1.bin bootfs/script.bin
+
+    update_mbr sys_config.bin mbr.fex
+    fsbuild bootfs.ini split_xxxx.fex
+
+    FileAddSum bootfs.fex vboot.fex
+    FileAddSum root.fex vroot.fex
+    FileAddSum system.fex vsystem.fex
+    FileAddSum recovery.fex vrecovery.fex
+    dragon image.cfg
+
+    cd -
+}
+
+do_pack_linux()
+{
+    printf "!!!Packing for linux!!!\n"
+    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/ 2>/dev/null
+    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
+    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
+
+    cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
+	eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
+	wboot/bootfs wboot/bootfs.ini \
+	out/
+
+    cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
+    cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+
+    cd out/
+
+    sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
+    sed -i 's/\\\\/\//g' image.cfg
+    sed -i 's/imagename/;imagename/g' image.cfg
+
+    IMG_NAME="lichee_${PACK_BOARD}.img"
+    echo "imagename = $IMG_NAME" >> image.cfg
+    echo "" >> image.cfg
+
+    ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
+    ln -s $LICHEE_OUT/uImage kernel.fex
+    ln -s ../wboot/diskfs.fex .
+
+
+    busybox dos2unix sys_config.fex
+    script_old sys_config.fex
+    script sys_config1.fex
+    update_23 sys_config1.bin boot0.bin boot1.bin
+    update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+    cp sys_config1.bin bootfs/script0.bin
+    cp sys_config1.bin bootfs/script.bin
+    update_mbr sys_config.bin mbr.fex
+    fsbuild bootfs.ini split_xxxx.fex
+    dragon image.cfg
+
+    cd -
+}
+
+
+do_prepare
+do_pack_${PACK_PLATFORM}
+
+
+
+
+
+
+

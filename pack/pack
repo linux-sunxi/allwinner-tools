@@ -119,7 +119,7 @@ do_pack_crane()
     ln -s $CRANE_OUT/root.img root.fex
     ln -s $CRANE_OUT/system.img system.fex
 
-    busybox dos2unix sys_config.fex
+    busybox unix2dos sys_config.fex
     script_old sys_config.fex
     script sys_config1.fex
     update_23 sys_config1.bin boot0.bin boot1.bin
@@ -176,7 +176,7 @@ do_pack_linux()
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/ 2>/dev/null
 
 
-    busybox dos2unix sys_config.fex
+    busybox unix2dos sys_config.fex
     script_old sys_config.fex
     script sys_config1.fex
     update_23 sys_config1.bin boot0.bin boot1.bin

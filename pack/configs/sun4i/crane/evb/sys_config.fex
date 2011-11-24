@@ -293,41 +293,57 @@ size = 1024
 ;     4、size_hi + size_lo = 0, 表示此分区不存在
 ;********************************************************************************************************
 [part_num]
-num     = 7
+num     = 9
 
 [partition0]
     class_name  = DISK
     name        = BOOTFS
     size_hi     = 0
-    size_lo     =16384
+    size_lo     = 16384
     user_type   = 0
     ro          = 0
 
 [partition1]
     class_name  = DISK
-    name        = LROOTFS
+    name        = environment
     size_hi     = 0
-    size_lo     =32768
-    user_type   = 2
-    ro  	    = 0
-    
+    size_lo     = 2048
+    user_type   = 0
+    ro          = 0
+
 [partition2]
     class_name  = DISK
-    name        = LSYSTEMFS
+    name        = kernel
     size_hi     = 0
-    size_lo     =131072
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 16384
+    user_type   = 0
+    ro          = 0
 
 [partition3]
     class_name  = DISK
+    name        = LROOTFS
+    size_hi     = 0
+    size_lo     = 32768
+    user_type   = 2
+    ro  	      = 0
+    
+[partition4]
+    class_name  = DISK
+    name        = LSYSTEMFS
+    size_hi     = 0
+    size_lo     = 262144
+    user_type   = 2
+    ro  	      = 0
+
+[partition5]
+    class_name  = DISK
     name        = LDATAFS
     size_hi     = 0
-    size_lo     =262144
+    size_lo     = 262144
     user_type   = 2
-    ro  	    = 0
+    ro  	      = 0
 
-[partition4]
+[partition6]
     class_name  = DISK
     name        = MISC
     size_hi     = 0
@@ -335,7 +351,7 @@ num     = 7
     user_type   = 2
     ro  	    = 0
 
-[partition5]
+[partition7]
     class_name  = DISK
     name        = LRECOVERYFS
     size_hi     = 0
@@ -343,13 +359,13 @@ num     = 7
     user_type   = 2
     ro  	    = 0
 
-[partition6]
+[partition8]
     class_name  = DISK
     name        = LCACHEFS
     size_hi     = 0
-    size_lo     =131072
+    size_lo     = 131072
     user_type   = 2
-    ro  	    = 0
+    ro  	      = 0
 
 ;********************************************************************************************************************
 ;                     固件包下载位置 ： 把某个固件包下载到指定分区, 下载次数最大为7次
@@ -379,27 +395,27 @@ part_name   = BOOTFS
 pkt_name    = BOOTFS_000000000
 encrypt     = 0 
 verify_file = VBOOTFS_00000000
-                 
-[download1]      
+
+[download1]
+part_name   = kernel
+pkt_name    = KERNEL_000000000
+encrypt     = 0
+verify_file = VKERNEL_00000000
+   
+[download2]      
 part_name   = LROOTFS
 pkt_name    = LROOTFS_00000000
 encrypt     = 0  
 verify_file = VROOTFS_00000000
                  
-[download2]      
+[download3]      
 part_name   = LSYSTEMFS
 pkt_name    = LSYSTEMFS_000000
 encrypt     = 0  
 verify_file = VSYSTEMFS_000000
 
-[download3]  
+[download4]  
 part_name   = LRECOVERYFS
 pkt_name    = LRECOVERYFS_0000
 encrypt     = 0  
 verify_file = VRECOVERYFS_0000
-
-[download4]
-part_name   = UDISK
-pkt_name    = DISKFS_000000000
-encrypt     = 0
- 

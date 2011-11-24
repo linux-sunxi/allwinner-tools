@@ -93,6 +93,16 @@ do_pack_crane()
 {
     printf "!!!Packing for crane!!!\n"
 
+    if [ -z "$LICHEE_OUT" ]; then
+        LICHEE_OUT=`cd ../../lichee/output; pwd`
+        echo benn - $LICHEE_OUT
+    fi
+
+    if [ -z "$CRANE_IMAGE_OUT" ]; then
+        echo "please specify CRANE_IMAGE_OUT env"
+        exit 1
+    fi
+
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/ 2>/dev/null
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
@@ -116,10 +126,14 @@ do_pack_crane()
     echo "" >> image.cfg
 
 #FIXME: change
-    ln -s $CRANE_OUT/root.img root.fex
-    ln -s $CRANE_OUT/system.img system.fex
+    ln -s $CRANE_IMAGE_OUT/root.img root.fex
+    ln -s $CRANE_IMAGE_OUT/system.img system.fex
+    ln -s $CRANE_IMAGE_OUT/recovery.fex recovery.fex
+    ln -s ../wboot/diskfs.fex .
+    cp /home/benn/work/lichee/linux-3.0/output/uImage kernel.fex
 
     busybox unix2dos sys_config.fex
+    busybox unix2dos sys_config1.fex
     script_old sys_config.fex
     script sys_config1.fex
     update_23 sys_config1.bin boot0.bin boot1.bin
@@ -132,6 +146,7 @@ do_pack_crane()
 
     FileAddSum bootfs.fex vboot.fex
     FileAddSum root.fex vroot.fex
+    FileAddSum kernel.fex vkernel.fex
     FileAddSum system.fex vsystem.fex
     FileAddSum recovery.fex vrecovery.fex
     dragon image.cfg

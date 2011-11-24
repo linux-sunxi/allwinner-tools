@@ -7,7 +7,7 @@ PACK_PALTFORM=""
 PACK_BOARD=""
 PACK_BOOT="nand"
 
-export PATH=${TOOLS_DIR}/mod_update:${TOOLS_DIR}/eDragonEx:${TOOLS_DIR}/fsbuild200:$PATH
+export PATH=${TOOLS_DIR}/mod_update:${TOOLS_DIR}/eDragonEx:${TOOLS_DIR}/fsbuild200:${TOOLS_DIR}/android:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${TOOLS_DIR}/libs
 
 
@@ -186,7 +186,18 @@ do_pack_linux()
     echo "" >> image.cfg
 
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
-    cp $LICHEE_OUT/uImage kernel.fex
+    #cp $LICHEE_OUT/uImage kernel.fex
+
+	# make the android style boot.img
+	cp $LICHEE_OUT/bImage kernel
+	cp $LICHEE_OUT/sun4i_rootfs.cpio.gz ramdisk.img
+	mkbootimg --kernel kernel \
+			--ramdisk ramdisk.img \
+			--cmdline 'console=ttyS0,115200 init=/init rw  loglevel=9' \
+			--board $PACK_BOARD \
+			--base 0x40000000 \
+			-o kernel.fex
+
     ln -s ../wboot/diskfs.fex .
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/ 2>/dev/null
 

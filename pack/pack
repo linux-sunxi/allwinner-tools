@@ -94,8 +94,7 @@ do_pack_crane()
     printf "!!!Packing for crane!!!\n"
 
     if [ -z "$LICHEE_OUT" ]; then
-        LICHEE_OUT=`cd ../../lichee/output; pwd`
-        echo benn - $LICHEE_OUT
+        LICHEE_OUT=`cd ../../out; pwd`
     fi
 
     if [ -z "$CRANE_IMAGE_OUT" ]; then
@@ -103,7 +102,7 @@ do_pack_crane()
         exit 1
     fi
 
-    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/ 2>/dev/null
+    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
@@ -117,6 +116,8 @@ do_pack_crane()
 
     cd out/
 
+    cp -v $LICHEE_OUT/android/u-boot.bin bootfs/linux/
+
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
     sed -i 's/imagename/;imagename/g' image.cfg
@@ -125,12 +126,10 @@ do_pack_crane()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-#FIXME: change
-    ln -s $CRANE_IMAGE_OUT/root.img root.fex
+# get some images from android build
+    ln -s $CRANE_IMAGE_OUT/boot.img boot.fex
     ln -s $CRANE_IMAGE_OUT/system.img system.fex
-    ln -s $CRANE_IMAGE_OUT/recovery.fex recovery.fex
-    ln -s ../wboot/diskfs.fex .
-    cp /home/benn/work/lichee/linux-3.0/output/uImage kernel.fex
+    ln -s $CRANE_IMAGE_OUT/recovery.img recovery.fex
 
     busybox unix2dos sys_config.fex
     busybox unix2dos sys_config1.fex
@@ -144,11 +143,18 @@ do_pack_crane()
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
 
-    FileAddSum bootfs.fex vboot.fex
-    FileAddSum root.fex vroot.fex
-    FileAddSum kernel.fex vkernel.fex
+# get bootloader.fex
+	mv bootfs.fex bootloader.fex
+# get env.fex
+	ln -s ../wboot/env.img env.fex
+
+# checksum for all fex
+    FileAddSum bootloader.fex vbootloader.fex
+    FileAddSum env.fex venv.fex
+    FileAddSum boot.fex vboot.fex
     FileAddSum system.fex vsystem.fex
     FileAddSum recovery.fex vrecovery.fex
+
     dragon image.cfg
 
     cd -
@@ -160,7 +166,6 @@ do_pack_linux()
 
     if [ -z "$LICHEE_OUT" ]; then
         LICHEE_OUT=`cd ../../out; pwd`
-        echo benn - $LICHEE_OUT
     fi
 
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/ 2>/dev/null
@@ -199,7 +204,7 @@ do_pack_linux()
 			-o kernel.fex
 
     ln -s ../wboot/diskfs.fex .
-    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/ 2>/dev/null
+    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
 
 
     busybox unix2dos sys_config.fex

@@ -941,7 +941,7 @@ luns                     = 2
 ;--------------------------------------------------------------------------------
 [gsensor_para]
 gsensor_used             = 1
-gsenser_name             = "mma7660"
+gsensor_name             = "mma7660"
 gsensor_twi_id           = 1
 gsensor_twi_addr         = 0x4c
 gsensor_int1             = port:PH00<6><1><default><default>

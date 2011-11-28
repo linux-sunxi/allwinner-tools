@@ -974,7 +974,7 @@ luns                     = 3
 ;--------------------------------------------------------------------------------
 [gsensor_para]
 gsensor_used             =1
-gsenser_name             = "gsenser"
+gsensor_name             = "gsensor"
 gsensor_twi_id           = 1
 gsensor_twi_addr         =0x18
 gsensor_int1             = port:PH00<6><1><default><default>

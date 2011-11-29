@@ -146,7 +146,7 @@ do_pack_crane()
 # get bootloader.fex
 	mv bootfs.fex bootloader.fex
 # get env.fex
-	ln -s ../wboot/env.img env.fex
+	u_boot_env_gen env.cfg env.fex
 
 # checksum for all fex
     FileAddSum bootloader.fex vbootloader.fex

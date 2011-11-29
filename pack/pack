@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#set -e
+
 ROOT_DIR=$PWD
 TOOLS_DIR=${ROOT_DIR}/pctools/linux
 PACK_CHIP=""
@@ -122,14 +124,9 @@ do_pack_crane()
     sed -i 's/\\\\/\//g' image.cfg
     sed -i 's/imagename/;imagename/g' image.cfg
 
-    IMG_NAME="crane_${PACK_BOARD}.img"
+    IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
-
-# get some images from android build
-    ln -s $CRANE_IMAGE_OUT/boot.img boot.fex
-    ln -s $CRANE_IMAGE_OUT/system.img system.fex
-    ln -s $CRANE_IMAGE_OUT/recovery.img recovery.fex
 
     busybox unix2dos sys_config.fex
     busybox unix2dos sys_config1.fex
@@ -143,12 +140,18 @@ do_pack_crane()
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
 
-# get bootloader.fex
+	# get bootloader.fex
 	mv bootfs.fex bootloader.fex
-# get env.fex
+
+	# get env.fex
 	u_boot_env_gen env.cfg env.fex
 
-# checksum for all fex
+	# get other images from android build
+    ln -s $CRANE_IMAGE_OUT/boot.img boot.fex
+    ln -s $CRANE_IMAGE_OUT/system.img system.fex
+    ln -s $CRANE_IMAGE_OUT/recovery.img recovery.fex
+
+	# checksum for all fex
     FileAddSum bootloader.fex vbootloader.fex
     FileAddSum env.fex venv.fex
     FileAddSum boot.fex vboot.fex
@@ -157,7 +160,15 @@ do_pack_crane()
 
     dragon image.cfg
 
-    cd -
+	if [ -e ${IMG_NAME} ]; then
+		mv ${IMG_NAME} ../${IMG_NAME}
+		echo '---------image is at-------------'
+		echo -e '\033[0;31;1m'
+		echo ${ROOT_DIR}/${IMG_NAME}
+		echo -e '\033[0m'
+	fi
+
+    cd - 1>/dev/null
 }
 
 do_pack_linux()
@@ -182,30 +193,15 @@ do_pack_linux()
 
     cd out/
 
+    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
+
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
     sed -i 's/imagename/;imagename/g' image.cfg
 
-    IMG_NAME="lichee_${PACK_BOARD}.img"
+    IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
-
-    ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
-    #cp $LICHEE_OUT/uImage kernel.fex
-
-	# make the android style boot.img
-	cp $LICHEE_OUT/bImage kernel
-	cp $LICHEE_OUT/sun4i_rootfs.cpio.gz ramdisk.img
-	mkbootimg --kernel kernel \
-			--ramdisk ramdisk.img \
-			--cmdline 'console=ttyS0,115200 init=/init rw  loglevel=9' \
-			--board $PACK_BOARD \
-			--base 0x40000000 \
-			-o kernel.fex
-
-    ln -s ../wboot/diskfs.fex .
-    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
-
 
     busybox unix2dos sys_config.fex
     script_old sys_config.fex
@@ -214,11 +210,33 @@ do_pack_linux()
     update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
     cp sys_config1.bin bootfs/script0.bin
     cp sys_config1.bin bootfs/script.bin
+
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
+
+	# get bootloader.fex
+	mv bootfs.fex bootloader.fex
+
+	# get env.fex
+	u_boot_env_gen env.cfg env.fex
+
+	# get the boot.img
+    ln -s $LICHEE_OUT/boot.img boot.fex
+
+	# get the rootfs
+    ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
+
     dragon image.cfg
 
-    cd -
+	if [ -e ${IMG_NAME} ]; then
+		mv ${IMG_NAME} ../${IMG_NAME}
+		echo '---------image is at-------------'
+		echo -e '\033[0;31;1m'
+		echo ${ROOT_DIR}/${IMG_NAME}
+		echo -e '\033[0m'
+	fi
+
+    cd - 1>/dev/null
 }
 
 do_prepare

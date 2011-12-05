@@ -149,7 +149,7 @@ pause
 set crane_out=W:\work\android2.3.4\out\target\product\crane-evb\images
 set linux_out=..\..\out
 set TOOLS_DIR=%CD%\pctools\windows
-set PATH=%TOOLS_DIR%\mod_update;%TOOLS_DIR%\fsbuild200;%TOOLS_DIR%\edragonex200;%TOOLS_DIR%\mkbootimg;%PATH%
+set PATH=%TOOLS_DIR%\mod_update;%TOOLS_DIR%\fsbuild200;%TOOLS_DIR%\edragonex200;%PATH%
 echo %linux_out%
 echo %TOOLS_DIR%
 echo %PATH%
@@ -236,25 +236,19 @@ copy wboot\diskfs.fex out
 xcopy /q /e wboot\bootfs\* out\bootfs\
 
 pause
-copy  wboot\diskfs.fex  out
-copy  %linux_out%\rootfs.ext4 out\rootfs.fex
+
+
 
 copy   %linux_out%\u-boot.bin out\bootfs\linux\
-copy   %linux_out%\bImage out\kernel
-copy  %linux_out%\sun4i_rootfs.cpio.gz out\ramdisk.img
+copy   %linux_out%\boot.img out\boot.fex
+copy  %linux_out%\rootfs.ext4 out\rootfs.fex
 	
 	
 	
 cd out
-set IMG_NAME="%platform%-%board%.img"
+set IMG_NAME="%chips%-%platform%-%board%.img"
 echo imagename = %IMG_NAME% >> image.cfg
 echo "" >> image.cfg
-
-
-
-mkbootimg.exe  --kernel kernel --ramdisk ramdisk.img --cmdline "console=ttyS0,115200 init=/init rw  loglevel=9"  --base 0x40000000 -o kernel.fex
-
-
 
 
 script_old.exe  sys_config.fex
@@ -266,10 +260,18 @@ copy sys_config1.bin bootfs\script0.bin
 update_mbr.exe sys_config.bin mbr.fex
 fsbuild.exe "%CD%\bootfs.ini" "%CD%\split_xxxx.fex" 
 
+	
+rename bootfs.fex bootloader.fex
+
+
+u_boot_env_gen.exe env.cfg env.fex
+
+
+
 compile.exe -o image.bin image.cfg
 dragon.exe image.cfg 
 cd ..
-
+move out\%chips%-%platform%-%board%.img %chips%-%platform%-%board%.img
 
 :end_pack
 echo.

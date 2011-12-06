@@ -5,7 +5,7 @@
 ROOT_DIR=$PWD
 TOOLS_DIR=${ROOT_DIR}/pctools/linux
 PACK_CHIP=""
-PACK_PALTFORM=""
+PACK_PLATFORM=""
 PACK_BOARD=""
 PACK_BOOT="nand"
 
@@ -76,7 +76,7 @@ esac
 done
 
 do_prepare()
-{
+ {
     if [ -z "$PACK_CHIP" -o -z "$PACK_BOARD" -o -z "$PACK_PLATFORM" ]; then
 	printf "Invalid Parameter\n"
 	show_help

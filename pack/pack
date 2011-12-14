@@ -114,9 +114,9 @@ do_pack_crane()
         exit 1
     fi
 
-    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/
-    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
-    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/default/* out/
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
@@ -189,9 +189,9 @@ do_pack_linux()
         LICHEE_OUT=`cd ../../out; pwd`
     fi
 
-    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/default/* out/ 2>/dev/null
-    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
-    cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/default/* out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \

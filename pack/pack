@@ -78,17 +78,27 @@ done
 do_prepare()
  {
     if [ -z "$PACK_CHIP" -o -z "$PACK_BOARD" -o -z "$PACK_PLATFORM" ]; then
-	printf "Invalid Parameter\n"
-	show_help
-	exit 1
+        printf "Invalid Parameter\n"
+        show_help
+        exit 1
     fi
 
 #FIXME: do some basic check
+    cp -r chips/$PACK_CHIP/eFex .
+    cp -r chips/$PACK_CHIP/eGon .
+    cp -r chips/$PACK_CHIP/wboot .
+
 
     if [ -d out ]; then
-	rm -rf out/
+        rm -rf out/
     fi
     mkdir out/
+}
+
+do_clean()
+{
+    rm -rf eFex eGon wboot
+    rm -rf out/*.fex out/*.bin
 }
 
 do_pack_crane()
@@ -109,9 +119,9 @@ do_pack_crane()
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
-	eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-	wboot/bootfs wboot/bootfs.ini \
-	out/
+        eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
+        wboot/bootfs wboot/bootfs.ini \
+        out/
 
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
     cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
@@ -140,18 +150,18 @@ do_pack_crane()
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
 
-	# get bootloader.fex
-	mv bootfs.fex bootloader.fex
+    # get bootloader.fex
+    mv bootfs.fex bootloader.fex
 
-	# get env.fex
-	u_boot_env_gen env.cfg env.fex
+    # get env.fex
+    u_boot_env_gen env.cfg env.fex
 
-	# get other images from android build
+    # get other images from android build
     ln -s $CRANE_IMAGE_OUT/boot.img boot.fex
     ln -s $CRANE_IMAGE_OUT/system.img system.fex
     ln -s $CRANE_IMAGE_OUT/recovery.img recovery.fex
 
-	# checksum for all fex
+    # checksum for all fex
     FileAddSum bootloader.fex vbootloader.fex
     FileAddSum env.fex venv.fex
     FileAddSum boot.fex vboot.fex
@@ -160,13 +170,13 @@ do_pack_crane()
 
     dragon image.cfg
 
-	if [ -e ${IMG_NAME} ]; then
-		mv ${IMG_NAME} ../${IMG_NAME}
-		echo '---------image is at-------------'
-		echo -e '\033[0;31;1m'
-		echo ${ROOT_DIR}/${IMG_NAME}
-		echo -e '\033[0m'
-	fi
+    if [ -e ${IMG_NAME} ]; then
+        mv ${IMG_NAME} ../${IMG_NAME}
+        echo '---------image is at-------------'
+        echo -e '\033[0;31;1m'
+        echo ${ROOT_DIR}/${IMG_NAME}
+        echo -e '\033[0m'
+    fi
 
     cd - 1>/dev/null
 }
@@ -184,9 +194,9 @@ do_pack_linux()
     cp -v configs/$PACK_CHIP/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
-	eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-	wboot/bootfs wboot/bootfs.ini \
-	out/
+        eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
+        wboot/bootfs wboot/bootfs.ini \
+        out/
 
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
     cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
@@ -214,30 +224,31 @@ do_pack_linux()
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
 
-	# get bootloader.fex
-	mv bootfs.fex bootloader.fex
+    # get bootloader.fex
+    mv bootfs.fex bootloader.fex
 
-	# get env.fex
-	u_boot_env_gen env.cfg env.fex
+    # get env.fex
+    u_boot_env_gen env.cfg env.fex
 
-	# get the boot.img
+    # get the boot.img
     ln -s $LICHEE_OUT/boot.img boot.fex
 
-	# get the rootfs
+    # get the rootfs
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
 
     dragon image.cfg
 
-	if [ -e ${IMG_NAME} ]; then
-		mv ${IMG_NAME} ../${IMG_NAME}
-		echo '---------image is at-------------'
-		echo -e '\033[0;31;1m'
-		echo ${ROOT_DIR}/${IMG_NAME}
-		echo -e '\033[0m'
-	fi
+    if [ -e ${IMG_NAME} ]; then
+        mv ${IMG_NAME} ../${IMG_NAME}
+        echo '---------image is at-------------'
+        echo -e '\033[0;31;1m'
+        echo ${ROOT_DIR}/${IMG_NAME}
+        echo -e '\033[0m'
+    fi
 
     cd - 1>/dev/null
 }
 
 do_prepare
 do_pack_${PACK_PLATFORM}
+do_clean

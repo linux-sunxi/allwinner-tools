@@ -205,6 +205,11 @@ do_pack_linux()
 
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
 
+    #remove me later
+    if [ "$PACK_CHIP" = "sun5i" ]; then
+        cp -v $LICHEE_OUT/bImage bootfs/linux/
+    fi
+
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
     sed -i 's/imagename/;imagename/g' image.cfg

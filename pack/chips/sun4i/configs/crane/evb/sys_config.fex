@@ -318,7 +318,7 @@ num     = 8
     class_name  = DISK
     name        = boot
     size_hi     = 0
-    size_lo     = 16384
+    size_lo     =32768
     user_type   = 0
     ro          = 0
 
@@ -388,7 +388,7 @@ num     = 8
 ;      verify_file  = VERIFY_000000000
 ;********************************************************************************************************************
 [down_num]
-down_num    = 5
+down_num    = 6
 
 [download0]
 part_name   = bootloader
@@ -412,10 +412,14 @@ verify_file = VBOOT_0000000000
 part_name   = system
 pkt_name    = SYSTEM_000000000
 encrypt     = 0  
-verify_file = VSYSTEMFS_000000
 
 [download4]  
 part_name   = recovery
 pkt_name    = RECOVERY_0000000
 encrypt     = 0  
 verify_file = VRECOVERYFS_0000
+
+[download5]
+part_name   = UDISK
+pkt_name    = DISKFS_000000000
+encrypt     = 0

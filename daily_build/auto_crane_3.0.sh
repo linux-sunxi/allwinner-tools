@@ -51,6 +51,7 @@ echo "###################################################################" >> $H
 WARNING_NUM=$( grep -Hr "warning:" $HOME/build_err_warn.log | wc -l )
 echo "there is $WARNING_NUM warning of compile" >> $HOME/text.txt
 echo "this is detailed information of warning " >> $HOME/text.txt
+echo "###################################################################" >> $HOME/text.txt
 cat $HOME/build_err_warn.log >> $HOME/text.txt
 echo "-------------------------extra-message-----------------------------" >> $HOME/text.txt
 echo "the log information and packgae in $PACKAGE_LOG_DIR dir " >> $HOME/text.txt

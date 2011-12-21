@@ -37,17 +37,17 @@ CHIP  PLATFORM   BOARD
 --------------------------------
 "
 
-for chipp in $(find configs/ -mindepth 1 -maxdepth 1 -type d )
+for chipp in $(find chips/ -mindepth 1 -maxdepth 1 -type d )
 do
     chip=`basename $chipp`
     printf "$chip\n"
 
-    for platformp in $(find configs/$chip/ -mindepth 1 -maxdepth 1 -type d)
+    for platformp in $(find chips/$chip/configs/ -mindepth 1 -maxdepth 1 -type d)
     do
         platform=`basename $platformp`
         printf "      $platform\n"
 
-        for boardp in $(find configs/$chip/$platform/ -mindepth 1 -maxdepth 1 -type d)
+        for boardp in $(find chips/$chip/configs/$platform/ -mindepth 1 -maxdepth 1 -type d)
         do
             board=`basename $boardp`
             printf "                $board\n"

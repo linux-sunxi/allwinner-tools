@@ -102,7 +102,7 @@ do_prepare()
 do_clean()
 {
     rm -rf eFex eGon wboot
-    rm -rf out/*.fex out/*.bin
+    #rm -rf out/*.fex out/*.bin
 }
 
 do_pack_crane()
@@ -139,7 +139,7 @@ do_pack_crane()
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-        wboot/bootfs wboot/bootfs.ini \
+        wboot/bootfs wboot/bootfs.ini wboot/udisk.fex \
         out/
 
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex

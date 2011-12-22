@@ -1000,7 +1000,8 @@ swl_n20_vcc_en          = port:PH12<1><default><default><0>
 ;usi_bm01a_wl_pwr        = port:PH12<1><default><default><0>
 ;usi_bm01a_wlbt_regon    = port:PI11<1><default><default><0>
 ;usi_bm01a_wl_rst        = port:PI10<1><default><default><0>
-;usi_bm01a_wl_wake       = port:PI12<1><default><default><0>;usi_bm01a_bt_rst        = port:PB05<1><default><default><0>
+;usi_bm01a_wl_wake       = port:PI12<1><default><default><0>
+;usi_bm01a_bt_rst        = port:PB05<1><default><default><0>
 ;usi_bm01a_bt_wake       = port:PI20<1><default><default><0>
 ;usi_bm01a_bt_hostwake   = port:PI21<0><default><default><0>
 
@@ -1199,3 +1200,8 @@ pmu_suspend_chgcur2      = 1200
 pmu_resume_chgcur2       = 400
 pmu_shutdown_chgcur2     = 1200
 pmu_suspendpwroff_vol    = 3500
+
+[recovery_key]
+key_min			=16
+key_max			=30
+

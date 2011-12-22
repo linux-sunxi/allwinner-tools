@@ -842,7 +842,7 @@ i2s_din                  = port:PB9<2><1><default><default>
 [spdif_para]
 spdif_used               = 0
 spdif_mclk               =
-spdif_dout               = port:PB2<3><1><default><default>
+spdif_dout               = port:PB10<3><1><default><default>
 spdif_din                =
 
 [audio_para]

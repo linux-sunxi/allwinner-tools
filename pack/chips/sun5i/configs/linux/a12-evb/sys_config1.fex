@@ -74,7 +74,7 @@ jtag_di                  = port:PB14<3>
 ;*****************************************************************************
 [dram_para]
 dram_baseaddr        	= 0x40000000
-dram_clk             	= 360
+dram_clk             	= 240
 dram_type				= 3
 dram_rank_num     		= 1
 dram_chip_density		= 2048
@@ -133,10 +133,6 @@ nand_ndqs                = port:PC24<2><default><default><default>
 [mali_para]
 mali_used                = 1
 mali_clkdiv              = 3
-
-[g2d_para]
-g2d_used = 1
-g2d_size = 0x1000000
 
 ;----------------------------------------------------------------------------------
 ; os life cycle para configuration
@@ -706,7 +702,7 @@ luns                     = 3
 ;--------------------------------------------------------------------------------
 [gsensor_para]
 gsensor_used             = 1
-gsensor_name             = "bma222"
+gsensor_name             = "bma250"
 gsensor_twi_id           = 1
 gsensor_twi_addr         = 0x18
 gsensor_int1             =

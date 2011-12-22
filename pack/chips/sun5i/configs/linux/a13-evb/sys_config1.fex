@@ -12,8 +12,8 @@ machine = "A13-EVB-V1.0"
 ; system configuration
 ;----------------------------------------------------------------------------------
 [target]
-boot_clock               = 1008
-dcdc2_vol                = 1400
+boot_clock               = 720
+dcdc2_vol                = 1250
 dcdc3_vol                = 1250
 ldo2_vol                 = 3000
 ldo3_vol                 = 3300
@@ -36,30 +36,15 @@ sdc_cmd                  = port:PF3<2><1><default><default>
 sdc_d3                   = port:PF4<2><1><default><default>
 sdc_d2                   = port:PF5<2><1><default><default>
 
-[card_boot2_para]
-card_ctrl                = 2
-card_high_speed          = 1
-card_line                = 8
-sdc_cmd                  = port:PC6<3><1><default><default>
-sdc_clk                  = port:PC7<3><1><default><default>
-sdc_d0                   = port:PC8<3><1><default><default>
-sdc_d1                   = port:PC9<3><1><default><default>
-sdc_d2                   = port:PC10<3><1><default><default>
-sdc_d3                   = port:PC11<3><1><default><default>
-sdc_d4                   = port:PC12<3><1><default><default>
-sdc_d5                   = port:PC13<3><1><default><default>
-sdc_d6                   = port:PC14<3><1><default><default>
-sdc_d7                   = port:PC15<3><1><default><default>
-
 [twi_para]
 twi_port                 = 0
 twi_scl                  = port:PB0<2>
 twi_sda                  = port:PB1<2>
 
 [uart_para]
-uart_debug_port          = 1
-uart_debug_tx            = port:PG3<4>
-uart_debug_rx            = port:PG4<4>
+uart_debug_port          = 0
+uart_debug_tx            = port:PF2<4>
+uart_debug_rx            = port:PF4<4>
 
 [jtag_para]
 jtag_enable              = 0
@@ -74,7 +59,7 @@ jtag_di                  = port:PF1<4><0><default><default>
 ;*****************************************************************************
 [dram_para]
 dram_baseaddr            = 0x40000000
-dram_clk                 = 408
+dram_clk = 600
 dram_type                = 3
 dram_rank_num            = 1
 dram_chip_density        = 2048
@@ -94,6 +79,36 @@ dram_emr1                = 0x0
 dram_emr2                = 0x0
 dram_emr3                = 0x0
 
+;----------------------------------------------------------------------------------
+;nand flash configuration
+;----------------------------------------------------------------------------------
+[nand_para]
+nand_used                = 1
+nand_we                  = port:PC00<2><default><default><default>
+nand_ale                 = port:PC01<2><default><default><default>
+nand_cle                 = port:PC02<2><default><default><default>
+nand_ce1                 = port:PC03<2><default><default><default>
+nand_ce0                 = port:PC04<2><default><default><default>
+nand_nre                 = port:PC05<2><default><default><default>
+nand_rb0                 = port:PC06<2><default><default><default>
+nand_rb1                 = port:PC07<2><default><default><default>
+nand_d0                  = port:PC08<2><default><default><default>
+nand_d1                  = port:PC09<2><default><default><default>
+nand_d2                  = port:PC10<2><default><default><default>
+nand_d3                  = port:PC11<2><default><default><default>
+nand_d4                  = port:PC12<2><default><default><default>
+nand_d5                  = port:PC13<2><default><default><default>
+nand_d6                  = port:PC14<2><default><default><default>
+nand_d7                  = port:PC15<2><default><default><default>
+nand_wp                  = 
+nand_ce2                 = 
+nand_ce3                 = 
+nand_ce4                 =
+nand_ce5                 =
+nand_ce6                 =
+nand_ce7                 =
+nand_spi                 = 
+nand_ndqs                = port:PC19<2><default><default><default>
 
 ;*****************************************************************************
 ; mali configuration
@@ -103,37 +118,6 @@ dram_emr3                = 0x0
 [mali_para]
 mali_used                = 1
 mali_clkdiv              = 3
-
-[g2d_para]
-g2d_used = 1
-g2d_size = 0x1000000
-
-;----------------------------------------------------------------------------------
-; os life cycle para configuration
-;----------------------------------------------------------------------------------
-;----------------------------------------------------------------------------------
-; Ethernet MAC configuration
-;----------------------------------------------------------------------------------
-[emac_para]
-emac_used                = 0
-emac_rxd3                = port:PA00<2>
-emac_rxd2                = port:PA01<2>
-emac_rxd1                = port:PA02<2>
-emac_rxd0                = port:PA03<2>
-emac_txd3                = port:PA04<2>
-emac_txd2                = port:PA05<2>
-emac_txd1                = port:PA06<2>
-emac_txd0                = port:PA07<2>
-emac_rxclk               = port:PA08<2>
-emac_rxerr               = port:PA09<2>
-emac_rxdV                = port:PA10<2>
-emac_mdc                 = port:PA11<2>
-emac_mdio                = port:PA12<2>
-emac_txen                = port:PA13<2>
-emac_txclk               = port:PA14<2>
-emac_crs                 = port:PA15<2>
-emac_col                 = port:PA16<2>
-emac_reset               = port:PA17<1>
 
 ;----------------------------------------------------------------------------------
 ;i2c configuration
@@ -154,46 +138,6 @@ twi1_sda                 = port:PB16<2><default><default><default>
 twi2_used                = 1
 twi2_scl                 = port:PB17<2><default><default><default>
 twi2_sda                 = port:PB18<2><default><default><default>
-
-;----------------------------------------------------------------------------------
-;uart configuration
-;uart_type ---  2 (2 wire), 4 (4 wire), 8 (8 wire, full function)
-;----------------------------------------------------------------------------------
-[uart_para0]
-uart_used                = 0
-uart_port                = 0
-uart_type                = 2
-uart_tx                  = port:PB19<2>
-uart_rx                  = port:PB20<2>
-
-[uart_para1]
-uart_used                = 1
-uart_port                = 1
-uart_type                = 2
-uart_tx                  = port:PA12<3><default><default><default>
-uart_rx                  = port:PA13<3><default><default><default>
-;uart_rts                 = port:PA15<3><default><default><default>
-;uart_cts                 = port:PA14<3><default><default><default>
-;uart_dtr                = port:PA08<4><default><default><default>
-;uart_dsr                = port:PA09<4><default><default><default>
-;uart_dcd                = port:PA10<4><default><default><default>
-;uart_ring               = port:PA11<4><default><default><default>
-
-[uart_para2]
-uart_used                = 0
-uart_port                = 2
-uart_type                = 2
-uart_tx                  = port:PA16<3><default><default><default>
-uart_rx                  = port:PA17<3><default><default><default>
-
-[uart_para3]
-uart_used                = 0
-uart_port                = 3
-uart_type                = 4
-uart_tx                  = port:PG9<3><default><default><default>
-uart_rx                  = port:PG10<3><default><default><default>
-uart_rts                 = port:PG12<3><default><default><default>
-uart_cts                 = port:PG11<3><default><default><default>
 
 ;----------------------------------------------------------------------------------
 ;spi configuration
@@ -335,7 +279,7 @@ fb1_scaler_mode_enable   = 0
 ;lcd_gpio_1          SDA
 ;----------------------------------------------------------------------------------
 [lcd0_para]
-lcd_used                 = 1
+lcd_used                 = 0
 
 lcd_x                    = 800
 lcd_y                    = 480
@@ -439,7 +383,7 @@ hdmi_used                = 0
 ;csi_flash_pol: the active polority of the flash light IO 0:low active 1:high active
 ;--------------------------------------------------------------------------------
 [csi0_para]
-csi_used                 = 1
+csi_used                 = 0
 csi_mode                 = 0
 csi_dev_qty              = 1
 csi_stby_mode            = 0
@@ -548,7 +492,7 @@ csi_af_en_b              =
 ;   3. π”√gpioºÏ≤‚ ±±ÿ–Î≈‰÷√sdc_detºÏ≤‚pinΩ≈∂Àø⁄                                |
 ;--------------------------------------------------------------------------------
 [mmc0_para]
-sdc_used                 = 1
+sdc_used                 = 0
 sdc_detmode              = 1
 bus_width                = 4
 sdc_d1                   = port:PF0<2><1><2><default>
@@ -674,7 +618,7 @@ luns                     = 3
 ; gs_twi_id ---  TWI ID for controlling Gsensor (0: TWI0, 1: TWI1, 2: TWI2)
 ;--------------------------------------------------------------------------------
 [gsensor_para]
-gsensor_used             = 1
+gsensor_used             = 0
 gsensor_name             = "bma222"
 gsensor_twi_id           = 1
 gsensor_twi_addr         = 0x18
@@ -716,14 +660,6 @@ sdio_wifi_mod_sel        =
 ;swl_n20_vdd_en          = 
 ;swl_n20_vcc_en          = 
 
-; usi bm01a sdio wifi gpio config
-usi_bm01a_wl_pwr        = 
-usi_bm01a_wlbt_regon    = port:PA2<1><default><default><0>
-usi_bm01a_wl_rst        = port:PA3<1><default><default><0>
-usi_bm01a_wl_wake       = port:PA1<1><default><default><0>
-usi_bm01a_bt_rst        = port:PA4<1><default><default><0>
-usi_bm01a_bt_wake       = port:PA5<1><default><default><0>
-usi_bm01a_bt_hostwake   = 
 
 ; swb-b23/usibm01 sdio wifi gpio config
 ;swbb23_wl_pwr           = 
@@ -826,12 +762,12 @@ audio_pa_ctrl            = port:PG0<1><default><default><0>
 ;ir --- infra remote configuration
 ;----------------------------------------------------------------------------------
 [ir_para]
-ir_used                  = 1
+ir_used                  = 0
 ir0_rx                   = port:PB04<2><default><default><default>
 
 
 [rtc_para]
-rtc_used                 = 1
+rtc_used                 = 0
 rtc_twi_id               = 1
 rtc_twi_addr			 = 
 

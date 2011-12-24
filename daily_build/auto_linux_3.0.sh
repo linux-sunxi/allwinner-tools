@@ -5,18 +5,18 @@ PLATFORM=linux
 CHIPS=sun4i
 BOARD=evb-v12r
 VERSION=3.0
-DATE0=$(date +%U)
+DATE0=$(date +%w)
 DATE1=$(date +%F)
-PACKAGE_LOG_DIR="$DIR"/"$DATE0"/"$DATE1"/"$VERSION_$CHIPS"
-HOME="$DIR"/work
-LICHEEDIR="$HOME"/"$VERSION"_"$CHIPS"
-ANDROIDDIR="$HOME"/android4.0.1 
+PACKAGE_LOG_DIR="$DIR"/"$DATE0"-"$DATE1"/"$VERSION"_"$CHIPS"
+BUILD="$DIR"/work
+LICHEEDIR="$BUILD"/"$VERSION"_"$CHIPS"
+ANDROIDDIR="$BUILD"/android4.0.1 
 
 #prepare dir
-if [ -d $HOME ];then
-rm -rf $HOME
+if [ -d $BUILD ];then
+rm -rf $BUILD
 fi
-mkdir -pv $HOME
+mkdir -pv $BUILD
 if [ -d $LICHEEDIR ];then
 rm -rf $LICHEEDIR
 fi

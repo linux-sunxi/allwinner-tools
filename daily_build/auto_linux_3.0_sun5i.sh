@@ -11,7 +11,7 @@ PACKAGE_LOG_DIR="$DIR"/"$DATE0"-"$DATE1"/"$VERSION"_"$CHIPS"
 BUILD="$DIR"/work
 LICHEEDIR="$BUILD"/"$VERSION"_"$CHIPS"
 ANDROIDDIR="$BUILD"/android4.0.1 
-
+IMGDIR="$LICHEEDIR"/tools/pack
 #prepare dir
 
 if [ -d $LICHEEDIR ];then
@@ -40,7 +40,7 @@ cd $LICHEEDIR/tools/pack
 cd $LICHEEDIR/tools/pack
 ./pack -c $CHIPS -p $PLATFORM -b a13-evb
 #write text
-
+mv $IMGDIR/*.img  $PACKAGE_LOG_DIR
 echo "###################################################################" > $PACKAGE_LOG_DIR/text.txt
 echo repo init -u git://172.16.1.11/manifest.git -b lichee -m dev_v3.0.xml >> $PACKAGE_LOG_DIR/text.txt
 echo "" >> $PACKAGE_LOG_DIR/text.txt

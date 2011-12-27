@@ -130,13 +130,6 @@ do_pack_crane()
 		echo "uart -> card0 !!!"
 	fi
 
-	if [ $PACK_DEBUG = uart0 ]; then
-		awk -f $TOOLS_DIR/awk_debug_uart0 out/sys_config1.fex > out/a.fex
-		rm out/sys_config1.fex
-		mv out/a.fex out/sys_config1.fex
-		echo "uart -> uart0"
-	fi
-
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
         wboot/bootfs wboot/bootfs.ini wboot/udisk.fex \
@@ -158,7 +151,6 @@ do_pack_crane()
     echo "" >> image.cfg
 
     busybox unix2dos sys_config.fex
-    busybox unix2dos sys_config1.fex
     script_old sys_config.fex
     script sys_config1.fex
     update_23 sys_config1.bin boot0.bin boot1.bin
@@ -238,11 +230,6 @@ do_pack_linux()
 
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
 
-    #remove me later
-    if [ "$PACK_CHIP" = "sun5i" ]; then
-        cp -v $LICHEE_OUT/bImage bootfs/linux/
-    fi
-
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
     sed -i 's/imagename/;imagename/g' image.cfg
@@ -253,11 +240,11 @@ do_pack_linux()
 
     busybox unix2dos sys_config.fex
     script_old sys_config.fex
-    script sys_config1.fex
-    update_23 sys_config1.bin boot0.bin boot1.bin
-    update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    cp sys_config1.bin bootfs/script0.bin
-    cp sys_config1.bin bootfs/script.bin
+    script sys_config.fex
+    update_23 sys_config.bin boot0.bin boot1.bin
+    update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+    cp sys_config.bin bootfs/script0.bin
+    cp sys_config.bin bootfs/script.bin
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex

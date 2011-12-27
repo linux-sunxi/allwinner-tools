@@ -125,7 +125,14 @@ do_pack_crane()
 	# modify the debug opt
 	if [ $PACK_CHIP = sun4i ]; then
 		if [ $PACK_DEBUG = card0 ]; then
-			awk -f $TOOLS_DIR/awk_debug_card0 out/sys_config1.fex > out/a.fex
+			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+			TX=`awk  '$0~"a10"{print $2}' pctools/linux/card_debug_pin`
+			RX=`awk  '$0~"a10"{print $3}' pctools/linux/card_debug_pin`
+			sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+			sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
+			awk -f out/awk_debug_card0 out/sys_config1.fex > out/a.fex
 			rm out/sys_config1.fex
 			mv out/a.fex out/sys_config1.fex
 			echo "uart -> card0 !!!"
@@ -219,13 +226,21 @@ do_pack_linux()
 
 	if [ $PACK_CHIP = sun4i ]; then
 		if [ $PACK_DEBUG = card0 ]; then
-			awk -f $TOOLS_DIR/awk_debug_card0 out/sys_config1.fex > out/a.fex
+			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+			TX=`awk  '$0~"a10"{print $2}' pctools/linux/card_debug_pin`
+			RX=`awk  '$0~"a10"{print $3}' pctools/linux/card_debug_pin`
+			sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+			sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
+			awk -f out/awk_debug_card0 out/sys_config1.fex > out/a.fex
 			rm out/sys_config1.fex
 			mv out/a.fex out/sys_config1.fex
 			echo "uart -> card0 !!!"
 		fi
 	fi
 
+	
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
         wboot/bootfs wboot/bootfs.ini \

@@ -1,9 +1,9 @@
-$0!~";" && $0~"uart_debug_tx"{if(C)$0="uart_debug_tx = port:PF2<4>"} \
-$0!~";" && $0~"uart_debug_rx"{if(C)$0="uart_debug_rx = port:PF4<4>"} \
+$0!~";" && $0~"uart_debug_tx"{if(C)$0="uart_debug_tx ="} \
+$0!~";" && $0~"uart_debug_rx"{if(C)$0="uart_debug_rx ="} \
 $0!~";" && $0~"sdc_used"{if(A)$0="sdc_used = 0";A=0} \
 $0!~";" && $0~"\\[mmc0_para\\]"{A=1}  \
-$0!~";" && $0~"uart_tx"{if(B)$0="uart_tx = port:PF2<4>"} \
-$0!~";" && $0~"uart_rx"{if(B)$0="uart_tx = port:PF4<4>"} \
+$0!~";" && $0~"uart_tx"{if(B)$0="uart_tx ="} \
+$0!~";" && $0~"uart_rx"{if(B)$0="uart_rx ="} \
 $0!~";" && $0~"\\[uart_para0\\]"{B=1} \
 $0!~";" && $0 ~"\\[uart_para1\\]"{B=0} \
 $0!~";" && $0~"\\[uart_para\\]"{C=1} \

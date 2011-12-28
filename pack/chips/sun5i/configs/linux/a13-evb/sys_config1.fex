@@ -47,22 +47,12 @@ uart_debug_tx            = port:PG3<4>
 uart_debug_rx            = port:PG4<4>
 
 [jtag_para]
-jtag_enable              = 1
+jtag_enable              = 0
 jtag_ms                  = port:PF0<4><0><default><default>
 jtag_ck                  = port:PF5<4><0><default><default>
 jtag_do                  = port:PF3<4><0><default><default>
 jtag_di                  = port:PF1<4><0><default><default>
 
-;----------------------------------------------------------------------------------
-;uart configuration
-;uart_type ---  2 (2 wire), 4 (4 wire), 8 (8 wire, full function)
-;----------------------------------------------------------------------------------
-[uart_para1]
-uart_used                = 1
-uart_port                = 1
-uart_type                = 2
-uart_tx                  = port:PG3<4>
-uart_rx                  = port:PG4<4>
 
 ;*****************************************************************************
 ; sdram configuration
@@ -151,6 +141,22 @@ twi2_scl                 = port:PB17<2><default><default><default>
 twi2_sda                 = port:PB18<2><default><default><default>
 
 ;----------------------------------------------------------------------------------
+;uart configuration
+;uart_type ---  2 (2 wire), 4 (4 wire), 8 (8 wire, full function)
+;----------------------------------------------------------------------------------
+[uart_para0]
+uart_used                = 0
+uart_port                = 0
+uart_type                = 2
+uart_tx                  = port:PB19<2>
+uart_rx                  = port:PB20<2>
+
+[uart_para1]
+uart_used                = 1
+uart_port                = 1
+uart_type                = 2
+uart_tx                  = port:PG3<4>
+uart_rx                  = port:PG4<4>
 ;spi configuration
 ;----------------------------------------------------------------------------------
 [spi1_para]
@@ -503,7 +509,7 @@ csi_af_en_b              =
 ;   3. π”√gpioºÏ≤‚ ±±ÿ–Î≈‰÷√sdc_detºÏ≤‚pinΩ≈∂Àø⁄                                |
 ;--------------------------------------------------------------------------------
 [mmc0_para]
-sdc_used                 = 0
+sdc_used                 = 1
 sdc_detmode              = 1
 bus_width                = 4
 sdc_d1                   = port:PF0<2><1><2><default>

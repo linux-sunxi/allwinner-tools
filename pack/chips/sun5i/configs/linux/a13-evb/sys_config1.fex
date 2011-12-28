@@ -42,16 +42,27 @@ twi_scl                  = port:PB0<2>
 twi_sda                  = port:PB1<2>
 
 [uart_para]
-uart_debug_port          = 0
-uart_debug_tx            = port:PF2<4>
-uart_debug_rx            = port:PF4<4>
+uart_debug_port          = 1
+uart_debug_tx            = port:PG3<4>
+uart_debug_rx            = port:PG4<4>
 
 [jtag_para]
-jtag_enable              = 0
+jtag_enable              = 1
 jtag_ms                  = port:PF0<4><0><default><default>
 jtag_ck                  = port:PF5<4><0><default><default>
 jtag_do                  = port:PF3<4><0><default><default>
 jtag_di                  = port:PF1<4><0><default><default>
+
+;----------------------------------------------------------------------------------
+;uart configuration
+;uart_type ---  2 (2 wire), 4 (4 wire), 8 (8 wire, full function)
+;----------------------------------------------------------------------------------
+[uart_para1]
+uart_used                = 1
+uart_port                = 1
+uart_type                = 2
+uart_tx                  = port:PG3<4>
+uart_rx                  = port:PG4<4>
 
 ;*****************************************************************************
 ; sdram configuration
@@ -59,7 +70,7 @@ jtag_di                  = port:PF1<4><0><default><default>
 ;*****************************************************************************
 [dram_para]
 dram_baseaddr            = 0x40000000
-dram_clk = 600
+dram_clk = 240
 dram_type                = 3
 dram_rank_num            = 1
 dram_chip_density        = 2048
@@ -279,7 +290,7 @@ fb1_scaler_mode_enable   = 0
 ;lcd_gpio_1          SDA
 ;----------------------------------------------------------------------------------
 [lcd0_para]
-lcd_used                 = 0
+lcd_used                 = 1
 
 lcd_x                    = 800
 lcd_y                    = 480

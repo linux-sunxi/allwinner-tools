@@ -12,14 +12,14 @@ machine = "A13-EVB-V1.0"
 ; system configuration
 ;----------------------------------------------------------------------------------
 [target]
-boot_clock               = 720      ;//config cpu frequency for system boot
-dcdc2_vol                = 1250     ;//config cpu voltage for system boot
-dcdc3_vol                = 1250     ;//config system voltage (such as gpu¡¢ve¡¢de¡¢...)for system boot
+boot_clock               = 720
+dcdc2_vol                = 1250
+dcdc3_vol                = 1250
 ldo2_vol                 = 3000
 ldo3_vol                 = 3300
 ldo4_vol                 = 3300
-pll4_freq                = 960      ;//config pll4 frequency for system boot
-pll6_freq                = 960      ;//config pll6 frequency for system boot
+pll4_freq                = 960
+pll6_freq                = 960
 
 [platform]
 eraseflag                = 0
@@ -219,14 +219,14 @@ nand_d4                  = port:PC12<2><default><default><default>
 nand_d5                  = port:PC13<2><default><default><default>
 nand_d6                  = port:PC14<2><default><default><default>
 nand_d7                  = port:PC15<2><default><default><default>
-nand_wp                  = 
-nand_ce2                 = 
-nand_ce3                 = 
+nand_wp                  =
+nand_ce2                 =
+nand_ce3                 =
 nand_ce4                 =
 nand_ce5                 =
 nand_ce6                 =
 nand_ce7                 =
-nand_spi                 = 
+nand_spi                 =
 nand_ndqs                = port:PC19<2><default><default><default>
 
 ;*****************************************************************************
@@ -285,8 +285,8 @@ spi_miso                 = port:PB3<4><default><default><default>
 ;rtp_press_threshold       : only when rtp_press_threshold_enable == 1, this para take effect.
 ;                            between 0 and 0xFFFFFF  is supported.more bigger, more sensitive, 0x1f40 is suggested.
 ;rtp_sensitive_level :       between 0 and 0xf is supported.more bigger, more sensitive, 0xf is suggested.
-;rtp_exchange_x_y_flag :     in some case, x, y need to be exchanged, at that situation, 1 is setted. 
-;                            normally, 0 is setted. 
+;rtp_exchange_x_y_flag :     in some case, x, y need to be exchanged, at that situation, 1 is setted.
+;                            normally, 0 is setted.
 ;----------------------------------------------------------------------------------
 [rtp_para]
 rtp_used      = 1
@@ -303,7 +303,7 @@ rtp_exchange_x_y_flag = 0
 ;external int function
 ;wakeup output function
 ;notice ---    tp_int_port &  tp_io_port use the same port
-;name should be compatible with the corresponding ctp driver. 
+;name should be compatible with the corresponding ctp driver.
 ;at present, only "ft5x_ts" and "Goodix-TS" is supported.
 ;----------------------------------------------------------------------------------
 [ctp_para]
@@ -330,14 +330,14 @@ tkey_used                = 0
 tkey_name                = "hv_keypad"
 tkey_twi_id              = 2
 tkey_twi_addr            = 0x62
-tkey_int                 = 
+tkey_int                 =
 
 ;----------------------------------------------------------------------------------
 ;motor configuration
 ;----------------------------------------------------------------------------------
 [motor_para]
 motor_used               = 0
-motor_shake              = 
+motor_shake              =
 
 ;----------------------------------------------------------------------------------
 ;disp init configuration
@@ -353,7 +353,7 @@ motor_shake              =
 [disp_init]
 disp_init_enable         = 1
 disp_mode                = 0
-                         
+
 screen0_output_type      = 1
 screen0_output_mode      = 4
 
@@ -381,7 +381,7 @@ fb1_scaler_mode_enable   = 0
 ;lcd_ht:             hsync total cycle
 ;lcd_vbp:            vsync back porch
 ;lcd_vt:             vysnc total cycle *2
-;lcd_hv_if:          0:hv parallel 1:hv serial 
+;lcd_hv_if:          0:hv parallel 1:hv serial
 ;lcd_hv_smode:       0:RGB888 1:CCIR656
 ;lcd_hv_s888_if      serial RGB format
 ;lcd_hv_syuv_if:     serial YUV format
@@ -493,8 +493,8 @@ hdmi_used                = 0
 ;csi_vflip: flip in vertical direction 0:disable 1:enable
 ;csi_hflip: flip in horizontal direction 0:disable 1:enable
 ;csi_stby_mode: 0:not shut down power at standby 1:shut down power at standby
-;csi_iovdd: camera module io power , pmu power supply  
-;csi_avdd:	camera module analog power , pmu power supply	
+;csi_iovdd: camera module io power , pmu power supply
+;csi_avdd:	camera module analog power , pmu power supply
 ;csi_dvdd:	camera module core power , pmu power supply
 ;pmu_ldo3:  fill "axp20_pll"
 ;pmu_ldo4:  fill "axp20_hdmi"
@@ -542,15 +542,15 @@ csi_d5                   = port:PE09<3><default><default><default>
 csi_d6                   = port:PE10<3><default><default><default>
 csi_d7                   = port:PE11<3><default><default><default>
 csi_reset                = port:PM3<1><default><default><0>
-csi_power_en             = 
+csi_power_en             =
 csi_stby                 = port:PB10<1><default><default><0>
-csi_flash                = 
-csi_af_en                = 
-csi_reset_b              = 
-csi_power_en_b           = 
-csi_stby_b               = 
-csi_flash_b              = 
-csi_af_en_b              = 
+csi_flash                =
+csi_af_en                =
+csi_reset_b              =
+csi_power_en_b           =
+csi_stby_b               =
+csi_flash_b              =
+csi_af_en_b              =
 
 [csi1_para]
 csi_used                 = 0
@@ -580,16 +580,16 @@ csi_avdd_b               = ""
 csi_dvdd_b               = ""
 csi_flash_pol_b          = 1
 
-csi_reset                = 
-csi_power_en             = 
-csi_stby                 = 
-csi_flash                = 
-csi_af_en                = 
-csi_reset_b              = 
-csi_power_en_b           = 
-csi_stby_b               = 
-csi_flash_b              = 
-csi_af_en_b              = 
+csi_reset                =
+csi_power_en             =
+csi_stby                 =
+csi_flash                =
+csi_af_en                =
+csi_reset_b              =
+csi_power_en_b           =
+csi_stby_b               =
+csi_flash_b              =
+csi_af_en_b              =
 
 
 ;--------------------------------------------------------------------------------
@@ -623,22 +623,22 @@ sdc_d2                   = port:PF5<2><1><2><default>
 sdc_det                  = port:PB3<0><1><default><default>
 sdc_use_wp               = 0
 sdc_wp                   =
-                         
-[mmc1_para]              
+
+[mmc1_para]
 sdc_used                 = 0
-sdc_detmode              = 
-bus_width                = 
-sdc_cmd                  = 
-sdc_clk                  = 
-sdc_d0                   = 
-sdc_d1                   = 
-sdc_d2                   = 
-sdc_d3                   = 
-sdc_det                  = 
-sdc_use_wp               = 
+sdc_detmode              =
+bus_width                =
+sdc_cmd                  =
+sdc_clk                  =
+sdc_d0                   =
+sdc_d1                   =
+sdc_d2                   =
+sdc_d3                   =
+sdc_det                  =
+sdc_use_wp               =
 sdc_wp                   =
-                         
-[mmc2_para]              
+
+[mmc2_para]
 sdc_used                 = 0
 sdc_detmode              = 3
 bus_width                = 4
@@ -648,21 +648,21 @@ sdc_d0                   = port:PE4<4><1><2><default>
 sdc_d1                   = port:PE5<4><1><2><default>
 sdc_d2                   = port:PE6<4><1><2><default>
 sdc_d3                   = port:PE7<4><1><2><default>
-sdc_det                  = 
+sdc_det                  =
 sdc_use_wp               = 0
 sdc_wp                   =
-                         
+
 ; ------------------------------------------------------------------------------|
 ; memory stick configuration
 ;--------------------------------------------------------------------------------
 [ms_para]
 ms_used                  = 0
-ms_bs                    = 
-ms_clk                   = 
-ms_d0                    = 
-ms_d1                    = 
-ms_d2                    = 
-ms_d3                    = 
+ms_bs                    =
+ms_clk                   =
+ms_d0                    =
+ms_d1                    =
+ms_d2                    =
+ms_d3                    =
 ms_det                   =
 
 ;------------------------------------------------------------------------------------------
@@ -670,24 +670,24 @@ ms_det                   =
 ;------------------------------------------------------------------------------------------
 [keypad_para]
 kp_used                  = 0
-kp_in_size               = 
-kp_out_size              = 
-kp_in0                   = 
-kp_in1                   = 
-kp_in2                   = 
-kp_in3                   = 
-kp_in4                   = 
-kp_in5                   = 
-kp_in6                   = 
-kp_in7                   = 
-kp_out0                  = 
-kp_out1                  = 
-kp_out2                  = 
-kp_out3                  = 
-kp_out4                  = 
-kp_out5                  = 
-kp_out6                  = 
-kp_out7                  = 
+kp_in_size               =
+kp_out_size              =
+kp_in0                   =
+kp_in1                   =
+kp_in2                   =
+kp_in3                   =
+kp_in4                   =
+kp_in5                   =
+kp_in6                   =
+kp_in7                   =
+kp_out0                  =
+kp_out1                  =
+kp_out2                  =
+kp_out3                  =
+kp_out4                  =
+kp_out5                  =
+kp_out6                  =
+kp_out7                  =
 
 
 ;--------------------------------
@@ -741,8 +741,8 @@ gsensor_used             = 0
 gsensor_name             = "bma222"
 gsensor_twi_id           = 1
 gsensor_twi_addr         = 0x18
-gsensor_int1             = 
-gsensor_int2             = 
+gsensor_int1             =
+gsensor_int2             =
 
 ;--------------------------------------------------------------------------------
 ; gps gpio configuration
@@ -752,48 +752,48 @@ gsensor_int2             =
 ;--------------------------------------------------------------------------------
 [gps_para]
 gps_used                 = 0
-gps_spi_id               = 
-gps_spi_cs_num           = 
-gps_lradc                = 
-gps_clk                  = 
-gps_sign                 = 
-gps_mag                  = 
-gps_vcc_en               = 
-gps_osc_en               = 
-gps_rx_en                = 
+gps_spi_id               =
+gps_spi_cs_num           =
+gps_lradc                =
+gps_clk                  =
+gps_sign                 =
+gps_mag                  =
+gps_vcc_en               =
+gps_osc_en               =
+gps_rx_en                =
 
 ;--------------------------------------------------------------------------------
 ;sdio wifi configuration
 ;wifi_sdc_id    ---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
-;sdio_wifi_mod_sel    ---  0- none,     1- swl-n20(wifi), 2- usi bm-01(wifi+bt+fm), 
+;sdio_wifi_mod_sel    ---  0- none,     1- swl-n20(wifi), 2- usi bm-01(wifi+bt+fm),
 ;                          3- ar6302qfn,4- apm6xxx,       5- swb b23(wifi+bt+fm)
 ;--------------------------------------------------------------------------------
 [sdio_wifi_para]
 sdio_wifi_used           = 0
-sdio_wifi_sdc_id         = 
-sdio_wifi_mod_sel        = 
+sdio_wifi_sdc_id         =
+sdio_wifi_mod_sel        =
 
 ; samsung swl-n20 sdio wifi gpio config
-;swl_n20_shdn            = 
-;swl_n20_host_wakeup     = 
-;swl_n20_vdd_en          = 
-;swl_n20_vcc_en          = 
+;swl_n20_shdn            =
+;swl_n20_host_wakeup     =
+;swl_n20_vdd_en          =
+;swl_n20_vcc_en          =
 
 
 ; swb-b23/usibm01 sdio wifi gpio config
-;swbb23_wl_pwr           = 
-;swbb23_wl_shdn          = 
-;swbb23_wl_wake          = 
-;swbb23_bt_shdn          = 
-;swbb23_bt_wake          = 
-;swbb23_bt_hostwake      = 
+;swbb23_wl_pwr           =
+;swbb23_wl_shdn          =
+;swbb23_wl_wake          =
+;swbb23_bt_shdn          =
+;swbb23_bt_wake          =
+;swbb23_bt_hostwake      =
 
 ; apm sdio wifi gpio config
-;apm_6981_vcc_en         = 
-;apm_6981_vdd_en         = 
-;apm_6981_wakeup         = 
-;apm_6981_rst_n          = 
-;apm_6981_pwd_n          = 
+;apm_6981_vcc_en         =
+;apm_6981_vdd_en         =
+;apm_6981_wakeup         =
+;apm_6981_rst_n          =
+;apm_6981_pwd_n          =
 ;--------------------------------------------------------------------------------
 ;usb wifi configuration
 ;usb_wifi_id    ---  0- USB0, 1- USB1
@@ -807,13 +807,13 @@ usb_wifi_usbc_num        = 1
 ;--------------------------------------------------------------------------------
 [3g_para]
 3g_used                  = 0
-3g_name					 = 
-3g_usbc_num              = 
-3g_on_off                = 
-3g_reset                 = 
-3g_poweron				 = 
-3g_wakeup_out            = 
-3g_wakeup_in             = 
+3g_name					 =
+3g_usbc_num              =
+3g_on_off                =
+3g_reset                 =
+3g_poweron				 =
+3g_wakeup_out            =
+3g_wakeup_in             =
 
 ;--------------------------------------------------------------------------------
 ;gyroscope
@@ -822,8 +822,8 @@ usb_wifi_usbc_num        = 1
 gy_used                  = 0
 gy_twi_id                = 1
 gy_twi_addr              = 0x00
-gy_int1                  = 
-gy_int2                  = 
+gy_int1                  =
+gy_int2                  =
 
 ;--------------------------------------------------------------------------------
 ;light sensor
@@ -832,17 +832,17 @@ gy_int2                  =
 ls_used                  = 1
 ls_name					 = "ltr501"
 ls_twi_id                = 1
-ls_twi_addr              = 
-ls_int                   = 
+ls_twi_addr              =
+ls_int                   =
 
 ;--------------------------------------------------------------------------------
 ;compass
 ;--------------------------------------------------------------------------------
 [compass_para]
 compass_used             = 0
-compass_twi_id           = 
-compass_twi_addr		 = 
-compass_int              = 
+compass_twi_id           =
+compass_twi_addr		 =
+compass_int              =
 
 ;--------------------------------------------------------------------------------
 ;blue tooth
@@ -852,25 +852,25 @@ compass_int              =
 ;--------------------------------------------------------------------------------
 [bt_para]
 bt_used                  = 0
-bt_uart_id               = 
-bt_mod_type              = 
+bt_uart_id               =
+bt_mod_type              =
 
 [i2s_para]
 i2s_used                 = 0
-i2s_channel              = 
-i2s_mclk                 = 
-i2s_bclk                 = 
-i2s_lrclk                = 
-i2s_dout0                = 
+i2s_channel              =
+i2s_mclk                 =
+i2s_bclk                 =
+i2s_lrclk                =
+i2s_dout0                =
 i2s_dout1                =
 i2s_dout2                =
 i2s_dout3                =
-i2s_din                  = 
+i2s_din                  =
 
 [spdif_para]
 spdif_used               = 0
 spdif_mclk               =
-spdif_dout               = 
+spdif_dout               =
 spdif_din                =
 
 [audio_para]
@@ -888,7 +888,7 @@ ir0_rx                   = port:PB04<2><default><default><default>
 [rtc_para]
 rtc_used                 = 0
 rtc_twi_id               = 1
-rtc_twi_addr			 = 
+rtc_twi_addr			 =
 
 ;----------------------------------------------------------------------------------
 ;pmu_twi_addr           ---slave address
@@ -966,7 +966,7 @@ pmu_usbcur               =  900
 pmu_pwroff_vol           = 3300
 pmu_pwron_vol            = 2900
 
-pmu_pekoff_time          = 6000 
+pmu_pekoff_time          = 6000
 pmu_pekoff_en            = 1
 pmu_peklong_time         = 1500
 pmu_pekon_time           = 1000
@@ -975,7 +975,7 @@ pmu_pwrnoe_time          = 2000
 pmu_intotp_en            = 1
 
 pmu_used2                = 0
-pmu_adpdet               = 
+pmu_adpdet               =
 pmu_init_chgcur2         = 400
 pmu_earlysuspend_chgcur2 = 600
 pmu_suspend_chgcur2      = 1200

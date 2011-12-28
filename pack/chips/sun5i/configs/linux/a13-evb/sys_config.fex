@@ -12,12 +12,14 @@ machine = "A13-EVB-V1.0"
 ; system configuration
 ;----------------------------------------------------------------------------------
 [target]
-boot_clock               = 720
-dcdc2_vol                = 1250
-dcdc3_vol                = 1250
+boot_clock               = 720      ;//config cpu frequency for system boot
+dcdc2_vol                = 1250     ;//config cpu voltage for system boot
+dcdc3_vol                = 1250     ;//config system voltage (such as gpu¡¢ve¡¢de¡¢...)for system boot
 ldo2_vol                 = 3000
 ldo3_vol                 = 3300
 ldo4_vol                 = 3300
+pll4_freq                = 960      ;//config pll4 frequency for system boot
+pll6_freq                = 960      ;//config pll6 frequency for system boot
 
 [platform]
 eraseflag                = 0

@@ -141,7 +141,7 @@ do_pack_crane()
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-        wboot/bootfs wboot/bootfs.ini wboot/udisk.fex \
+        wboot/bootfs wboot/bootfs.ini wboot/diskfs.fex \
         out/
 
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex

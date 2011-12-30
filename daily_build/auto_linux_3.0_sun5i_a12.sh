@@ -1,10 +1,8 @@
 #!/bin/sh
-
-DIR=/home/panlong/daily_build
 PLATFORM=linux
-CHIPS=sun4i
-BOARD=evb-v12r
-VERSION=2.6.36
+CHIPS=a12
+BOARD=a12-evb
+VERSION=3.0
 DATE0=$(date +%w)
 DATE1=$(date +%F)
 PACKAGE_LOG_DIR="$DIR"/"$DATE0"-"$DATE1"/"$VERSION"_"$CHIPS"
@@ -13,10 +11,9 @@ LICHEEDIR="$BUILD"/"$VERSION"_"$CHIPS"
 ANDROIDDIR="$BUILD"/android4.0.1 
 IMGDIR="$LICHEEDIR"/tools/pack
 #prepare dir
-
-
 if [ -d $LICHEEDIR ];then
 rm -rf $LICHEEDIR
+
 fi
 mkdir -pv $LICHEEDIR
 
@@ -27,7 +24,7 @@ mkdir -pv $PACKAGE_LOG_DIR
 
 #donwload source code
 cd $LICHEEDIR
-repo init -u git://172.16.1.11/manifest.git -b lichee -m dev.xml << EOF
+repo init -u git://172.16.1.11/manifest.git -b lichee -m a1x-dev.xml << EOF
 EOF
 cd $LICHEEDIR
 repo sync
@@ -43,7 +40,7 @@ cd $LICHEEDIR/tools/pack
 #write text
 mv $IMGDIR/*.img  $PACKAGE_LOG_DIR
 echo "###################################################################" > $PACKAGE_LOG_DIR/text.txt
-echo repo init -u git://172.16.1.11/manifest.git -b lichee -m dev.xml >> $PACKAGE_LOG_DIR/text.txt
+echo repo init -u git://172.16.1.11/manifest.git -b lichee -m dev_v3.0.xml >> $PACKAGE_LOG_DIR/text.txt
 echo "" >> $PACKAGE_LOG_DIR/text.txt
 echo "./build.sh -p $CHIPS -k $VERSION" >> $PACKAGE_LOG_DIR/text.txt
 echo "-----------------------------git-log-------------------------------" >> $PACKAGE_LOG_DIR/text.txt
@@ -53,7 +50,7 @@ git log -n 1 --pretty=oneline --abbrev-commit >> $PACKAGE_LOG_DIR/text.txt
 echo "" >> $PACKAGE_LOG_DIR/text.txt
 echo "##########################linux-3.0-log############################" >> $PACKAGE_LOG_DIR/text.txt
 echo "" >> $PACKAGE_LOG_DIR/text.txt
-cd $LICHEEDIR/linux-2.6.36
+cd $LICHEEDIR/linux-3.0
 git log -n 1 --pretty=oneline --abbrev-commit >> $PACKAGE_LOG_DIR/text.txt
 echo "" >> $PACKAGE_LOG_DIR/text.txt
 echo "###########################u-boot-log##############################" >> $PACKAGE_LOG_DIR/text.txt

@@ -388,7 +388,7 @@ num     = 8
 ;      verify_file  = VERIFY_000000000
 ;********************************************************************************************************************
 [down_num]
-down_num    = 5
+down_num    = 6
 
 [download0]
 part_name   = bootloader
@@ -419,7 +419,7 @@ pkt_name    = RECOVERY_0000000
 encrypt     = 0  
 verify_file = VRECOVERYFS_0000
 
-;[download5]
-;part_name   = UDISK
-;pkt_name    = DISKFS_000000000
-;encrypt     = 0
+[download5]
+part_name   = UDISK
+pkt_name    = DISKFS_000000000
+encrypt     = 0

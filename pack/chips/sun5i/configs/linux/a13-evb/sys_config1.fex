@@ -330,10 +330,10 @@ lcd_gamma_tbl_1          = 0x00010101
 lcd_gamma_tbl_255        = 0x00ffffff
 
 lcd_bl_en_used           = 1
-lcd_bl_en                = port:PM1<1><0><default><1>
+lcd_bl_en                = port:power1<1><0><default><1>
 
 lcd_power_used           = 1
-lcd_power                = port:PM0<1><0><default><1>
+lcd_power                = port:power0<1><0><default><1>
 
 lcd_pwm_used             = 1
 lcd_pwm                  = port:PB02<2><0><default><default>
@@ -439,7 +439,7 @@ csi_d4                   = port:PE08<3><default><default><default>
 csi_d5                   = port:PE09<3><default><default><default>
 csi_d6                   = port:PE10<3><default><default><default>
 csi_d7                   = port:PE11<3><default><default><default>
-csi_reset                = port:PM3<1><default><default><0>
+csi_reset                = port:power3<1><default><default><0>
 csi_power_en             = 
 csi_stby                 = port:PB10<1><default><default><0>
 csi_flash                = 

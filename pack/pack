@@ -104,13 +104,10 @@ do_clean()
     rm -rf eFex eGon wboot
     #rm -rf out/*.fex out/*.bin
 }
-
-
 do_pack_android()
 {
 do_pack_crane
 }
-
 
 do_pack_crane()
 {
@@ -130,23 +127,25 @@ do_pack_crane()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
 	# modify the debug opt
-	if [ $PACK_DEBUG = card0 ]; then
-		awk -f $TOOLS_DIR/awk_debug_card0 out/sys_config1.fex > out/a.fex
-		rm out/sys_config1.fex
-		mv out/a.fex out/sys_config1.fex
-		echo "uart -> card0 !!!"
-	fi
-
-	if [ $PACK_DEBUG = uart0 ]; then
-		awk -f $TOOLS_DIR/awk_debug_uart0 out/sys_config1.fex > out/a.fex
-		rm out/sys_config1.fex
-		mv out/a.fex out/sys_config1.fex
-		echo "uart -> uart0"
+	if [ $PACK_CHIP = sun4i ]; then
+		if [ $PACK_DEBUG = card0 ]; then
+			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+			TX=`awk  '$0~"a10"{print $2}' pctools/linux/card_debug_pin`
+			RX=`awk  '$0~"a10"{print $3}' pctools/linux/card_debug_pin`
+			sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+			sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
+			awk -f out/awk_debug_card0 out/sys_config1.fex > out/a.fex
+			rm out/sys_config1.fex
+			mv out/a.fex out/sys_config1.fex
+			echo "uart -> card0 !!!"
+		fi
 	fi
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-        wboot/bootfs wboot/bootfs.ini wboot/udisk.fex \
+        wboot/bootfs wboot/bootfs.ini wboot/diskfs.fex \
         out/
 
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
@@ -164,14 +163,24 @@ do_pack_crane()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-    busybox unix2dos sys_config.fex
-    busybox unix2dos sys_config1.fex
-    script_old sys_config.fex
-    script sys_config1.fex
-    update_23 sys_config1.bin boot0.bin boot1.bin
-    update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    cp sys_config1.bin bootfs/script0.bin
-    cp sys_config1.bin bootfs/script.bin
+    if [ "$PACK_CHIP" = "sun5i" ]; then
+    	busybox unix2dos sys_config.fex
+    	script_old sys_config.fex
+    	script sys_config.fex
+    	update_23 sys_config.bin boot0.bin boot1.bin
+    	update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+    	cp sys_config.bin bootfs/script0.bin
+    	cp sys_config.bin bootfs/script.bin
+	else
+    	busybox unix2dos sys_config.fex
+    	busybox unix2dos sys_config1.fex
+    	script_old sys_config.fex
+    	script sys_config1.fex
+    	update_23 sys_config1.bin boot0.bin boot1.bin
+    	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+    	cp sys_config1.bin bootfs/script0.bin
+    	cp sys_config1.bin bootfs/script.bin
+	fi
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
@@ -219,6 +228,23 @@ do_pack_linux()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
+	if [ $PACK_CHIP = sun4i ]; then
+		if [ $PACK_DEBUG = card0 ]; then
+			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+			TX=`awk  '$0~"a10"{print $2}' pctools/linux/card_debug_pin`
+			RX=`awk  '$0~"a10"{print $3}' pctools/linux/card_debug_pin`
+			sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+			sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
+			sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
+			awk -f out/awk_debug_card0 out/sys_config1.fex > out/a.fex
+			rm out/sys_config1.fex
+			mv out/a.fex out/sys_config1.fex
+			echo "uart -> card0 !!!"
+		fi
+	fi
+
+	
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
         wboot/bootfs wboot/bootfs.ini \
@@ -244,13 +270,25 @@ do_pack_linux()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-    busybox unix2dos sys_config.fex
-    script_old sys_config.fex
-    script sys_config1.fex
-    update_23 sys_config1.bin boot0.bin boot1.bin
-    update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    cp sys_config1.bin bootfs/script0.bin
-    cp sys_config1.bin bootfs/script.bin
+
+    if [ "$PACK_CHIP" = "sun5i" ]; then
+    	busybox unix2dos sys_config.fex
+    	script_old sys_config.fex
+		script sys_config.fex
+		update_23 sys_config.bin boot0.bin boot1.bin
+		update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+		cp sys_config.bin bootfs/script0.bin
+		cp sys_config.bin bootfs/script.bin
+	else
+    	busybox unix2dos sys_config.fex
+    	busybox unix2dos sys_config1.fex
+    	script_old sys_config.fex
+		script sys_config1.fex
+		update_23 sys_config1.bin boot0.bin boot1.bin
+		update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+		cp sys_config1.bin bootfs/script0.bin
+		cp sys_config1.bin bootfs/script.bin
+	fi
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex

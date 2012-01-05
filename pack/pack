@@ -105,6 +105,13 @@ do_clean()
     #rm -rf out/*.fex out/*.bin
 }
 
+
+do_pack_android()
+{
+do_pack_crane
+}
+
+
 do_pack_crane()
 {
     printf "!!!Packing for crane!!!\n"

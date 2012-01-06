@@ -1,4 +1,5 @@
 #!/bin/sh
+DIR=/home/panlong/daily_build
 PLATFORM=linux
 CHIPS=a13
 BOARD=a13-evb

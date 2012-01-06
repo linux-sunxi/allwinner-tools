@@ -1,4 +1,5 @@
 #!/bin/sh
+DIR=/home/panlong/daily_build
 PLATFORM=linux
 CHIPS=sun5i
 BOARD=a12-evb

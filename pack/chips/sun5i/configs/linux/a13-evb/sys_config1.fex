@@ -236,8 +236,8 @@ tkey_int                 =
 ;motor configuration
 ;----------------------------------------------------------------------------------
 [motor_para]
-motor_used               = 0
-motor_shake              =
+motor_used               = 1
+motor_shake              = port:PA16<1><default><default><0>
 
 ;----------------------------------------------------------------------------------
 ;disp init configuration
@@ -637,8 +637,8 @@ luns                     = 3
 ; gs_twi_id ---  TWI ID for controlling Gsensor (0: TWI0, 1: TWI1, 2: TWI2)
 ;--------------------------------------------------------------------------------
 [gsensor_para]
-gsensor_used             = 0
-gsensor_name             = "bma222"
+gsensor_used             = 1
+gsensor_name             = "bma250"
 gsensor_twi_id           = 1
 gsensor_twi_addr         = 0x18
 gsensor_int1             =

@@ -161,8 +161,8 @@ do_pack_crane()
 
     if [ "$PACK_CHIP" = "sun5i" ]; then
     	busybox unix2dos sys_config.fex
-    	script_old sys_config.fex
     	script sys_config.fex
+    	script sys_config1.fex
     	update_23 sys_config.bin boot0.bin boot1.bin
     	update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
     	cp sys_config.bin bootfs/script0.bin
@@ -170,7 +170,7 @@ do_pack_crane()
 	else
     	busybox unix2dos sys_config.fex
     	busybox unix2dos sys_config1.fex
-    	script_old sys_config.fex
+    	script sys_config.fex
     	script sys_config1.fex
     	update_23 sys_config1.bin boot0.bin boot1.bin
     	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
@@ -240,7 +240,7 @@ do_pack_linux()
 		fi
 	fi
 
-	
+
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
         wboot/bootfs wboot/bootfs.ini \
@@ -269,8 +269,8 @@ do_pack_linux()
 
     if [ "$PACK_CHIP" = "sun5i" ]; then
     	busybox unix2dos sys_config.fex
-    	script_old sys_config.fex
-		script sys_config.fex
+    	script sys_config.fex
+		script sys_config1.fex
 		update_23 sys_config.bin boot0.bin boot1.bin
 		update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
 		cp sys_config.bin bootfs/script0.bin
@@ -278,7 +278,7 @@ do_pack_linux()
 	else
     	busybox unix2dos sys_config.fex
     	busybox unix2dos sys_config1.fex
-    	script_old sys_config.fex
+    	script sys_config.fex
 		script sys_config1.fex
 		update_23 sys_config1.bin boot0.bin boot1.bin
 		update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD

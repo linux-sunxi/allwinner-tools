@@ -262,9 +262,7 @@ do_pack_linux()
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
 
     #remove me later
-    if [ "$PACK_CHIP" = "sun5i" ]; then
-        cp -v $LICHEE_OUT/bImage bootfs/linux/
-    fi
+
 
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
@@ -274,25 +272,13 @@ do_pack_linux()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-
-    if [ "$PACK_CHIP" = "sun5i" ]; then
     	busybox unix2dos sys_config.fex
     	script sys_config.fex
-		script sys_config1.fex
 		update_23 sys_config.bin boot0.fex boot1.fex
 		update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
 		cp sys_config.bin bootfs/script0.bin
 		cp sys_config.bin bootfs/script.bin
-	else
-    	busybox unix2dos sys_config.fex
-    	busybox unix2dos sys_config1.fex
-    	script sys_config.fex
-		script sys_config1.fex
-		update_23 sys_config1.bin boot0.fex boot1.fex
-		update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-		cp sys_config1.bin bootfs/script0.bin
-		cp sys_config1.bin bootfs/script.bin
-	fi
+
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex

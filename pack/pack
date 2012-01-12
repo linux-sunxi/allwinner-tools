@@ -25,7 +25,7 @@ SYNOPSIS
 
 OPTIONS
     -h                  Display help message
-    -c [chip_type]      Chip type, e.g. sun3i, sun4i, sun5i,...
+    -c [chip_type]      Chip type, e.g. sun3i, sun4i,...
     -p [platform_type]  Platform type, e.g. linux, crane,...
     -b [board_type]     Board type, e.g. evb1.1, evb1.2, ...
     -B [boot_type]      Boot type, e.g. nand, sdcard, ...
@@ -163,15 +163,7 @@ do_pack_crane()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-    if [ "$PACK_CHIP" = "sun5i" ]; then
-    	busybox unix2dos sys_config.fex
-    	script sys_config.fex
-    	script sys_config1.fex
-    	update_23 sys_config.bin boot0.fex boot1.fex
-    	update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    	cp sys_config.bin bootfs/script0.bin
-    	cp sys_config.bin bootfs/script.bin
-	else
+
     	busybox unix2dos sys_config.fex
     	busybox unix2dos sys_config1.fex
     	script sys_config.fex
@@ -180,7 +172,7 @@ do_pack_crane()
     	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
     	cp sys_config1.bin bootfs/script0.bin
     	cp sys_config1.bin bootfs/script.bin
-	fi
+	
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex

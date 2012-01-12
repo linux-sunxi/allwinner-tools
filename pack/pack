@@ -143,6 +143,10 @@ do_pack_crane()
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
         wboot/bootfs wboot/bootfs.ini wboot/udisk.fex \
         out/
+	
+	#rename boot0, boot1
+	mv out/boot0.bin out/boot0.fex
+	mv out/boot1.bin out/boot1.fex
 
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
     cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
@@ -163,7 +167,7 @@ do_pack_crane()
     	busybox unix2dos sys_config.fex
     	script sys_config.fex
     	script sys_config1.fex
-    	update_23 sys_config.bin boot0.bin boot1.bin
+    	update_23 sys_config.bin boot0.fex boot1.fex
     	update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
     	cp sys_config.bin bootfs/script0.bin
     	cp sys_config.bin bootfs/script.bin
@@ -172,7 +176,7 @@ do_pack_crane()
     	busybox unix2dos sys_config1.fex
     	script sys_config.fex
     	script sys_config1.fex
-    	update_23 sys_config1.bin boot0.bin boot1.bin
+    	update_23 sys_config1.bin boot0.fex boot1.fex
     	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
     	cp sys_config1.bin bootfs/script0.bin
     	cp sys_config1.bin bootfs/script.bin
@@ -246,6 +250,10 @@ do_pack_linux()
         wboot/bootfs wboot/bootfs.ini \
         out/
 
+	#rename boot0, boot1
+	mv out/boot0.bin out/boot0.fex
+	mv out/boot1.bin out/boot1.fex
+
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
     cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
 
@@ -271,7 +279,7 @@ do_pack_linux()
     	busybox unix2dos sys_config.fex
     	script sys_config.fex
 		script sys_config1.fex
-		update_23 sys_config.bin boot0.bin boot1.bin
+		update_23 sys_config.bin boot0.fex boot1.fex
 		update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
 		cp sys_config.bin bootfs/script0.bin
 		cp sys_config.bin bootfs/script.bin
@@ -280,7 +288,7 @@ do_pack_linux()
     	busybox unix2dos sys_config1.fex
     	script sys_config.fex
 		script sys_config1.fex
-		update_23 sys_config1.bin boot0.bin boot1.bin
+		update_23 sys_config1.bin boot0.fex boot1.fex
 		update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
 		cp sys_config1.bin bootfs/script0.bin
 		cp sys_config1.bin bootfs/script.bin

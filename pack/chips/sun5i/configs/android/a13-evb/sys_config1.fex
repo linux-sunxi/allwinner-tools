@@ -402,7 +402,7 @@ hdmi_used                = 0
 ;csi_flash_pol: the active polority of the flash light IO 0:low active 1:high active
 ;--------------------------------------------------------------------------------
 [csi0_para]
-csi_used                 = 0
+csi_used                 = 1
 csi_mode                 = 0
 csi_dev_qty              = 1
 csi_stby_mode            = 0

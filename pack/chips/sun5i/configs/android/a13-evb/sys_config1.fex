@@ -405,7 +405,7 @@ hdmi_used                = 0
 csi_used                 = 1
 csi_mode                 = 0
 csi_dev_qty              = 1
-csi_stby_mode            = 0
+csi_stby_mode            = 1
 
 csi_mname                = "gc0308"
 csi_twi_id               = 2
@@ -443,7 +443,7 @@ csi_d6                   = port:PE10<3><default><default><default>
 csi_d7                   = port:PE11<3><default><default><default>
 csi_reset                = port:power3<1><default><default><0>
 csi_power_en             =
-csi_stby                 = port:PB10<1><default><default><0>
+csi_stby                 = port:PB10<1><default><default><1>
 csi_flash                =
 csi_af_en                =
 csi_reset_b              =

@@ -44,7 +44,7 @@ twi_scl                  = port:PB0<2>
 twi_sda                  = port:PB1<2>
 
 [uart_para]
-uart_debug_port          = 0
+uart_debug_port          = 1
 uart_debug_tx            = port:PG3<4>
 uart_debug_rx            = port:PG4<4>
 
@@ -147,14 +147,14 @@ twi2_sda                 = port:PB18<2><default><default><default>
 ;uart_type ---  2 (2 wire), 4 (4 wire), 8 (8 wire, full function)
 ;----------------------------------------------------------------------------------
 [uart_para0]
-uart_used                = 1
+uart_used                = 0
 uart_port                = 0
 uart_type                = 2
 uart_tx                  = port:PG3<4>
 uart_rx                  = port:PG4<4>
 
 [uart_para1]
-uart_used                = 0
+uart_used                = 1
 uart_port                = 1
 uart_type                = 2
 uart_tx                  = port:PG3<4>

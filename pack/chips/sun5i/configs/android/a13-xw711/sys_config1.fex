@@ -189,7 +189,7 @@ spi_miso                 = port:PB3<4><default><default><default>
 ;                            normally, 0 is setted.
 ;----------------------------------------------------------------------------------
 [rtp_para]
-rtp_used      = 1
+rtp_used      = 0
 rtp_screen_size = 5
 rtp_regidity_level = 5
 rtp_press_threshold_enable = 0
@@ -204,22 +204,22 @@ rtp_exchange_x_y_flag = 0
 ;wakeup output function
 ;notice ---    tp_int_port &  tp_io_port use the same port
 ;name should be compatible with the corresponding ctp driver.
-;at present, only "ft5x_ts" and "Goodix-TS" is supported.
+;at present, only "ft5x_ts" and "Goodix-TS" and "gt818_ts" is supported.
 ;----------------------------------------------------------------------------------
 [ctp_para]
-ctp_used                 =0
-ctp_name                 = "Goodix-TS"
-ctp_twi_id               = 2
-ctp_twi_addr             =0x70
+ctp_used                 = 1
+ctp_name                 = "gt818_ts"
+ctp_twi_id               = 1
+ctp_twi_addr             = 0x5d
 ctp_screen_max_x         = 800
 ctp_screen_max_y         = 480
-ctp_revert_x_flag        = 0
+ctp_revert_x_flag        = 1
 ctp_revert_y_flag        = 0
 ctp_exchange_x_y_flag    = 0
 
 ctp_int_port             = port:PG11<6><default>
 ctp_wakeup               = port:PB03<1><default><default><1>
-ctp_io_port              =
+ctp_io_port              = port:PG11<6><default>
 
 ;----------------------------------------------------------------------------------
 ;touch key configuration

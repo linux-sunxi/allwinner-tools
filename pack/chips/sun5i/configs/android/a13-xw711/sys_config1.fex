@@ -302,7 +302,7 @@ lcd_used                 = 1
 
 lcd_x                    = 800
 lcd_y                    = 480
-lcd_dclk_freq            = 33
+lcd_dclk_freq            = 30
 lcd_pwm_not_used         = 0
 lcd_pwm_ch               = 0
 lcd_pwm_freq             = 10000
@@ -323,7 +323,7 @@ lcd_lvds_mode            = 0
 lcd_lvds_bitwidth        = 0
 lcd_lvds_io_cross        = 0
 lcd_cpu_if               = 0
-lcd_frm                  = 2
+lcd_frm                  = 1
 lcd_io_cfg0              = 0x00000000
 lcd_gamma_correction_en  = 0
 lcd_gamma_tbl_0          = 0x00000000

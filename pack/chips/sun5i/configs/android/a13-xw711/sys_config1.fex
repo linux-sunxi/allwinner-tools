@@ -154,7 +154,7 @@ uart_tx                  = port:PG3<4>
 uart_rx                  = port:PG4<4>
 
 [uart_para1]
-uart_used                = 1
+uart_used                = 0
 uart_port                = 1
 uart_type                = 2
 uart_tx                  = port:PG3<4>

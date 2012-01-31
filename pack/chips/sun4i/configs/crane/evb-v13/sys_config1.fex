@@ -655,21 +655,36 @@ lcdvsync                 = port:PH27<2><default><default><default>
 ;pmu_ldo3:  fill "axp20_pll"
 ;pmu_ldo4:  fill "axp20_hdmi"
 ;fill "" when not using any pmu power supply
+;csi_flash_pol: the active polority of the flash light IO 0:low active 1:high active
 ;--------------------------------------------------------------------------------
 [csi0_para]
-csi_used                 = 1
-csi_mname                = "ov7670"
-csi_twi_id               = 1
-csi_twi_addr             = 0x42
-csi_if                   = 0
+csi_used                 =1
 csi_mode                 = 0
 csi_dev_qty              = 1
-csi_vflip                = 1
-csi_hflip                = 1
 csi_stby_mode            = 0
+
+csi_mname                = "gc0308"
+csi_twi_id               = 1
+csi_twi_addr             =0x42
+csi_if                   = 0
+csi_vflip                = 0
+csi_hflip                = 1
 csi_iovdd                = ""
 csi_avdd                 = ""
 csi_dvdd                 = ""
+csi_flash_pol            = 1
+
+csi_mname_b              = ""
+csi_twi_id_b             = 1
+csi_twi_addr_b           = 0x78
+csi_if_b                 = 0
+csi_vflip_b              = 1
+csi_hflip_b              = 0
+csi_iovdd_b              = ""
+csi_avdd_b               = ""
+csi_dvdd_b               = ""
+csi_flash_pol_b          = 1
+
 csi_pck                  = port:PE00<3><default><default><default>
 csi_ck                   = port:PE01<3><default><default><default>
 csi_hsync                = port:PE02<3><default><default><default>
@@ -692,29 +707,48 @@ csi_d14                  =
 csi_d15                  = 
 csi_reset                = port:PH13<1><default><default><0>
 csi_power_en             = 
-csi_stby                 = port:PH16<1><default><default><1>
+csi_stby                 = port:PH16<1><default><default><0>
+csi_flash                = 
+csi_af_en                = 
 csi_reset_b              = 
 csi_power_en_b           = 
 csi_stby_b               = 
+csi_flash_b              = 
+csi_af_en_b              = 
 
 [csi1_para]
-csi_used                 = 0
-csi_mname                = "gt2005"
-csi_twi_id               = 1
-csi_twi_addr             = 0x78
-csi_if                   = 0
+csi_used                 =0
 csi_mode                 = 0
 csi_dev_qty              = 1
+csi_stby_mode            = 1
+
+csi_mname                = ""
+csi_twi_id               = 1
+csi_twi_addr             =0xba
+csi_if                   = 0
 csi_vflip                = 0
 csi_hflip                = 0
-csi_stby_mode            = 0
 csi_iovdd                = ""
 csi_avdd                 = ""
 csi_dvdd                 = ""
+csi_flash_pol            = 1
+
+csi_mname_b              = ""
+csi_twi_id_b             = 1
+csi_twi_addr_b           = 0x78
+csi_if_b                 = 0
+csi_vflip_b              = 1
+csi_hflip_b              = 0
+csi_iovdd_b              = ""
+csi_avdd_b               = ""
+csi_dvdd_b               = ""
+csi_flash_pol_b          = 1
+
 csi_pck                  = port:PG00<3><default><default><default>
 csi_ck                   = port:PG01<3><default><default><default>
 csi_hsync                = port:PG02<3><default><default><default>
 csi_vsync                = port:PG03<3><default><default><default>
+csi_field								 = 
 csi_d0                   = port:PG04<3><default><default><default>
 csi_d1                   = port:PG05<3><default><default><default>
 csi_d2                   = port:PG06<3><default><default><default>
@@ -742,9 +776,14 @@ csi_d23                  =
 csi_reset                = port:PH14<1><default><default><0>
 csi_power_en             = 
 csi_stby                 = port:PH17<1><default><default><0>
+csi_flash                = 
+csi_af_en                = 
 csi_reset_b              = 
 csi_power_en_b           = 
 csi_stby_b               = 
+csi_flash_b              = 
+csi_af_en_b              = 
+
 
 ;--------------------------------------------------------------------------------
 ;tv configuration

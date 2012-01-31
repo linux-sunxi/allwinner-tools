@@ -25,7 +25,7 @@ SYNOPSIS
 
 OPTIONS
     -h                  Display help message
-    -c [chip_type]      Chip type, e.g. sun3i, sun4i, sun5i,...
+    -c [chip_type]      Chip type, e.g. sun3i, sun4i,...
     -p [platform_type]  Platform type, e.g. linux, crane,...
     -b [board_type]     Board type, e.g. evb1.1, evb1.2, ...
     -B [boot_type]      Boot type, e.g. nand, sdcard, ...
@@ -143,7 +143,7 @@ do_pack_crane()
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
         wboot/bootfs wboot/bootfs.ini wboot/udisk.fex \
         out/
-
+	
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
     cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
 
@@ -159,24 +159,16 @@ do_pack_crane()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-    if [ "$PACK_CHIP" = "sun5i" ]; then
-    	busybox unix2dos sys_config.fex
-    	script sys_config.fex
-    	script sys_config1.fex
-    	update_23 sys_config.bin boot0.bin boot1.bin
-    	update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    	cp sys_config.bin bootfs/script0.bin
-    	cp sys_config.bin bootfs/script.bin
-	else
-    	busybox unix2dos sys_config.fex
-    	busybox unix2dos sys_config1.fex
-    	script sys_config.fex
-    	script sys_config1.fex
-    	update_23 sys_config1.bin boot0.bin boot1.bin
-    	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    	cp sys_config1.bin bootfs/script0.bin
-    	cp sys_config1.bin bootfs/script.bin
-	fi
+
+    busybox unix2dos sys_config.fex
+    busybox unix2dos sys_config1.fex
+    script sys_config.fex
+    script sys_config1.fex
+    update_23 sys_config1.bin boot0.bin boot1.bin
+    update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+    cp sys_config1.bin bootfs/script0.bin
+    cp sys_config1.bin bootfs/script.bin
+	
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
@@ -254,9 +246,7 @@ do_pack_linux()
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
 
     #remove me later
-    if [ "$PACK_CHIP" = "sun5i" ]; then
-        cp -v $LICHEE_OUT/bImage bootfs/linux/
-    fi
+
 
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
@@ -266,25 +256,15 @@ do_pack_linux()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
+	busybox unix2dos sys_config1.fex
+    busybox unix2dos sys_config.fex
+    script sys_config.fex
+	script sys_config1.fex
+	update_23 sys_config1.bin boot0.bin boot1.bin
+	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+	cp sys_config1.bin bootfs/script0.bin
+	cp sys_config1.bin bootfs/script.bin
 
-    if [ "$PACK_CHIP" = "sun5i" ]; then
-    	busybox unix2dos sys_config.fex
-    	script sys_config.fex
-		script sys_config1.fex
-		update_23 sys_config.bin boot0.bin boot1.bin
-		update_23 sys_config.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-		cp sys_config.bin bootfs/script0.bin
-		cp sys_config.bin bootfs/script.bin
-	else
-    	busybox unix2dos sys_config.fex
-    	busybox unix2dos sys_config1.fex
-    	script sys_config.fex
-		script sys_config1.fex
-		update_23 sys_config1.bin boot0.bin boot1.bin
-		update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-		cp sys_config1.bin bootfs/script0.bin
-		cp sys_config1.bin bootfs/script.bin
-	fi
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex

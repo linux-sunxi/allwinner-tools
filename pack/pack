@@ -195,6 +195,8 @@ do_pack_crane()
     FileAddSum system.fex vsystem.fex
     FileAddSum recovery.fex vrecovery.fex
 
+	mv boot0.bin boot0.fex
+	mv boot1.bin boot1.fex
     dragon image.cfg
 
     if [ -e ${IMG_NAME} ]; then
@@ -289,6 +291,8 @@ do_pack_linux()
     # get the rootfs
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
 
+	mv boot0.bin boot0.fex
+	mv boot1.bin boot1.fex
     dragon image.cfg
 
     if [ -e ${IMG_NAME} ]; then

@@ -127,11 +127,16 @@ do_pack_crane()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
 	# modify the debug opt
-	if [ $PACK_CHIP = sun4i ]; then
-		if [ $PACK_DEBUG = card0 ]; then
+	if [ $PACK_DEBUG = card0 ]; then
+		if [ $PACK_CHIP = sun4i ]; then
 			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
 			TX=`awk  '$0~"a10"{print $2}' pctools/linux/card_debug_pin`
 			RX=`awk  '$0~"a10"{print $3}' pctools/linux/card_debug_pin`
+		elif [ $PACK_CHIP = sun5i ]; then
+			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+			TX=`awk  '$0~"a13"{print $2}' pctools/linux/card_debug_pin`
+			RX=`awk  '$0~"a13"{print $3}' pctools/linux/card_debug_pin`
+		fi
 			sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
 			sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
 			sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
@@ -140,8 +145,9 @@ do_pack_crane()
 			rm out/sys_config1.fex
 			mv out/a.fex out/sys_config1.fex
 			echo "uart -> card0 !!!"
-		fi
+
 	fi
+
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
@@ -222,11 +228,16 @@ do_pack_linux()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
-	if [ $PACK_CHIP = sun4i ]; then
-		if [ $PACK_DEBUG = card0 ]; then
+	if [ $PACK_DEBUG = card0 ]; then
+		if [ $PACK_CHIP = sun4i ]; then
 			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
 			TX=`awk  '$0~"a10"{print $2}' pctools/linux/card_debug_pin`
 			RX=`awk  '$0~"a10"{print $3}' pctools/linux/card_debug_pin`
+		elif [ $PACK_CHIP = sun5i ]; then
+			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+			TX=`awk  '$0~"a13"{print $2}' pctools/linux/card_debug_pin`
+			RX=`awk  '$0~"a13"{print $3}' pctools/linux/card_debug_pin`
+		fi
 			sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
 			sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
 			sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
@@ -235,9 +246,8 @@ do_pack_linux()
 			rm out/sys_config1.fex
 			mv out/a.fex out/sys_config1.fex
 			echo "uart -> card0 !!!"
-		fi
-	fi
 
+	fi
 
     cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \

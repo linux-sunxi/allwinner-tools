@@ -143,7 +143,7 @@ do_pack_crane()
         eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
         wboot/bootfs wboot/bootfs.ini wboot/diskfs.fex \
         out/
-	
+
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
     cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
 
@@ -172,7 +172,7 @@ do_pack_crane()
     update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
     cp sys_config1.bin bootfs/script0.bin
     cp sys_config1.bin bootfs/script.bin
-	
+
 
     update_mbr sys_config.bin mbr.fex
     fsbuild bootfs.ini split_xxxx.fex
@@ -195,8 +195,6 @@ do_pack_crane()
     FileAddSum system.fex vsystem.fex
     FileAddSum recovery.fex vrecovery.fex
 
-	mv boot0.bin boot0.fex
-	mv boot1.bin boot1.fex
     dragon image.cfg
 
     if [ -e ${IMG_NAME} ]; then
@@ -291,8 +289,6 @@ do_pack_linux()
     # get the rootfs
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
 
-	mv boot0.bin boot0.fex
-	mv boot1.bin boot1.fex
     dragon image.cfg
 
     if [ -e ${IMG_NAME} ]; then

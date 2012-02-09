@@ -45,8 +45,8 @@ twi_sda                  = port:PB1<2>
 
 [uart_para]
 uart_debug_port          = 1
-uart_debug_tx            = port:PG3<4>
-uart_debug_rx            = port:PG4<4>
+uart_debug_tx            = port:PG3<4><1>
+uart_debug_rx            = port:PG4<4><1>
 
 [jtag_para]
 jtag_enable              = 1
@@ -150,15 +150,15 @@ twi2_sda                 = port:PB18<2><default><default><default>
 uart_used                = 0
 uart_port                = 0
 uart_type                = 2
-uart_tx                  = port:PG3<4>
-uart_rx                  = port:PG4<4>
+uart_tx                  = port:PG3<4><1>
+uart_rx                  = port:PG4<4><1>
 
 [uart_para1]
 uart_used                = 0
 uart_port                = 1
 uart_type                = 2
-uart_tx                  = port:PG3<4>
-uart_rx                  = port:PG4<4>
+uart_tx                  = port:PG3<4><1>
+uart_rx                  = port:PG4<4><1>
 ;spi configuration
 ;----------------------------------------------------------------------------------
 [spi1_para]

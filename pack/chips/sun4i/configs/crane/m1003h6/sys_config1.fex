@@ -1213,6 +1213,6 @@ pmu_shutdown_chgcur2     = 1200
 pmu_suspendpwroff_vol    = 3500
 
 [recovery_key]
-key_min			=16
-key_max			=30
+key_min			=34
+key_max			=40
 

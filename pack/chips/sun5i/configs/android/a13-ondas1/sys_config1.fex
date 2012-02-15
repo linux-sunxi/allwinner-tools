@@ -210,11 +210,11 @@ rtp_exchange_x_y_flag = 0
 ctp_used                 = 1
 ctp_name                 = "ft5x_ts"
 ctp_twi_id               = 1
-ctp_twi_addr             = 0x5d
+ctp_twi_addr             = 0x38
 ctp_screen_max_x         = 800
 ctp_screen_max_y         = 480
 ctp_revert_x_flag        = 0
-ctp_revert_y_flag        = 1
+ctp_revert_y_flag        = 0
 ctp_exchange_x_y_flag    = 0
 
 ctp_int_port             = port:PG11<6><default>
@@ -302,15 +302,15 @@ lcd_used                 = 1
 
 lcd_x                    = 800
 lcd_y                    = 480
-lcd_dclk_freq            = 30
+lcd_dclk_freq            = 33
 lcd_pwm_not_used         = 0
 lcd_pwm_ch               = 0
 lcd_pwm_freq             = 10000
 lcd_pwm_pol              = 1
 lcd_if                   = 0
-lcd_hbp                  = 88
+lcd_hbp                  = 93
 lcd_ht                   = 928
-lcd_vbp                  = 32
+lcd_vbp                  = 35
 lcd_vt                   = 1050
 lcd_hv_if                = 0
 lcd_hv_smode             = 0
@@ -407,12 +407,12 @@ csi_mode                 = 0
 csi_dev_qty              = 1
 csi_stby_mode            = 1
 
-csi_mname                = "gc0308"
+csi_mname                = "gc0307"
 csi_twi_id               = 2
 csi_twi_addr             = 0x42
 csi_if                   = 0
-csi_vflip                = 0
-csi_hflip                = 1
+csi_vflip                = 1
+csi_hflip                = 0
 csi_iovdd                = ""
 csi_avdd                 = ""
 csi_dvdd                 = ""
@@ -638,9 +638,9 @@ luns                     = 2
 ;--------------------------------------------------------------------------------
 [gsensor_para]
 gsensor_used             = 1
-gsensor_name             = "bma250"
+gsensor_name             = "mma7660"
 gsensor_twi_id           = 1
-gsensor_twi_addr         = 0x18
+gsensor_twi_addr         = 0x4c
 gsensor_int1             =
 gsensor_int2             =
 

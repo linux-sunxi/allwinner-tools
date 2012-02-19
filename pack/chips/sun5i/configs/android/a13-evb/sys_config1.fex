@@ -40,20 +40,20 @@ sdc_d2                   = port:PF5<2><1><default><default>
 
 [twi_para]
 twi_port                 = 0
-twi_scl                  = port:PB0<2>
-twi_sda                  = port:PB1<2>
+twi_scl                  = port:PB0<2><1><default><default>
+twi_sda                  = port:PB1<2><1><default><default>
 
 [uart_para]
 uart_debug_port          = 1
-uart_debug_tx            = port:PG3<4><1>
-uart_debug_rx            = port:PG4<4><1>
+uart_debug_tx            = port:PG3<4><1><default><default>
+uart_debug_rx            = port:PG4<4><1><default><default>
 
 [jtag_para]
 jtag_enable              = 0
-jtag_ms                  = port:PF0<4><0><default><default>
-jtag_ck                  = port:PF5<4><0><default><default>
-jtag_do                  = port:PF3<4><0><default><default>
-jtag_di                  = port:PF1<4><0><default><default>
+jtag_ms                  = port:PF0<4><1><default><default>
+jtag_ck                  = port:PF5<4><1><default><default>
+jtag_do                  = port:PF3<4><1><default><default>
+jtag_di                  = port:PF1<4><1><default><default>
 
 
 ;*****************************************************************************
@@ -150,15 +150,15 @@ twi2_sda                 = port:PB18<2><default><default><default>
 uart_used                = 0
 uart_port                = 0
 uart_type                = 2
-uart_tx                  = port:PB19<2><1>
-uart_rx                  = port:PB20<2><1>
+uart_tx                  = port:PB19<2><1><default><default>
+uart_rx                  = port:PB20<2><1><default><default>
 
 [uart_para1]
 uart_used                = 1
 uart_port                = 1
 uart_type                = 2
-uart_tx                  = port:PG3<4><1>
-uart_rx                  = port:PG4<4><1>
+uart_tx                  = port:PG3<4><1><default><default>
+uart_rx                  = port:PG4<4><1><default><default>
 ;spi configuration
 ;----------------------------------------------------------------------------------
 [spi1_para]

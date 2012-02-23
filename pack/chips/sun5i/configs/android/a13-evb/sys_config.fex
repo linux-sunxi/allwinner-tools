@@ -326,7 +326,7 @@ num     = 8
     class_name  = DISK
     name        = system
     size_hi     = 0
-    size_lo     = 262144
+    size_lo     = 524288
     user_type   = 2
     ro  	      = 0
 
@@ -335,7 +335,7 @@ num     = 8
     class_name  = DISK
     name        = data
     size_hi     = 0
-    size_lo     = 262144
+    size_lo     = 1048576
     user_type   = 2
     ro  	      = 0
 
@@ -362,7 +362,7 @@ num     = 8
     class_name  = DISK
     name        = cache
     size_hi     = 0
-    size_lo     = 131072
+    size_lo     =524288
     user_type   = 2
     ro  	      = 0
 

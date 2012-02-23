@@ -597,8 +597,8 @@ kp_out7                  =
 usb_used                 = 1
 usb_port_type            = 2
 usb_detect_type          = 1
-usb_id_gpio              = port:PG10<0><1><default><default>
-usb_det_vbus_gpio        = port:PG11<0><0><default><default>
+usb_id_gpio              = port:PG2<0><1><default><default>
+usb_det_vbus_gpio        = port:PG1<0><0><default><default>
 usb_drv_vbus_gpio        = port:PG12<1><0><default><0>
 usb_host_init_state      = 0
 
@@ -611,7 +611,7 @@ usb_port_type            = 1
 usb_detect_type          = 0
 usb_id_gpio              =
 usb_det_vbus_gpio        =
-usb_drv_vbus_gpio        = port:PG1<1><0><default><0>
+usb_drv_vbus_gpio        = port:PG11<1><0><default><0>
 usb_host_init_state      = 1
 
 ;--------------------------------

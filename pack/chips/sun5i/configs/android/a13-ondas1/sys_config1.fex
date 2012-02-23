@@ -19,7 +19,7 @@ ldo2_vol                 = 3000
 ldo3_vol                 = 3300
 ldo4_vol                 = 3300
 pll4_freq                = 960
-pll6_freq                = 1200
+pll6_freq                = 720
 
 
 [card_boot]
@@ -120,7 +120,7 @@ nand_ndqs                = port:PC19<2><default><default><default>
 ;*****************************************************************************
 [mali_para]
 mali_used                = 1
-mali_clkdiv              = 3
+mali_clkdiv              = 2
 
 ;----------------------------------------------------------------------------------
 ;i2c configuration

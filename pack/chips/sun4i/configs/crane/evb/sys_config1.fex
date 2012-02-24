@@ -1187,10 +1187,10 @@ ir0_rx                    = port:PB04<2><default><default><default>
 ;pmu_init_adc_freqc     ---set initial coulomb adc coufrequency,Hz,25/50/100/200
 ;pmu_init_chg_pretime   ---set initial pre-charging time,min,40/50/60/70
 ;pmu_init_chg_csttime   ---set initial constance-charging time,min,360/480/600/720
-;pmu_usbvol_limit       ---set usb voltage limited enable,0:关闭,1:打开
-;pmu_usbvol             ---set usb limited voltage level,mV,4000/4100/4200/4300/4400/4500/4600/4700
-;pmu_usbcur_limit       ---set usb current limited enable,0:关闭,1:打开
-;pmu_usbcur             ---set usb limited voltage level,mA,100/500/900
+;pmu_usbvol             ---set usb-ac limited voltage level,mV,4000/4100/4200/4300/4400/4500/4600/4700,0 - not limite
+;pmu_usbcur             ---set usb-ac limited voltage level,mA,100/500/900, 0 - not limite
+;pmu_usbvol_pc	        ---set usb-pc limited voltage level,mV,4000/4100/4200/4300/4400/4500/4600/4700,0 - not limite
+;pmu_usbcur_pc          ---set usb-pc limited voltage level,mA,100/500/900, 0 - not limite
 ;pmu_pwroff_vol         ---set protect voltage when system start up,mV,2600/2700/2800/2900/3000/3100/3200/3300
 ;pmu_pwron_vol          ---set protect voltage after system start up,mV,2600/2700/2800/2900/3000/3100/3200/3300
 ;pmu_pekoff_time        ---set pek off time,ms, 4000/6000/8000/10000
@@ -1199,7 +1199,9 @@ ir0_rx                    = port:PB04<2><default><default><default>
 ;pmu_pekon_time         ---set pek on time,ms,128/1000/2000/3000
 ;pmu_pwrok_time         ---set pmu pwrok delay time,ms,8/64
 ;pmu_pwrnoe_time        ---set pmu n_oe power down delay time,ms,128/1000/2000/3000
-;pmu_intotp_en		  		---set pmu power down when overtempertur enable,0:关闭，1：打开
+;pmu_intotp_en		  	---set pmu power down when overtempertur enable,0:关闭，1：打开
+;pmu_suspendpwroff_vol  ---set pmu shutdown voltage when cpu is suspend and battery voltage is low
+;pmu_batdeten			---set pmu battery detect enabled,0:关闭，1：打开
 ;----------------------------------------------------------------------------------
 [pmu_para]
 pmu_used                 = 1
@@ -1238,10 +1240,11 @@ pmu_bat_para14           = 84
 pmu_bat_para15           = 92
 pmu_bat_para16           = 100
 
-pmu_usbvol_limit         = 1
 pmu_usbvol               = 4000
-pmu_usbcur_limit         = 0
-pmu_usbcur               =  900
+pmu_usbcur               = 0
+
+pmu_usbvol_pc            = 4000
+pmu_usbcur_pc            = 0
 
 pmu_pwroff_vol           = 3300
 pmu_pwron_vol            = 2900
@@ -1263,6 +1266,8 @@ pmu_resume_chgcur2       = 400
 pmu_shutdown_chgcur2     = 1200
 
 pmu_suspendpwroff_vol    = 3500
+
+pmu_batdeten			 = 1
 
 [recovery_key]
 key_min			=4

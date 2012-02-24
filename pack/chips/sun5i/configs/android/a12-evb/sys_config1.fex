@@ -53,20 +53,20 @@ sdc_d7                   = port:PC15<3><1><default><default>
 
 [twi_para]
 twi_port                 = 0
-twi_scl                  = port:PB0<2>
-twi_sda                  = port:PB1<2>
+twi_scl                  = port:PB0<2><1><default><default>
+twi_sda                  = port:PB1<2><1><default><default>
 
 [uart_para]
 uart_debug_port          = 0
-uart_debug_tx            = port:PB19<2>
-uart_debug_rx            = port:PB20<2>
+uart_debug_tx            = port:PB19<2><1><default><default>
+uart_debug_rx            = port:PB20<2><1><default><default>
 
 [jtag_para]
 jtag_enable              = 1
-jtag_ms                  = port:PB11<3>
-jtag_ck                  = port:PB12<3>
-jtag_do                  = port:PB13<3>
-jtag_di                  = port:PB14<3>
+jtag_ms                  = port:PB11<3><1><default><default>
+jtag_ck                  = port:PB12<3><1><default><default>
+jtag_do                  = port:PB13<3><1><default><default>
+jtag_di                  = port:PB14<3><1><default><default>
 
 ;*****************************************************************************
 ; sdram configuration
@@ -189,37 +189,37 @@ twi2_sda                 = port:PB18<2><default><default><default>
 uart_used                = 1
 uart_port                = 0
 uart_type                = 2
-uart_tx                  = port:PB19<2>
-uart_rx                  = port:PB20<2>
+uart_tx                  = port:PB19<2><1><default><default>
+uart_rx                  = port:PB20<2><1><default><default>
 
 [uart_para1]
 uart_used                = 1
 uart_port                = 1
 uart_type                = 4
-uart_tx                  = port:PA12<3><default><default><default>
-uart_rx                  = port:PA13<3><default><default><default>
-uart_rts                 = port:PA15<3><default><default><default>
-uart_cts                 = port:PA14<3><default><default><default>
-;uart_dtr                 = port:PA08<4><default><default><default>
-;uart_dsr                 = port:PA09<4><default><default><default>
-;uart_dcd                 = port:PA10<4><default><default><default>
-;uart_ring                = port:PA11<4><default><default><default>
+uart_tx                  = port:PA12<3><1><default><default>
+uart_rx                  = port:PA13<3><1><default><default>
+uart_rts                 = port:PA15<3><1><default><default>
+uart_cts                 = port:PA14<3><1><default><default>
+;uart_dtr                 = port:PA08<4><1><default><default>
+;uart_dsr                 = port:PA09<4><1><default><default>
+;uart_dcd                 = port:PA10<4><1><default><default>
+;uart_ring                = port:PA11<4><1><default><default>
 
 [uart_para2]
 uart_used                = 0
 uart_port                = 2
 uart_type                = 2
-uart_tx                  = port:PA16<3><default><default><default>
-uart_rx                  = port:PA17<3><default><default><default>
+uart_tx                  = port:PA16<3><1><default><default>
+uart_rx                  = port:PA17<3><1><default><default>
 
 [uart_para3]
 uart_used                = 0
 uart_port                = 3
 uart_type                = 4
-uart_tx                  = port:PG9<3><default><default><default>
-uart_rx                  = port:PG10<3><default><default><default>
-uart_rts                 = port:PG12<3><default><default><default>
-uart_cts                 = port:PG11<3><default><default><default>
+uart_tx                  = port:PG9<3><1><default><default>
+uart_rx                  = port:PG10<3><1><default><default>
+uart_rts                 = port:PG12<3><1><default><default>
+uart_cts                 = port:PG11<3><1><default><default>
 
 ;----------------------------------------------------------------------------------
 ;spi configuration

@@ -1175,7 +1175,7 @@ pmu_usbvol               = 4000
 pmu_usbcur_limit         = 1
 pmu_usbcur               = 500
 
-pmu_pwroff_vol           = 3550
+pmu_pwroff_vol           = 3300
 pmu_pwron_vol            = 3100
 
 pmu_pekoff_time          = 6000 

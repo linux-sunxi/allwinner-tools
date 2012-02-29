@@ -378,7 +378,7 @@ do_pack_test()
     # get other images from android build
     ln -s $LICHEE_OUT/boot.img boot.fex
     ln -s ../../../buildroot/target/test/system.ext4 system.fex 
-    ln -s ../../../buildroot/target/test/modules.ext4 recovery.fex
+    ln -s ../../../buildroot/target/test/modules.ext2 recovery.fex
 
     # checksum for all fex
     FileAddSum bootloader.fex vbootloader.fex

@@ -1052,10 +1052,10 @@ gps_rx_en                = port:PI15<1><default><default><0>
 ;wifi_sdc_id    ---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
 ;sdio_wifi_mod_sel    ---  0- none,     1- swl-n20(wifi), 2- usi bm-01(wifi+bt+fm), 
 ;                          3- ar6302qfn,4- apm6xxx,       5- swb b23(wifi+bt+fm)
-;                          6- hw-mw269x(v1/v2)
+;                          6- hw-mw269x(v1/v2) 7-bcm40181 8- bcm40183
 ;--------------------------------------------------------------------------------
 [sdio_wifi_para]
-sdio_wifi_used           =1
+sdio_wifi_used           = 1
 sdio_wifi_sdc_id         = 3
 sdio_wifi_mod_sel        = 1
 
@@ -1093,6 +1093,18 @@ swl_n20_vcc_en          = port:PH12<1><default><default><0>
 ;hw_mw269x_bt_enb        = port:PB05<1><default><default><0>
 ;hw_mw269x_bt_wake       = port:PI20<1><default><default><0>
 ;hw_mw269x_bt_hostwake   = port:PI21<0><default><default><0>
+
+; 7 - bcm40181 sdio wifi gpio config
+;bcm40181_shdn            = port:PH09<1><default><default><0>
+;bcm40181_wakeup          = port:PH10<1><default><default><1>
+;bcm40181_vdd_en          = port:PH11<1><default><default><0>
+;bcm40181_vcc_en          = port:PH12<1><default><default><0>
+
+; 8 - bcm40183 sdio wifi gpio config
+;bcm40183_pwr        = port:PH12<1><default><default><0>
+;bcm40183_wl_regon      = port:PH11<1><default><default><0>
+;bcm40183_bt_rst        = port:PB05<1><default><default><0>
+;bcm40183_bt_regon      = port:PI20<1><default><default><0>
 
 ;--------------------------------------------------------------------------------
 ;usb wifi configuration

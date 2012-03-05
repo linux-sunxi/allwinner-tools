@@ -727,10 +727,13 @@ gy_int2                  =
 
 ;--------------------------------------------------------------------------------
 ;light sensor
+;only modified "ls_used"/"ls_name"/"ls_twi_id", "ls_twi_addr"/"ls_int" not used
+;support list : [ltr501als]
+;               []
 ;--------------------------------------------------------------------------------
 [ls_para]
 ls_used                  = 1
-ls_name					 = "ltr501"
+ls_name					         = "ltr501als"
 ls_twi_id                = 1
 ls_twi_addr              =
 ls_int                   =

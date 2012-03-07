@@ -147,6 +147,7 @@ do_pack_crane()
 
     cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
     cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/drv_de.drv out/bootfs/ 2>/dev/null
 
     cd out/
 

@@ -54,8 +54,20 @@ size = 1024
 ;     3、class_name和name最大12个字符
 ;     4、size_hi + size_lo = 0, 表示此分区不存在
 ;********************************************************************************************************
+
+; nanda		bootloader
+; nandb		env
+; nandc		boot
+; nandd		system
+; nande		data
+; nandf		misc
+; nandg		recovery
+; nandh		cache
+; nandi		private
+; nandj		backup
+; nandk		udisk
 [part_num]
-num     = 8
+num     = 10
 
 ;------------------------------>nanda, known as bootfs before, includes boot.axf u-boot.bin etc...
 [partition0]
@@ -126,6 +138,24 @@ num     = 8
     name        = cache
     size_hi     = 0
     size_lo     = 131072
+    user_type   = 2
+    ro  	      = 0
+
+;------------------------------>nandi, private data, fat formatted
+[partition8]
+    class_name  = DISK
+    name        = private
+    size_hi     = 0
+    size_lo     = 1024
+    user_type   = 2
+    ro  	      = 0
+
+;------------------------------>nandj, img backup
+[partition9]
+    class_name  = DISK
+    name        = backup
+    size_hi     = 0
+    size_lo     = 1024
     user_type   = 2
     ro  	      = 0
 

@@ -320,6 +320,103 @@ do_pack_linux()
     cd - 1>/dev/null
 }
 
+do_pack_test()
+{
+    printf "!!!Packing for test firmware!!!\n"
+
+    if [ -z "$LICHEE_OUT" ]; then
+        LICHEE_OUT=`cd ../../out; pwd`
+    fi
+
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/default/* out/
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
+
+    # modify the debug opt
+    if [ $PACK_CHIP = sun4i ]; then
+	if [ $PACK_DEBUG = card0 ]; then
+	    cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+	    TX=`awk  '$0~"a10"{print $2}' pctools/linux/card_debug_pin`
+	    RX=`awk  '$0~"a10"{print $3}' pctools/linux/card_debug_pin`
+	    sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
+	    sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+	    sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
+	    sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
+	    awk -f out/awk_debug_card0 out/sys_config1.fex > out/a.fex
+	    rm out/sys_config1.fex
+	    mv out/a.fex out/sys_config1.fex
+	    echo "uart -> card0 !!!"
+	fi
+    fi
+
+    cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
+        eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
+        wboot/bootfs wboot/bootfs.ini wboot/diskfs.fex \
+        out/
+
+    cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
+    cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+
+    cd out/
+
+    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
+
+    sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
+    sed -i 's/\\\\/\//g' image.cfg
+    sed -i 's/imagename/;imagename/g' image.cfg
+
+    if [ $PACK_DEBUG = card0 ]; then
+	IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}_$PACK_DEBUG.img"
+    else
+        IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
+    fi
+    echo "imagename = $IMG_NAME" >> image.cfg
+    echo "" >> image.cfg
+
+
+    busybox unix2dos sys_config.fex
+    busybox unix2dos sys_config1.fex
+    script sys_config.fex
+    script sys_config1.fex
+    update_23 sys_config1.bin boot0.bin boot1.bin
+    update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+    cp sys_config1.bin bootfs/script0.bin
+    cp sys_config1.bin bootfs/script.bin
+
+    update_mbr sys_config.bin mbr.fex
+    fsbuild bootfs.ini split_xxxx.fex
+
+    # get bootloader.fex
+    mv bootfs.fex bootloader.fex
+
+    # get env.fex
+    u_boot_env_gen env.cfg env.fex
+
+    # get other images from android build
+    ln -s $LICHEE_OUT/boot.img boot.fex
+    ln -s ../../../buildroot/target/test/system.ext4 system.fex 
+    ln -s ../../../buildroot/target/test/modules.ext4 recovery.fex
+
+    # checksum for all fex
+    FileAddSum bootloader.fex vbootloader.fex
+    FileAddSum env.fex venv.fex
+    FileAddSum boot.fex vboot.fex
+    FileAddSum system.fex vsystem.fex
+    FileAddSum recovery.fex vrecovery.fex
+
+    dragon image.cfg
+
+    if [ -e ${IMG_NAME} ]; then
+        mv ${IMG_NAME} ../${IMG_NAME}
+        echo '---------image is at-------------'
+        echo -e '\033[0;31;1m'
+        echo ${ROOT_DIR}/${IMG_NAME}
+        echo -e '\033[0m'
+    fi
+
+    cd - 1>/dev/null
+}
+
 do_prepare
 do_pack_${PACK_PLATFORM}
 do_clean

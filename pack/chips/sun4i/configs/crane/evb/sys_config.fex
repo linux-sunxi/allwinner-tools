@@ -183,5 +183,5 @@ verify_file = VRECOVERYFS_0000
 
 [download5]
 part_name   = UDISK
-pkt_name    = UDISK_0000000000
+pkt_name    = DISKFS_000000000
 encrypt     = 0

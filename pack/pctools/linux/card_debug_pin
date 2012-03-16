@@ -1,4 +1,3 @@
-board    tx             rx           NO.
-a10      port:PF2<4>    port:PF4<4>  1
-a12      port:a12<1>    port:a12<2>  2
-a12      port:a12<3>    port:a13<2>  3
+board    tx						rx					 NO.
+a10      port:PF2<4><1><1>		port:PF4<4><1><1>	1
+

@@ -69,6 +69,11 @@ uart_debug_port          = 0
 uart_debug_tx            =port:PB22<2><1><1><default>
 uart_debug_rx            =port:PB23<2><1><1><default>
 
+[uart_force_debug]
+uart_debug_port          = 0
+uart_debug_tx            =port:PF2<4>
+uart_debug_rx            =port:PF4<4>
+
 [jtag_para]
 jtag_enable              =0
 jtag_ms                 = port:PF0<4>
@@ -283,7 +288,7 @@ rtp_screen_size          =5
 ;external int function
 ;wakeup output function
 ;notice ---    tp_int_port &  tp_io_port use the same port
-;name should be compatible with the corresponding ctp driver. 
+;name should be compatible with the corresponding ctp driver.
 ;at present, only "ft5x_ts" and "Goodix-TS" is supported.
 ;----------------------------------------------------------------------------------
 [ctp_para]
@@ -368,7 +373,7 @@ nand_ndqs                = port:PC24<2><default><default><default>
 [disp_init]
 disp_init_enable         = 1
 disp_mode                = 0
-                         
+
 screen0_output_type      = 1
 screen0_output_mode      = 4
 
@@ -396,7 +401,7 @@ fb1_scaler_mode_enable   = 0
 ;lcd_ht:             hsync total cycle
 ;lcd_vbp:            vsync back porch
 ;lcd_vt:             vysnc total cycle *2
-;lcd_hv_if:          0:hv parallel 1:hv serial 
+;lcd_hv_if:          0:hv parallel 1:hv serial
 ;lcd_hv_smode:       0:RGB888 1:CCIR656
 ;lcd_hv_s888_if      serial RGB format
 ;lcd_hv_syuv_if:     serial YUV format
@@ -497,7 +502,7 @@ lcdvsync                 = port:PD27<2><0><default><default>
 ;lcd_ht:             hsync total cycle
 ;lcd_vbp:            vsync back porch
 ;lcd_vt:             vysnc total cycle *2
-;lcd_hv_if:          0:hv parallel 1:hv serial 
+;lcd_hv_if:          0:hv parallel 1:hv serial
 ;lcd_hv_smode:       0:RGB888 1:CCIR656
 ;lcd_hv_s888_if      serial RGB format
 ;lcd_hv_syuv_if:     serial YUV format
@@ -598,8 +603,8 @@ lcdvsync                 = port:PH27<2><0><default><default>
 ;csi_vflip: flip in vertical direction 0:disable 1:enable
 ;csi_hflip: flip in horizontal direction 0:disable 1:enable
 ;csi_stby_mode: 0:not shut down power at standby 1:shut down power at standby
-;csi_iovdd: camera module io power , pmu power supply  
-;csi_avdd:	camera module analog power , pmu power supply	
+;csi_iovdd: camera module io power , pmu power supply
+;csi_avdd:	camera module analog power , pmu power supply
 ;csi_dvdd:	camera module core power , pmu power supply
 ;pmu_ldo3:  fill "axp20_pll"
 ;pmu_ldo4:  fill "axp20_hdmi"
@@ -646,24 +651,24 @@ csi_d4                   = port:PE08<3><default><default><default>
 csi_d5                   = port:PE09<3><default><default><default>
 csi_d6                   = port:PE10<3><default><default><default>
 csi_d7                   = port:PE11<3><default><default><default>
-csi_d8                   = 
-csi_d9                   = 
-csi_d10                  = 
-csi_d11                  = 
-csi_d12                  = 
-csi_d13                  = 
-csi_d14                  = 
-csi_d15                  = 
+csi_d8                   =
+csi_d9                   =
+csi_d10                  =
+csi_d11                  =
+csi_d12                  =
+csi_d13                  =
+csi_d14                  =
+csi_d15                  =
 csi_reset                = port:PH13<1><default><default><0>
 csi_power_en             = port:PH16<1><default><default><0>
 csi_stby                 = port:PH18<1><default><default><0>
-csi_flash                = 
-csi_af_en                = 
-csi_reset_b              = 
-csi_power_en_b           = 
-csi_stby_b               = 
-csi_flash_b              = 
-csi_af_en_b              = 
+csi_flash                =
+csi_af_en                =
+csi_reset_b              =
+csi_power_en_b           =
+csi_stby_b               =
+csi_flash_b              =
+csi_af_en_b              =
 
 [csi1_para]
 csi_used                 = 1
@@ -697,7 +702,7 @@ csi_pck                  = port:PG00<3><default><default><default>
 csi_ck                   = port:PG01<3><default><default><default>
 csi_hsync                = port:PG02<3><default><default><default>
 csi_vsync                = port:PG03<3><default><default><default>
-csi_field		 = 
+csi_field		 =
 csi_d0                   = port:PG04<3><default><default><default>
 csi_d1                   = port:PG05<3><default><default><default>
 csi_d2                   = port:PG06<3><default><default><default>
@@ -706,32 +711,32 @@ csi_d4                   = port:PG08<3><default><default><default>
 csi_d5                   = port:PG09<3><default><default><default>
 csi_d6                   = port:PG10<3><default><default><default>
 csi_d7                   = port:PG11<3><default><default><default>
-csi_d8                   = 
-csi_d9                   = 
-csi_d10                  = 
-csi_d11                  = 
-csi_d12                  = 
-csi_d13                  = 
-csi_d14                  = 
-csi_d15                  = 
-csi_d16                  = 
-csi_d17                  = 
-csi_d18                  = 
-csi_d19                  = 
-csi_d20                  = 
-csi_d21                  = 
-csi_d22                  = 
-csi_d23                  = 
+csi_d8                   =
+csi_d9                   =
+csi_d10                  =
+csi_d11                  =
+csi_d12                  =
+csi_d13                  =
+csi_d14                  =
+csi_d15                  =
+csi_d16                  =
+csi_d17                  =
+csi_d18                  =
+csi_d19                  =
+csi_d20                  =
+csi_d21                  =
+csi_d22                  =
+csi_d23                  =
 csi_reset                = port:PH14<1><default><default><0>
 csi_power_en             = port:PH17<1><default><default><0>
 csi_stby                 = port:PH19<1><default><default><1>
-csi_flash                = 
-csi_af_en                = 
-csi_reset_b              = 
-csi_power_en_b           = 
-csi_stby_b               = 
-csi_flash_b              = 
-csi_af_en_b              = 
+csi_flash                =
+csi_af_en                =
+csi_reset_b              =
+csi_power_en_b           =
+csi_stby_b               =
+csi_flash_b              =
+csi_af_en_b              =
 
 
 ;--------------------------------------------------------------------------------
@@ -818,7 +823,7 @@ sdc_d0                   = port:PI06<2><1><2><default>
 sdc_d1                   = port:PI07<2><1><2><default>
 sdc_d2                   = port:PI08<2><1><2><default>
 sdc_d3                   = port:PI09<2><1><2><default>
-sdc_det                  = 
+sdc_det                  =
 sdc_use_wp               = 0
 sdc_wp                   =
 
@@ -982,7 +987,7 @@ gps_rx_en                = port:PI15<1><default><default><0>
 ;--------------------------------------------------------------------------------
 ;sdio wifi configuration
 ;wifi_sdc_id    ---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
-;sdio_wifi_mod_sel    ---  0- none,     1- swl-n20(wifi), 2- usi bm-01(wifi+bt+fm), 
+;sdio_wifi_mod_sel    ---  0- none,     1- swl-n20(wifi), 2- usi bm-01(wifi+bt+fm),
 ;                          3- ar6302qfn,4- apm6xxx,       5- swb b23(wifi+bt+fm)
 ;			   6- bcm40181(wifi),		  7-hw-mw269v2
 ;--------------------------------------------------------------------------------
@@ -1193,7 +1198,7 @@ pmu_usbcur_pc            = 0
 pmu_pwroff_vol           = 3300
 pmu_pwron_vol            = 3100
 
-pmu_pekoff_time          = 6000 
+pmu_pekoff_time          = 6000
 pmu_pekoff_en            = 1
 pmu_peklong_time         = 1500
 pmu_pekon_time           = 1000

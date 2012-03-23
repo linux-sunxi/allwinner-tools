@@ -69,6 +69,11 @@ uart_debug_port          = 0
 uart_debug_tx            =port:PB22<2><1><default><default>
 uart_debug_rx            =port:PB23<2><1><default><default>
 
+[uart_force_debug]
+uart_debug_port          = 0
+uart_debug_tx            =port:PF2<4>
+uart_debug_rx            =port:PF4<4>
+
 [jtag_para]
 jtag_enable              =1
 jtag_ms                  = port:PB14<3>
@@ -84,14 +89,14 @@ jtag_di                  = port:PB17<3>
 dram_baseaddr        			= 0x40000000
 dram_clk             			= 360
 dram_type				= 3
-dram_rank_num     			= 
-dram_chip_density			= 
-dram_io_width				= 
-dram_bus_width    			= 
+dram_rank_num     			=
+dram_chip_density			=
+dram_io_width				=
+dram_bus_width    			=
 dram_cas				= 6
 dram_zq					= 0x7b
 dram_odt_en				= 0
-dram_size				= 
+dram_size				=
 dram_tpr0				= 0x30926692
 dram_tpr1				= 0x1090
 dram_tpr2				= 0x1a0c8
@@ -278,8 +283,8 @@ spi_miso                 = port:PI08<4><default><default><default>
 ;rtp_press_threshold       : only when rtp_press_threshold_enable == 1, this para take effect.
 ;                             between 0 and 0xFFFFFF  is supported.more bigger, more sensitive, 0x1f40 is suggested.
 ;rtp_sensitive_level :       between 0 and 0xf is supported.more bigger, more sensitive, 0xf is suggested.
-;rtp_exchange_x_y_flag :     in some case, x, y need to be exchanged, at that situation, 1 is setted. 
-;                             normally, 0 is setted. 
+;rtp_exchange_x_y_flag :     in some case, x, y need to be exchanged, at that situation, 1 is setted.
+;                             normally, 0 is setted.
 ;----------------------------------------------------------------------------------
 [rtp_para]
 rtp_used      =1
@@ -622,8 +627,8 @@ lcdvsync                 = port:PH27<2><default><default><default>
 ;csi_vflip: flip in vertical direction 0:disable 1:enable
 ;csi_hflip: flip in horizontal direction 0:disable 1:enable
 ;csi_stby_mode: 0:not shut down power at standby 1:shut down power at standby
-;csi_iovdd: camera module io power , pmu power supply  
-;csi_avdd:	camera module analog power , pmu power supply	
+;csi_iovdd: camera module io power , pmu power supply
+;csi_avdd:	camera module analog power , pmu power supply
 ;csi_dvdd:	camera module core power , pmu power supply
 ;pmu_ldo3:  fill "axp20_pll"
 ;pmu_ldo4:  fill "axp20_hdmi"
@@ -655,20 +660,20 @@ csi_d4                   = port:PE08<3><default><default><default>
 csi_d5                   = port:PE09<3><default><default><default>
 csi_d6                   = port:PE10<3><default><default><default>
 csi_d7                   = port:PE11<3><default><default><default>
-csi_d8                   = 
-csi_d9                   = 
-csi_d10                  = 
-csi_d11                  = 
-csi_d12                  = 
-csi_d13                  = 
-csi_d14                  = 
-csi_d15                  = 
+csi_d8                   =
+csi_d9                   =
+csi_d10                  =
+csi_d11                  =
+csi_d12                  =
+csi_d13                  =
+csi_d14                  =
+csi_d15                  =
 csi_reset                = port:PH13<1><default><default><0>
-csi_power_en             = 
+csi_power_en             =
 csi_stby                 = port:PH18<1><default><default><0>
-csi_reset_b              = 
-csi_power_en_b           = 
-csi_stby_b               = 
+csi_reset_b              =
+csi_power_en_b           =
+csi_stby_b               =
 
 [csi1_para]
 csi_used                 = 0
@@ -696,28 +701,28 @@ csi_d4                   = port:PG08<3><default><default><default>
 csi_d5                   = port:PG09<3><default><default><default>
 csi_d6                   = port:PG10<3><default><default><default>
 csi_d7                   = port:PG11<3><default><default><default>
-csi_d8                   = 
-csi_d9                   = 
-csi_d10                  = 
-csi_d11                  = 
-csi_d12                  = 
-csi_d13                  = 
-csi_d14                  = 
-csi_d15                  = 
-csi_d16                  = 
-csi_d17                  = 
-csi_d18                  = 
-csi_d19                  = 
-csi_d20                  = 
-csi_d21                  = 
-csi_d22                  = 
-csi_d23                  = 
+csi_d8                   =
+csi_d9                   =
+csi_d10                  =
+csi_d11                  =
+csi_d12                  =
+csi_d13                  =
+csi_d14                  =
+csi_d15                  =
+csi_d16                  =
+csi_d17                  =
+csi_d18                  =
+csi_d19                  =
+csi_d20                  =
+csi_d21                  =
+csi_d22                  =
+csi_d23                  =
 csi_reset                = port:PH14<1><default><default><0>
-csi_power_en             = 
+csi_power_en             =
 csi_stby                 = port:PH19<1><default><default><0>
-csi_reset_b              = 
-csi_power_en_b           = 
-csi_stby_b               = 
+csi_reset_b              =
+csi_power_en_b           =
+csi_stby_b               =
 
 ;--------------------------------------------------------------------------------
 ;tv configuration
@@ -1141,7 +1146,7 @@ pmu_usbcur_pc            = 0
 pmu_pwroff_vol           = 3300
 pmu_pwron_vol            = 2900
 
-pmu_pekoff_time          = 6000 
+pmu_pekoff_time          = 6000
 pmu_pekoff_en            = 1
 pmu_peklong_time         = 1500
 pmu_pekon_time           = 1000

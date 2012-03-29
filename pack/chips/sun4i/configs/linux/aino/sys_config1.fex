@@ -1125,8 +1125,8 @@ pmu_used                 = 1
 pmu_twi_addr             = 0x34
 pmu_twi_id               = 0
 pmu_irq_id               = 0
-pmu_battery_rdc          = 200
-pmu_battery_cap          = 2600
+pmu_battery_rdc          = 160
+pmu_battery_cap          = 3200
 pmu_init_chgcur          = 300
 pmu_earlysuspend_chgcur  = 600
 pmu_suspend_chgcur       = 1000
@@ -1142,19 +1142,19 @@ pmu_init_chg_csttime     = 720
 
 pmu_bat_para1            = 0
 pmu_bat_para2            = 0
-pmu_bat_para3            = 1
-pmu_bat_para4            = 5
-pmu_bat_para5            = 6
-pmu_bat_para6            = 7
-pmu_bat_para7            = 8
-pmu_bat_para8            = 14
-pmu_bat_para9            = 20
-pmu_bat_para10           = 40
+pmu_bat_para3            = 0
+pmu_bat_para4            = 1
+pmu_bat_para5            = 2
+pmu_bat_para6            = 8
+pmu_bat_para7            = 11
+pmu_bat_para8            = 22
+pmu_bat_para9            = 33
+pmu_bat_para10           = 43
 pmu_bat_para11           = 50
-pmu_bat_para12           = 58
-pmu_bat_para13           = 73
+pmu_bat_para12           = 59
+pmu_bat_para13           = 71
 pmu_bat_para14           = 83
-pmu_bat_para15           = 90
+pmu_bat_para15           = 92
 pmu_bat_para16           = 100
 
 pmu_usbvol               = 4000
@@ -1174,8 +1174,6 @@ pmu_pwrok_time           = 64
 pmu_pwrnoe_time          = 2000
 pmu_intotp_en            = 1
 
-pmu_batdeten			 = 1
-
 pmu_used2                = 0
 pmu_adpdet               = port:PH02<0><default><default><default>
 pmu_init_chgcur2         = 400
@@ -1183,6 +1181,10 @@ pmu_earlysuspend_chgcur2 = 600
 pmu_suspend_chgcur2      = 1200
 pmu_resume_chgcur2       = 400
 pmu_shutdown_chgcur2     = 1200
+
+pmu_suspendpwroff_vol    = 3500
+
+pmu_batdeten			 = 1
 
 [recovery_key]
 key_min			=16

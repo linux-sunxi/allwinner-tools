@@ -48,6 +48,11 @@ uart_debug_port          = 1
 uart_debug_tx            = port:PG3<4><1><default><default>
 uart_debug_rx            = port:PG4<4><1><default><default>
 
+[uart_force_debug]
+uart_debug_port          = 0
+uart_debug_tx            = port:PF2<4>
+uart_debug_rx            = port:PF4<4>
+
 [jtag_para]
 jtag_enable              = 0
 jtag_ms                  = port:PF0<4><1><default><default>

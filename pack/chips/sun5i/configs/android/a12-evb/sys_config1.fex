@@ -888,7 +888,7 @@ pmu_used                 = 1
 pmu_twi_addr             = 0x34
 pmu_twi_id               = 0
 pmu_irq_id               = 0
-pmu_battery_rdc          = 200
+pmu_battery_rdc          = 100
 pmu_battery_cap          = 2600
 pmu_init_chgcur          = 300
 pmu_earlysuspend_chgcur  = 600
@@ -905,9 +905,9 @@ pmu_init_chg_csttime     = 720
 
 pmu_bat_para1            = 0
 pmu_bat_para2            = 0
-pmu_bat_para3            = 1
-pmu_bat_para4            = 5
-pmu_bat_para5            = 7
+pmu_bat_para3            = 0
+pmu_bat_para4            = 0
+pmu_bat_para5            = 5
 pmu_bat_para6            = 13
 pmu_bat_para7            = 16
 pmu_bat_para8            = 26
@@ -920,6 +920,8 @@ pmu_bat_para14           = 84
 pmu_bat_para15           = 92
 pmu_bat_para16           = 100
 
+pmu_usbvol_limit         = 1
+pmu_usbcur_limit         = 0
 pmu_usbvol               = 4000
 pmu_usbcur               = 0
 

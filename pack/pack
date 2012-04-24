@@ -106,6 +106,18 @@ do_clean()
     #rm -rf out/*.fex out/*.bin
 }
 
+do_copy_u_boot()
+{
+	case ${PACK_BOARD} in
+	*mmc)
+    	cp -v $LICHEE_OUT/u-boot-mmc.bin bootfs/linux/u-boot.bin
+		;;
+	*)
+    	cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/u-boot.bin
+		;;
+	esac
+}
+
 do_pack_crane()
 {
     printf "!!!Packing for crane!!!\n"
@@ -151,7 +163,7 @@ do_pack_crane()
 
     cd out/
 
-    cp -v $LICHEE_OUT/android/u-boot.bin bootfs/linux/
+	do_copy_u_boot
 
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
@@ -249,7 +261,7 @@ do_pack_linux()
 
     cd out/
 
-    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
+	do_copy_u_boot
 
     #remove me later
 
@@ -343,7 +355,7 @@ do_pack_test()
 
     cd out/
 
-    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
+	do_copy_u_boot
 
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg

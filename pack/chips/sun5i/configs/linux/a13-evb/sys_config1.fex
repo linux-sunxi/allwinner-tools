@@ -14,12 +14,12 @@ machine = "A13-EVB-V1.0"
 [target]
 boot_clock               = 1008
 dcdc2_vol                = 1400
-dcdc3_vol                = 1250
+dcdc3_vol                = 1200
 ldo2_vol                 = 3000
 ldo3_vol                 = 3300
 ldo4_vol                 = 3300
 pll4_freq                = 960
-pll6_freq                = 1200
+pll6_freq                = 720
 
 
 [card_boot]
@@ -48,6 +48,11 @@ uart_debug_port          = 1
 uart_debug_tx            = port:PG3<4><1><default><default>
 uart_debug_rx            = port:PG4<4><1><default><default>
 
+[uart_force_debug]
+uart_debug_port          = 0
+uart_debug_tx            = port:PF2<4>
+uart_debug_rx            = port:PF4<4>
+
 [jtag_para]
 jtag_enable              = 0
 jtag_ms                  = port:PF0<4><1><default><default>
@@ -68,18 +73,18 @@ dram_rank_num            = 1
 dram_chip_density        = 2048
 dram_io_width            = 8
 dram_bus_width           = 16
-dram_cas                 = 8
+dram_cas                 = 9
 dram_zq                  = 0x7b
 dram_odt_en              = 0
 dram_size                = 512
-dram_tpr0                = 0x30926692
-dram_tpr1                = 0x1090
-dram_tpr2                = 0x1a0c8
+dram_tpr0                = 0x42d899b7
+dram_tpr1                = 0xa090
+dram_tpr2                = 0x22a00
 dram_tpr3                = 0x0
 dram_tpr4                = 0x0
 dram_tpr5                = 0x0
 dram_emr1                = 0x0
-dram_emr2                = 0x0
+dram_emr2                = 0x10
 dram_emr3                = 0x0
 
 ;----------------------------------------------------------------------------------
@@ -120,7 +125,7 @@ nand_ndqs                = port:PC19<2><default><default><default>
 ;*****************************************************************************
 [mali_para]
 mali_used                = 1
-mali_clkdiv              = 3
+mali_clkdiv              = 2
 
 ;----------------------------------------------------------------------------------
 ;i2c configuration
@@ -207,19 +212,19 @@ rtp_exchange_x_y_flag = 0
 ;at present, only "ft5x_ts" and "Goodix-TS" is supported.
 ;----------------------------------------------------------------------------------
 [ctp_para]
-ctp_used                 = 1
+ctp_used                 =0
 ctp_name                 = "ft5x_ts"
-ctp_twi_id               = 1
-ctp_twi_addr             = 0x38
+ctp_twi_id               = 2
+ctp_twi_addr             =0x70
 ctp_screen_max_x         = 800
 ctp_screen_max_y         = 480
 ctp_revert_x_flag        = 0
 ctp_revert_y_flag        = 0
 ctp_exchange_x_y_flag    = 0
 
-ctp_int_port             = port:PG09<6><default>
-ctp_wakeup               = port:PB03<1><default><default><1>
-ctp_io_port              = port:PG09<0><default>
+ctp_int_port             = port:PH21<6><default>
+ctp_wakeup               = port:PB13<1><default><default><1>
+ctp_io_port              = port:PH21<0><default>
 
 ;----------------------------------------------------------------------------------
 ;touch key configuration
@@ -236,8 +241,8 @@ tkey_int                 =
 ;motor configuration
 ;----------------------------------------------------------------------------------
 [motor_para]
-motor_used               = 1
-motor_shake              = port:PA16<1><default><default><0>
+motor_used               = 0
+motor_shake              =
 
 ;----------------------------------------------------------------------------------
 ;disp init configuration
@@ -405,7 +410,7 @@ hdmi_used                = 0
 csi_used                 = 1
 csi_mode                 = 0
 csi_dev_qty              = 1
-csi_stby_mode            = 0
+csi_stby_mode            = 1
 
 csi_mname                = "gc0308"
 csi_twi_id               = 2
@@ -443,7 +448,7 @@ csi_d6                   = port:PE10<3><default><default><default>
 csi_d7                   = port:PE11<3><default><default><default>
 csi_reset                = port:power3<1><default><default><0>
 csi_power_en             =
-csi_stby                 = port:PB10<1><default><default><0>
+csi_stby                 = port:PB10<1><default><default><1>
 csi_flash                =
 csi_af_en                =
 csi_reset_b              =
@@ -597,8 +602,8 @@ kp_out7                  =
 usb_used                 = 1
 usb_port_type            = 2
 usb_detect_type          = 1
-usb_id_gpio              = port:PG10<0><1><default><default>
-usb_det_vbus_gpio        = port:PG11<0><0><default><default>
+usb_id_gpio              = port:PG2<0><1><default><default>
+usb_det_vbus_gpio        = port:PG1<0><0><default><default>
 usb_drv_vbus_gpio        = port:PG12<1><0><default><0>
 usb_host_init_state      = 0
 
@@ -611,7 +616,7 @@ usb_port_type            = 1
 usb_detect_type          = 0
 usb_id_gpio              =
 usb_det_vbus_gpio        =
-usb_drv_vbus_gpio        = port:PG1<1><0><default><0>
+usb_drv_vbus_gpio        = port:PG11<1><0><default><0>
 usb_host_init_state      = 1
 
 ;--------------------------------
@@ -637,8 +642,8 @@ luns                     = 3
 ; gs_twi_id ---  TWI ID for controlling Gsensor (0: TWI0, 1: TWI1, 2: TWI2)
 ;--------------------------------------------------------------------------------
 [gsensor_para]
-gsensor_used             = 1
-gsensor_name             = "bma250"
+gsensor_used             = 0
+gsensor_name             = "bma222"
 gsensor_twi_id           = 1
 gsensor_twi_addr         = 0x18
 gsensor_int1             =
@@ -832,7 +837,7 @@ pmu_used                 = 1
 pmu_twi_addr             = 0x34
 pmu_twi_id               = 0
 pmu_irq_id               = 0
-pmu_battery_rdc          = 200
+pmu_battery_rdc          = 100
 pmu_battery_cap          = 2600
 pmu_init_chgcur          = 300
 pmu_earlysuspend_chgcur  = 600
@@ -849,9 +854,9 @@ pmu_init_chg_csttime     = 720
 
 pmu_bat_para1            = 0
 pmu_bat_para2            = 0
-pmu_bat_para3            = 1
-pmu_bat_para4            = 5
-pmu_bat_para5            = 7
+pmu_bat_para3            = 0
+pmu_bat_para4            = 0
+pmu_bat_para5            = 5
 pmu_bat_para6            = 13
 pmu_bat_para7            = 16
 pmu_bat_para8            = 26
@@ -864,6 +869,8 @@ pmu_bat_para14           = 84
 pmu_bat_para15           = 92
 pmu_bat_para16           = 100
 
+pmu_usbvol_limit         = 1
+pmu_usbcur_limit         = 0
 pmu_usbvol               = 4000
 pmu_usbcur               = 0
 
@@ -892,7 +899,6 @@ pmu_shutdown_chgcur2     = 1200
 pmu_suspendpwroff_vol    = 3500
 
 pmu_batdeten		 = 1
-
 [recovery_key]
 key_min			=4
 key_max			=6

@@ -14,10 +14,12 @@ machine = "A12-EVB-V1.0"
 [target]
 boot_clock               = 1008
 dcdc2_vol                = 1400
-dcdc3_vol                = 1250
+dcdc3_vol                = 1200
 ldo2_vol                 = 3000
 ldo3_vol                 = 3300
 ldo4_vol                 = 3300
+pll4_freq                = 960
+pll6_freq                = 720
 
 
 [card_boot]
@@ -35,21 +37,6 @@ sdc_clk                  = port:PF2<2><1><default><default>
 sdc_cmd                  = port:PF3<2><1><default><default>
 sdc_d3                   = port:PF4<2><1><default><default>
 sdc_d2                   = port:PF5<2><1><default><default>
-
-[card_boot2_para]
-card_ctrl                = 2
-card_high_speed          = 1
-card_line                = 8
-sdc_cmd                  = port:PC6<3><1><default><default>
-sdc_clk                  = port:PC7<3><1><default><default>
-sdc_d0                   = port:PC8<3><1><default><default>
-sdc_d1                   = port:PC9<3><1><default><default>
-sdc_d2                   = port:PC10<3><1><default><default>
-sdc_d3                   = port:PC11<3><1><default><default>
-sdc_d4                   = port:PC12<3><1><default><default>
-sdc_d5                   = port:PC13<3><1><default><default>
-sdc_d6                   = port:PC14<3><1><default><default>
-sdc_d7                   = port:PC15<3><1><default><default>
 
 [twi_para]
 twi_port                 = 0
@@ -901,7 +888,7 @@ pmu_used                 = 1
 pmu_twi_addr             = 0x34
 pmu_twi_id               = 0
 pmu_irq_id               = 0
-pmu_battery_rdc          = 200
+pmu_battery_rdc          = 100
 pmu_battery_cap          = 2600
 pmu_init_chgcur          = 300
 pmu_earlysuspend_chgcur  = 600
@@ -918,9 +905,9 @@ pmu_init_chg_csttime     = 720
 
 pmu_bat_para1            = 0
 pmu_bat_para2            = 0
-pmu_bat_para3            = 1
-pmu_bat_para4            = 5
-pmu_bat_para5            = 7
+pmu_bat_para3            = 0
+pmu_bat_para4            = 0
+pmu_bat_para5            = 5
 pmu_bat_para6            = 13
 pmu_bat_para7            = 16
 pmu_bat_para8            = 26
@@ -933,6 +920,8 @@ pmu_bat_para14           = 84
 pmu_bat_para15           = 92
 pmu_bat_para16           = 100
 
+pmu_usbvol_limit         = 1
+pmu_usbcur_limit         = 0
 pmu_usbvol               = 4000
 pmu_usbcur               = 0
 

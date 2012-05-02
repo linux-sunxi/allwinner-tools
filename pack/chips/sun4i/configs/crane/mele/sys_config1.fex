@@ -1327,5 +1327,5 @@ pin_2                    = port:PH20<1><default><default><1>
 [dynamic]
 MAC = "000000000000"
 
-#[system]
-#recovery_key             = port:PH16<0><default>
+;[system]
+;recovery_key             = port:PH16<0><default>

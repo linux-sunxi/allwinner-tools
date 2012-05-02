@@ -382,6 +382,7 @@ nand_ndqs                = port:PC24<2><default><default><default>
 ;screenx_output_mode  (used for vga output, 0:1680*1050 1:1440*900 2:1360*768 3:1280*1024 4:1024*768 5:800*600 6:640*480 10:1920*1080 11:1280*720)
 ;fbx format           (4:RGB655 5:RGB565 6:RGB556 7:ARGB1555 8:RGBA5551 9:RGB888 10:ARGB8888 12:ARGB4444)
 ;fbx pixel sequence   (0:ARGB 1:BGRA 2:ABGR 3:RGBA) --- 0 for linux, 2 for android
+;lcdx_bright          (lcd init bright, value:0~256, default:197)
 ;----------------------------------------------------------------------------------
 [disp_init]
 disp_init_enable         = 1
@@ -402,6 +403,9 @@ fb1_framebuffer_num      = 2
 fb1_format               = 10
 fb1_pixel_sequence       = 0
 fb1_scaler_mode_enable   = 0
+
+lcd0_bright              = 197
+lcd1_bright              = 197
 
 
 ;----------------------------------------------------------------------------------
@@ -436,6 +440,8 @@ lcd_used                 = 1
 lcd_x                    =800
 lcd_y                    =480
 lcd_dclk_freq            = 33
+lcd_pwm_not_used         = 0
+lcd_pwm_ch               = 0
 lcd_pwm_freq             = 10000
 lcd_pwm_pol              =1
 lcd_if                   = 0
@@ -537,6 +543,8 @@ lcd_used                 = 0
 lcd_x                    = 0
 lcd_y                    = 0
 lcd_dclk_freq            = 0
+lcd_pwm_not_used         = 0
+lcd_pwm_ch               = 1
 lcd_pwm_freq             = 0
 lcd_pwm_pol              = 0
 lcd_if                   = 0
@@ -606,7 +614,16 @@ lcdde                    = port:PH25<2><0><default><default>
 lcdhsync                 = port:PH26<2><0><default><default>
 lcdvsync                 = port:PH27<2><0><default><default>
 
-
+;----------------------------------------------------------------------------------
+;tv out dac configuration
+;dacx_src:  0:composite; 1:luma; 2:chroma; 4:Y; 5:Pb; 6: Pr; 7:none
+;----------------------------------------------------------------------------------
+[tv_out_dac_para]
+dac_used                 = 1
+dac0_src                 = 4
+dac1_src                 = 5
+dac2_src                 = 6
+dac3_src                 = 0
 
 ;--------------------------------------------------------------------------------
 ;csi gpio configuration

@@ -428,6 +428,7 @@ nand_ndqs                = port:PC24<2><default><default><default>
 ;screenx_output_mode  (used for vga output, 0:1680*1050 1:1440*900 2:1360*768 3:1280*1024 4:1024*768 5:800*600 6:640*480 10:1920*1080 11:1280*720)
 ;fbx format           (4:RGB655 5:RGB565 6:RGB556 7:ARGB1555 8:RGBA5551 9:RGB888 10:ARGB8888 12:ARGB4444)
 ;fbx pixel sequence   (0:ARGB 1:BGRA 2:ABGR 3:RGBA) --- 0 for linux, 2 for android
+;lcdx_bright          (lcd init bright, value:0~256, default:197)
 ;----------------------------------------------------------------------------------
 [disp_init]
 disp_init_enable         = 1
@@ -449,6 +450,9 @@ fb1_format               = 10
 fb1_pixel_sequence       = 0
 fb1_scaler_mode_enable   = 0
 
+lcd0_bright              = 197
+lcd1_bright              = 197
+
 
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
@@ -466,7 +470,7 @@ fb1_scaler_mode_enable   = 0
 ;lcd_hv_syuv_if:     serial YUV format
 ;lcd_hv_hspw:        hsync plus width
 ;lcd_hv_vspw:        vysnc plus width
-;lcd_lvds_ch:		     0:single channel; 1:dual channel
+;lcd_lvds_ch:        0:single channel; 1:dual channel
 ;lcd_lvds_mode:      0:NS mode; 1:JEIDA mode
 ;lcd_lvds_bitwidth:  0:24bit; 1:18bit
 ;lcd_lvds_io_cross:  0:normal; 1:pn cross
@@ -487,16 +491,16 @@ lcd_pwm_ch               = 0
 lcd_pwm_freq             = 10000
 lcd_pwm_pol              =0
 lcd_if                   = 0
+lcd_hv_hspw              = 0
 lcd_hbp                  = 46
 lcd_ht                   = 1055
+lcd_hv_vspw              = 0
 lcd_vbp                  = 23
 lcd_vt                   = 1050
 lcd_hv_if                = 0
 lcd_hv_smode             = 0
 lcd_hv_s888_if           = 0
 lcd_hv_syuv_if           = 0
-lcd_hv_vspw              = 0
-lcd_hv_hspw              = 0
 lcd_lvds_ch              = 0
 lcd_lvds_mode            = 0
 lcd_lvds_bitwidth        = 0
@@ -569,7 +573,7 @@ lcdvsync                 = port:PD27<2><0><default><default>
 ;lcd_hv_syuv_if:     serial YUV format
 ;lcd_hv_hspw:        hsync plus width
 ;lcd_hv_vspw:        vysnc plus width
-;lcd_lvds_ch:		     0:single channel; 1:dual channel
+;lcd_lvds_ch:        0:single channel; 1:dual channel
 ;lcd_lvds_mode:      0:NS mode; 1:JEIDA mode
 ;lcd_lvds_bitwidth:  0:24bit; 1:18bit
 ;lcd_lvds_io_cross:  0:normal; 1:pn cross

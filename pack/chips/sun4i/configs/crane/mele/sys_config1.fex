@@ -1303,8 +1303,8 @@ pmu_suspendpwroff_vol    = 3500
 
 pmu_batdeten			 = 1
 [recovery_key]
-key_min			=4
-key_max			=6
+key_min			         =4
+key_max			         =6
 
 ;----------------------------------------------------------------------------------                                   
 ;gpio configuration
@@ -1321,8 +1321,11 @@ gpio_pin_3               = port:PB03<0><default>
 ;init gpio during boot
 ;----------------------------------------------------------------------------------
 [gpio_init]                    
-pin_1               = port:PH10<1><default><default><0>
-pin_2               = port:PH20<1><default><default><1>
+pin_1                    = port:PH10<1><default><default><0>
+pin_2                    = port:PH20<1><default><default><1>
 
 [dynamic]
 MAC = "000000000000"
+
+#[system]
+#recovery_key             = port:PH16<0><default>

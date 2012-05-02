@@ -153,9 +153,9 @@ num     = 10
 ;------------------------------>nandj, img backup
 [partition9]
     class_name  = DISK
-    name        = backup
+    name        = sysrecovery
     size_hi     = 0
-    size_lo     = 1024
+    size_lo     = 327680
     user_type   = 2
     ro  	      = 0
 
@@ -180,7 +180,7 @@ num     = 10
 ;      verify_file  = VERIFY_000000000
 ;********************************************************************************************************************
 [down_num]
-down_num    = 6
+down_num    = 7
 
 [download0]
 part_name   = bootloader
@@ -211,7 +211,13 @@ pkt_name    = RECOVERY_0000000
 encrypt     = 0  
 verify_file = VRECOVERYFS_0000
 
-[download5]
+[download5]  
+part_name   = sysrecovery
+pkt_name    = RECOVERY_0000000
+encrypt     = 0  
+verify_file = VRECOVERYFS_0000
+
+[download6]
 part_name   = UDISK
 pkt_name    = DISKFS_000000000
 encrypt     = 0

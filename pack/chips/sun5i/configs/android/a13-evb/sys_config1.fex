@@ -54,7 +54,7 @@ uart_debug_tx            = port:PF2<4>
 uart_debug_rx            = port:PF4<4>
 
 [jtag_para]
-jtag_enable              = 0
+jtag_enable              = 1
 jtag_ms                  = port:PF0<4><1><default><default>
 jtag_ck                  = port:PF5<4><1><default><default>
 jtag_do                  = port:PF3<4><1><default><default>

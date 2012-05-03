@@ -18,6 +18,8 @@ dcdc3_vol                =1250
 ldo2_vol                 = 3000
 ldo3_vol                 = 2800
 ldo4_vol                 = 2800
+pll4_freq                = 960
+pll6_freq                = 1200
 power_start              = 1
 
 
@@ -117,7 +119,7 @@ dram_emr3				= 0x0
 ;*****************************************************************************
 [mali_para]
 mali_used                = 1
-mali_clkdiv              =3
+mali_clkdiv              = 4
 
 [g2d_para]
 g2d_used = 1

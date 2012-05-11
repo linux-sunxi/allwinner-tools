@@ -301,6 +301,9 @@ fb1_scaler_mode_enable   = 0
 
 ;lcd_gpio_0:         SCL
 ;lcd_gpio_1          SDA
+;lcdgamma4iep:       Smart Backlight parameter,根据所用LCD屏的gamma值填写，该值为实际gamma值乘以10。
+;                    默认值为22(gamma值为2.2)，范围为10~30，且只能是偶数。
+;                    如开启智能背光后屏幕比开启前暗，可减小该gamma值；反之，可增加该gamma值。
 ;----------------------------------------------------------------------------------
 [lcd0_para]
 lcd_used                 = 1
@@ -379,6 +382,7 @@ lcdde                    = port:PD25<2><0><default><default>
 lcdhsync                 = port:PD26<2><0><default><default>
 lcdvsync                 = port:PD27<2><0><default><default>
 
+lcdgamma4iep             = 22
 ;----------------------------------------------------------------------------------
 ;tv out dac configuration
 ;dacx_src:  0:composite; 1:luma; 2:chroma; 4:Y; 5:Pb; 6: Pr; 7:none

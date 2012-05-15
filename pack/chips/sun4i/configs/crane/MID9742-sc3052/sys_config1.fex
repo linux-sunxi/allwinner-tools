@@ -18,6 +18,8 @@ dcdc3_vol                =1250
 ldo2_vol                 = 3000
 ldo3_vol                 = 2800
 ldo4_vol                 = 2800
+pll4_freq                = 960
+pll6_freq                = 960
 
 
 
@@ -369,6 +371,7 @@ nand_ndqs                = port:PC24<2><default><default><default>
 ;screenx_output_mode  (used for vga output, 0:1680*1050 1:1440*900 2:1360*768 3:1280*1024 4:1024*768 5:800*600 6:640*480 10:1920*1080 11:1280*720)
 ;fbx format           (4:RGB655 5:RGB565 6:RGB556 7:ARGB1555 8:RGBA5551 9:RGB888 10:ARGB8888 12:ARGB4444)
 ;fbx pixel sequence   (0:ARGB 1:BGRA 2:ABGR 3:RGBA) --- 0 for linux, 2 for android
+;lcdx_bright          (lcd init bright, value:0~256, default:197)
 ;----------------------------------------------------------------------------------
 [disp_init]
 disp_init_enable         = 1
@@ -389,6 +392,9 @@ fb1_framebuffer_num      = 2
 fb1_format               = 10
 fb1_pixel_sequence       = 0
 fb1_scaler_mode_enable   = 0
+
+lcd0_bright              = 197
+lcd1_bright              = 197
 
 
 ;----------------------------------------------------------------------------------
@@ -423,6 +429,8 @@ lcd_used                 = 1
 lcd_x                    =1024
 lcd_y                    =768
 lcd_dclk_freq            = 100
+lcd_pwm_not_used         = 0
+lcd_pwm_ch               = 0
 lcd_pwm_freq             = 12000
 lcd_pwm_pol              =1
 lcd_if                   = 3
@@ -524,6 +532,8 @@ lcd_used                 = 0
 lcd_x                    = 0
 lcd_y                    = 0
 lcd_dclk_freq            = 0
+lcd_pwm_not_used         = 0
+lcd_pwm_ch               = 1
 lcd_pwm_freq             = 0
 lcd_pwm_pol              = 0
 lcd_if                   = 0
@@ -593,7 +603,16 @@ lcdde                    = port:PH25<2><0><default><default>
 lcdhsync                 = port:PH26<2><0><default><default>
 lcdvsync                 = port:PH27<2><0><default><default>
 
-
+;----------------------------------------------------------------------------------
+;tv out dac configuration
+;dacx_src:  0:composite; 1:luma; 2:chroma; 4:Y; 5:Pb; 6: Pr; 7:none
+;----------------------------------------------------------------------------------
+[tv_out_dac_para]
+dac_used                 = 1
+dac0_src                 = 4
+dac1_src                 = 5
+dac2_src                 = 6
+dac3_src                 = 0
 
 ;--------------------------------------------------------------------------------
 ;csi gpio configuration
@@ -1157,8 +1176,8 @@ pmu_used                 = 1
 pmu_twi_addr             = 0x34
 pmu_twi_id               = 0
 pmu_irq_id               = 0
-pmu_battery_rdc          = 200
-pmu_battery_cap          = 2600
+pmu_battery_rdc          = 100
+pmu_battery_cap          = 3200
 pmu_init_chgcur          = 600
 pmu_earlysuspend_chgcur  = 600
 pmu_suspend_chgcur       = 1500
@@ -1174,21 +1193,23 @@ pmu_init_chg_csttime     = 720
 
 pmu_bat_para1            = 0
 pmu_bat_para2            = 0
-pmu_bat_para3            = 1
-pmu_bat_para4            = 5
-pmu_bat_para5            = 7
-pmu_bat_para6            = 13
-pmu_bat_para7            = 16
-pmu_bat_para8            = 26
-pmu_bat_para9            = 36
-pmu_bat_para10           = 46
-pmu_bat_para11           = 53
-pmu_bat_para12           = 61
-pmu_bat_para13           = 73
-pmu_bat_para14           = 84
+pmu_bat_para3            = 0
+pmu_bat_para4            = 0
+pmu_bat_para5            = 5
+pmu_bat_para6            = 8
+pmu_bat_para7            = 11
+pmu_bat_para8            = 22
+pmu_bat_para9            = 33
+pmu_bat_para10           = 43
+pmu_bat_para11           = 50
+pmu_bat_para12           = 59
+pmu_bat_para13           = 71
+pmu_bat_para14           = 83
 pmu_bat_para15           = 92
 pmu_bat_para16           = 100
 
+pmu_usbvol_limit         = 1
+pmu_usbcur_limit         = 0
 pmu_usbvol               = 4000
 pmu_usbcur               = 0
 

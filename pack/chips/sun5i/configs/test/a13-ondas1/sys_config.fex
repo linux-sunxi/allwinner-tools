@@ -1,5 +1,5 @@
 ;---------------------------------------------------------------------------------------------------------
-; 说明： 脚本中的字符串区分大小写，用户可以修改"="后面的数值，但是不要修改前面的字符串
+; ~{K5Cw#:~} ~{=E1>VP5DWV7{4.Gx7V4sP!P4#,SC;'?IRTP^8D~}"="~{:sCf5DJ}V5#,5+JG2;R*P^8DG0Cf5DWV7{4.~}
 ;---------------------------------------------------------------------------------------------------------
 
 [platform]
@@ -11,41 +11,40 @@ bid =0x80
 eraseflag   = 0
 jtag        = 1
 
-
 [fex_misc]
 restore = 0
 ;--------------------------------------------------------------------------------------------------
-;                                   固件下载参数配置
+;                                   ~{9L<~OBTX2NJ}EdVC~}
 ;--------------------------------------------------------------------------------------------------
 ;-----------------------------------------------------------------------------------------
-;										分区配置管理
+;										~{7VGxEdVC9\@m~}
 ;-----------------------------------------------------------------------------------------
 ;****************************************************
-;    mbr的大小, 以Kbyte为单位
+;    mbr~{5D4sP!~}, ~{RT~}Kbyte~{N*5%N;~}
 ;****************************************************
 [mbr]
 size = 1024
 
 ;********************************************************************************************************
-;                                              分区配置
-;  当前分区的个数，默认有rootfs和userfs0两个分区，最大分区个数为7个.
+;                                              ~{7VGxEdVC~}
+;  ~{51G07VGx5D8vJ}#,D,HOSP~}rootfs~{:M~}userfs0~{A=8v7VGx#,Wn4s7VGx8vJ}N*~}7~{8v~}.
 ;
 ;  [part_num]
-;      num     = 2              ; //有2个分区
-;      part0   = partiton0      ; //part0的信息存放在partiton0里
-;      parti   = partitoni      ; //parti的信息存放在partitoni里
+;      num     = 2              ; //~{SP~}2~{8v7VGx~}
+;      part0   = partiton0      ; //part0~{5DPEO"4f7ETZ~}partiton0~{@o~}
+;      parti   = partitoni      ; //parti~{5DPEO"4f7ETZ~}partitoni~{@o~}
 ;
-;  partition 定义范例:
-;    [partition2]                ;   //第2个分区
-;    class_name  = DISK         ;   //设备类名, 如："DISK"。 可参考"..\ePDK\includes\emod\sys_dev.h"
-;    name        = USERFS2      ;   //设备节点名.  可参考"..\ePDK\includes\emod\sys_dev.h"
-;    size_hi     = 0            ;   //分区大小的高32位, 单位: Kbyte.
-;    size_lo     = 32           ;   //分区大小的低32位, 单位: Kbyte.
+;  partition ~{6(Re76@}~}:
+;    [partition2]                ;   //~{5Z~}2~{8v7VGx~}
+;    class_name  = DISK         ;   //~{Ih18@`C{~}, ~{Hg#:~}"DISK"~{!#~} ~{?I2N?<~}"..\ePDK\includes\emod\sys_dev.h"
+;    name        = USERFS2      ;   //~{Ih18=Z5cC{~}.  ~{?I2N?<~}"..\ePDK\includes\emod\sys_dev.h"
+;    size_hi     = 0            ;   //~{7VGx4sP!5D8_~}32~{N;~}, ~{5%N;~}: Kbyte.
+;    size_lo     = 32           ;   //~{7VGx4sP!5D5M~}32~{N;~}, ~{5%N;~}: Kbyte.
 ;
-; 注：1、name唯一, 不允许同名
-;     2、最大分区号为6
-;     3、class_name和name最大12个字符
-;     4、size_hi + size_lo = 0, 表示此分区不存在
+; ~{W"#:~}1~{!"~}name~{N(R;~}, ~{2;TJPmM,C{~}
+;     2~{!"Wn4s7VGx:EN*~}6
+;     3~{!"~}class_name~{:M~}name~{Wn4s~}12~{8vWV7{~}
+;     4~{!"~}size_hi + size_lo = 0, ~{1mJ>4K7VGx2;4fTZ~}
 ;********************************************************************************************************
 [part_num]
 num     = 8
@@ -109,7 +108,7 @@ num     = 8
     class_name  = DISK
     name        = recovery
     size_hi     = 0
-    size_lo     = 32768
+    size_lo     = 135168
     user_type   = 2
     ro  	    = 0
 
@@ -118,25 +117,25 @@ num     = 8
     class_name  = DISK
     name        = cache
     size_hi     = 0
-    size_lo     =524288
+    size_lo     = 421888
     user_type   = 2
     ro  	      = 0
 
 ;********************************************************************************************************************
-;                     固件包下载位置 ： 把某个固件包下载到指定分区, 下载次数最大为7次
+;                     ~{9L<~0|OBTXN;VC~} ~{#:~} ~{0QD38v9L<~0|OBTX5=V86(7VGx~}, ~{OBTX4NJ}Wn4sN*~}7~{4N~}
 ;
-;[downloadi]                                //固件包0下载位置
-;    part_name      = SYSDATAFS             //分区名
-;    pkt_name       = ROOTFS_000000000      //固件包名称
-;    verify_file    = VERIFY_000000000      //校验文件名称
+;[downloadi]                                //~{9L<~0|~}0~{OBTXN;VC~}
+;    part_name      = SYSDATAFS             //~{7VGxC{~}
+;    pkt_name       = ROOTFS_000000000      //~{9L<~0|C{3F~}
+;    verify_file    = VERIFY_000000000      //~{P#QiND<~C{3F~}
 ;
-; 注：1、 downloadi 表示第i次下载固件, download 唯一, 请不要随意修改
-;     2、 part_num 为分区号, 即固件下载的位置
-;     3、 pkt_name 固件包名称. 最大长度为16byte, 且名称固定. 可参考"..\\ePDK\workspace\suni\liveclick\image.cfg"
-;     4、 verify_file 为校验文件名称. 可参考"..\\ePDK\workspace\suni\liveclick\image.cfg"
-;     5、 pkt_name 内容不填, 表示本次下载取消.  verify_file内容不填, 表示不需要校验.
+; ~{W"#:~}1~{!"~} downloadi ~{1mJ>5Z~}i~{4NOBTX9L<~~}, download ~{N(R;~}, ~{Gk2;R*KfRbP^8D~}
+;     2~{!"~} part_num ~{N*7VGx:E~}, ~{<49L<~OBTX5DN;VC~}
+;     3~{!"~} pkt_name ~{9L<~0|C{3F~}. ~{Wn4s3$6HN*~}16byte, ~{GRC{3F9L6(~}. ~{?I2N?<~}"..\\ePDK\workspace\suni\liveclick\image.cfg"
+;     4~{!"~} verify_file ~{N*P#QiND<~C{3F~}. ~{?I2N?<~}"..\\ePDK\workspace\suni\liveclick\image.cfg"
+;     5~{!"~} pkt_name ~{DZH]2;Ln~}, ~{1mJ>1>4NOBTXH!O{~}.  verify_file~{DZH]2;Ln~}, ~{1mJ>2;PhR*P#Qi~}.
 ;
-; 如：要把固件包zdisk.img, 下载在到SYSDATAFS分区里。其配置为：
+; ~{Hg#:R*0Q9L<~0|~}zdisk.img, ~{OBTXTZ5=~}SYSDATAFS~{7VGx@o!#FdEdVCN*#:~}
 ; [download0]
 ;      part_name   = SYSDATAFS
 ;      pkt_name     = ROOTFS_000000000

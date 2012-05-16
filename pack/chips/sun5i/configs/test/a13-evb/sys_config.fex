@@ -108,7 +108,7 @@ num     = 8
     class_name  = DISK
     name        = recovery
     size_hi     = 0
-    size_lo     = 32768
+    size_lo     = 135168
     user_type   = 2
     ro  	    = 0
 
@@ -117,7 +117,7 @@ num     = 8
     class_name  = DISK
     name        = cache
     size_hi     = 0
-    size_lo     =524288
+    size_lo     = 421888
     user_type   = 2
     ro  	      = 0
 

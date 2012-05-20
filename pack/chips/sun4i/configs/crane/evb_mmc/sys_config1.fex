@@ -20,7 +20,7 @@ ldo3_vol                 = 2800
 ldo4_vol                 = 2800
 pll4_freq                = 960
 pll6_freq                = 960
-storage_type			 = 2
+storage_type             = 2
 
 
 [card_burn_para]

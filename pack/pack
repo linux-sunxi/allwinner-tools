@@ -188,7 +188,7 @@ do_pack_crane()
     cp sys_config1.bin bootfs/script.bin
 
 
-    update_mbr sys_config.bin mbr.fex
+    update_mbr sys_config.bin mbr.fex 4 16777216
     fsbuild bootfs.ini split_xxxx.fex
 
     # get bootloader.fex
@@ -288,7 +288,7 @@ do_pack_linux()
     cp sys_config1.bin bootfs/script.bin
 
 
-    update_mbr sys_config.bin mbr.fex
+    update_mbr sys_config.bin mbr.fex 4 16777216
     fsbuild bootfs.ini split_xxxx.fex
 
     # get bootloader.fex
@@ -379,7 +379,7 @@ do_pack_test()
     cp sys_config1.bin bootfs/script0.bin
     cp sys_config1.bin bootfs/script.bin
 
-    update_mbr sys_config.bin mbr.fex
+    update_mbr sys_config.bin mbr.fex 4 16777216
     fsbuild bootfs.ini split_xxxx.fex
 
     # get bootloader.fex
@@ -390,7 +390,7 @@ do_pack_test()
 
     # get other images from android build
     ln -s $LICHEE_OUT/boot.img boot.fex
-    ln -s ../../../buildroot/target/test/system.ext4 system.fex 
+    ln -s ../../../buildroot/target/test/system.ext4 system.fex
     ln -s ../../../buildroot/target/test/modules.ext2 recovery.fex
 
     # checksum for all fex

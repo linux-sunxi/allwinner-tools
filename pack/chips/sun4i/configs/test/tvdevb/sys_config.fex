@@ -34,11 +34,10 @@ restore = 0
 ;    mbr的大小, 以Kbyte为单位
 ;****************************************************
 [mbr]
-size = 1024
+size = 16384
 
 ;********************************************************************************************************
 ;                                              分区配置
-;  当前分区的个数，默认有rootfs和userfs0两个分区，最大分区个数为7个.
 ;
 ;  [part_num]
 ;      num     = 2              ; //有2个分区
@@ -46,16 +45,16 @@ size = 1024
 ;      parti   = partitoni      ; //parti的信息存放在partitoni里
 ;
 ;  partition 定义范例:
-;    [partition2]                ;   //第2个分区
-;    class_name  = DISK         ;   //设备类名, 如："DISK"。 可参考"..\ePDK\includes\emod\sys_dev.h"
-;    name        = USERFS2      ;   //设备节点名.  可参考"..\ePDK\includes\emod\sys_dev.h"
-;    size_hi     = 0            ;   //分区大小的高32位, 单位: Kbyte.
-;    size_lo     = 32           ;   //分区大小的低32位, 单位: Kbyte.
+;    [partition2]               ; //第2个分区
+;    class_name  = DISK         ; //设备类名, 如："DISK"。
+;    name        = USERFS2      ; //设备节点名.
+;    size_hi     = 0            ; //分区大小的高32位, 单位: Kbyte.
+;    size_lo     = 32           ; //分区大小的低32位, 单位: Kbyte.
 ;
 ; 注：1、name唯一, 不允许同名
-;     2、最大分区号为6
-;     3、class_name和name最大12个字符
-;     4、size_hi + size_lo = 0, 表示此分区不存在
+;     2、class_name和name最大12个字符
+;     3、size_hi + size_lo = 0, 表示此分区不存在
+;     4、为了安全和效率考虑，分区大小最好保证为16M字节的整数倍
 ;********************************************************************************************************
 [part_num]
 num     = 7
@@ -64,7 +63,7 @@ num     = 7
     class_name  = DISK
     name        = BOOTFS
     size_hi     = 0
-    size_lo     =16384
+    size_lo     = 16384
     user_type   = 0
     ro          = 0
 
@@ -72,49 +71,49 @@ num     = 7
     class_name  = DISK
     name        = LROOTFS
     size_hi     = 0
-    size_lo     =32768
-    user_type   = 2
-    ro  	    = 0
-    
+    size_lo     = 32768
+    user_type   = 0
+    ro          = 0
+
 [partition2]
     class_name  = DISK
     name        = LSYSTEMFS
     size_hi     = 0
-    size_lo     =131072
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 131072
+    user_type   = 0
+    ro          = 0
 
 [partition3]
     class_name  = DISK
     name        = LDATAFS
     size_hi     = 0
-    size_lo     =262144
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 262144
+    user_type   = 1
+    ro          = 0
 
 [partition4]
     class_name  = DISK
     name        = MISC
     size_hi     = 0
-    size_lo     =1024
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 16384
+    user_type   = 0
+    ro          = 0
 
 [partition5]
     class_name  = DISK
     name        = LRECOVERYFS
     size_hi     = 0
-    size_lo     =32768
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 32768
+    user_type   = 0
+    ro          = 0
 
 [partition6]
     class_name  = DISK
     name        = LCACHEFS
     size_hi     = 0
-    size_lo     =131072
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 131072
+    user_type   = 0
+    ro          = 0
 
 ;********************************************************************************************************************
 ;                     固件包下载位置 ： 把某个固件包下载到指定分区, 下载次数最大为7次
@@ -142,29 +141,29 @@ down_num    = 5
 [download0]
 part_name   = BOOTFS
 pkt_name    = BOOTFS_000000000
-encrypt     = 0 
+encrypt     = 0
 verify_file = VBOOTFS_00000000
-                 
-[download1]      
+
+[download1]
 part_name   = LROOTFS
 pkt_name    = LROOTFS_00000000
-encrypt     = 0  
+encrypt     = 0
 verify_file = VROOTFS_00000000
-                 
-[download2]      
+
+[download2]
 part_name   = LSYSTEMFS
 pkt_name    = LSYSTEMFS_000000
-encrypt     = 0  
+encrypt     = 0
 verify_file = VSYSTEMFS_000000
 
-[download3]  
+[download3]
 part_name   = LRECOVERYFS
 pkt_name    = LRECOVERYFS_0000
-encrypt     = 0  
+encrypt     = 0
 verify_file = VRECOVERYFS_0000
 
 [download4]
 part_name   = UDISK
 pkt_name    = DISKFS_000000000
 encrypt     = 0
- 
+

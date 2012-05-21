@@ -1,5 +1,5 @@
 ;---------------------------------------------------------------------------------------------------------
-; ~{K5Cw#:~} ~{=E1>VP5DWV7{4.Gx7V4sP!P4#,SC;'?IRTP^8D~}"="~{:sCf5DJ}V5#,5+JG2;R*P^8DG0Cf5DWV7{4.~}
+; 说明： 脚本中的字符串区分大小写，用户可以修改"="后面的数值，但是不要修改前面的字符串
 ;---------------------------------------------------------------------------------------------------------
 
 [platform]
@@ -23,28 +23,27 @@ restore = 0
 ;    mbr~{5D4sP!~}, ~{RT~}Kbyte~{N*5%N;~}
 ;****************************************************
 [mbr]
-size = 1024
+size = 16384
 
 ;********************************************************************************************************
-;                                              ~{7VGxEdVC~}
-;  ~{51G07VGx5D8vJ}#,D,HOSP~}rootfs~{:M~}userfs0~{A=8v7VGx#,Wn4s7VGx8vJ}N*~}7~{8v~}.
+;                                              分区配置
 ;
 ;  [part_num]
-;      num     = 2              ; //~{SP~}2~{8v7VGx~}
-;      part0   = partiton0      ; //part0~{5DPEO"4f7ETZ~}partiton0~{@o~}
-;      parti   = partitoni      ; //parti~{5DPEO"4f7ETZ~}partitoni~{@o~}
+;      num     = 2              ; //有2个分区
+;      part0   = partiton0      ; //part0的信息存放在partiton0里
+;      parti   = partitoni      ; //parti的信息存放在partitoni里
 ;
-;  partition ~{6(Re76@}~}:
-;    [partition2]                ;   //~{5Z~}2~{8v7VGx~}
-;    class_name  = DISK         ;   //~{Ih18@`C{~}, ~{Hg#:~}"DISK"~{!#~} ~{?I2N?<~}"..\ePDK\includes\emod\sys_dev.h"
-;    name        = USERFS2      ;   //~{Ih18=Z5cC{~}.  ~{?I2N?<~}"..\ePDK\includes\emod\sys_dev.h"
-;    size_hi     = 0            ;   //~{7VGx4sP!5D8_~}32~{N;~}, ~{5%N;~}: Kbyte.
-;    size_lo     = 32           ;   //~{7VGx4sP!5D5M~}32~{N;~}, ~{5%N;~}: Kbyte.
+;  partition 定义范例:
+;    [partition2]               ; //第2个分区
+;    class_name  = DISK         ; //设备类名, 如："DISK"。
+;    name        = USERFS2      ; //设备节点名.
+;    size_hi     = 0            ; //分区大小的高32位, 单位: Kbyte.
+;    size_lo     = 32           ; //分区大小的低32位, 单位: Kbyte.
 ;
-; ~{W"#:~}1~{!"~}name~{N(R;~}, ~{2;TJPmM,C{~}
-;     2~{!"Wn4s7VGx:EN*~}6
-;     3~{!"~}class_name~{:M~}name~{Wn4s~}12~{8vWV7{~}
-;     4~{!"~}size_hi + size_lo = 0, ~{1mJ>4K7VGx2;4fTZ~}
+; 注：1、name唯一, 不允许同名
+;     2、class_name和name最大12个字符
+;     3、size_hi + size_lo = 0, 表示此分区不存在
+;     4、为了安全和效率考虑，分区大小最好保证为16M字节的整数倍
 ;********************************************************************************************************
 [part_num]
 num     = 8
@@ -63,7 +62,7 @@ num     = 8
     class_name  = DISK
     name        = env
     size_hi     = 0
-    size_lo     = 2048
+    size_lo     = 16384
     user_type   = 0
     ro          = 0
 
@@ -72,7 +71,7 @@ num     = 8
     class_name  = DISK
     name        = boot
     size_hi     = 0
-    size_lo     =32768
+    size_lo     = 32768
     user_type   = 0
     ro          = 0
 
@@ -82,8 +81,8 @@ num     = 8
     name        = system
     size_hi     = 0
     size_lo     = 524288
-    user_type   = 2
-    ro  	      = 0
+    user_type   = 0
+    ro          = 0
 
 ;------------------------------>nande, user data
 [partition4]
@@ -91,35 +90,35 @@ num     = 8
     name        = data
     size_hi     = 0
     size_lo     = 1048576
-    user_type   = 2
-    ro  	      = 0
+    user_type   = 0
+    ro          = 0
 
 ;------------------------------>nandf, misc
 [partition5]
     class_name  = DISK
     name        = misc
     size_hi     = 0
-    size_lo     = 1024
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 16384
+    user_type   = 0
+    ro          = 0
 
 ;------------------------------>nandg, for recovery
 [partition6]
     class_name  = DISK
     name        = recovery
     size_hi     = 0
-    size_lo     = 135168
-    user_type   = 2
-    ro  	    = 0
+    size_lo     = 131072
+    user_type   = 0
+    ro          = 0
 
 ;------------------------------>nandh, android app cache
 [partition7]
     class_name  = DISK
     name        = cache
     size_hi     = 0
-    size_lo     = 421888
-    user_type   = 2
-    ro  	      = 0
+    size_lo     = 409600
+    user_type   = 0
+    ro          = 0
 
 ;********************************************************************************************************************
 ;                     ~{9L<~0|OBTXN;VC~} ~{#:~} ~{0QD38v9L<~0|OBTX5=V86(7VGx~}, ~{OBTX4NJ}Wn4sN*~}7~{4N~}

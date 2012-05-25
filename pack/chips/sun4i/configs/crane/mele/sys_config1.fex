@@ -151,6 +151,7 @@ emac_txclk               = port:PA14<2><default><default><default>
 emac_crs                 = port:PA15<2><default><default><default>
 emac_col                 = port:PA16<2><default><default><default>
 emac_reset               = port:PA17<1><default><default><default>
+emac_power               = 
 
 ;----------------------------------------------------------------------------------
 ;i2c configuration

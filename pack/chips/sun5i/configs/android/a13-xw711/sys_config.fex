@@ -166,6 +166,7 @@ verify_file = VBOOT_0000000000
 part_name   = system
 pkt_name    = SYSTEM_000000000
 encrypt     = 0
+verify_file = VSYSTEMFS_000000
 
 [download4]
 part_name   = recovery

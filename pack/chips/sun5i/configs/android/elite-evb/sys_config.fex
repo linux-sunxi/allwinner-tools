@@ -46,8 +46,19 @@ size = 16384
 ;     3、size_hi + size_lo = 0, 表示此分区不存在
 ;     4、为了安全和效率考虑，分区大小最好保证为16M字节的整数倍
 ;********************************************************************************************************
+; nanda		bootloader
+; nandb		env
+; nandc		boot
+; nandd		system
+; nande		data
+; nandf		misc
+; nandg		recovery
+; nandh		cache
+; nandi		private
+; nandj		backup
+; nandk		udisk
 [part_num]
-num     = 8
+num     = 10
 
 ;------------------------------>nanda, known as bootfs before, includes boot.axf u-boot.bin etc...
 [partition0]
@@ -117,9 +128,27 @@ num     = 8
     class_name  = DISK
     name        = cache
     size_hi     = 0
-    size_lo     = 262144
-    user_type   = 0
-    ro          = 0
+    size_lo     = 131072
+    user_type   = 2
+    ro  	      = 0
+
+;------------------------------>nandi, private data, fat formatted
+[partition8]
+    class_name  = DISK
+    name        = private
+    size_hi     = 0
+    size_lo     = 1024
+    user_type   = 2
+    ro  	      = 0
+
+;------------------------------>nandj, img backup
+[partition9]
+    class_name  = DISK
+    name        = sysrecovery
+    size_hi     = 0
+    size_lo     = 327680
+    user_type   = 2
+    ro  	      = 0
 
 ;********************************************************************************************************************
 ;                     固件包下载位置 ： 把某个固件包下载到指定分区, 下载次数最大为7次
@@ -142,7 +171,7 @@ num     = 8
 ;      verify_file  = VERIFY_000000000
 ;********************************************************************************************************************
 [down_num]
-down_num    = 6
+down_num    = 7
 
 [download0]
 part_name   = bootloader
@@ -166,6 +195,7 @@ verify_file = VBOOT_0000000000
 part_name   = system
 pkt_name    = SYSTEM_000000000
 encrypt     = 0
+verify_file = VSYSTEMFS_000000
 
 [download4]
 part_name   = recovery
@@ -174,6 +204,12 @@ encrypt     = 0
 verify_file = VRECOVERYFS_0000
 
 [download5]
+part_name   = sysrecovery
+pkt_name    = RECOVERY_0000000
+encrypt     = 0  
+verify_file = VRECOVERYFS_0000
+
+[download6]
 part_name   = UDISK
 pkt_name    = DISKFS_000000000
 encrypt     = 0

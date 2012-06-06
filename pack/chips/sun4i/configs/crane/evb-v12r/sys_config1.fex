@@ -89,7 +89,7 @@ jtag_di                  = port:PB17<3>
 ;*****************************************************************************
 [dram_para]
 dram_baseaddr        			= 0x40000000
-dram_clk             			= 360
+dram_clk             			= 408
 dram_type				= 3
 dram_rank_num     			=
 dram_chip_density			=
@@ -1199,7 +1199,7 @@ bt_uart_id               = 2
 bt_mod_type              = 1
 
 [i2s_para]
-i2s_used                 = 0
+i2s_used                 = 1
 i2s_channel              = 2
 i2s_mclk                 = port:PB5<2><1><default><default>
 i2s_bclk                 = port:PB6<2><1><default><default>
@@ -1218,7 +1218,12 @@ spdif_din                =
 
 [audio_para]
 audio_used               = 1
+capture_used			 = 1
+audio_lr_change      	 = 0
 audio_pa_ctrl            = port:PH15<1><default><default><0>
+
+[switch_para]
+switch_used               = 0
 
 ;----------------------------------------------------------------------------------
 ;ir --- infra remote configuration

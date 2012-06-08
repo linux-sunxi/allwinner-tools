@@ -54,7 +54,7 @@ size = 16384
 ;     4、为了安全和效率考虑，分区大小最好保证为16M字节的整数倍
 ;********************************************************************************************************
 [part_num]
-num     = 8
+num     = 9
 
 ;------------------------------>nanda, known as bootfs before, includes boot.axf u-boot.bin etc...
 [partition0]
@@ -88,7 +88,7 @@ num     = 8
     class_name  = DISK
     name        = system
     size_hi     = 0
-    size_lo     = 327680
+    size_lo     = 524288
     user_type   = 0
     ro          = 0
 
@@ -125,6 +125,15 @@ num     = 8
     name        = cache
     size_hi     = 0
     size_lo     = 327680
+    user_type   = 0
+    ro          = 0
+
+;------------------------------>nandi, data image backup
+[partition8]
+    class_name  = DISK
+    name        = databk
+    size_hi     = 0
+    size_lo     = 262144
     user_type   = 0
     ro          = 0
 

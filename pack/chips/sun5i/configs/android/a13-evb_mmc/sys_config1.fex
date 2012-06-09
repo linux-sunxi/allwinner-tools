@@ -567,7 +567,7 @@ sdc_clk                  = port:PF2<2><1><2><default>
 sdc_cmd                  = port:PF3<2><1><2><default>
 sdc_d3                   = port:PF4<2><1><2><default>
 sdc_d2                   = port:PF5<2><1><2><default>
-sdc_det                  = 
+sdc_det                  =
 sdc_use_wp               = 0
 sdc_wp                   =
 
@@ -831,6 +831,8 @@ spdif_din                =
 
 [audio_para]
 audio_used               = 1
+capture_used			 = 1
+audio_lr_change      	 = 0
 audio_pa_ctrl            = port:PG10<1><default><default><0>
 
 ;----------------------------------------------------------------------------------

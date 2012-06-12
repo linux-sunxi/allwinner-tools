@@ -101,7 +101,7 @@ num     = 10
     class_name  = DISK
     name        = system
     size_hi     = 0
-    size_lo     = 262144
+    size_lo     = 327680
     user_type   = 2
     ro  	      = 0
 

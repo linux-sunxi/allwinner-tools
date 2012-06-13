@@ -1338,3 +1338,39 @@ pmu_batdeten			 = 1
 key_min			=4
 key_max			=6
 
+;----------------------------------------------------------------------------------
+; dvfs voltage-frequency table configuration
+;
+; max_freq: cpu maximum frequency, based on Hz, can not be more than 1008MHz
+; min_freq: cpu minimum frequency, based on Hz, can not be less than 60MHz
+;
+; LV_count: count of LV_freq/LV_volt, must be < 16
+;
+; LV1: core vdd is 1.50v if cpu frequency is (1008Mhz, 1056Mhz]
+; LV2: core vdd is 1.40v if cpu frequency is (912Mhz,  1008Mhz]
+; LV3: core vdd is 1.35v if cpu frequency is (864Mhz,   912Mhz]
+; LV4: core vdd is 1.30v if cpu frequency is (624Mhz,   864Mhz]
+; LV5: core vdd is 1.25v if cpu frequency is (60Mhz,    624Mhz]
+;
+;----------------------------------------------------------------------------------
+[dvfs_table]
+max_freq = 1008000000
+min_freq = 60000000
+
+LV_count = 5
+
+LV1_freq = 1056000000
+LV1_volt = 1500
+
+LV2_freq = 1008000000
+LV2_volt = 1400
+
+LV3_freq = 912000000
+LV3_volt = 1350
+
+LV4_freq = 864000000
+LV4_volt = 1300
+
+LV5_freq = 624000000
+LV5_volt = 1250
+

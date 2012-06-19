@@ -965,4 +965,4 @@ key_max			=6
 
 
 ;[system]
-;recovery_key             = port:PA06<0><default>
+;recovery_key             = port:PA06<0><1>

@@ -1337,4 +1337,4 @@ gpio_pin_3               = port:PB03<0><default>
 MAC = "000000000000"
 
 ;[system]
-;recovery_key             = port:PH16<0><default>
+;recovery_key             = port:PH16<0><1>

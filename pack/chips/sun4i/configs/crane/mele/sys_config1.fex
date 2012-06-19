@@ -1344,4 +1344,4 @@ pin_2                    = port:PH20<1><default><default><1>
 MAC = "000000000000"
 
 ;[system]
-;recovery_key             = port:PH16<0><default>
+;recovery_key             = port:PH16<0><1>

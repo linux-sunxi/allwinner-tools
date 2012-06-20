@@ -26,6 +26,12 @@ pll6_freq                = 720
 logical_start            = 40960
 sprite_gpio0             =
 
+;---------------------------------------------------------------------------------------------------------
+; if 1 == standby_mode, then support super standby;
+; else, support normal standby. 
+;---------------------------------------------------------------------------------------------------------
+[pm_para]
+standby_mode		= 0
 
 [card_boot0_para]
 card_ctrl                = 0

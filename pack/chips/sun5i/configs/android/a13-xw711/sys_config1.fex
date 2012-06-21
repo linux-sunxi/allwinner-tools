@@ -26,7 +26,7 @@ pll6_freq                = 720
 ; else, support normal standby.
 ;---------------------------------------------------------------------------------------------------------
 [pm_para]
-standby_mode           = 0
+standby_mode           = 1
 
 [card_boot]
 logical_start            = 40960

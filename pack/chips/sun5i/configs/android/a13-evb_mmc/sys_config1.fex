@@ -49,6 +49,14 @@ sdc_d2                  = port:PF5<2><1><default><default>
 ;sdc_d3                   = port:PC11<3><1><default><default>
 
 
+;---------------------------------------------------------------------------------------------------------
+; if 1 == standby_mode, then support super standby;
+; else, support normal standby.
+;---------------------------------------------------------------------------------------------------------
+[pm_para]
+standby_mode		= 1
+
+
 [card_boot]
 logical_start            = 40960
 sprite_gpio0             =

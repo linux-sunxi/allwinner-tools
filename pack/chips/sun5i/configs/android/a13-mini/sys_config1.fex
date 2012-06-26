@@ -20,7 +20,8 @@ ldo3_vol                 = 3300
 ldo4_vol                 = 3300
 pll4_freq                = 960
 pll6_freq                = 720
-
+power_start				 = 0
+storage_type			 = 0
 
 [card_boot]
 logical_start            = 40960
@@ -28,7 +29,7 @@ sprite_gpio0             =
 
 ;---------------------------------------------------------------------------------------------------------
 ; if 1 == standby_mode, then support super standby;
-; else, support normal standby. 
+; else, support normal standby.
 ;---------------------------------------------------------------------------------------------------------
 [pm_para]
 standby_mode		= 1

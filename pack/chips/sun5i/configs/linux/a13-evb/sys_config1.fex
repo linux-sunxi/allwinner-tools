@@ -26,6 +26,12 @@ pll6_freq                = 720
 logical_start            = 40960
 sprite_gpio0             =
 
+;---------------------------------------------------------------------------------------------------------
+; if 1 == standby_mode, then support super standby;
+; else, support normal standby. 
+;---------------------------------------------------------------------------------------------------------
+[pm_para]
+standby_mode		= 1
 
 [card_boot0_para]
 card_ctrl                = 0
@@ -783,6 +789,8 @@ spdif_din                =
 
 [audio_para]
 audio_used               = 1
+capture_used			 = 1
+audio_lr_change      	 = 0
 audio_pa_ctrl            = port:PG10<1><default><default><0>
 
 ;----------------------------------------------------------------------------------

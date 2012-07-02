@@ -6,7 +6,7 @@
 
 [product]
 version = "1.0"
-machine = "A13-EVB-V1.0"
+machine = "A13-MINI-V1.0"
 
 ;----------------------------------------------------------------------------------
 ; system configuration
@@ -22,7 +22,6 @@ pll4_freq                = 960
 pll6_freq                = 720
 power_start				 = 0
 storage_type			 = 0
-
 
 [card_boot]
 logical_start            = 40960
@@ -316,31 +315,31 @@ fb1_scaler_mode_enable   = 0
 [lcd0_para]
 lcd_used                 = 1
 
-lcd_x                    = 800
-lcd_y                    = 480
-lcd_dclk_freq            = 33
+lcd_x                    = 480
+lcd_y                    = 272
+lcd_dclk_freq            = 9
 lcd_pwm_not_used         = 0
 lcd_pwm_ch               = 0
-lcd_pwm_freq             = 10000
+lcd_pwm_freq             = 30000
 lcd_pwm_pol              = 0
 lcd_if                   = 0
-lcd_hbp                  = 46
-lcd_ht                   = 1055
-lcd_vbp                  = 23
-lcd_vt                   = 1050
+lcd_hbp                  = 2
+lcd_ht                   = 525
+lcd_vbp                  = 2
+lcd_vt                   = 572
 lcd_hv_if                = 0
 lcd_hv_smode             = 0
 lcd_hv_s888_if           = 0
 lcd_hv_syuv_if           = 0
-lcd_hv_vspw              = 0
-lcd_hv_hspw              = 0
+lcd_hv_vspw              = 1
+lcd_hv_hspw              = 1
 lcd_lvds_ch              = 0
 lcd_lvds_mode            = 0
 lcd_lvds_bitwidth        = 0
 lcd_lvds_io_cross        = 0
 lcd_cpu_if               = 0
-lcd_frm                  = 1
-lcd_io_cfg0              = 0x10000000
+lcd_frm                  = 0
+lcd_io_cfg0              = 0x00000000
 lcd_gamma_correction_en  = 0
 lcd_gamma_tbl_0          = 0x00000000
 lcd_gamma_tbl_1          = 0x00010101

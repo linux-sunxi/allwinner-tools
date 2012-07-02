@@ -21,12 +21,33 @@ ldo4_vol                 = 3300
 pll4_freq                = 960
 pll6_freq                = 720
 power_start				 = 0
-storage_type			 = 0
+storage_type			 = 2
 
+;---------------------------------------------------------------------------------
+;card_no: 烧写的卡的编号，0或者2，evb上为0，方案板上用2
+;card_line: 烧写的卡的线宽，1或者4
+;card_mode: 预留备用
+;pin脚请根据烧写卡的不同自行选择
+;---------------------------------------------------------------------------------
+[card_burn_para]
+card_no                 = 0
+card_line               = 4
+card_mode               = 0
+;for card0 pins
+sdc_d1                  = port:PF0<2><1><default><default>
+sdc_d0                  = port:PF1<2><1><default><default>
+sdc_clk                 = port:PF2<2><1><default><default>
+sdc_cmd                 = port:PF3<2><1><default><default>
+sdc_d3                  = port:PF4<2><1><default><default>
+sdc_d2                  = port:PF5<2><1><default><default>
+;for card2 pins
+;sdc_cmd                  = port:PC6<3><1><default><default>
+;sdc_clk                  = port:PC7<3><1><default><default>
+;sdc_d0                   = port:PC8<3><1><default><default>
+;sdc_d1                   = port:PC9<3><1><default><default>
+;sdc_d2                   = port:PC10<3><1><default><default>
+;sdc_d3                   = port:PC11<3><1><default><default>
 
-[card_boot]
-logical_start            = 40960
-sprite_gpio0             =
 
 ;---------------------------------------------------------------------------------------------------------
 ; if 1 == standby_mode, then support super standby;
@@ -35,16 +56,35 @@ sprite_gpio0             =
 [pm_para]
 standby_mode		= 1
 
+
+[card_boot]
+logical_start            = 40960
+sprite_gpio0             =
+
+;---------------------------------------------------------------------------------
+;card_ctrl: 启动卡的编号，0或者2，evb上为0，方案板上用2
+;card_line: 烧写的卡的线宽，1或者4
+;card_high_speed: 启动卡的速度模式
+;pin脚请根据烧写卡的不同自行选择
+;---------------------------------------------------------------------------------
 [card_boot0_para]
 card_ctrl                = 0
 card_high_speed          = 1
 card_line                = 4
+;for card0 pins
 sdc_d1                   = port:PF0<2><1><default><default>
 sdc_d0                   = port:PF1<2><1><default><default>
 sdc_clk                  = port:PF2<2><1><default><default>
 sdc_cmd                  = port:PF3<2><1><default><default>
 sdc_d3                   = port:PF4<2><1><default><default>
 sdc_d2                   = port:PF5<2><1><default><default>
+;for card2 pins
+;sdc_cmd                  = port:PC6<3><1><default><default>
+;sdc_clk                  = port:PC7<3><1><default><default>
+;sdc_d0                   = port:PC8<3><1><default><default>
+;sdc_d1                   = port:PC9<3><1><default><default>
+;sdc_d2                   = port:PC10<3><1><default><default>
+;sdc_d3                   = port:PC11<3><1><default><default>
 
 [twi_para]
 twi_port                 = 0
@@ -58,8 +98,8 @@ uart_debug_rx            = port:PG4<4><1><default><default>
 
 [uart_force_debug]
 uart_debug_port          = 0
-uart_debug_tx            = port:PF2<4>
-uart_debug_rx            = port:PF4<4>
+uart_debug_tx            = port:PF2<4><1><default><default>
+uart_debug_rx            = port:PF4<4><1><default><default>
 
 [jtag_para]
 jtag_enable              = 0
@@ -99,7 +139,7 @@ dram_emr3                = 0x0
 ;nand flash configuration
 ;----------------------------------------------------------------------------------
 [nand_para]
-nand_used                = 1
+nand_used                = 0
 nand_we                  = port:PC00<2><default><default><default>
 nand_ale                 = port:PC01<2><default><default><default>
 nand_cle                 = port:PC02<2><default><default><default>
@@ -529,7 +569,7 @@ csi_af_en_b              =
 ;--------------------------------------------------------------------------------
 [mmc0_para]
 sdc_used                 = 1
-sdc_detmode              = 1
+sdc_detmode              = 3
 bus_width                = 4
 sdc_d1                   = port:PF0<2><1><2><default>
 sdc_d0                   = port:PF1<2><1><2><default>
@@ -537,7 +577,7 @@ sdc_clk                  = port:PF2<2><1><2><default>
 sdc_cmd                  = port:PF3<2><1><2><default>
 sdc_d3                   = port:PF4<2><1><2><default>
 sdc_d2                   = port:PF5<2><1><2><default>
-sdc_det                  = port:PB3<0><1><default><default>
+sdc_det                  =
 sdc_use_wp               = 0
 sdc_wp                   =
 
@@ -559,12 +599,18 @@ sdc_wp                   =
 sdc_used                 = 0
 sdc_detmode              = 3
 bus_width                = 4
-sdc_cmd                  = port:PE8<4><1><2><default>
-sdc_clk                  = port:PE9<4><1><2><default>
-sdc_d0                   = port:PE4<4><1><2><default>
-sdc_d1                   = port:PE5<4><1><2><default>
-sdc_d2                   = port:PE6<4><1><2><default>
-sdc_d3                   = port:PE7<4><1><2><default>
+;sdc_cmd                  = port:PE8<4><1><2><default>
+;sdc_clk                  = port:PE9<4><1><2><default>
+;sdc_d0                   = port:PE4<4><1><2><default>
+;sdc_d1                   = port:PE5<4><1><2><default>
+;sdc_d2                   = port:PE6<4><1><2><default>
+;sdc_d3                   = port:PE7<4><1><2><default>
+sdc_cmd                  = port:PC6<3><1><default><default>
+sdc_clk                  = port:PC7<3><1><default><default>
+sdc_d0                   = port:PC8<3><1><default><default>
+sdc_d1                   = port:PC9<3><1><default><default>
+sdc_d2                   = port:PC10<3><1><default><default>
+sdc_d3                   = port:PC11<3><1><default><default>
 sdc_det                  =
 sdc_use_wp               = 0
 sdc_wp                   =

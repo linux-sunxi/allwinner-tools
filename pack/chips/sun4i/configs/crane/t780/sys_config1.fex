@@ -384,7 +384,8 @@ nand_ndqs                = port:PC24<2><default><default><default>
 ;screenx_output_mode  (used for vga output, 0:1680*1050 1:1440*900 2:1360*768 3:1280*1024 4:1024*768 5:800*600 6:640*480 10:1920*1080 11:1280*720)
 ;fbx format           (4:RGB655 5:RGB565 6:RGB556 7:ARGB1555 8:RGBA5551 9:RGB888 10:ARGB8888 12:ARGB4444)
 ;fbx pixel sequence   (0:ARGB 1:BGRA 2:ABGR 3:RGBA) --- 0 for linux, 2 for android
-;lcdx_bright          (lcd init bright, value:0~256, default:197)
+;lcdx_bright          (lcd init backlight brightness, value:0~256, default:197)
+;lcdx_yy              (lcd init screen bright/contrast/saturation/hue, value:0~100, default:50/50/57/50)
 ;----------------------------------------------------------------------------------
 [disp_init]
 disp_init_enable         = 1
@@ -409,6 +410,15 @@ fb1_scaler_mode_enable   = 0
 lcd0_bright              = 197
 lcd1_bright              = 197
 
+lcd0_screen_bright       = 50
+lcd0_screen_contrast     = 50
+lcd0_screen_saturation   = 57
+lcd0_screen_hue          = 50
+
+lcd1_screen_bright       = 50
+lcd1_screen_contrast     = 50
+lcd1_screen_saturation   = 57
+lcd1_screen_hue          = 50
 
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
@@ -1095,8 +1105,13 @@ spdif_din                =
 
 [audio_para]
 audio_used               = 1
+capture_used			 = 1
 audio_lr_change      	 = 1
 audio_pa_ctrl            = port:PH15<1><default><default><0>
+
+[switch_para]
+switch_used               = 0
+
 
 ;----------------------------------------------------------------------------------
 ;ir --- infra remote configuration
@@ -1208,4 +1223,38 @@ pmu_batdeten			 = 1
 key_min			=8
 key_max			=14
 
+;----------------------------------------------------------------------------------
+; dvfs voltage-frequency table configuration
+;
+; max_freq: cpu maximum frequency, based on Hz, can not be more than 1008MHz
+; min_freq: cpu minimum frequency, based on Hz, can not be less than 60MHz
+;
+; LV_count: count of LV_freq/LV_volt, must be < 16
+;
+; LV1: core vdd is 1.50v if cpu frequency is (1008Mhz, 1056Mhz]
+; LV2: core vdd is 1.40v if cpu frequency is (912Mhz,  1008Mhz]
+; LV3: core vdd is 1.35v if cpu frequency is (864Mhz,   912Mhz]
+; LV4: core vdd is 1.30v if cpu frequency is (624Mhz,   864Mhz]
+; LV5: core vdd is 1.25v if cpu frequency is (60Mhz,    624Mhz]
+;
+;----------------------------------------------------------------------------------
+[dvfs_table]
+max_freq = 1008000000
+min_freq = 60000000
 
+LV_count = 5
+
+LV1_freq = 1056000000
+LV1_volt = 1500
+
+LV2_freq = 1008000000
+LV2_volt = 1400
+
+LV3_freq = 912000000
+LV3_volt = 1350
+
+LV4_freq = 864000000
+LV4_volt = 1300
+
+LV5_freq = 624000000
+LV5_volt = 1250

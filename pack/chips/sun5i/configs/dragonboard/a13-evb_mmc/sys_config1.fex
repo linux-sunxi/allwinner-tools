@@ -139,7 +139,7 @@ dram_emr3                = 0x0
 ;nand flash configuration
 ;----------------------------------------------------------------------------------
 [nand_para]
-nand_used                = 0
+nand_used                = 1
 nand_we                  = port:PC00<2><default><default><default>
 nand_ale                 = port:PC01<2><default><default><default>
 nand_cle                 = port:PC02<2><default><default><default>

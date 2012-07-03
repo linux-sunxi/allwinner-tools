@@ -81,12 +81,17 @@ run_type    = 1
 module_path = "/lib/modules/3.0.8+/bma250.ko"
 device_name = "bma250"
 
+;-------------------------------------------------------------------------------
+; test_size
+;   Test size for nand read and write test.
+;-------------------------------------------------------------------------------
 [nand]
 display_name= "闪存"
-activated   = 0
+activated   = 1
 program     = "nandtester.sh"
 category    = 0
 run_type    = 0
+test_size   = 128
 
 [bluetooth]
 display_name= "蓝牙"
@@ -97,7 +102,7 @@ run_type    =
 
 [mmc]
 display_name= "SD卡"
-activated   = 1
+activated   = 0
 program     = "mmctester.sh"
 category    = 1
 run_type    = 1

@@ -108,14 +108,7 @@ do_clean()
 
 do_copy_u_boot()
 {
-	case ${PACK_BOARD} in
-	*mmc)
-    	cp -v $LICHEE_OUT/u-boot-mmc.bin bootfs/linux/u-boot.bin
-		;;
-	*)
     	cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/u-boot.bin
-		;;
-	esac
 }
 
 do_pack_crane()
@@ -195,7 +188,10 @@ do_pack_crane()
     mv bootfs.fex bootloader.fex
 
     # get env.fex
-    u_boot_env_gen env.cfg env.fex
+    u_boot_env_gen env_mmc.cfg env_mmc.fex
+	u_boot_env_gen env_nand.cfg env_nand.fex
+	cat env_mmc.fex >> env_nand.fex
+	cp env_nand.fex env.fex
 
     # get other images from android build
     ln -s $CRANE_IMAGE_OUT/boot.img boot.fex

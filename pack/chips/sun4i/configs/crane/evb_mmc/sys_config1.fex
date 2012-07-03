@@ -24,17 +24,6 @@ power_start				 = 0
 storage_type			 = 2
 
 
-[card_burn_para]
-card_no                 = 0
-card_line               = 4
-card_mode               = 0
-sdc_d1                  = port:PF0<2><1><default><default>
-sdc_d0                  = port:PF1<2><1><default><default>
-sdc_clk                 = port:PF2<2><1><default><default>
-sdc_cmd                 = port:PF3<2><1><default><default>
-sdc_d3                  = port:PF4<2><1><default><default>
-sdc_d2                  = port:PF5<2><1><default><default>
-
 [card_boot]
 logical_start            = 40960
 sprite_gpio0             =

@@ -1,0 +1,261 @@
+;-------------------------------------------------------------------------------
+; Test Case Config Demo
+;
+; [example]
+; display_name= "Example"
+; activated   = 1
+; program     = "example.sh"
+; category    = 0
+; run_type    = 1
+;
+; display_name
+;   The name display on screen of this test case, 64bytes.
+;   If display_name is NULL, this test case would not be loaded.
+;
+; activated
+;   0: disable this test case.
+;   1: activated this test case.
+;
+; program
+;   Test case program, 16 bytes.
+;
+; category
+;   0: auto test case.
+;   1: manual test case.
+;
+; run_type
+;   0: waiting for this test case run finish before loads next test case.
+;   1: run next test case after this test case loaded.
+;   When category set to 1, run_type is invalid.
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+; test_size
+;   unit: MB
+;-------------------------------------------------------------------------------
+[dram]
+display_name= "DRAM"
+activated   = 1
+program     = "memtester.sh"
+category    = 0
+run_type    = 1
+test_size   = 8
+
+[rtc]
+display_name= "RTC"
+activated   = 1
+program     = "rtctester.sh"
+category    = 0
+run_type    = 1
+
+;-------------------------------------------------------------------------------
+; module_path
+;   The full path of wifi module file.
+; module_args
+;   The arguments of wifi module.
+;-------------------------------------------------------------------------------
+[wifi]
+display_name= "WIFI"
+activated   = 0
+program     = "wifitester.sh"
+category    = 0
+run_type    = 1
+module_path = "/lib/modules/3.0.8+/ar6302.ko"
+module_args = "fwpath=/lib/modules/3.0.8+"
+
+;-------------------------------------------------------------------------------
+; module_path
+;   The full path of g-sensor module file.
+; device_name
+;   The name of g-sensor device.
+;-------------------------------------------------------------------------------
+[gsensor]
+display_name= "G-Sensor"
+activated   = 1
+program     = "gsensortester.sh"
+category    = 0
+run_type    = 1
+module_path = "/lib/modules/3.0.8+/bma250.ko"
+device_name = "bma250"
+
+;-------------------------------------------------------------------------------
+; test_size
+;   Test size for nand read and write test.
+;-------------------------------------------------------------------------------
+[nand]
+display_name= "Nand"
+activated   = 1
+program     = "nandtester.sh"
+category    = 0
+run_type    = 0
+test_size   = 128
+
+[bluetooth]
+display_name= "Bluetooth"
+activated   = 0
+program     = 
+category    = 
+run_type    = 
+
+[mmc]
+display_name= "sdcard"
+activated   = 0
+program     = "mmctester.sh"
+category    = 1
+run_type    = 1
+
+[udisk]
+display_name= "U Disk"
+activated   = 1
+program     = "udisktester.sh"
+category    = 1
+run_type    = 1
+
+;-------------------------------------------------------------------------------
+; sound_file
+;   The full path of sound file.
+; samplerate
+;   The samplerate of sound file.
+;-------------------------------------------------------------------------------
+[hdmi]
+display_name= "HDMI"
+activated   = 1
+program     = "hdmitester"
+category    = 1
+run_type    = 1
+sound_file  = "/dragonboard/data/test48000.pcm"
+samplerate  = 48000
+
+;-------------------------------------------------------------------------------
+; module_path
+;   The full path of key module file.
+;-------------------------------------------------------------------------------
+[key]
+display_name= "Key"
+activated   = 1
+program     = "keytester"
+category    = 1
+run_type    = 1
+;module_path = 
+
+;-------------------------------------------------------------------------------
+; module_path
+;   The full path of ir module file.
+;-------------------------------------------------------------------------------
+[ir]
+display_name= "IR"
+activated   = 1
+program     = "irtester"
+category    = 1
+run_type    = 1
+module_path = "/lib/modules/3.0.8+/sun4i-ir.ko"
+
+;-------------------------------------------------------------------------------
+; delay
+;   delay ? second before recording
+;-------------------------------------------------------------------------------
+[mic]
+display_name= "MIC"
+activated   = 1
+program     = "mictester"
+category    = 1
+run_type    = 1
+delay       = 5
+
+;-------------------------------------------------------------------------------
+; type
+;   0: rtp
+;   1: ctp
+; module_path
+;   The full path of tp module.
+;-------------------------------------------------------------------------------
+[tp]
+display_name= "TP"
+type        = 0
+module_path = "/lib/modules/3.0.8+/sun4i-ts.ko"
+
+;-------------------------------------------------------------------------------
+; module_count
+;   The number of module need to be insmod.
+; modulex_path
+;   'x' is the index of module, starts from 0.
+;-------------------------------------------------------------------------------
+[camera]
+activated   = 1
+module_count= 4
+module1_path= "/lib/modules/3.0.8+/videobuf-core.ko"
+module2_path= "/lib/modules/3.0.8+/videobuf-dma-contig.ko"
+module3_path= "/lib/modules/3.0.8+/gc0308.ko"
+module4_path= "/lib/modules/3.0.8+/sun4i_csi0.ko"
+
+;-------------------------------------------------------------------------------
+; manual_menu_name
+;   manual test case menu name, 32bytes.
+; auto_menu_name
+;   auto test case menu name, 32bytes.
+; clear_button_name
+;   clear screen button name, 8bytes.
+; font_size
+;   test case font display size, valid value: 20pixel(default), 24pixel.
+; height_adjust
+;   adjust height of manual test case and auto test case.
+;
+; Color Index
+;   0: White
+;   1: Yellow
+;   2: Green
+;   3: Cyan
+;   4: Magenta
+;   5: Red
+;   6: Blue
+;   7: Black
+;
+; menu_bgcolor
+;   The background color index of test case category menu.
+; menu_fgcolor
+;   The foreground color index of test case category menu.
+; item_init_bgcolor
+;   The background color index of test case item init status.
+; item_init_fgcolor
+;   The foreground color index of test case item init status.
+; item_ok_bgcolor
+;   The background color index of test case item OK status.
+; item_ok_fgcolor
+;   The foreground color index of test case item OK status.
+; item_fail_bgcolor
+;   The background color index of test case item fail status.
+; item_fail_fgcolor
+;   The foreground color index of test case item fail status.
+;
+; pass_str
+;   The string display after test case display_name when test OK.
+; fail_str
+;   The string display after test case display_name when test Fail.
+;-------------------------------------------------------------------------------
+[df_view]
+manual_menu_name    = "Manual Test Case"
+auto_menu_name      = "Auto Test Case"
+clear_button_name   = "Clear"
+font_size           = 20
+height_adjust       = 56
+menu_bgcolor        = 1
+menu_fgcolor        = 7
+
+item_init_bgcolor   = 7
+item_init_fgcolor   = 0
+item_ok_bgcolor     = 7
+item_ok_fgcolor     = 6
+item_fail_bgcolor   = 7
+item_fail_fgcolor   = 5
+tp_draw_color       = 0
+
+;item_init_bgcolor   = 0
+;item_init_fgcolor   = 7
+;item_ok_bgcolor     = 0
+;item_ok_fgcolor     = 6
+;item_fail_bgcolor   = 0
+;item_fail_fgcolor   = 5
+;tp_draw_color       = 7
+
+pass_str            = "OK"
+fail_str            = "Fail"

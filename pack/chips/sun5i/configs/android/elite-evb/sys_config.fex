@@ -92,7 +92,7 @@ num     = 10
     class_name  = DISK
     name        = system
     size_hi     = 0
-    size_lo     = 262144
+    size_lo     = 327680
     user_type   = 0
     ro          = 0
 
@@ -102,7 +102,7 @@ num     = 10
     name        = data
     size_hi     = 0
     size_lo     = 524288
-    user_type   = 0
+    user_type   = 1
     ro          = 0
 
 ;------------------------------>nandf, misc
@@ -129,7 +129,7 @@ num     = 10
     name        = cache
     size_hi     = 0
     size_lo     = 131072
-    user_type   = 2
+    user_type   = 0
     ro  	      = 0
 
 ;------------------------------>nandi, private data, fat formatted
@@ -137,8 +137,8 @@ num     = 10
     class_name  = DISK
     name        = private
     size_hi     = 0
-    size_lo     = 1024
-    user_type   = 2
+    size_lo     = 16384
+    user_type   = 0
     ro  	      = 0
 
 ;------------------------------>nandj, img backup
@@ -147,8 +147,8 @@ num     = 10
     name        = sysrecovery
     size_hi     = 0
     size_lo     = 327680
-    user_type   = 2
-    ro  	      = 0
+    user_type   = 0
+    ro          = 0
 
 ;********************************************************************************************************************
 ;                     固件包下载位置 ： 把某个固件包下载到指定分区, 下载次数最大为7次

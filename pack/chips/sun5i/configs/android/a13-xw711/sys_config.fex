@@ -81,7 +81,7 @@ num     = 9
     class_name  = DISK
     name        = system
     size_hi     = 0
-    size_lo     = 262144
+    size_lo     = 393216
     user_type   = 0
     ro          = 0
 

@@ -18,7 +18,7 @@ dcdc3_vol                =1250
 ldo2_vol                 = 3000
 ldo3_vol                 = 2800
 ldo4_vol                 = 2800
-pll4_freq                = 960
+pll4_freq                = 1200
 pll6_freq                = 1200
 power_start              = 1
 

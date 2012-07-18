@@ -129,7 +129,7 @@ num     = 10
     name        = cache
     size_hi     = 0
     size_lo     = 131072
-    user_type   = 0
+    user_type   = 1
     ro  	      = 0
 
 ;------------------------------>nandi, private data, fat formatted

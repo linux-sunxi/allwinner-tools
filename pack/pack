@@ -263,6 +263,10 @@ do_pack_linux()
     # get the rootfs
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
 
+    # checksum for all fex
+    FileAddSum bootloader.fex vbootloader.fex
+    FileAddSum env.fex venv.fex
+    FileAddSum boot.fex vboot.fex
     dragon image.cfg
 
     if [ -e ${IMG_NAME} ]; then

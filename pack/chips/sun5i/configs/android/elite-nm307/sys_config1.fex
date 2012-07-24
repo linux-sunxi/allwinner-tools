@@ -6,7 +6,7 @@
 
 [product]
 version = "1.0"
-machine = "A12-EVB-V1.0"
+machine = "a10s-nm307"
 
 ;----------------------------------------------------------------------------------
 ; system configuration
@@ -664,7 +664,7 @@ usb_port_type            = 1
 usb_detect_type          = 0
 usb_id_gpio              = 
 usb_det_vbus_gpio        = 
-usb_drv_vbus_gpio        = 
+usb_drv_vbus_gpio        = port:PB2<1><0><default><0>
 usb_host_init_state      = 0
 
 ;--------------------------------

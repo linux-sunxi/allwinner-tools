@@ -188,10 +188,7 @@ do_pack_crane()
     mv bootfs.fex bootloader.fex
 
     # get env.fex
-    u_boot_env_gen env_mmc.cfg env_mmc.fex
-	u_boot_env_gen env_nand.cfg env_nand.fex
-	cat env_mmc.fex >> env_nand.fex
-	cp env_nand.fex env.fex
+	u_boot_env_gen env.cfg env.fex
 
     # get other images from android build
     ln -s $CRANE_IMAGE_OUT/boot.img boot.fex
@@ -296,10 +293,7 @@ do_pack_dragonboard()
     mv bootfs.fex bootloader.fex
 
     # get env.fex
-    u_boot_env_gen env_mmc.cfg env_mmc.fex
-	u_boot_env_gen env_nand.cfg env_nand.fex
-	cat env_mmc.fex >> env_nand.fex
-	cp env_nand.fex env.fex
+	u_boot_env_gen env.cfg env.fex
 
     # get the boot.img
     ln -s $LICHEE_OUT/dragonboard/boot.img boot.fex

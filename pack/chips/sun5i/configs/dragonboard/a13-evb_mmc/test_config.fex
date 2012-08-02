@@ -74,11 +74,12 @@ module_args = "fwpath=/lib/modules/3.0.8+"
 ;-------------------------------------------------------------------------------
 [gsensor]
 display_name= "重力感应器"
-activated   = 0
+activated   = 1
 program     = "gsensortester.sh"
 category    = 0
 run_type    = 1
-module_path = "/lib/modules/3.0.8+/bma250.ko"
+module_count= 1
+module1_path= "/lib/modules/3.0.8+/bma250.ko"
 device_name = "bma250"
 
 ;-------------------------------------------------------------------------------
@@ -87,10 +88,10 @@ device_name = "bma250"
 ;-------------------------------------------------------------------------------
 [nand]
 display_name= "闪存"
-activated   = 1
+activated   = 0
 program     = "nandtester.sh"
 category    = 0
-run_type    = 0
+run_type    = 1
 test_size   = 128
 
 [bluetooth]
@@ -156,6 +157,8 @@ module_path = "/lib/modules/3.0.8+/sun5i-ir.ko"
 ;-------------------------------------------------------------------------------
 ; delay
 ;   delay ? second before recording
+; volume
+;   the initialize volume of output
 ;-------------------------------------------------------------------------------
 [mic]
 display_name= "录音耳机"
@@ -164,6 +167,7 @@ program     = "mictester"
 category    = 1
 run_type    = 1
 delay       = 5
+volume      = 40
 
 ;-------------------------------------------------------------------------------
 ; type
@@ -184,12 +188,12 @@ module_path = "/lib/modules/3.0.8+/sun4i-ts.ko"
 ;   'x' is the index of module, starts from 0.
 ;-------------------------------------------------------------------------------
 [camera]
-activated   = 0
+activated   = 1
 module_count= 4
 module1_path= "/lib/modules/3.0.8+/videobuf-core.ko"
 module2_path= "/lib/modules/3.0.8+/videobuf-dma-contig.ko"
 module3_path= "/lib/modules/3.0.8+/gc0308.ko"
-module4_path= "/lib/modules/3.0.8+/sun4i_csi0.ko"
+module4_path= "/lib/modules/3.0.8+/sun5i_csi0.ko"
 
 ;-------------------------------------------------------------------------------
 ; manual_menu_name

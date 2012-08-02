@@ -78,7 +78,8 @@ activated   = 1
 program     = "gsensortester.sh"
 category    = 0
 run_type    = 1
-module_path = "/lib/modules/3.0.8+/bma250.ko"
+module_count= 1
+module1_path= "/lib/modules/3.0.8+/bma250.ko"
 device_name = "bma250"
 
 ;-------------------------------------------------------------------------------
@@ -87,10 +88,10 @@ device_name = "bma250"
 ;-------------------------------------------------------------------------------
 [nand]
 display_name= "闪存"
-activated   = 1
+activated   = 0
 program     = "nandtester.sh"
 category    = 0
-run_type    = 0
+run_type    = 1
 test_size   = 128
 
 [bluetooth]

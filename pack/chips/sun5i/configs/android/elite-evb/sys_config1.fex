@@ -733,19 +733,21 @@ gps_rx_en                = port:PA7<1><default><default><0>
 ;wifi_sdc_id    ---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
 ;sdio_wifi_mod_sel    ---  0- none,     1- swl-n20(wifi), 2- usi bm-01(wifi+bt+fm),
 ;                          3- ar6302qfn,4- apm6xxx,       5- swb b23(wifi+bt+fm)
+;                          6- hw-mw269x(v1/v2) 7-bcm40181 8- bcm40183
+;                          9 -rtl8723as(wifi+bt) 10- rtl8189es(SM89E00)
 ;--------------------------------------------------------------------------------
 [sdio_wifi_para]
 sdio_wifi_used           = 1
 sdio_wifi_sdc_id         = 1
 sdio_wifi_mod_sel        = 2
 
-; samsung swl-n20 sdio wifi gpio config
-;swl_n20_shdn            =
-;swl_n20_host_wakeup     =
-;swl_n20_vdd_en          =
-;swl_n20_vcc_en          =
+; 1 - samsung swl-n20 sdio wifi gpio config
+;swl_n20_shdn            = port:PA01<1><default><default><0>
+;swl_n20_host_wakeup     = port:PA02<1><default><default><1>
+;swl_n20_vdd_en          = port:PA03<1><default><default><0>
+;swl_n20_vcc_en          = port:PA04<1><default><default><0>
 
-; usi bm01a sdio wifi gpio config
+; 2 - usi bm01a sdio wifi gpio config
 usi_bm01a_wl_pwr        =
 usi_bm01a_wlbt_regon    = port:PA2<1><default><default><0>
 usi_bm01a_wl_rst        = port:PA3<1><default><default><0>
@@ -754,20 +756,50 @@ usi_bm01a_bt_rst        = port:PA4<1><default><default><0>
 usi_bm01a_bt_wake       = port:PA5<1><default><default><0>
 usi_bm01a_bt_hostwake   =
 
-; swb-b23/usibm01 sdio wifi gpio config
-;swbb23_wl_pwr           =
-;swbb23_wl_shdn          =
-;swbb23_wl_wake          =
-;swbb23_bt_shdn          =
-;swbb23_bt_wake          =
-;swbb23_bt_hostwake      =
+; 3 - ar6302qfn sdio wifi gpio config
+;ar6302_qfn_pwr          = port:PA02<1><default><default><0>
+;ar6302_qfn_shdn_n       = port:PA03<1><default><default><0>
 
-; apm sdio wifi gpio config
-;apm_6981_vcc_en         =
-;apm_6981_vdd_en         =
-;apm_6981_wakeup         =
-;apm_6981_rst_n          =
-;apm_6981_pwd_n          =
+; 4 - apm sdio wifi gpio config
+;apm_6981_vcc_en         = port:PA01<1><default><default><0>
+;apm_6981_vdd_en         = port:PA02<1><default><default><0>
+;apm_6981_wakeup         = port:PA03<1><default><default><0>
+;apm_6981_rst_n          = port:PA04<1><default><default><0>
+;apm_6981_pwd_n          = port:PA05<1><default><default><0>
+
+; 6 - huawei mw269x(v1/v2) sdio wifi gpio config
+;hw_mw269x_wl_pwr        =
+;hw_mw269x_wl_enb        = port:PA02<1><default><default><0>
+;hw_mw269x_wl_hostwake   = port:PA03<0><default><default><0>
+;hw_mw269x_wl_wake       = port:PA01<1><default><default><0>
+;hw_mw269x_bt_enb        = port:PA04<1><default><default><0>
+;hw_mw269x_bt_wake       = port:PA05<1><default><default><0>
+;hw_mw269x_bt_hostwake   = 
+
+; 7 - bcm40181 sdio wifi gpio config
+;bcm40181_shdn            = port:PA01<1><default><default><0>
+;bcm40181_wakeup          = port:PA02<1><default><default><1>
+;bcm40181_vdd_en          = port:PA03<1><default><default><0>
+;bcm40181_vcc_en          = port:PA04<1><default><default><0>
+
+; 8 - bcm40183 sdio wifi gpio config
+;bcm40183_pwr           = port:PA01<1><default><default><0>
+;bcm40183_wl_regon      = port:PA02<1><default><default><0>
+;bcm40183_bt_rst        = port:PA03<1><default><default><0>
+;bcm40183_bt_regon      = port:PA04<1><default><default><0>
+
+; 9 - realtek rtl8723as(combo) sdio wifi + bt gpio config
+;rtk_rtl8723as_wb_pwr       = port:PA01<1><default><default><0>
+;rtk_rtl8723as_wl_dis       = port:PA02<1><default><default><0>
+;rtk_rtl8723as_wl_wps       = port:PA03<0><default><default><0>
+;rtk_rtl8723as_bt_dis       = port:PA04<1><default><default><0>
+
+; 10 - realtek rtl8189es sdio wifi gpio config
+;rtl8189es_shdn       = port:PA01<1><default><default><0>
+;rtl8189es_wakeup     = port:PA02<1><default><default><1>
+;rtl8189es_vdd_en     = port:PA03<1><default><default><0>
+;rtl8189es_vcc_en     = port:PA04<1><default><default><0>
+
 ;--------------------------------------------------------------------------------
 ;usb wifi configuration
 ;usb_wifi_id    ---  0- USB0, 1- USB1

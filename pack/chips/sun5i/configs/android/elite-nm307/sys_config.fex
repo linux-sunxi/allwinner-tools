@@ -93,7 +93,7 @@ num     = 10
     name        = system
     size_hi     = 0
     size_lo     = 327680
-    user_type   = 0
+    user_type   = 1
     ro          = 0
 
 ;------------------------------>nande, user data

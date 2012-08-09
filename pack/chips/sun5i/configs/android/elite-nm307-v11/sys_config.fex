@@ -146,7 +146,7 @@ num     = 10
     class_name  = DISK
     name        = sysrecovery
     size_hi     = 0
-    size_lo     = 390110
+    size_lo     = 393216
     user_type   = 0
     ro          = 0
 

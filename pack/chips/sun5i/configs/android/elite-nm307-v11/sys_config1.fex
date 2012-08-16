@@ -15,6 +15,7 @@ machine = "a10s-nm307-v11"
 boot_clock               = 1008
 dcdc2_vol                = 1400
 dcdc3_vol                = 1500
+dcdc4_vol                = 1200
 ldo2_vol                 = 3000
 ldo3_vol                 = 3300
 ldo4_vol                 = 3300

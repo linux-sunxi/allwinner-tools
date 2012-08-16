@@ -15,6 +15,7 @@ machine = "a10s-nm307"
 boot_clock               = 1008
 dcdc2_vol                = 1400
 dcdc3_vol                = 1500
+dcdc4_vol                = 1200
 ldo2_vol                 = 3000
 ldo3_vol                 = 3300
 ldo4_vol                 = 3300
@@ -467,7 +468,7 @@ hdmi_used                = 1
 ;csi_flash_pol: the active polority of the flash light IO 0:low active 1:high active
 ;--------------------------------------------------------------------------------
 [csi0_para]
-csi_used                 = 1
+csi_used                 = 0
 csi_mode                 = 0
 csi_dev_qty              = 1
 csi_stby_mode            = 0

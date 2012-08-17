@@ -21,7 +21,7 @@ ldo4_vol                 = 2800
 pll4_freq                = 960
 pll6_freq                = 960
 power_start				 = 0
-storage_type			 = 0
+storage_type			 = -1
 
 
 
@@ -887,6 +887,14 @@ sdc_wp                   =
 
 [mmc2_para]
 sdc_used                 = 0
+sdc_detmode              = 3
+bus_width                = 4
+sdc_cmd                  = port:PC6<3><1><2><default>
+sdc_clk                  = port:PC7<3><1><2><default>
+sdc_d0                   = port:PC8<3><1><2><default>
+sdc_d1                   = port:PC9<3><1><2><default>
+sdc_d2                   = port:PC10<3><1><2><default>
+sdc_d3                   = port:PC11<3><1><2><default>
 
 [mmc3_para]
 sdc_used                 = 1

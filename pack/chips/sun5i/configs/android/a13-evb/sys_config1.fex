@@ -21,7 +21,7 @@ ldo4_vol                 = 3300
 pll4_freq                = 960
 pll6_freq                = 720
 power_start				 = 0
-storage_type			 = 0
+storage_type			 = -1
 
 
 [card_boot]
@@ -45,6 +45,17 @@ sdc_clk                  = port:PF2<2><1><default><default>
 sdc_cmd                  = port:PF3<2><1><default><default>
 sdc_d3                   = port:PF4<2><1><default><default>
 sdc_d2                   = port:PF5<2><1><default><default>
+
+[card_boot2_para]
+card_ctrl                = 2
+card_high_speed          = 1
+card_line                = 4
+sdc_d1                   = port:PC0<3><1><default><default>
+sdc_d0                   = port:PC1<3><1><default><default>
+sdc_clk                  = port:PC2<3><1><default><default>
+sdc_cmd                  = port:PC3<3><1><default><default>
+sdc_d3                   = port:PC4<3><1><default><default>
+sdc_d2                   = port:PC5<3><1><default><default>
 
 [twi_para]
 twi_port                 = 0

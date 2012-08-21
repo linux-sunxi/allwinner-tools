@@ -1003,6 +1003,7 @@ usb_detect_type          = 0
 usb_id_gpio              =
 usb_det_vbus_gpio        =
 usb_drv_vbus_gpio        = port:PH6<1><0><default><0>
+usb_drv_vbus_1_gpio      = 
 usb_host_init_state      = 1
 
 ;--------------------------------
@@ -1015,6 +1016,7 @@ usb_detect_type          = 0
 usb_id_gpio              =
 usb_det_vbus_gpio        =
 usb_drv_vbus_gpio        = port:PH3<1><0><default><0>
+usb_drv_vbus_1_gpio      = 
 usb_host_init_state      = 1
 
 ;--------------------------------

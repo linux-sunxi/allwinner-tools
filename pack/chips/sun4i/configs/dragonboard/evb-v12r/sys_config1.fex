@@ -1067,7 +1067,7 @@ gps_rx_en                = port:PI15<1><default><default><0>
 ;                          9 -rtl8723as(wifi+bt) 10- rtl8189es(SM89E00)
 ;--------------------------------------------------------------------------------
 [sdio_wifi_para]
-sdio_wifi_used           = 1
+sdio_wifi_used           = 0
 sdio_wifi_sdc_id         = 3
 sdio_wifi_mod_sel        = 3
 
@@ -1135,7 +1135,7 @@ ar6302_qfn_shdn_n       = port:PH09<1><default><default><0>
 ;usb_wifi_id    ---  0- USB0, 1- USB1, 2- USB2
 ;--------------------------------------------------------------------------------
 [usb_wifi_para]
-usb_wifi_used            = 0
+usb_wifi_used            = 1
 usb_wifi_usbc_num        = 2
 
 ;--------------------------------------------------------------------------------

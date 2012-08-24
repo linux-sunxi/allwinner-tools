@@ -59,12 +59,12 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [wifi]
 display_name= "网络"
-activated   = 0
+activated   = 1
 program     = "wifitester.sh"
 category    = 0
 run_type    = 1
-module_path = "/lib/modules/3.0.8+/ar6302.ko"
-module_args = "fwpath=/lib/modules/3.0.8+"
+module_path = "/system/vendor/modules/8192cu.ko"
+module_args = 
 
 ;-------------------------------------------------------------------------------
 ; module_path
@@ -120,6 +120,18 @@ run_type    = 1
 ;   The full path of sound file.
 ; samplerate
 ;   The samplerate of sound file.
+; support_mode
+;   0 : 480I    
+;   1 : 576I    
+;   2 : 480P    
+;   3 : 576P    
+;   4 : 720P 50HZ
+;   5 : 720P 60HZ
+;   6 : 1080I 50HZ
+;   7 : 1080I 60HZ
+;   8 : 1080P 24HZ
+;   9 : 1080P 50HZ
+;   10: 1080P 60HZ
 ;-------------------------------------------------------------------------------
 [hdmi]
 display_name= "HDMI"
@@ -129,6 +141,7 @@ category    = 1
 run_type    = 1
 sound_file  = "/dragonboard/data/test48000.pcm"
 samplerate  = 48000
+support_mode= 2
 
 ;-------------------------------------------------------------------------------
 ; module_path
@@ -148,7 +161,7 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [ir]
 display_name= "红外"
-activated   = 1
+activated   = 0
 program     = "irtester"
 category    = 1
 run_type    = 1
@@ -165,6 +178,7 @@ program     = "mictester"
 category    = 1
 run_type    = 1
 delay       = 5
+volume      = 40
 
 ;-------------------------------------------------------------------------------
 ; type
@@ -191,6 +205,9 @@ module1_path= "/lib/modules/3.0.8+/videobuf-core.ko"
 module2_path= "/lib/modules/3.0.8+/videobuf-dma-contig.ko"
 module3_path= "/lib/modules/3.0.8+/gc0308.ko"
 module4_path= "/lib/modules/3.0.8+/sun4i_csi0.ko"
+dev_cnt     = 1
+csi_cnt     = 1
+fps         = 30
 
 ;-------------------------------------------------------------------------------
 ; manual_menu_name

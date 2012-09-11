@@ -1396,3 +1396,15 @@ LV4_volt = 1300
 
 LV5_freq = 624000000
 LV5_volt = 1250
+
+;----------------------------------------------------------------------------------
+;boot display configuration
+;output_type  (0:none; 1:lcd; 2:tv; 3:hdmi; 4:vga)
+;output_mode  (used for tv/hdmi output, 0:480i 1:576i 2:480p 3:576p 4:720p50 5:720p60 6:1080i50 7:1080i60 8:1080p24 9:1080p50 10:1080p60 11:pal 14:ntsc)
+;output_mode  (used for vga output, 0:1680*1050 1:1440*900 2:1360*768 3:1280*1024 4:1024*768 5:800*600 6:640*480 10:1920*1080 11:1280*720)
+;auto_hpd     (auto detect hdmi/cvbs/ypbpr plug in)
+;----------------------------------------------------------------------------------
+[boot_disp]
+output_type              = 3
+output_mode              = 5
+auto_hpd                 = 1

@@ -205,9 +205,8 @@ verify_file = VRECOVERYFS_0000
 
 [download5]
 part_name   = sysrecovery
-pkt_name    = RECOVERY_0000000
+pkt_name    = SYSRECOVERY_0000
 encrypt     = 0  
-verify_file = VRECOVERYFS_0000
 
 [download6]
 part_name   = UDISK

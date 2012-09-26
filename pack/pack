@@ -180,6 +180,7 @@ do_pack_crane()
     	script sys_config1.fex
     	update_23 sys_config1.bin boot0.bin boot1.bin
     	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
+        update_checksum boot1.bin sys_config1.bin
     	cp sys_config1.bin bootfs/script0.bin
     	cp sys_config1.bin bootfs/script.bin
 

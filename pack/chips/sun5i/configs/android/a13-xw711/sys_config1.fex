@@ -651,9 +651,9 @@ luns                     = 2
 ;--------------------------------------------------------------------------------
 [gsensor_para]
 gsensor_used             = 1
-gsensor_name             = "bma250"
+gsensor_unuse_name       = 
 gsensor_twi_id           = 1
-gsensor_twi_addr         = 0x18
+gsensor_twi_addr         = 
 gsensor_int1             =
 gsensor_int2             =
 

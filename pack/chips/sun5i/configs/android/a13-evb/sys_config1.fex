@@ -642,6 +642,19 @@ usb_id_gpio              =
 usb_det_vbus_gpio        =
 usb_drv_vbus_gpio        = port:PG11<1><0><default><0>
 usb_host_init_state      = 1
+;--------------------------------
+;---   Port Power Management 
+;--------------------------------
+[port_pm]
+restrict_1a     = 1
+restrict_500ma  = 1
+v_1a        = 3650000
+c_1a        = 0
+v_500ma     = 0 
+c_500ma     = 0
+v_disable   = 0
+c_disable   = 0
+ctrl_gpio   = port:PI2<1><0><default><0>
 
 ;--------------------------------
 ;---       USB Device

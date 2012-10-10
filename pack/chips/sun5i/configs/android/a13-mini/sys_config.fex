@@ -81,7 +81,7 @@ num     = 9
     name        = system
     size_hi     = 0
     size_lo     = 262144
-    user_type   = 0
+    user_type   = 1
     ro          = 0
 
 ;------------------------------>nande, user data
@@ -90,7 +90,7 @@ num     = 9
     name        = data
     size_hi     = 0
     size_lo     = 524288
-    user_type   = 0
+    user_type   = 1
     ro          = 0
 
 ;------------------------------>nandf, misc
@@ -117,7 +117,7 @@ num     = 9
     name        = cache
     size_hi     = 0
     size_lo     = 262144
-    user_type   = 0
+    user_type   = 1
     ro          = 0
  
 ;------------------------------>nandi, data image backup

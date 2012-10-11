@@ -116,7 +116,7 @@ num     = 9
     class_name  = DISK
     name        = cache
     size_hi     = 0
-    size_lo     = 262144
+    size_lo     = 327680
     user_type   = 1
     ro          = 0
  

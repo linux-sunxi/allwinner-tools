@@ -447,12 +447,12 @@ screen1_output_mode      = 4
 
 fb0_framebuffer_num      = 2
 fb0_format               = 10
-fb0_pixel_sequence       = 2
+fb0_pixel_sequence       = 0
 fb0_scaler_mode_enable   = 0
 
 fb1_framebuffer_num      = 2
 fb1_format               = 10
-fb1_pixel_sequence       = 2
+fb1_pixel_sequence       = 0
 fb1_scaler_mode_enable   = 0
 
 

@@ -1122,7 +1122,8 @@ swl_n20_vcc_en          = port:PH12<1><default><default><0>
 ;bcm40181_vcc_en          = port:PH12<1><default><default><0>
 
 ; 8 - bcm40183 sdio wifi gpio config
-;bcm40183_pwr          = port:PH12<1><default><default><0>
+;bcm40183_vcc_en        = port:PH12<1><default><default><0>
+;bcm40183_vdd_en        = port:PH10<1><default><default><0>
 ;bcm40183_wl_regon      = port:PH11<1><default><default><0>
 ;bcm40183_bt_rst        = port:PB05<1><default><default><0>
 ;bcm40183_bt_regon      = port:PI20<1><default><default><0>

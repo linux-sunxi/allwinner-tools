@@ -38,7 +38,7 @@
 ;-------------------------------------------------------------------------------
 [dram]
 display_name= "内存"
-activated   = 0
+activated   = 1
 program     = "memtester.sh"
 category    = 0
 run_type    = 1
@@ -63,8 +63,8 @@ activated   = 1
 program     = "wifitester.sh"
 category    = 0
 run_type    = 1
-module_path = "/system/vendor/modules/8192cu.ko"
-module_args = 
+module_path = "/lib/modules/3.0.8+/8192cu.ko"
+module_args =
 
 ;-------------------------------------------------------------------------------
 ; module_path
@@ -88,11 +88,11 @@ device_name = "bma250"
 ;-------------------------------------------------------------------------------
 [nand]
 display_name= "闪存"
-activated   = 1
+activated   = 0
 program     = "nandtester.sh"
 category    = 0
-run_type    = 1
-test_size   = 32
+run_type    = 0
+test_size   = 128
 
 [bluetooth]
 display_name= "蓝牙"
@@ -103,7 +103,7 @@ run_type    =
 
 [mmc]
 display_name= "SD卡"
-activated   = 0
+activated   = 1
 program     = "mmctester.sh"
 category    = 1
 run_type    = 1
@@ -115,23 +115,31 @@ program     = "udisktester.sh"
 category    = 1
 run_type    = 1
 
+[Usb_HOST1]
+display_name= "USB主机1"
+activated   = 1
+program     = "host1tester.sh"
+category    = 1
+run_type    = 1
+
+[Usb_HOST2]
+display_name= "USB主机2"
+activated   = 1
+program     = "host2tester.sh"
+category    = 1
+run_type    = 1
+
+[Usb_OTG]
+display_name= "USB_OTG"
+activated   = 1
+program     = "otgtester.sh"
+category    = 1
+run_type    = 1
 ;-------------------------------------------------------------------------------
 ; sound_file
 ;   The full path of sound file.
 ; samplerate
 ;   The samplerate of sound file.
-; support_mode
-;   0 : 480I    
-;   1 : 576I    
-;   2 : 480P    
-;   3 : 576P    
-;   4 : 720P 50HZ
-;   5 : 720P 60HZ
-;   6 : 1080I 50HZ
-;   7 : 1080I 60HZ
-;   8 : 1080P 24HZ
-;   9 : 1080P 50HZ
-;   10: 1080P 60HZ
 ;-------------------------------------------------------------------------------
 [hdmi]
 display_name= "HDMI"
@@ -141,7 +149,6 @@ category    = 1
 run_type    = 1
 sound_file  = "/dragonboard/data/test48000.pcm"
 samplerate  = 48000
-support_mode= 2
 
 ;-------------------------------------------------------------------------------
 ; module_path
@@ -161,7 +168,7 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [ir]
 display_name= "红外"
-activated   = 0
+activated   = 1
 program     = "irtester"
 category    = 1
 run_type    = 1
@@ -170,9 +177,22 @@ module_path = "/lib/modules/3.0.8+/sun5i-ir.ko"
 ;-------------------------------------------------------------------------------
 ; delay
 ;   delay ? second before recording
-; volume
-;   the initialize volume of output
-;-------------------------------------------------------------------------------
+; volume:
+;	the output volume,range from 0 to 63
+; music_playtime:
+; music playback time in secend before recording
+; sound_file:
+; the sound_file you want to play
+; samplerate:
+; the sound file samplerate
+; micx_gain:
+;  input gain for mic1 or mic2
+;  0:0db,1:35db;2:38db;3:41db
+; micx_used:
+; the mic you want to test
+; micx_threshold:
+; the mic data threshold.the test will be pass when the capture data above this value
+;------------------------------------------------------------------------------------
 [mic]
 display_name= "录音耳机"
 activated   = 1
@@ -181,7 +201,15 @@ category    = 1
 run_type    = 1
 delay       = 5
 volume      = 40
-
+music_playtime =10
+sound_file  = "/dragonboard/data/test48000.pcm"
+samplerate  = 48000
+mic1_used   = 1
+mic2_used   = 0
+mic1_gain   = 1
+mic2_gain   = 1 
+mic1_threshold =16383
+mic2_threshold =16383
 ;-------------------------------------------------------------------------------
 ; type
 ;   0: rtp
@@ -220,8 +248,6 @@ fps         = 30
 ;   clear screen button name, 8bytes.
 ; font_size
 ;   test case font display size, valid value: 20pixel(default), 24pixel.
-; height_adjust
-;   adjust height of manual test case and auto test case.
 ;
 ; Color Index
 ;   0: White
@@ -232,7 +258,7 @@ fps         = 30
 ;   5: Red
 ;   6: Blue
 ;   7: Black
-;
+;   8: Beauty
 ; menu_bgcolor
 ;   The background color index of test case category menu.
 ; menu_fgcolor
@@ -256,11 +282,12 @@ fps         = 30
 ;   The string display after test case display_name when test Fail.
 ;-------------------------------------------------------------------------------
 [df_view]
+tv_scale_factor     = 95
 manual_menu_name    = "手动测试项"
 auto_menu_name      = "自动测试项"
 clear_button_name   = "清屏"
+wifi_menu_name      = "wifi热点列表"
 font_size           = 20
-height_adjust       = 56
 menu_bgcolor        = 1
 menu_fgcolor        = 7
 

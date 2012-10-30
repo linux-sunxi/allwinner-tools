@@ -54,7 +54,7 @@ sdc_d2                  = port:PF5<2><1><default><default>
 ; else, support normal standby.
 ;---------------------------------------------------------------------------------------------------------
 [pm_para]
-standby_mode		= 1
+standby_mode		= 0
 
 
 [card_boot]

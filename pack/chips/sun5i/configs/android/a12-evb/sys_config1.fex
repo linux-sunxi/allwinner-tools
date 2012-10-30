@@ -29,7 +29,7 @@ storage_type			 = 0
 ; else, support normal standby.
 ;---------------------------------------------------------------------------------------------------------
 [pm_para]
-standby_mode		= 1
+standby_mode		= 0
 
 
 [card_boot]

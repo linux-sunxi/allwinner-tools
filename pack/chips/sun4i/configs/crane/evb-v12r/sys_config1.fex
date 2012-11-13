@@ -375,6 +375,30 @@ motor_used               =0
 motor_shake              = port:PB03<1><default><default><1>
 
 ;----------------------------------------------------------------------------------
+;gyroscope configuration
+;at present, only "l3gd20" is supported.
+;----------------------------------------------------------------------------------
+[gyr_para]
+gyr_used                = 1
+gyr_name                = "l3gd20"
+gyr_twi_id              = 1
+gyr_twi_addr            = 0x6a
+gyr_int                 = port:PI13<6><default><default><default>
+
+
+;----------------------------------------------------------------------------------
+;e_compass configuration
+;at present, only "lsm303d" is supported.
+;----------------------------------------------------------------------------------
+[e_compass_para]
+e_compass_used                = 1
+e_compass_name                = "l3gd20"
+e_compass_twi_id              = 1
+e_compass_twi_addr            = 0x6a
+e_compass_int                 = port:PI13<6><default><default><default>
+
+
+;----------------------------------------------------------------------------------
 ;nand flash configuration
 ;----------------------------------------------------------------------------------
 [nand_para]
@@ -1159,16 +1183,6 @@ usb_wifi_usbc_num        = 2
 3g_pwr                   =
 3g_wakeup                =
 3g_int                   =
-
-;--------------------------------------------------------------------------------
-;gyroscope
-;--------------------------------------------------------------------------------
-[gy_para]
-gy_used                  = 0
-gy_twi_id                = 1
-gy_twi_addr              = 0x00
-gy_int1                  = port:PH18<6><1><default><default>
-gy_int2                  = port:PH19<6><1><default><default>
 
 ;--------------------------------------------------------------------------------
 ;light sensor

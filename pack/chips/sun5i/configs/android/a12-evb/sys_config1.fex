@@ -484,6 +484,7 @@ csi_iovdd                = ""
 csi_avdd                 = ""
 csi_dvdd                 = ""
 csi_flash_pol            = 1
+csi_facing               = 0
 
 csi_mname_b              = ""
 csi_twi_id_b             = 1
@@ -495,6 +496,7 @@ csi_iovdd_b              = ""
 csi_avdd_b               = ""
 csi_dvdd_b               = ""
 csi_flash_pol_b          = 1
+csi_facing_b             = 1
 
 csi_pck                  = port:PE00<3><default><default><default>
 csi_ck                   = port:PE01<3><default><default><default>
@@ -969,7 +971,6 @@ pmu_shutdown_chgcur2     = 1200
 pmu_suspendpwroff_vol    = 3500
 
 pmu_batdeten		 = 1
-
 [recovery_key]
 key_min			=4
 key_max			=6
@@ -1013,8 +1014,9 @@ LV5_freq = 624000000
 LV5_volt = 1200
 
 LV6_freq = 576000000
-LV6_volt = 1100
+LV6_volt = 1200
 
 LV7_freq = 432000000
-LV7_volt = 1000
+LV7_volt = 1200
+
 

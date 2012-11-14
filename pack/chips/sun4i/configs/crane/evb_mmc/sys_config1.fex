@@ -6,7 +6,7 @@
 
 [product]
 version = "1.0"
-machine = "A10-EVB-V1.1"
+machine = "A10-EVB-V1.2"
 
 ;----------------------------------------------------------------------------------
 ; system configuration
@@ -58,8 +58,13 @@ twi_sda                  = port:PB1<2><default><default><default>
 
 [uart_para]
 uart_debug_port          = 0
-uart_debug_tx            =port:PB22<2><1><default><default>
-uart_debug_rx            =port:PB23<2><1><default><default>
+uart_debug_tx            = port:PB22<2><1><default><default>
+uart_debug_rx            = port:PB23<2><1><default><default>
+
+[uart_force_debug]
+uart_debug_port          = 0
+uart_debug_tx            =port:PF2<4>
+uart_debug_rx            =port:PF4<4>
 
 [jtag_para]
 jtag_enable              =1
@@ -73,26 +78,26 @@ jtag_di                  = port:PB17<3>
 ;
 ;*****************************************************************************
 [dram_para]
-dram_baseaddr            = 0x40000000
-dram_clk                 =360
-dram_type                = 3
-dram_rank_num            = 1
-dram_chip_density        = 2048
-dram_io_width            = 16
-dram_bus_width           = 32
-dram_cas                 = 6
-dram_zq                  = 0x7b
-dram_odt_en              = 0
-dram_size                = 512
-dram_tpr0                = 0x30926692
-dram_tpr1                = 0x1090
-dram_tpr2                = 0x1a0c8
-dram_tpr3                = 0x0
-dram_tpr4                = 0x0
-dram_tpr5                = 0x0
-dram_emr1                = 0x0
-dram_emr2                = 0x0
-dram_emr3                = 0x0
+dram_baseaddr        			= 0x40000000
+dram_clk             			= 408
+dram_type				= 3
+dram_rank_num     			=
+dram_chip_density			=
+dram_io_width				=
+dram_bus_width    			=
+dram_cas				= 6
+dram_zq					= 0x7b
+dram_odt_en				= 0
+dram_size				=
+dram_tpr0				= 0x30926692
+dram_tpr1				= 0x1090
+dram_tpr2				= 0x1a0c8
+dram_tpr3				= 0x0
+dram_tpr4				= 0x0
+dram_tpr5				= 0x0
+dram_emr1				= 0x0
+dram_emr2				= 0x0
+dram_emr3				= 0x0
 
 
 ;*****************************************************************************
@@ -344,7 +349,7 @@ ctp_name                 = "ft5x_ts"
 ctp_twi_id               = 2
 ctp_twi_addr             =0x70
 ctp_screen_max_x         = 800
-ctp_screen_max_y         = 600
+ctp_screen_max_y         = 480
 ctp_revert_x_flag        = 0
 ctp_revert_y_flag        = 0
 ctp_exchange_x_y_flag    = 0
@@ -372,10 +377,34 @@ motor_used               =0
 motor_shake              = port:PB03<1><default><default><1>
 
 ;----------------------------------------------------------------------------------
+;gyroscope configuration
+;at present, only "l3gd20" is supported.
+;----------------------------------------------------------------------------------
+[gyr_para]
+gyr_used                = 1
+gyr_name                = "l3gd20"
+gyr_twi_id              = 1
+gyr_twi_addr            = 0x6a
+gyr_int                 = port:PI13<6><default><default><default>
+
+
+;----------------------------------------------------------------------------------
+;e_compass configuration
+;at present, only "lsm303d" is supported.
+;----------------------------------------------------------------------------------
+[e_compass_para]
+e_compass_used                = 1
+e_compass_name                = "l3gd20"
+e_compass_twi_id              = 1
+e_compass_twi_addr            = 0x6a
+e_compass_int                 = port:PI13<6><default><default><default>
+
+
+;----------------------------------------------------------------------------------
 ;nand flash configuration
 ;----------------------------------------------------------------------------------
 [nand_para]
-nand_used                = 1
+nand_used                = 0
 nand_we                  = port:PC00<2><default><default><default>
 nand_ale                 = port:PC01<2><default><default><default>
 nand_cle                 = port:PC02<2><default><default><default>
@@ -509,11 +538,11 @@ lcd_gamma_tbl_1          = 0x00010101
 ;........
 lcd_gamma_tbl_255        = 0x00ffffff
 
-lcd_bl_en_used           = 0
-lcd_bl_en                =
+lcd_bl_en_used           = 1
+lcd_bl_en                = port:PH07<1><0><default><1>
 
 lcd_power_used           = 1
-lcd_power                = port:PH08<1><0><default><0>
+lcd_power                = port:PH08<1><0><default><1>
 
 lcd_pwm_used             = 1
 lcd_pwm                  = port:PB02<2><0><default><default>
@@ -852,8 +881,8 @@ sata_power_en            =
 ;   3. π”√gpioºÏ≤‚ ±±ÿ–Î≈‰÷√sdc_detºÏ≤‚pinΩ≈∂Àø⁄                                |
 ;--------------------------------------------------------------------------------
 [mmc0_para]
-sdc_used                 =1
-sdc_detmode              = 3
+sdc_used                 = 1
+sdc_detmode              = 1
 bus_width                = 4
 sdc_d1                   = port:PF0<2><1><2><default>
 sdc_d0                   = port:PF1<2><1><2><default>
@@ -866,7 +895,7 @@ sdc_use_wp               = 0
 sdc_wp                   =
 
 [mmc1_para]
-sdc_used                 = 1
+sdc_used                 = 0
 sdc_detmode              = 1
 bus_width                = 4
 sdc_cmd                  = port:PH22<5><1><2><default>
@@ -880,10 +909,18 @@ sdc_use_wp               = 0
 sdc_wp                   =
 
 [mmc2_para]
-sdc_used                 = 0
+sdc_used                 = 1
+sdc_detmode              = 3
+bus_width                = 4
+sdc_cmd                  = port:PC6<3><1>
+sdc_clk                  = port:PC7<3><1>
+sdc_d0                   = port:PC8<3><1>
+sdc_d1                   = port:PC9<3><1>
+sdc_d2                   = port:PC10<3><1>
+sdc_d3                   = port:PC11<3><1>
 
 [mmc3_para]
-sdc_used                 = 1
+sdc_used                 = 0
 sdc_detmode              = 4
 bus_width                = 4
 sdc_cmd                  = port:PI04<2><1><2><default>
@@ -991,6 +1028,7 @@ usb_detect_type          = 0
 usb_id_gpio              =
 usb_det_vbus_gpio        =
 usb_drv_vbus_gpio        = port:PH6<1><0><default><0>
+usb_drv_vbus_1_gpio      = 
 usb_host_init_state      = 1
 
 ;--------------------------------
@@ -1003,6 +1041,7 @@ usb_detect_type          = 0
 usb_id_gpio              =
 usb_det_vbus_gpio        =
 usb_drv_vbus_gpio        = port:PH3<1><0><default><0>
+usb_drv_vbus_1_gpio      = 
 usb_host_init_state      = 1
 
 ;--------------------------------
@@ -1018,8 +1057,8 @@ product_name             = "Android"
 serial_number            = "20080411"
 
 [msc_feature]
-vendor_name              ="USB 2.0"
-product_name             ="USB Flash Driver"
+vendor_name              = "USB 2.0"
+product_name             = "USB Flash Driver"
 release                  = 100
 luns                     = 3
 
@@ -1028,8 +1067,8 @@ luns                     = 3
 ; gs_twi_id ---  TWI ID for controlling Gsensor (0: TWI0, 1: TWI1, 2: TWI2)
 ;--------------------------------------------------------------------------------
 [gsensor_para]
-gsensor_used             =1
-gsensor_name             = "gsenser"
+gsensor_used             = 1
+gsensor_name             = "bma250"
 gsensor_twi_id           = 1
 gsensor_twi_addr         =0x18
 gsensor_int1             = port:PH00<6><1><default><default>
@@ -1059,10 +1098,10 @@ gps_rx_en                = port:PI15<1><default><default><0>
 ;sdio_wifi_mod_sel    ---  0- none,     1- swl-n20(wifi), 2- usi bm-01(wifi+bt+fm),
 ;                          3- ar6302qfn,4- apm6xxx,       5- swb b23(wifi+bt+fm)
 ;                          6- hw-mw269x(v1/v2) 7-bcm40181 8- bcm40183
-;                          9 - rtl8723as(wifi+bt)
+;                          9 -rtl8723as(wifi+bt) 10- rtl8189es(SM89E00)
 ;--------------------------------------------------------------------------------
 [sdio_wifi_para]
-sdio_wifi_used           = 1
+sdio_wifi_used           = 0
 sdio_wifi_sdc_id         = 3
 sdio_wifi_mod_sel        = 1
 
@@ -1108,7 +1147,8 @@ swl_n20_vcc_en          = port:PH12<1><default><default><0>
 ;bcm40181_vcc_en          = port:PH12<1><default><default><0>
 
 ; 8 - bcm40183 sdio wifi gpio config
-;bcm40183_pwr          = port:PH12<1><default><default><0>
+;bcm40183_vcc_en        = port:PH12<1><default><default><0>
+;bcm40183_vdd_en        = port:PH10<1><default><default><0>
 ;bcm40183_wl_regon      = port:PH11<1><default><default><0>
 ;bcm40183_bt_rst        = port:PB05<1><default><default><0>
 ;bcm40183_bt_regon      = port:PI20<1><default><default><0>
@@ -1119,12 +1159,18 @@ swl_n20_vcc_en          = port:PH12<1><default><default><0>
 ;rtk_rtl8723as_wl_wps       = port:PH09<0><default><default><0>
 ;rtk_rtl8723as_bt_dis       = port:PB05<1><default><default><0>
 
+; 10 - realtek rtl8189es sdio wifi gpio config
+;rtl8189es_shdn       = port:PH09<1><default><default><0>
+;rtl8189es_wakeup     = port:PH10<1><default><default><1>
+;rtl8189es_vdd_en     = port:PH11<1><default><default><0>
+;rtl8189es_vcc_en     = port:PH12<1><default><default><0>
+
 ;--------------------------------------------------------------------------------
 ;usb wifi configuration
 ;usb_wifi_id    ---  0- USB0, 1- USB1, 2- USB2
 ;--------------------------------------------------------------------------------
 [usb_wifi_para]
-usb_wifi_used            =0
+usb_wifi_used            = 1
 usb_wifi_usbc_num        = 2
 
 ;--------------------------------------------------------------------------------
@@ -1137,16 +1183,6 @@ usb_wifi_usbc_num        = 2
 3g_pwr                   =
 3g_wakeup                =
 3g_int                   =
-
-;--------------------------------------------------------------------------------
-;gyroscope
-;--------------------------------------------------------------------------------
-[gy_para]
-gy_used                  = 0
-gy_twi_id                = 1
-gy_twi_addr              = 0x00
-gy_int1                  = port:PH18<6><1><default><default>
-gy_int2                  = port:PH19<6><1><default><default>
 
 ;--------------------------------------------------------------------------------
 ;light sensor
@@ -1178,7 +1214,7 @@ bt_uart_id               = 2
 bt_mod_type              = 1
 
 [i2s_para]
-i2s_used                 = 0
+i2s_used                 = 1
 i2s_channel              = 2
 i2s_mclk                 = port:PB5<2><1><default><default>
 i2s_bclk                 = port:PB6<2><1><default><default>

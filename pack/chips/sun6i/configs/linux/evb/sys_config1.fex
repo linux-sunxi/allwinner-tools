@@ -1,4 +1,4 @@
-;A10 PAD application
+;A31 PAD application
 ;---------------------------------------------------------------------------------------------------------
 ; 说明： 脚本中的字符串区分大小写，用户可以修改"="后面的数值，但是不要修改前面的字符串
 ; 描述gpio的形式：Port:端口+组内序号<功能分配><内部电阻状态><驱动能力><输出电平状态>
@@ -19,7 +19,7 @@ dcdc3_vol			= 1250
 ldo2_vol			= 3000
 ldo3_vol			= 2800
 ldo4_vol			= 2800
-storage_type		= -1
+storage_type		= 2
 
 [card_boot]
 logical_start   	= 40960
@@ -687,7 +687,7 @@ sdc_use_wp  		= 0
 sdc_wp      		=
 
 [mmc1_para]
-sdc_used    		= 1
+sdc_used    		= 0
 sdc_detmode 		= 1
 bus_width   		= 4
 sdc_cmd     		= port:PH22<5><1><default><default>
@@ -701,7 +701,7 @@ sdc_use_wp  		= 0
 sdc_wp      		=
 
 [mmc2_para]
-sdc_used    		= 2
+sdc_used    		= 1
 sdc_cmd                  = port:PC6<3><1><default><default>
 sdc_clk                  = port:PC7<3><1><default><default>
 sdc_d0                   = port:PC8<3><1><default><default>
@@ -714,7 +714,7 @@ sdc_wp                   =
 
 
 [mmc3_para]
-sdc_used    		= 1
+sdc_used    		= 0
 sdc_detmode 		= 1
 bus_width   		= 4
 sdc_cmd    		= port:PI04<2><1><default><default>

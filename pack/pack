@@ -108,14 +108,7 @@ do_clean()
 
 do_copy_u_boot()
 {
-	case ${PACK_BOARD} in
-	*mmc)
-    	cp -v $LICHEE_OUT/u-boot-mmc.bin bootfs/linux/u-boot.bin
-		;;
-	*)
-    	cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/u-boot.bin
-		;;
-	esac
+    cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/u-boot.bin
 }
 
 do_pack_crane()

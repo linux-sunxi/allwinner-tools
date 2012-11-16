@@ -234,12 +234,12 @@ ctp_io_port              = port:PG11<6><default>
 ;Module name postposition 1 said detection, 0 means no detection. 
 ;--------------------------------------------------------------------------------
 [ctp_list_para]
-ctp_det_used              = 0
-ft5x_ts                   = 0
+ctp_det_used              = 1
+ft5x_ts                   = 1
 gt82x                     = 0
-gt818_ts                  = 0
+gt818_ts                  = 1
 gt811_ts                  = 0
-zet6221                   = 0
+zet6221                   = 1
 
 ;----------------------------------------------------------------------------------
 ;touch key configuration

@@ -13,13 +13,13 @@ machine = "evb"
 ;   ?
 ;----------------------------------------------------------------------------------
 [target]
-boot_clock      =
-dcdc2_vol       =
-dcdc3_vol       =
-ldo2_vol        =
-ldo3_vol        =
-ldo4_vol        =
-storage_type    =
+boot_clock      = 1008
+dcdc2_vol       = 1400
+storage_type    = -1
+
+[card_boot]
+logical_start   = 40960
+sprite_gpio0    =
 
 [card_boot0_para]
 card_ctrl       = 0
@@ -259,17 +259,18 @@ spi_cs1    = port:PA25<4><default><default><default>
 ;notice ---    tp_int_port &  tp_io_port use the same port
 ;----------------------------------------------------------------------------------
 [ctp_para]
-ctp_used            =
-ctp_twi_id          =
-ctp_twi_addr        =
-ctp_screen_max_x    =
-ctp_screen_max_y    =
-ctp_revert_x_flag   =
-ctp_revert_y_flag   =
+ctp_used            = 1
+ctp_twi_id          = 1
+ctp_twi_addr        = 0x5d
+ctp_screen_max_x    = 1280
+ctp_screen_max_y    = 800
+ctp_revert_x_flag   = 0
+ctp_revert_y_flag   = 0
+ctp_exchange_x_y_flag = 0
 
-ctp_int_port        =
-ctp_wakeup          =
-ctp_io_port         =
+ctp_int_port        = port:PA03<6><default><default><default>
+ctp_wakeup          = port:PA02<1><default><default><1>
+ctp_io_port         = port:PA03<0><default><default><default>
 
 ;----------------------------------------------------------------------------------
 ;touch key configuration
@@ -860,25 +861,33 @@ bt_gpio             =
 bt_rst              =
 
 [i2s_para]
-i2s_used            =
-i2s_channel         =
+i2s_used            = 1
+i2s_channel         = 2
 i2s_mclk            =
-i2s_bclk            =
-i2s_lrclk           =
-i2s_dout0           =
+i2s_bclk            = port:PB1<2><1><default><default>
+i2s_lrclk           = port:PB2<2><1><default><default>
+i2s_dout0           = port:PB3<2><1><default><default>
 i2s_dout1           =
 i2s_dout2           =
 i2s_dout3           =
-i2s_din             =
+i2s_din             = port:PB7<2><1><default><default>
+
+[pcm_para]
+pcm_used            = 1
+pcm_channel         = 2
+pcm_mclk            =
+pcm_bclk            = port:PG13<3><1><default><default>
+pcm_lrclk           = port:PG14<3><1><default><default>
+pcm_dout            = port:PG16<3><1><default><default>
+pcm_din             = port:PG15<3><1><default><default>
 
 [spdif_para]
-spdif_used          =
-spdif_mclk          =
-spdif_dout          =
+spdif_used          = 1
+spdif_dout          = port:PH28<3><1><default><default>
 spdif_din           =
 
 [audio_para]
-audio_used          =
+audio_used          = 1
 audo_pa_ctrl        =
 
 ;----------------------------------------------------------------------------------

@@ -54,11 +54,11 @@ uart_debug_tx   = port:PB22<2>
 uart_debug_rx   = port:PB23<2>
 
 [jtag_para]
-jtag_enable     =
-jtag_ms         =
-jtag_ck         =
-jtag_do         =
-jtag_di         =
+jtag_enable     = 1
+jtag_ms         = port:PH9<3><default><default><default>
+jtag_ck         = port:PH10<3><default><default><default>
+jtag_do         = port:PH11<3><default><default><default>
+jtag_di         = port:PH12<3><default><default><default>
 
 ;*****************************************************************************
 ;sdram configuration
@@ -1006,8 +1006,8 @@ pmu_pekon_time           = 1000
 pmu_pwrok_time           = 64
 pmu_battery_warning_level1 = 10
 pmu_battery_warning_level2 = 0
-pmu_restvol_time         =30
-pmu_ocv_cou_adjust_time  =60
-pmu_chgled_func          =0
-pmu_chgled_type          =A
+pmu_restvol_time         = 30
+pmu_ocv_cou_adjust_time  = 60
+pmu_chgled_func          = 0
+pmu_chgled_type          = A
 

@@ -4,9 +4,9 @@
 
 ROOT_DIR=$PWD
 TOOLS_DIR=${ROOT_DIR}/pctools/linux
-PACK_CHIP=""
-PACK_PLATFORM=""
-PACK_BOARD=""
+PACK_CHIP="sun6i"
+PACK_PLATFORM="linux"
+PACK_BOARD="sun6i"
 PACK_BOOT="nand"
 PACK_DEBUG="uart0"
 
@@ -126,13 +126,14 @@ do_pack_crane()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
-    cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
-        eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-        wboot/bootfs wboot/bootfs.ini wboot/diskfs.fex  \
+    cp -rf eFex/split_xxxx.fex  wboot/bootfs wboot/bootfs.ini \
         out/
 
-    cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
-    cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+    cp -rf eGon/boot0_nand.bin out/boot0_nand.bin
+    cp -rf eGon/boot1_nand.bin out/boot1_nand.fex
+
+    cp -rf eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -rf eGon/boot1_sdcard.bin out/boot1_sdcard.fex
 
     cd out/
 
@@ -152,16 +153,20 @@ do_pack_crane()
 
 
     	busybox unix2dos sys_config.fex
-    	busybox unix2dos sys_config1.fex
+    	busybox unix2dos sys_partition.fex
     	script sys_config.fex
-    	script sys_config1.fex
-    	update_23 sys_config1.bin boot0.bin boot1.bin
-    	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    	cp sys_config1.bin bootfs/script0.bin
-    	cp sys_config1.bin bootfs/script.bin
+		script sys_partition.fex
 
+		update_boot0 boot0_nand.bin   sys_config.bin NAND
+    	update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
 
-    update_mbr sys_config.bin mbr.fex 4 16777216
+		update_boot1 boot1_nand.fex   sys_config.bin NAND
+    	update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+
+		cp sys_config.bin bootfs/script.bin
+
+    update_mbr sys_partition.bin  4
+
     fsbuild bootfs.ini split_xxxx.fex
 
     # get bootloader.fex
@@ -182,7 +187,7 @@ do_pack_crane()
     FileAddSum system.fex vsystem.fex
     FileAddSum recovery.fex vrecovery.fex
 
-    dragon image.cfg
+    dragon image.cfg sys_partition.fex
 
     if [ -e ${IMG_NAME} ]; then
         mv ${IMG_NAME} ../${IMG_NAME}
@@ -207,17 +212,19 @@ do_pack_linux()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
-    cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
-        eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-        wboot/bootfs wboot/bootfs.ini \
+    cp -rf eFex/split_xxxx.fex  wboot/bootfs wboot/bootfs.ini \
         out/
 
-    cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
-    cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+    cp -rf eGon/boot0_nand.bin out/boot0_nand.bin
+    cp -rf eGon/boot1_nand.bin out/boot1_nand.fex
+
+    cp -rf eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -rf eGon/boot1_sdcard.bin out/boot1_sdcard.fex
 
     cd out/
 
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
+	#cp -v ../../../u-boot/u-boot.bin bootfs/linux/
 
     #remove me later
     if [ "$PACK_CHIP" = "sun5i" ]; then
@@ -236,19 +243,21 @@ do_pack_linux()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-
-
     	busybox unix2dos sys_config.fex
-    	busybox unix2dos sys_config1.fex
+    	busybox unix2dos sys_partition.fex
     	script sys_config.fex
-		script sys_config1.fex
-		update_23 sys_config1.bin boot0.bin boot1.bin
-		update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-		cp sys_config1.bin bootfs/script0.bin
-		cp sys_config1.bin bootfs/script.bin
+		script sys_partition.fex
 
+		update_boot0 boot0_nand.bin   sys_config.bin NAND
+    	update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
 
-    update_mbr sys_config.bin mbr.fex 4 16777216
+		update_boot1 boot1_nand.fex   sys_config.bin NAND
+    	update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+
+		cp sys_config.bin bootfs/script.bin
+
+    update_mbr sys_partition.bin  4
+
     fsbuild bootfs.ini split_xxxx.fex
 
     # get bootloader.fex
@@ -264,10 +273,11 @@ do_pack_linux()
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
 
     # checksum for all fex
-    FileAddSum bootloader.fex vbootloader.fex
-    FileAddSum env.fex venv.fex
-    FileAddSum boot.fex vboot.fex
-    dragon image.cfg
+    # FileAddSum bootloader.fex vbootloader.fex
+    # FileAddSum env.fex venv.fex
+    # FileAddSum boot.fex vboot.fex
+
+    dragon image.cfg sys_partition.fex
 
     if [ -e ${IMG_NAME} ]; then
         mv ${IMG_NAME} ../${IMG_NAME}

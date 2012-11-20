@@ -53,23 +53,23 @@ size = 16384
 
 ;------------------------------>mmcblk0p7
 [partition]
-    name         = rootfs
+    name         = system
     size         = 1048576
-    downloadfile = "rootfs.fex"
+    downloadfile = "system.fex"
 
 ;------------------------------>mmcblk0p8
 [partition]
-	name         = rootfs
+	name         = data
     size         = 524288
 
 ;------------------------------>mmcblk0p9
 [partition]
-    name         = rootfs
+    name         = misc
     size         = 32768
 
 ;------------------------------>mmcblk0p10
 [partition]
-    name         = boot
+    name         = recovery
     size         = 65536
 
 ;------------------------------>mmcblk0p11

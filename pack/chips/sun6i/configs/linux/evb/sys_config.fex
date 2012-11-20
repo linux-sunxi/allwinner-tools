@@ -276,7 +276,7 @@ ctp_io_port         = port:PA03<0><default><default><default>
 ;touch key configuration
 ;----------------------------------------------------------------------------------
 [tkey_para]
-tkey_used           =
+tkey_used           = 0
 tkey_twi_id         =
 tkey_twi_addr       =
 tkey_int            =
@@ -285,7 +285,7 @@ tkey_int            =
 ;motor configuration
 ;----------------------------------------------------------------------------------
 [motor_para]
-motor_used          =
+motor_used          = 1
 motor_shake         =
 
 [nand0_para]
@@ -778,10 +778,11 @@ luns                = 6
 ; gs_twi_id	---  TWI ID for controlling Gsensor (0: TWI0, 1: TWI1, 2: TWI2)
 ;--------------------------------------------------------------------------------
 [gsensor_para]
-gsensor_used        =
-gsensor_twi_id      =
-gsensor_twi_addr    =
-gsensor_int1        =
+gsensor_used        = 1
+gsensor_twi_id      = 2
+gsensor_twi_addr    = 0x18
+gsensor_use_int     = 0
+gsensor_int1        = 
 gsensor_int2        =
 
 ;--------------------------------------------------------------------------------
@@ -828,29 +829,29 @@ usb_wifi_usbc_num	=
 ;gyroscope
 ;--------------------------------------------------------------------------------
 [gy_para]
-gy_used             =
-gy_twi_id           =
-gy_twi_addr         =
-gy_int1             =
+gy_used             = 1
+gy_twi_id           = 2
+gy_twi_addr         = 0x6a
+gy_int1             = port:PA10<6><1><default><default>
 gy_int2             =
 
 ;--------------------------------------------------------------------------------
 ;light sensor
 ;--------------------------------------------------------------------------------
 [ls_para]
-ls_used             =
-ls_twi_id           =
-ls_twi_addr         =
-ls_int              =
+ls_used             = 1
+ls_twi_id           = 2
+ls_twi_addr         = 0x23
+ls_int              = port:PA12<6><1><default><default>
 
 ;--------------------------------------------------------------------------------
 ;compass
 ;--------------------------------------------------------------------------------
 [compass_para]
-compass_used        =
-compass_twi_id      =
-compass_twi_addr    =
-compass_int         =
+compass_used        = 1
+compass_twi_id      = 2
+compass_twi_addr    = 0x0d
+compass_int         = port:PA11<6><1><default><default>
 
 ;--------------------------------------------------------------------------------
 ;blue tooth

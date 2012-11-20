@@ -1,7 +1,7 @@
 ;A10 PAD application
 ;---------------------------------------------------------------------------------------------------------
-; Àµ√˜£∫ Ω≈±æ÷–µƒ◊÷∑˚¥Æ«¯∑÷¥Û–°–¥£¨”√ªßø…“‘–ﬁ∏ƒ"="∫Û√Êµƒ ˝÷µ£¨µ´ «≤ª“™–ﬁ∏ƒ«∞√Êµƒ◊÷∑˚¥Æ
-; √Ë ˆgpioµƒ–Œ Ω£∫Port:∂Àø⁄+◊Èƒ⁄–Ú∫≈<π¶ƒ‹∑÷≈‰><ƒ⁄≤øµÁ◊Ë◊¥Ã¨><«˝∂Øƒ‹¡¶>< ‰≥ˆµÁ∆Ω◊¥Ã¨>
+; ËØ¥ÊòéÔºö ËÑöÊú¨‰∏≠ÁöÑÂ≠óÁ¨¶‰∏≤Âå∫ÂàÜÂ§ßÂ∞èÂÜôÔºåÁî®Êà∑ÂèØ‰ª•‰øÆÊîπ"="ÂêéÈù¢ÁöÑÊï∞ÂÄºÔºå‰ΩÜÊòØ‰∏çË¶Å‰øÆÊîπÂâçÈù¢ÁöÑÂ≠óÁ¨¶‰∏≤
+; ÊèèËø∞gpioÁöÑÂΩ¢ÂºèÔºöPort:Á´ØÂè£+ÁªÑÂÜÖÂ∫èÂè∑<ÂäüËÉΩÂàÜÈÖç><ÂÜÖÈÉ®ÁîµÈòªÁä∂ÊÄÅ><È©±Âä®ËÉΩÂäõ><ËæìÂá∫ÁîµÂπ≥Áä∂ÊÄÅ>
 ;---------------------------------------------------------------------------------------------------------
 
 [product]
@@ -284,47 +284,64 @@ motor_shake 		= port:PB03<1><default><default><1>
 ;----------------------------------------------------------------------------------
 ;nand flash configuration
 ;----------------------------------------------------------------------------------
-[nand_para]
-nand_used			= 1
-nand_we	 			= port:PC00<2><default><default><default>
-nand_ale 			= port:PC01<2><default><default><default>
-nand_cle 			= port:PC02<2><default><default><default>
-nand_ce1 			= port:PC03<2><default><default><default>
-nand_ce0 			= port:PC04<2><default><default><default>
-nand_nre 			= port:PC05<2><default><default><default>
-nand_rb0 			= port:PC06<2><default><default><default>
-nand_rb1 			= port:PC07<2><default><default><default>
-nand_d0	 			= port:PC08<2><default><default><default>
-nand_d1	 			= port:PC09<2><default><default><default>
-nand_d2	 			= port:PC10<2><default><default><default>
-nand_d3	 			= port:PC11<2><default><default><default>
-nand_d4	 			= port:PC12<2><default><default><default>
-nand_d5	 			= port:PC13<2><default><default><default>
-nand_d6	 			= port:PC14<2><default><default><default>
-nand_d7	 			= port:PC15<2><default><default><default>
-nand_wp	 			= port:PC16<2><default><default><default>
-nand_ce2 			= port:PC17<2><default><default><default>
-nand_ce3 			= port:PC18<2><default><default><default>
-nand_ce4 			=
-nand_ce5 			=
-nand_ce6 			=
-nand_ce7 			=
-nand_spi  			= port:PC23<3><default><default><default>
-nand_ndqs 			= port:PC24<2><default><default><default>
+[nand0_para]
+nand_support_2ch    = 1
 
+nand0_used          = 1
+nand0_we            = port:PC00<2><default><default><default>
+nand0_ale           = port:PC01<2><default><default><default>
+nand0_cle           = port:PC02<2><default><default><default>
+nand0_ce1           = port:PC03<2><default><default><default>
+nand0_ce0           = port:PC04<2><default><default><default>
+nand0_nre           = port:PC05<2><default><default><default>
+nand0_rb0           = port:PC06<2><default><default><default>
+nand0_rb1           = port:PC07<2><default><default><default>
+nand0_d0            = port:PC08<2><default><default><default>
+nand0_d1            = port:PC09<2><default><default><default>
+nand0_d2            = port:PC10<2><default><default><default>
+nand0_d3            = port:PC11<2><default><default><default>
+nand0_d4            = port:PC12<2><default><default><default>
+nand0_d5            = port:PC13<2><default><default><default>
+nand0_d6            = port:PC14<2><default><default><default>
+nand0_d7            = port:PC15<2><default><default><default>
+nand0_ce2           = port:PC25<2><default><default><default>
+nand0_ce3           = port:PC26<2><default><default><default>
+nand0_ndqs          = port:PC24<2><default><default><default>
+
+[nand1_para]
+nand1_used          = 1
+nand1_we            = port:PH00<2><default><default><default>
+nand1_ale           = port:PH01<2><default><default><default>
+nand1_cle           = port:PH02<2><default><default><default>
+nand1_ce1           = port:PH03<2><default><default><default>
+nand1_ce0           = port:PH04<2><default><default><default>
+nand1_nre           = port:PH05<2><default><default><default>
+nand1_rb0           = port:PH06<2><default><default><default>
+nand1_rb1           = port:PH07<2><default><default><default>
+nand1_d0            = port:PC16<3><default><default><default>
+nand1_d1            = port:PC17<3><default><default><default>
+nand1_d2            = port:PC18<3><default><default><default>
+nand1_d3            = port:PC19<3><default><default><default>
+nand1_d4            = port:PC20<3><default><default><default>
+nand1_d5            = port:PC21<3><default><default><default>
+nand1_d6            = port:PC22<3><default><default><default>
+nand1_d7            = port:PC23<3><default><default><default>
+nand1_ce2           = port:PH29<2><default><default><default>
+nand1_ce3           = port:PH30<2><default><default><default>
+nand1_ndqs          = port:PH08<2><default><default><default>
 
 ;----------------------------------------------------------------------------------
 ;disp init configuration
 ;
-;disp_mode            (0:screen0<screen0,fb0> 1:screen1<screen1,fb0> 2:two_diff_screen_diff_contents<screen0,screen1,fb0,fb1>
-;                      3:two_same_screen_diff_contets<screen0,screen1,fb0> 4:two_diff_screen_same_contents<screen0,screen1,fb0>)
-;screenx_output_type  (0:none; 1:lcd; 2:tv; 3:hdmi; 4:vga)
-;screenx_output_mode  (used for tv/hdmi output, 0:480i 1:576i 2:480p 3:576p 4:720p50 5:720p60 6:1080i50 7:1080i60 8:1080p24 9:1080p50 10:1080p60 11:pal 14:ntsc)
-;screenx_output_mode  (used for vga output, 0:1680*1050 1:1440*900 2:1360*768 3:1280*1024 4:1024*768 5:800*600 6:640*480 10:1920*1080 11:1280*720)
+;disp_mode            (0:screen0<screen0,fb0>)
+;screenx_output_type  (0:none; 1:lcd; 3:hdmi;)
+;screenx_output_mode  (used for hdmi output, 0:480i 1:576i 2:480p 3:576p 4:720p50)
+;                     (5:720p60 6:1080i50 7:1080i60 8:1080p24 9:1080p50 10:1080p60)
 ;fbx format           (4:RGB655 5:RGB565 6:RGB556 7:ARGB1555 8:RGBA5551 9:RGB888 10:ARGB8888 12:ARGB4444)
-;fbx pixel sequence   (0:ARGB 1:BGRA 2:ABGR 3:RGBA) --- 0 for linux, 2 for android
-;lcd0_bright          (lcd0 init bright,the range:[0,256],default:197
-;lcd1_bright          (lcd1 init bright,the range:[0,256],default:197
+;fbx pixel sequence   (0:ARGB 1:BGRA 2:ABGR 3:RGBA)
+;fbx_width,fbx_height (framebuffer horizontal/vertical pixels, fix to output resolution while equal 0)
+;lcdx_backlight       (lcd init backlight,the range:[0,256],default:197
+;lcdx_yy              (lcd init screen bright/contrast/saturation/hue, value:0~100, default:50/50/57/50)
 ;----------------------------------------------------------------------------------
 [disp_init]
 disp_init_enable         = 1
@@ -336,92 +353,120 @@ screen0_output_mode      = 4
 screen1_output_type      = 1
 screen1_output_mode      = 4
 
-fb0_framebuffer_num      = 2
 fb0_format               = 10
 fb0_pixel_sequence       = 0
 fb0_scaler_mode_enable   = 0
+fb0_width                = 0 
+fb0_height               = 0 
 
-fb1_framebuffer_num      = 2
 fb1_format               = 10
 fb1_pixel_sequence       = 0
 fb1_scaler_mode_enable   = 0
+fb1_width                = 0
+fb1_height               = 0
 
-lcd0_bright              = 192
-lcd1_bright              = 192
+lcd0_backlight           = 197
+lcd1_backlight           = 197
+
+lcd0_bright              = 50
+lcd0_contrast            = 50
+lcd0_saturation          = 57
+lcd0_hue                 = 50
+
+lcd1_bright              = 50
+lcd1_contrast            = 50
+lcd1_saturation          = 57
+lcd1_hue                 = 50
 
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
 
-;lcd_dclk_freq:      in MHZ unit
-;lcd_pwm_freq:       in HZ unit
-;lcd_if:             0:hv(sync+de); 1:8080; 2:ttl; 3:lvds
-;lcd_hbp:            hsync back porch
-;lcd_ht:             hsync total cycle
-;lcd_vbp:            vsync back porch
-;lcd_vt:             vysnc total cycle *2
-;lcd_hv_if:          0:hv parallel 1:hv serial
-;lcd_hv_smode:       0:RGB888 1:CCIR656
-;lcd_hv_s888_if      serial RGB format
-;lcd_hv_syuv_if:     serial YUV format
-;lcd_hv_hspw:        hsync plus width
-;lcd_hv_vspw:        vysnc plus width
-;lcd_lvds_ch:		     0:single channel; 1:dual channel
-;lcd_lvds_mode:      0:NS mode; 1:JEIDA mode
-;lcd_lvds_bitwidth:  0:24bit; 1:18bit
-;lcd_lvds_io_cross:  0:normal; 1:pn cross
-;lcd_cpu_if:         0:18bit; 1:16bit mode0; 2:16bit mode1; 3:16bit mode2; 4:16bit mode3; 5:9bit; 6:8bit 256K; 7:8bit 65K
-;lcd_frm:            0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
-
-;lcd_gpio_0:         SCL
-;lcd_gpio_1          SDA
+;lcd_if:               0:hv(sync+de); 1:8080; 2:ttl; 3:lvds; 4:dsi
+;lcd_x:                lcd horizontal resolution
+;lcd_y:                lcd vertical resolution
+;lcd_dclk_freq:        in MHZ unit
+;lcd_dclk_phase:       lcd dclk phase(0:normal offset;1:1/3 offset; 2/3 offset; 
+;                      4:90 phase; 5:0 phase)
+;lcd_pwm_freq:         in HZ unit
+;lcd_pwm_pol:          lcd backlight PWM polarity
+;lcd_hbp:              hsync back porch
+;lcd_ht:               hsync total cycle
+;lcd_vbp:              vsync back porch
+;lcd_vt:               vysnc total cycle
+;lcd_hspw:             hsync plus width
+;lcd_vspw:             vysnc plus width
+;lcd_hv_if:            0:parallel; 8:serial(8bit/3cycle); 10:dummyrgb(8bit/4cycle); 
+;                      11:rgbdummy(8bit/4cycle); 12: ccir656
+;lcd_hv_srgb_seq:      serial RGB output sequence,
+;lcd_hv_syuv_seq:      serial YUV output sequence
+;lcd_hv_syuv_fdly:     serial YUV output F line delay(0: no delay; 
+;                      1: delay 2line[CCIR NTSC]; 2: delay 3line[CCIR PAL])
+;lcd_lvds_if:          0:single link;  1:dual link
+;lcd_lvds_colordepth:  0:8bit; 1:6bit
+;lcd_lvds_mode:        0:NS mode; 1:JEIDA mode
+;lcd_lvds_io_polarity: 0:normal; 1:pn cross
+;lcd_dsi_if:           0:video mode; 1:command mode
+;lcd_dsi_lane:		     1/2/3/4 lane
+;lcd_dsi_format:       0:RGB888; 1:RGB666; 2:RGB666P; 3:RGB565
+;lcd_dsi_eotp:         0:no ending symbol 1:insert ending symbol;
+;lcd_dsi_te:           0:disable te mode; 1:rising te mode; 2:falling te mode
+;lcd_cpu_if:           0:18bit; 1:16bit mode0; 2:16bit mode1; 3:16bit mode2; 
+;                      4:16bit mode3; 5:9bit; 6:8bit 256K; 7:8bit 65K;
+;lcd_cpu_te:           0:disable te mode; 1:rising te mode; 2:falling te mode
+;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
+;lcd_cpu_te:           0:disable trigger mode;    1: enable te trigger int mode
+;lcd_gpio_0:           SCL
+;lcd_gpio_1            SDA
+;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
+;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;  
+;                      decrease it while lcd is not bright enough; increase while lcd is too bright
 ;----------------------------------------------------------------------------------
 [lcd0_para]
 lcd_used                 = 1
 
-lcd_x                    =800
-lcd_y                    =480
-lcd_dclk_freq            = 33
-lcd_pwm_not_used         = 0
-lcd_pwm_ch               = 0
-lcd_pwm_freq             = 10000
-lcd_pwm_pol              =0
 lcd_if                   = 0
+lcd_x                    = 800
+lcd_y                    = 480
+lcd_dclk_freq            = 33
+lcd_dclk_phase           = 1
+lcd_pwm_freq             = 10000
+lcd_pwm_pol              = 0
 lcd_hbp                  = 46
 lcd_ht                   = 1055
+lcd_hspw                 = 0
 lcd_vbp                  = 23
-lcd_vt                   = 1050
+lcd_vt                   = 525
+lcd_vspw                 = 0
 lcd_hv_if                = 0
-lcd_hv_smode             = 0
-lcd_hv_s888_if           = 0
-lcd_hv_syuv_if           = 0
-lcd_hv_vspw              = 0
-lcd_hv_hspw              = 0
-lcd_lvds_ch              = 0
+lcd_hv_srgb_seq          = 0
+lcd_hv_syuv_seq          = 0
+lcd_hv_syuv_fdly         = 0
+lcd_lvds_if              = 0
+lcd_lvds_colordepth      = 0
 lcd_lvds_mode            = 0
-lcd_lvds_bitwidth        = 0
-lcd_lvds_io_cross        = 0
+lcd_lvds_io_polarity     = 0
+lcd_dsi_if			         = 0
+lcd_dsi_lane			       = 0
+lcd_dsi_format           = 0
+lcd_dsi_eotp             = 0
+lcd_dsi_te               = 0
 lcd_cpu_if               = 0
+lcd_cpu_te               = 0
 lcd_frm                  = 0
-lcd_io_cfg0              = 0x10000000
-lcd_gamma_correction_en  = 0
-lcd_gamma_tbl_0          = 0x00000000
-lcd_gamma_tbl_1          = 0x00010101
-;........
-lcd_gamma_tbl_255        = 0x00ffffff
 
-lcd_bl_en_used           = 1
-lcd_bl_en                = port:PH07<1><0><default><1>
+deu_mode                 = 0
+lcdgamma4iep             = 22
 
-lcd_power_used           = 1
-lcd_power                = port:PH08<1><0><default><1>
+lcd_bl_en                = port:PA25<1><0><default><1>
 
-lcd_pwm_used             = 1
-lcd_pwm                  = port:PB02<2><0><default><default>
+lcd_power                = port:power1<1><0><default><1>
 
-lcd_gpio_0               =
-lcd_gpio_1               =
-lcd_gpio_2               =
-lcd_gpio_3               =
+lcd_pwm                  = port:PH13<2><0><default><default>
+
+lcd_gpio_0               = port:PH22<1><0><default><default>
+lcd_gpio_1               = port:PA19<1><0><default><default>
+lcd_gpio_2               = port:PA20<1><0><default><default>
+lcd_gpio_3               = 
 
 lcdd0                    = port:PD00<2><0><default><default>
 lcdd1                    = port:PD01<2><0><default><default>
@@ -453,107 +498,10 @@ lcdhsync                 = port:PD26<2><0><default><default>
 lcdvsync                 = port:PD27<2><0><default><default>
 
 ;----------------------------------------------------------------------------------
-;lcd1 configuration
-
-;lcd_dclk_freq:      in MHZ unit
-;lcd_pwm_freq:       in HZ unit
-;lcd_if:             0:hv(sync+de); 1:8080; 2:ttl; 3:lvds
-;lcd_hbp:            hsync back porch
-;lcd_ht:             hsync total cycle
-;lcd_vbp:            vsync back porch
-;lcd_vt:             vysnc total cycle *2
-;lcd_hv_if:          0:hv parallel 1:hv serial
-;lcd_hv_smode:       0:RGB888 1:CCIR656
-;lcd_hv_s888_if      serial RGB format
-;lcd_hv_syuv_if:     serial YUV format
-;lcd_hv_hspw:        hsync plus width
-;lcd_hv_vspw:        vysnc plus width
-;lcd_lvds_ch:		     0:single channel; 1:dual channel
-;lcd_lvds_mode:      0:NS mode; 1:JEIDA mode
-;lcd_lvds_bitwidth:  0:24bit; 1:18bit
-;lcd_lvds_io_cross:  0:normal; 1:pn cross
-;lcd_cpu_if:         0:18bit; 1:16bit mode0; 2:16bit mode1; 3:16bit mode2; 4:16bit mode3; 5:9bit; 6:8bit 256K; 7:8bit 65K
-;lcd_frm:            0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
-
-;lcd_gpio_0:         SCL
-;lcd_gpio_1          SDA
+;hdmi configuration
 ;----------------------------------------------------------------------------------
-[lcd1_para]
-lcd_used                 = 0
-
-lcd_x                    = 0
-lcd_y                    = 0
-lcd_dclk_freq            = 0
-lcd_pwm_not_used         = 0
-lcd_pwm_ch               = 1
-lcd_pwm_freq             = 0
-lcd_pwm_pol              = 0
-lcd_if                   = 0
-lcd_hbp                  = 0
-lcd_ht                   = 0
-lcd_vbp                  = 0
-lcd_vt                   = 0
-lcd_hv_if                = 0
-lcd_hv_smode             = 0
-lcd_hv_s888_if           = 0
-lcd_hv_syuv_if           = 0
-lcd_hv_vspw              = 0
-lcd_hv_hspw              = 0
-lcd_lvds_ch              = 0
-lcd_lvds_mode            = 0
-lcd_lvds_bitwidth        = 0
-lcd_lvds_io_cross        = 0
-lcd_cpu_if               = 0
-lcd_frm                  = 0
-lcd_io_cfg0              = 0
-lcd_gamma_correction_en  = 0
-lcd_gamma_tbl_0          = 0x00000000
-lcd_gamma_tbl_1          = 0x00010101
-;........
-lcd_gamma_tbl_255        = 0x00ffffff
-
-lcd_bl_en_used           = 0
-lcd_bl_en                =
-
-lcd_power_used           = 0
-lcd_power                =
-
-lcd_pwm_used             = 1
-lcd_pwm                  = port:PI03<2><0><default><default>
-
-lcd_gpio_0               =
-lcd_gpio_1               =
-lcd_gpio_2               =
-lcd_gpio_3               =
-
-lcdd0                    = port:PH00<2><0><default><default>
-lcdd1                    = port:PH01<2><0><default><default>
-lcdd2                    = port:PH02<2><0><default><default>
-lcdd3                    = port:PH03<2><0><default><default>
-lcdd4                    = port:PH04<2><0><default><default>
-lcdd5                    = port:PH05<2><0><default><default>
-lcdd6                    = port:PH06<2><0><default><default>
-lcdd7                    = port:PH07<2><0><default><default>
-lcdd8                    = port:PH08<2><0><default><default>
-lcdd9                    = port:PH09<2><0><default><default>
-lcdd10                   = port:PH10<2><0><default><default>
-lcdd11                   = port:PH11<2><0><default><default>
-lcdd12                   = port:PH12<2><0><default><default>
-lcdd13                   = port:PH13<2><0><default><default>
-lcdd14                   = port:PH14<2><0><default><default>
-lcdd15                   = port:PH15<2><0><default><default>
-lcdd16                   = port:PH16<2><0><default><default>
-lcdd17                   = port:PH17<2><0><default><default>
-lcdd18                   = port:PH18<2><0><default><default>
-lcdd19                   = port:PH19<2><0><default><default>
-lcdd20                   = port:PH20<2><0><default><default>
-lcdd21                   = port:PH21<2><0><default><default>
-lcdd22                   = port:PH22<2><0><default><default>
-lcdd23                   = port:PH23<2><0><default><default>
-lcdclk                   = port:PH24<2><0><default><default>
-lcdde                    = port:PH25<2><0><default><default>
-lcdhsync                 = port:PH26<2><0><default><default>
-lcdvsync                 = port:PH27<2><0><default><default>
+[hdmi_para]
+hdmi_used                 = 1
 
 ;----------------------------------------------------------------------------------
 ;tv out dac configuration
@@ -635,20 +583,20 @@ sata_power_en		=
 ;--------------------------------------------------------------------------------
 ;   SDMMC PINS MAPPING                                                         |
 ; ------------------------------------------------------------------------------|
-;   ≈‰÷√—°œÓ£∫                                                                  |
-;   sdc_used	--- ¥Àsdcøÿ÷∆∆˜ «∑Ò π”√£¨1- π”√£¨0-≤ª π”√                       |
-;   sdc_detmode	--- ø®ºÏ≤‚ƒ£ Ω													|
-;					1-gpioºÏ≤‚£¨2-data3ºÏ≤‚£¨3-ŒﬁºÏ≤‚£¨ø®≥£‘⁄(≤ªø®∞Œ≤Â)			|
+;   ÈÖçÁΩÆÈÄâÈ°πÔºö                                                                  |
+;   sdc_used	--- Ê≠§sdcÊéßÂà∂Âô®ÊòØÂê¶‰ΩøÁî®Ôºå1-‰ΩøÁî®Ôºå0-‰∏ç‰ΩøÁî®                       |
+;   sdc_detmode	--- Âç°Ê£ÄÊµãÊ®°Âºè													|
+;					1-gpioÊ£ÄÊµãÔºå2-data3Ê£ÄÊµãÔºå3-Êó†Ê£ÄÊµãÔºåÂç°Â∏∏Âú®(‰∏çÂç°ÊãîÊèí)			|
 ;                	4 - manual mode(from proc file system node)                 |
-;   sdc_bwid	--- ø® ˝æ›ŒªøÌ£¨1-1bit£¨ 4-4bit£¨ other-no use                  |
-;   ∆‰”‡: port≈‰÷√                                                              |
+;   sdc_bwid	--- Âç°Êï∞ÊçÆ‰ΩçÂÆΩÔºå1-1bitÔºå 4-4bitÔºå other-no use                  |
+;   ÂÖ∂‰Ωô: portÈÖçÁΩÆ                                                              |
 ; ------------------------------------------------------------------------------|
-;   Ãÿ±Àµ√˜£∫                                                                  |
-;   1.√ø∏ˆø®øÿ÷∆∆˜±ÿ–Î”–sdc_used≈‰÷√£¨µ±sdc_used Œ™ 0 ±£¨∆‰”‡≤Œ ˝ø…≤ª≈‰          |
-;   2.ø® π”√data3ºÏ≤‚µƒ ±∫Ú(sdc_detmode Œ™ 2)£¨gpio≈‰÷√¿ÔSDC_D3µƒpull up/down–Ë“™|
-;   ±£÷§∏ﬂ◊Ë◊¥Ã¨«“Õ‚≤øµÁ¬∑–Ë“™∂‘data3 π”√1M¶∏◊Û”“µƒµÁ◊Ëœ¬¿≠£¨ π”√«ÎœÍœ∏◊…—Ø£¨ŒÛ…√|
-;   ◊‘æˆ∂®                                                                      |
-;   3. π”√gpioºÏ≤‚ ±±ÿ–Î≈‰÷√sdc_detºÏ≤‚pinΩ≈∂Àø⁄                                |
+;   ÁâπÂà´ËØ¥ÊòéÔºö                                                                  |
+;   1.ÊØè‰∏™Âç°ÊéßÂà∂Âô®ÂøÖÈ°ªÊúâsdc_usedÈÖçÁΩÆÔºåÂΩìsdc_used ‰∏∫ 0Êó∂ÔºåÂÖ∂‰ΩôÂèÇÊï∞ÂèØ‰∏çÈÖç          |
+;   2.Âç°‰ΩøÁî®data3Ê£ÄÊµãÁöÑÊó∂ÂÄô(sdc_detmode ‰∏∫ 2)ÔºågpioÈÖçÁΩÆÈáåSDC_D3ÁöÑpull up/downÈúÄË¶Å|
+;   ‰øùËØÅÈ´òÈòªÁä∂ÊÄÅ‰∏îÂ§ñÈÉ®ÁîµË∑ØÈúÄË¶ÅÂØπdata3‰ΩøÁî®1MŒ©Â∑¶Âè≥ÁöÑÁîµÈòª‰∏ãÊãâÔºå‰ΩøÁî®ËØ∑ËØ¶ÁªÜÂí®ËØ¢ÔºåËØØÊìÖ|
+;   Ëá™ÂÜ≥ÂÆö                                                                      |
+;   3.‰ΩøÁî®gpioÊ£ÄÊµãÊó∂ÂøÖÈ°ªÈÖçÁΩÆsdc_detÊ£ÄÊµãpinËÑöÁ´ØÂè£                                |
 ;--------------------------------------------------------------------------------
 [mmc0_para]
 sdc_used    		= 1
@@ -779,7 +727,7 @@ kp_out7 			= port:PH27<4><1><default><default>
 
 
 ;--------------------------------
-;---       USB0øÿ÷∆±Í÷æ
+;---       USB0ÊéßÂà∂Ê†áÂøó
 ;--------------------------------
 [usbc0]
 usb_used          = 1
@@ -791,7 +739,7 @@ usb_drv_vbus_gpio   = port:PB9<1><0><default><0>
 usb_host_state     = 0
 
 ;--------------------------------
-;---       USB1øÿ÷∆±Í÷æ
+;---       USB1ÊéßÂà∂Ê†áÂøó
 ;--------------------------------
 [usbc1]
 usb_used          = 1
@@ -803,7 +751,7 @@ usb_drv_vbus_gpio   = port:PH6<1><0><default><0>
 usb_host_state     = 1
 
 ;--------------------------------
-;---       USB2øÿ÷∆±Í÷æ
+;---       USB2ÊéßÂà∂Ê†áÂøó
 ;--------------------------------
 [usbc2]
 usb_used          = 1

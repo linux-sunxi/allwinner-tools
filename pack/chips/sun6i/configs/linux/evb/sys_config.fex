@@ -507,17 +507,6 @@ lcdvsync            = port:PD27<2><0><default><default>
 [hdmi_para]
 hdmi_used           = 1
 
-;----------------------------------------------------------------------------------
-;tv out dac configuration
-;dacx_src:  0:composite; 1:luma; 2:chroma; 4:Y; 5:Pb; 6: Pr; 7:none
-;----------------------------------------------------------------------------------
-[tv_out_dac_para]
-dac_used            =
-dac0_src            =
-dac1_src            =
-dac2_src            =
-dac3_src            =
-
 ;--------------------------------------------------------------------------------
 ;csi gpio configuration
 ;csi_if: 0:hv_8bit 1:hv_16bit 2:hv_24bit 3:bt656 1ch 4:bt656 2ch 5:bt656 4ch

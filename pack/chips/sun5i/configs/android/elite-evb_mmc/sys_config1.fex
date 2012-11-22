@@ -21,7 +21,7 @@ ldo4_vol                 = 3300
 pll4_freq                = 960
 pll6_freq                = 720
 power_start              = 1
-storage_type			 = 2
+storage_type			 = 1
 
 
 [card_boot]
@@ -588,7 +588,7 @@ csi_af_en_b              =
 ;--------------------------------------------------------------------------------
 [mmc0_para]
 sdc_used                 = 1
-sdc_detmode              = 1
+sdc_detmode              = 3
 bus_width                = 4
 sdc_d1                   = port:PF0<2><1><2><default>
 sdc_d0                   = port:PF1<2><1><2><default>

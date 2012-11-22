@@ -654,7 +654,7 @@ sdc_use_wp        = 0
 sdc_wp            =
 
 [mmc2_para]
-sdc_used          = 0
+sdc_used          = 2
 sdc_detmode       = 3
 sdc_buswidth      = 8
 sdc_clk           = port:PC06<3><1><default><default>

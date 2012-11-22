@@ -21,7 +21,7 @@ storage_type    = -1
 logical_start   = 40960
 sprite_gpio0    =
 
-[card_boot0_para]
+[card0_boot_para]
 card_ctrl       = 0
 card_high_speed = 1
 card_line       = 4
@@ -32,7 +32,7 @@ sdc_cmd         = port:PF3<2><1><default><default>
 sdc_d3          = port:PF4<2><1><default><default>
 sdc_d2          = port:PF5<2><1><default><default>
 
-[card_boot2_para]
+[card2_boot_para]
 card_ctrl       = 2
 card_high_speed = 1
 card_line       = 4
@@ -165,13 +165,14 @@ twi_sda         = port:PB06<2><default><default><default>
 ;uart_type ---  2 (2 wire), 4 (4 wire), 8 (8 wire, full function)
 ;----------------------------------------------------------------------------------
 [uart_para0]
-uart_used       = 1
+uart_used       = 0
 uart_port       = 0
+uart_type       = 2
 uart_tx         = port:PH20<3><1><default><default>
 uart_rx         = port:PH21<3><1><default><default>
 
 [uart_para1]
-uart_used       = 1
+uart_used       = 0
 uart_port       = 1
 uart_type       = 8
 uart_tx         = port:PA04<4><1><default><default>

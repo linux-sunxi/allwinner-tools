@@ -148,6 +148,7 @@ twi2_sda 			= port:PB21<2><default><default><default>
 [uart_para0]
 uart_used			= 1
 uart_port 			= 0
+uart_type           = 2
 uart0_tx   			= port:PB22<2>
 uart0_rx   			= port:PB23<2>
 

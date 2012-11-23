@@ -45,13 +45,13 @@ sdc_d3          = port:PC11<3><1><default><default>
 
 [twi_para]
 twi_port        = 0
-twi_scl         = port:PB0<2><default><default><default>
-twi_sda         = port:PB1<2><default><default><default>
+twi_scl         = port:PH14<2><default><default><default>
+twi_sda         = port:PH15<2><default><default><default>
 
 [uart_para]
 uart_debug_port =
-uart_tx         =
-uart_rx         =
+uart_debug_tx   =
+uart_debug_rx   =
 
 [jtag_para]
 jtag_enable     = 1
@@ -647,7 +647,7 @@ sdc_use_wp        = 0
 sdc_wp            =
 
 [mmc2_para]
-sdc_used          = 2
+sdc_used          = 0
 sdc_detmode       = 3
 sdc_buswidth      = 8
 sdc_clk           = port:PC06<3><1><default><default>
@@ -765,7 +765,7 @@ gsensor_used        = 1
 gsensor_twi_id      = 2
 gsensor_twi_addr    = 0x18
 gsensor_use_int     = 0
-gsensor_int1        = 
+gsensor_int1        = port:PA09<6><1><default><default>
 gsensor_int2        =
 
 ;--------------------------------------------------------------------------------
@@ -852,13 +852,13 @@ bt_rst              =
 i2s_used            = 1
 i2s_channel         = 2
 i2s_mclk            =
-i2s_bclk            = port:PB1<2><1><default><default>
-i2s_lrclk           = port:PB2<2><1><default><default>
-i2s_dout0           = port:PB3<2><1><default><default>
+i2s_bclk            = port:PB01<2><1><default><default>
+i2s_lrclk           = port:PB02<2><1><default><default>
+i2s_dout0           = port:PB03<2><1><default><default>
 i2s_dout1           =
 i2s_dout2           =
 i2s_dout3           =
-i2s_din             = port:PB7<2><1><default><default>
+i2s_din             = port:PB07<2><1><default><default>
 
 [pcm_para]
 pcm_used            = 1
@@ -882,8 +882,8 @@ audo_pa_ctrl        =
 ;ir --- infra remote configuration
 ;----------------------------------------------------------------------------------
 [ir_para]
-ir_used             =
-ir_rx               =
+ir_used             = 1
+ir_rx               = port:PL04<2><1><default><default>
 
 
 ;----------------------------------------------------------------------------------

@@ -45,8 +45,8 @@ sdc_d3          = port:PC11<3><1><default><default>
 
 [twi_para]
 twi_port        = 0
-twi_scl         = port:PB0<2><default><default><default>
-twi_sda         = port:PB1<2><default><default><default>
+twi_scl         = port:PH14<2><default><default><default>
+twi_sda         = port:PH15<2><default><default><default>
 
 [uart_para]
 uart_debug_port =
@@ -168,13 +168,14 @@ twi_sda         = port:PB06<2><default><default><default>
 ;uart_type ---  2 (2 wire), 4 (4 wire), 8 (8 wire, full function)
 ;----------------------------------------------------------------------------------
 [uart_para0]
-uart_used       = 1
+uart_used       = 0
 uart_port       = 0
+uart_type       = 2
 uart_tx         = port:PH20<3><1><default><default>
 uart_rx         = port:PH21<3><1><default><default>
 
 [uart_para1]
-uart_used       = 1
+uart_used       = 0
 uart_port       = 1
 uart_type       = 8
 uart_tx         = port:PA04<4><1><default><default>
@@ -764,7 +765,7 @@ gsensor_used        = 1
 gsensor_twi_id      = 2
 gsensor_twi_addr    = 0x18
 gsensor_use_int     = 0
-gsensor_int1        =
+gsensor_int1        = port:PA09<6><1><default><default>
 gsensor_int2        =
 
 ;--------------------------------------------------------------------------------
@@ -881,8 +882,8 @@ audo_pa_ctrl        =
 ;ir --- infra remote configuration
 ;----------------------------------------------------------------------------------
 [ir_para]
-ir_used             =
-ir_rx               =
+ir_used             = 1
+ir_rx               = port:PL04<2><1><default><default>
 
 
 ;----------------------------------------------------------------------------------

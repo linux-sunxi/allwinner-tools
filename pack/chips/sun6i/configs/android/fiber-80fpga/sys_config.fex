@@ -397,9 +397,8 @@ lcd1_hue                 = 50
 ;lcd_dsi_te:           0:disable te mode; 1:rising te mode; 2:falling te mode
 ;lcd_cpu_if:           0:18bit; 1:16bit mode0; 2:16bit mode1; 3:16bit mode2; 
 ;                      4:16bit mode3; 5:9bit; 6:8bit 256K; 7:8bit 65K;
-;lcd_cpu_te:           0:disable te mode; 1:rising te mode; 2:falling te mode
+;lcd_cpu_te:           0:disable te mode; 1:enable rising te mode; 2:enable falling te mode
 ;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
-;lcd_cpu_te:           0:disable trigger mode;    1: enable te trigger int mode
 ;lcd_gpio_0:           SCL
 ;lcd_gpio_1            SDA
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)

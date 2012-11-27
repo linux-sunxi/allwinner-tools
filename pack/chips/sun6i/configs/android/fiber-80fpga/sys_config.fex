@@ -787,10 +787,14 @@ usb_wifi_usbc_num	= 2
 [3g_para]
 3g_used   			= 0
 3g_usbc_num			= 2
-3g_uart_num		= 0
-3g_pwr				=
-3g_wakeup			=
-3g_int				=
+3g_uart_num			= 0
+bb_vbat				=
+bb_pwr_on			=
+bb_rst				=
+bb_rf_dis			=
+bb_host_wake        =
+bb_wake				=
+bb_on				=
 
 ;--------------------------------------------------------------------------------
 ;gyroscope

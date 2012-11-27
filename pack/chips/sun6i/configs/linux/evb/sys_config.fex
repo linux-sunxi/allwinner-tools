@@ -804,11 +804,16 @@ usb_wifi_usbc_num	=
 ;3G configuration
 ;--------------------------------------------------------------------------------
 [3g_para]
-3g_used             =
-3g_usbc_num         =
-3g_uart_num         =
-3g_pwr              =
-3g_wakeup           =
+3g_used   			= 0
+3g_usbc_num			= 2
+3g_uart_num			= 0
+bb_vbat				= port:PL03<1><default><default><0>
+bb_host_wake        = port:PM00<1><default><default><0>
+bb_on				= port:PM01<1><default><default><0>
+bb_pwr_on			= port:PM03<1><default><default><0>
+bb_wake				= port:PM04<1><default><default><0>
+bb_rf_dis			= port:PM05<1><default><default><0>
+bb_rst				= port:PM06<1><default><default><0>
 3g_int              =
 
 ;--------------------------------------------------------------------------------

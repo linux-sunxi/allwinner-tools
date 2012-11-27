@@ -424,9 +424,9 @@ lcd_power           = port:power1<1><0><default><1>
 
 lcd_pwm             = port:PH13<2><0><default><default>
 
-lcd_gpio_0          = port:PH22<1><0><default><default>
-lcd_gpio_1          = port:PA19<1><0><default><default>
-lcd_gpio_2          = port:PA20<1><0><default><default>
+lcd_gpio_0          = port:PA19<1><0><default><default>
+lcd_gpio_1          = port:PA20<1><0><default><default>
+lcd_gpio_2          =
 lcd_gpio_3          =
 
 lcdd0               = port:PD00<2><0><default><default>
@@ -606,8 +606,8 @@ sdc_isio          = 1
 sdc_used          = 0
 sdc_detmode       = 3
 sdc_buswidth      = 8
-sdc_clk           = port:PC06<3><1><default><default>
-sdc_cmd           = port:PC07<3><1><default><default>
+sdc_clk           = port:PC07<3><1><default><default>
+sdc_cmd           = port:PC06<3><1><default><default>
 sdc_d0            = port:PC08<3><1><default><default>
 sdc_d1            = port:PC09<3><1><default><default>
 sdc_d2            = port:PC10<3><1><default><default>

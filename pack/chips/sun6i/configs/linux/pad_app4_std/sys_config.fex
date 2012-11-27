@@ -585,6 +585,7 @@ sdc_d3            = port:PF04<2><1><default><default>
 sdc_det           = port:PA08<6><1><default><default>
 sdc_use_wp        = 0
 sdc_wp            =
+sdc_isio          = 0
 
 [mmc1_para]
 sdc_used          = 0
@@ -599,6 +600,7 @@ sdc_d3            = port:PG05<2><1><2><default>
 sdc_det           =
 sdc_use_wp        = 0
 sdc_wp            =
+sdc_isio          = 1
 
 [mmc2_para]
 sdc_used          = 0
@@ -618,6 +620,7 @@ emmc_rst          = port:PC24<3><1><default><default>
 sdc_det           =
 sdc_use_wp        = 0
 sdc_wp            =
+sdc_isio          = 0
 
 [mmc3_para]
 sdc_used          = 0
@@ -632,6 +635,7 @@ sdc_d3            = port:PA14<2><1><default><default>
 sdc_det           =
 sdc_use_wp        = 0
 sdc_wp            =
+sdc_isio          = 0
 
 ; ------------------------------------------------------------------------------|
 ; sim card configuration

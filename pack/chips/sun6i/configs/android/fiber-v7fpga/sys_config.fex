@@ -73,6 +73,15 @@ jtag_ck 			= port:PB15<3>
 jtag_do 			= port:PB16<3>
 jtag_di 			= port:PB17<3>
 
+[clock]
+pll3            = 297
+pll4            = 300
+pll6            = 600
+pll7            = 297
+pll8            = 360
+pll9            = 297
+pll10           = 297
+
 ;*****************************************************************************
 ;sdram configuration
 ;

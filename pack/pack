@@ -136,9 +136,11 @@ do_pack_crane()
 			cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
 			TX=`awk  '$0~"sun5i"{print $2}' pctools/linux/card_debug_pin`
 			RX=`awk  '$0~"sun5i"{print $3}' pctools/linux/card_debug_pin`
+			PORT=`awk  '$0~"sun5i"{print $4}' pctools/linux/card_debug_pin`			
 		fi
 			sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
 			sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+			sed -i s'/uart_debug_port =/uart_debug_port = '$PORT'/g' out/awk_debug_card0
 			sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
 			sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
 			awk -f out/awk_debug_card0 out/sys_config1.fex > out/a.fex

@@ -1,2 +1,2 @@
 board    tx						rx					 NO.
-sun5i      port:PF2<4><1><1>		port:PF4<4><1><1>	
+sun5i      port:PF2<4><1>		port:PF4<4><1>	0

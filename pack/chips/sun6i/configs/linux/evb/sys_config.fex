@@ -285,7 +285,7 @@ ctp_exchange_x_y_flag = 0
 
 ctp_int_port        = port:PA03<6><default><default><default>
 ctp_wakeup          = port:PA02<1><default><default><1>
-;ctp_io_port        = port:PA03<0><default><default><default>
+ctp_io_port         = port:PA03<0><default><default><default>
 
 ;----------------------------------------------------------------------------------
 ;touch key configuration
@@ -540,6 +540,7 @@ hdmi_used           = 1
 ;csi_flash_pol: the active polority of the flash light IO 0:low active 1:high active
 ;--------------------------------------------------------------------------------
 [csi0_para]
+csi_used            = 0
 
 [csi1_para]
 csi_used            = 1
@@ -662,8 +663,8 @@ sdc_isio          = 1
 sdc_used          = 0
 sdc_detmode       = 3
 sdc_buswidth      = 8
-sdc_clk           = port:PC06<3><1><default><default>
-sdc_cmd           = port:PC07<3><1><default><default>
+sdc_clk           = port:PC07<3><1><default><default>
+sdc_cmd           = port:PC06<3><1><default><default>
 sdc_d0            = port:PC08<3><1><default><default>
 sdc_d1            = port:PC09<3><1><default><default>
 sdc_d2            = port:PC10<3><1><default><default>

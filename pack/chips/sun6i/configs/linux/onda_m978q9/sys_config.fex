@@ -8,6 +8,8 @@
 version = "100"
 machine = "onda_m978q9"
 
+[platform]
+eraseflag   = 1
 ;----------------------------------------------------------------------------------
 ;   system configuration
 ;   ?

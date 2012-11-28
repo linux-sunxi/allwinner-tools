@@ -8,6 +8,8 @@
 version = "100"
 machine = "qc"
 
+[platform]
+eraseflag   = 1
 ;----------------------------------------------------------------------------------
 ;   system configuration
 ;   ?

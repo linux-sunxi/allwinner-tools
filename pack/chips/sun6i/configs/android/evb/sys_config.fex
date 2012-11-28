@@ -234,34 +234,38 @@ uart_cts        = port:PE07<3><1><default><default>
 ;spi configuration
 ;----------------------------------------------------------------------------------
 [spi0_para]
-spi_used   = 0
-spi_cs0    = port:PC27<3><1><default><default>
-spi_sclk   = port:PC02<3><default><default><default>
-spi_mosi   = port:PC00<3><default><default><default>
-spi_miso   = port:PC01<3><default><default><default>
+spi_used       = 0
+spi_cs_bitmap  = 1
+spi_cs0        = port:PC27<3><1><default><default>
+spi_sclk       = port:PC02<3><default><default><default>
+spi_mosi       = port:PC00<3><default><default><default>
+spi_miso       = port:PC01<3><default><default><default>
 
 [spi1_para]
-spi_used   = 0
-spi_cs1    = port:PG12<2><1><default><default>
-spi_cs0    = port:PG13<2><1><default><default>
-spi_sclk   = port:PG14<2><default><default><default>
-spi_mosi   = port:PG15<2><default><default><default>
-spi_miso   = port:PG16<2><default><default><default>
+spi_used       = 0
+spi_cs_bitmap  = 1
+spi_cs1        = port:PG12<2><1><default><default>
+spi_cs0        = port:PG13<2><1><default><default>
+spi_sclk       = port:PG14<2><default><default><default>
+spi_mosi       = port:PG15<2><default><default><default>
+spi_miso       = port:PG16<2><default><default><default>
 
 [spi2_para]
-spi_used   = 0
-spi_cs0    = port:PH09<2><default><default><default>
-spi_sclk   = port:PH10<2><default><default><default>
-spi_mosi   = port:PH11<2><default><default><default>
-spi_miso   = port:PH12<2><default><default><default>
+spi_used       = 0
+spi_cs_bitmap  = 1
+spi_cs0        = port:PH09<2><default><default><default>
+spi_sclk       = port:PH10<2><default><default><default>
+spi_mosi       = port:PH11<2><default><default><default>
+spi_miso       = port:PH12<2><default><default><default>
 
 [spi3_para]
-spi_used   = 0
-spi_cs0    = port:PA21<4><default><default><default>
-spi_sclk   = port:PA22<4><default><default><default>
-spi_mosi   = port:PA23<4><default><default><default>
-spi_miso   = port:PA24<4><default><default><default>
-spi_cs1    = port:PA25<4><default><default><default>
+spi_used       = 0
+spi_cs_bitmap  = 1
+spi_cs0        = port:PA21<4><default><default><default>
+spi_sclk       = port:PA22<4><default><default><default>
+spi_mosi       = port:PA23<4><default><default><default>
+spi_miso       = port:PA24<4><default><default><default>
+spi_cs1        = port:PA25<4><default><default><default>
 
 ;----------------------------------------------------------------------------------
 ;capacitor tp configuration

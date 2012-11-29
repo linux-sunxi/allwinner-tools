@@ -692,6 +692,7 @@ usb_detect_type     = 1
 usb_id_gpio         = port:PA15<0><1><default><default>
 usb_det_vbus_gpio   = port:PA14<0><0><default><default>
 usb_drv_vbus_gpio   = port:PA13<1><0><default><0>
+usb_ictrl_gpio      = port:PA27<1><0><default><0>
 usb_host_init_state = 0
 
 ;--------------------------------

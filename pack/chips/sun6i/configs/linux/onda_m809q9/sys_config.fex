@@ -369,8 +369,6 @@ lcd1_hue                 = 50
 ;lcd_x:                lcd horizontal resolution
 ;lcd_y:                lcd vertical resolution
 ;lcd_dclk_freq:        in MHZ unit
-;lcd_dclk_phase:       lcd dclk phase(0:normal offset;1:1/3 offset; 2/3 offset;
-;                      4:90 phase; 5:0 phase)
 ;lcd_pwm_freq:         in HZ unit
 ;lcd_pwm_pol:          lcd backlight PWM polarity
 ;lcd_hbp:              hsync back porch
@@ -379,27 +377,13 @@ lcd1_hue                 = 50
 ;lcd_vt:               vysnc total cycle
 ;lcd_hspw:             hsync plus width
 ;lcd_vspw:             vysnc plus width
-;lcd_hv_if:            0:parallel; 8:serial(8bit/3cycle); 10:dummyrgb(8bit/4cycle);
-;                      11:rgbdummy(8bit/4cycle); 12: ccir656
-;lcd_hv_srgb_seq:      serial RGB output sequence,
-;lcd_hv_syuv_seq:      serial YUV output sequence
-;lcd_hv_syuv_fdly:     serial YUV output F line delay(0: no delay;
-;                      1: delay 2line[CCIR NTSC]; 2: delay 3line[CCIR PAL])
 ;lcd_lvds_if:          0:single link;  1:dual link
 ;lcd_lvds_colordepth:  0:8bit; 1:6bit
 ;lcd_lvds_mode:        0:NS mode; 1:JEIDA mode
 ;lcd_lvds_io_polarity: 0:normal; 1:pn cross
-;lcd_dsi_if:           0:video mode; 1:command mode
-;lcd_dsi_lane:		     1/2/3/4 lane
-;lcd_dsi_format:       0:RGB888; 1:RGB666; 2:RGB666P; 3:RGB565
-;lcd_dsi_eotp:         0:no ending symbol 1:insert ending symbol;
-;lcd_dsi_te:           0:disable te mode; 1:rising te mode; 2:falling te mode
-;lcd_cpu_if:           0:18bit; 1:16bit mode0; 2:16bit mode1; 3:16bit mode2;
-;                      4:16bit mode3; 5:9bit; 6:8bit 256K; 7:8bit 65K;
-;lcd_cpu_te:           0:disable te mode; 1:enable rising te mode; 2:enable falling te mode
 ;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
-;lcd_gpio_0:           SCL
-;lcd_gpio_1            SDA
+;lcd_io_phase:         0:noraml; 1:intert phase(0~3bit: vsync phase; 4~7bit:hsync phase;
+;                      8~11bit:dclk phase; 12~15bit:de phase)
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
 ;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
@@ -408,77 +392,42 @@ lcd1_hue                 = 50
 lcd_used            = 1
 
 lcd_if              = 3
-lcd_x               = 1280
-lcd_y               = 800
-lcd_dclk_freq       = 70
-lcd_dclk_phase      = 1
+lcd_x               = 1024
+lcd_y               = 768
+lcd_dclk_freq       = 65
+
 lcd_pwm_freq        = 50000
 lcd_pwm_pol         = 1
-lcd_hbp             = 20
-lcd_ht              = 1418
-lcd_hspw            = 0
-lcd_vbp             = 10
-lcd_vt              = 814
-lcd_vspw            = 0
-lcd_hv_if           = 0
-lcd_hv_srgb_seq     = 0
-lcd_hv_syuv_seq     = 0
-lcd_hv_syuv_fdly    = 0
+lcd_hbp             = 300
+lcd_ht              = 1344
+lcd_hspw            = 20
+lcd_vbp             = 30
+lcd_vt              = 806
+lcd_vspw            = 8
 lcd_lvds_if         = 0
-lcd_lvds_colordepth = 1
+lcd_lvds_colordepth = 0
 lcd_lvds_mode       = 0
 lcd_lvds_io_polarity= 0
-lcd_dsi_if          = 0
-lcd_dsi_lane        = 0
-lcd_dsi_format      = 0
-lcd_dsi_eotp        = 0
-lcd_dsi_te          = 0
-lcd_cpu_if          = 0
-lcd_cpu_te          = 0
-lcd_frm             = 1
+lcd_frm             = 0
+lcd_io_phase        = 0x0000
 
 deu_mode            = 0
 lcdgamma4iep        = 22
 
 lcd_bl_en           = port:PA25<1><0><default><1>
-
 lcd_power           = port:power1<1><0><default><1>
-
 lcd_pwm             = port:PH13<2><0><default><default>
 
-lcd_gpio_0          = port:PA19<1><0><default><default>
-lcd_gpio_1          = port:PA20<1><0><default><default>
-lcd_gpio_2          =
-lcd_gpio_3          =
-
-lcdd0               = port:PD00<2><0><default><default>
-lcdd1               = port:PD01<2><0><default><default>
-lcdd2               = port:PD02<2><0><default><default>
-lcdd3               = port:PD03<2><0><default><default>
-lcdd4               = port:PD04<2><0><default><default>
-lcdd5               = port:PD05<2><0><default><default>
-lcdd6               = port:PD06<2><0><default><default>
-lcdd7               = port:PD07<2><0><default><default>
-lcdd8               = port:PD08<2><0><default><default>
-lcdd9               = port:PD09<2><0><default><default>
-lcdd10              = port:PD10<2><0><default><default>
-lcdd11              = port:PD11<2><0><default><default>
-lcdd12              = port:PD12<2><0><default><default>
-lcdd13              = port:PD13<2><0><default><default>
-lcdd14              = port:PD14<2><0><default><default>
-lcdd15              = port:PD15<2><0><default><default>
-lcdd16              = port:PD16<2><0><default><default>
-lcdd17              = port:PD17<2><0><default><default>
-lcdd18              = port:PD18<2><0><default><default>
-lcdd19              = port:PD19<2><0><default><default>
-lcdd20              = port:PD20<2><0><default><default>
-lcdd21              = port:PD21<2><0><default><default>
-lcdd22              = port:PD22<2><0><default><default>
-lcdd23              = port:PD23<2><0><default><default>
-lcdclk              = port:PD24<2><0><default><default>
-lcdde               = port:PD25<2><0><default><default>
-lcdhsync            = port:PD26<2><0><default><default>
-lcdvsync            = port:PD27<2><0><default><default>
+lcdd0               = port:PD00<3><0><default><default>
+lcdd1               = port:PD01<3><0><default><default>
+lcdd2               = port:PD02<3><0><default><default>
+lcdd3               = port:PD03<3><0><default><default>
+lcdd4               = port:PD04<3><0><default><default>
+lcdd5               = port:PD05<3><0><default><default>
+lcdd6               = port:PD06<3><0><default><default>
+lcdd7               = port:PD07<3><0><default><default>
+lcdd8               = port:PD08<3><0><default><default>
+lcdd9               = port:PD09<3><0><default><default>
 
 ;----------------------------------------------------------------------------------
 ;hdmi configuration

@@ -393,8 +393,6 @@ lcd1_hue                 = 50
 ;lcd_x:                lcd horizontal resolution
 ;lcd_y:                lcd vertical resolution
 ;lcd_dclk_freq:        in MHZ unit
-;lcd_dclk_phase:       lcd dclk phase(0:normal offset;1:1/3 offset; 2/3 offset; 
-;                      4:90 phase; 5:0 phase)
 ;lcd_pwm_freq:         in HZ unit
 ;lcd_pwm_pol:          lcd backlight PWM polarity
 ;lcd_hbp:              hsync back porch
@@ -422,8 +420,14 @@ lcd1_hue                 = 50
 ;                      4:16bit mode3; 5:9bit; 6:8bit 256K; 7:8bit 65K;
 ;lcd_cpu_te:           0:disable te mode; 1:enable rising te mode; 2:enable falling te mode
 ;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
-;lcd_gpio_0:           SCL
-;lcd_gpio_1            SDA
+;lcd_edp_tx_ic         0:anx9804;  1:anx6345
+;lcd_edp_tx_rate       1:1.62G;   2:2.7G;    3:5.4G
+;lcd_edp_tx_lane       1/2/4lane
+;lcd_io_phase:         0:noraml; 1:intert phase(0~3bit: vsync phase; 4~7bit:hsync phase;
+;                      8~11bit:dclk phase; 12~15bit:de phase)
+;lcd_gpio_scl:         iic SCL
+;lcd_gpio_sda          iic SDA
+;lcd_gpio_0/1/2/3      lcd gpio
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
 ;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;  
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
@@ -435,7 +439,6 @@ lcd_if                   = 0
 lcd_x                    = 800
 lcd_y                    = 480
 lcd_dclk_freq            = 33
-lcd_dclk_phase           = 1
 lcd_pwm_freq             = 10000
 lcd_pwm_pol              = 0
 lcd_hbp                  = 46
@@ -460,19 +463,23 @@ lcd_dsi_te               = 0
 lcd_cpu_if               = 0
 lcd_cpu_te               = 0
 lcd_frm                  = 0
+lcd_edp_tx_ic            = 0
+lcd_edp_tx_rate          = 0
+lcd_edp_tx_lane          = 0
+lcd_io_phase             = 1
 
 deu_mode                 = 0
 lcdgamma4iep             = 22
 
 lcd_bl_en                = port:PA25<1><0><default><1>
-
 lcd_power                = port:power1<1><0><default><1>
-
 lcd_pwm                  = port:PH13<2><0><default><default>
 
-lcd_gpio_0               = port:PH22<1><0><default><default>
-lcd_gpio_1               = port:PA19<1><0><default><default>
-lcd_gpio_2               = port:PA20<1><0><default><default>
+lcd_gpio_scl             = 
+lcd_gpio_sda             = 
+lcd_gpio_0               = 
+lcd_gpio_1               = 
+lcd_gpio_2               = 
 lcd_gpio_3               = 
 
 lcdd0                    = port:PD00<2><0><default><default>

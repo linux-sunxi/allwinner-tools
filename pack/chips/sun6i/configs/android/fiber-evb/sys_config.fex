@@ -979,10 +979,10 @@ pmu_pekoff_func          = 0
 pmu_peklong_time         = 1500
 pmu_pekon_time           = 1000
 pmu_pwrok_time           = 64
-pmu_battery_warning_level1 = 10
+pmu_battery_warning_level1 = 15
 pmu_battery_warning_level2 = 0
 pmu_restvol_time         = 30
 pmu_ocv_cou_adjust_time  = 60
 pmu_chgled_func          = 0
-pmu_chgled_type          = A
+pmu_chgled_type          = 0
 

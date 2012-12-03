@@ -78,26 +78,30 @@ jtag_di 			= port:PB17<3>
 ;
 ;*****************************************************************************
 [dram_para]
-dram_baseaddr        	= 0x40000000
-dram_clk             	= 120
-dram_type				= 3
-dram_rank_num     		= 1
-dram_chip_density		= 2048
-dram_io_width			= 16
-dram_bus_width    		= 32
-dram_cas				= 6
-dram_zq					= 0x7b
-dram_odt_en				= 0
-dram_size				= 512
-dram_tpr0				= 0x30926692
-dram_tpr1				= 0x1090
-dram_tpr2				= 0x1a0c8
-dram_tpr3				= 0x0
-dram_tpr4				= 0x0
-dram_tpr5				= 0x0
-dram_emr1				= 0x0
-dram_emr2				= 0x0
-dram_emr3				= 0x0
+dram_clk        = 360
+dram_type       = 3
+dram_zq         = 0x0bb
+dram_odt_en     = 0
+dram_para1      = 0x10F40800
+dram_para2      = 0x1211
+dram_mr0        = 0x1A50
+dram_mr1        = 0
+dram_mr2        = 0x18
+dram_mr3        = 0
+dram_tpr0       = 0
+dram_tpr1       = 0x80000800
+dram_tpr2       = 0x46270140
+dram_tpr3       = 0xA0C4284C
+dram_tpr4       = 0x39c8c209
+dram_tpr5       = 0x694552AD
+dram_tpr6       = 0x3002c4a0
+dram_tpr7       = 0x2aaf9b
+dram_tpr8       = 0x604111d
+dram_tpr9       = 0x42da072
+dram_tpr10      = 0
+dram_tpr11      = 0
+dram_tpr12      = 0
+dram_tpr13      = 0
 
 
 ;----------------------------------------------------------------------------------
@@ -364,8 +368,8 @@ screen1_output_mode      = 4
 fb0_format               = 10
 fb0_pixel_sequence       = 0
 fb0_scaler_mode_enable   = 0
-fb0_width                = 0 
-fb0_height               = 0 
+fb0_width                = 0
+fb0_height               = 0
 
 fb1_format               = 10
 fb1_pixel_sequence       = 0
@@ -401,11 +405,11 @@ lcd1_hue                 = 50
 ;lcd_vt:               vysnc total cycle
 ;lcd_hspw:             hsync plus width
 ;lcd_vspw:             vysnc plus width
-;lcd_hv_if:            0:parallel; 8:serial(8bit/3cycle); 10:dummyrgb(8bit/4cycle); 
+;lcd_hv_if:            0:parallel; 8:serial(8bit/3cycle); 10:dummyrgb(8bit/4cycle);
 ;                      11:rgbdummy(8bit/4cycle); 12: ccir656
 ;lcd_hv_srgb_seq:      serial RGB output sequence,
 ;lcd_hv_syuv_seq:      serial YUV output sequence
-;lcd_hv_syuv_fdly:     serial YUV output F line delay(0: no delay; 
+;lcd_hv_syuv_fdly:     serial YUV output F line delay(0: no delay;
 ;                      1: delay 2line[CCIR NTSC]; 2: delay 3line[CCIR PAL])
 ;lcd_lvds_if:          0:single link;  1:dual link
 ;lcd_lvds_colordepth:  0:8bit; 1:6bit
@@ -416,7 +420,7 @@ lcd1_hue                 = 50
 ;lcd_dsi_format:       0:RGB888; 1:RGB666; 2:RGB666P; 3:RGB565
 ;lcd_dsi_eotp:         0:no ending symbol 1:insert ending symbol;
 ;lcd_dsi_te:           0:disable te mode; 1:rising te mode; 2:falling te mode
-;lcd_cpu_if:           0:18bit; 1:16bit mode0; 2:16bit mode1; 3:16bit mode2; 
+;lcd_cpu_if:           0:18bit; 1:16bit mode0; 2:16bit mode1; 3:16bit mode2;
 ;                      4:16bit mode3; 5:9bit; 6:8bit 256K; 7:8bit 65K;
 ;lcd_cpu_te:           0:disable te mode; 1:enable rising te mode; 2:enable falling te mode
 ;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
@@ -429,7 +433,7 @@ lcd1_hue                 = 50
 ;lcd_gpio_sda          iic SDA
 ;lcd_gpio_0/1/2/3      lcd gpio
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
-;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;  
+;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
 ;----------------------------------------------------------------------------------
 [lcd0_para]
@@ -475,12 +479,12 @@ lcd_bl_en                = port:PA25<1><0><default><1>
 lcd_power                = port:power1<1><0><default><1>
 lcd_pwm                  = port:PH13<2><0><default><default>
 
-lcd_gpio_scl             = 
-lcd_gpio_sda             = 
-lcd_gpio_0               = 
-lcd_gpio_1               = 
-lcd_gpio_2               = 
-lcd_gpio_3               = 
+lcd_gpio_scl             =
+lcd_gpio_sda             =
+lcd_gpio_0               =
+lcd_gpio_1               =
+lcd_gpio_2               =
+lcd_gpio_3               =
 
 lcdd0                    = port:PD00<2><0><default><default>
 lcdd1                    = port:PD01<2><0><default><default>

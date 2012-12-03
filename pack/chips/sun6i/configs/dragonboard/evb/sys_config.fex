@@ -15,8 +15,8 @@ eraseflag   = 1
 ;   ?
 ;----------------------------------------------------------------------------------
 [target]
-boot_clock      = 1008
-dcdc2_vol       = 1400
+boot_clock      = 408
+dcdc2_vol       = 1100
 storage_type    = -1
 
 [card_boot]
@@ -83,15 +83,15 @@ pll10           = 297
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 528
+dram_clk        = 360
 dram_type       = 3
-dram_zq         = 0x07b
+dram_zq         = 0x0bb
 dram_odt_en     = 0
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211
 dram_mr0        = 0x1A50
 dram_mr1        = 0
-dram_mr2        = 0x08
+dram_mr2        = 0x18
 dram_mr3        = 0
 dram_tpr0       = 0
 dram_tpr1       = 0x80000800
@@ -99,15 +99,14 @@ dram_tpr2       = 0x46270140
 dram_tpr3       = 0xA0C4284C
 dram_tpr4       = 0x39c8c209
 dram_tpr5       = 0x694552AD
-dram_tpr6       = 0x20000000
-dram_tpr7       = 0
-dram_tpr8       = 0
-dram_tpr9       = 0
+dram_tpr6       = 0x3002c4a0
+dram_tpr7       = 0x2aaf9b
+dram_tpr8       = 0x604111d
+dram_tpr9       = 0x42da072
 dram_tpr10      = 0
 dram_tpr11      = 0
 dram_tpr12      = 0
-dram_tpr13      = 0x7
-
+dram_tpr13      = 0
 ;----------------------------------------------------------------------------------
 ;os life cycle para configuration
 ;----------------------------------------------------------------------------------
@@ -979,10 +978,10 @@ pmu_pekoff_func          = 0
 pmu_peklong_time         = 1500
 pmu_pekon_time           = 1000
 pmu_pwrok_time           = 64
-pmu_battery_warning_level1 = 10
+pmu_battery_warning_level1 = 15
 pmu_battery_warning_level2 = 0
 pmu_restvol_time         = 30
 pmu_ocv_cou_adjust_time  = 60
 pmu_chgled_func          = 0
-pmu_chgled_type          = A
+pmu_chgled_type          = 0
 

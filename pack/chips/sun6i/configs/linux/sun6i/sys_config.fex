@@ -78,7 +78,7 @@ jtag_di 			= port:PB17<3>
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 360
+dram_clk        = 240
 dram_type       = 3
 dram_zq         = 0x0bb
 dram_odt_en     = 0

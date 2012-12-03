@@ -313,7 +313,7 @@ do_pack_dragonboard()
 
     cd out/
 
-    cp -v $LICHEE_OUT/android/u-boot.bin bootfs/linux/
+    cp -v $LICHEE_OUT/dragonboard/u-boot.bin bootfs/linux/
 
     sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
     sed -i 's/\\\\/\//g' image.cfg
@@ -332,6 +332,11 @@ do_pack_dragonboard()
     	busybox unix2dos sys_partition.fex
     	script sys_config.fex
 		script sys_partition.fex
+        
+        cp test_config.fex bootfs/test_config.fex
+        busybox unix2dos test_config.fex
+        script test_config.fex
+        cp test_config.bin bootfs/test_config.bin
 
 		update_boot0 boot0_nand.bin   sys_config.bin NAND
     	update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD

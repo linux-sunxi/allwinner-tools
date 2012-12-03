@@ -118,21 +118,21 @@ run_type    = 1
 
 [Usb_HOST1]
 display_name= "USB主机1"
-activated   = 1
+activated   = 0
 program     = "host1tester.sh"
 category    = 1
 run_type    = 1
 
 [Usb_HOST2]
 display_name= "USB主机2"
-activated   = 1
+activated   = 0
 program     = "host2tester.sh"
 category    = 1
 run_type    = 1
 
 [Usb_OTG]
 display_name= "USB_OTG"
-activated   = 1
+activated   = 0
 program     = "otgtester.sh"
 category    = 1
 run_type    = 1
@@ -233,8 +233,8 @@ mic2_threshold =16383
 ;-------------------------------------------------------------------------------
 [tp]
 display_name= "触摸"
-type        = 0
-module_path = "/lib/modules/3.3.0/sun6i-ts.ko"
+type        = 1
+module_path = "/lib/modules/3.3.0/gt82x.ko"
 
 ;-------------------------------------------------------------------------------
 ; module_count

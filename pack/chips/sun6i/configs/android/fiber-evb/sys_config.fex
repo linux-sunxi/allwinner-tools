@@ -83,7 +83,7 @@ pll10           = 297
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 360
+dram_clk        = 240
 dram_type       = 3
 dram_zq         = 0x0bb
 dram_odt_en     = 0
@@ -206,7 +206,7 @@ uart_cts        = port:PA07<4><1><default><default>
 ;uart_ring      = port:PA03<4><1><default><default>
 
 [uart_para2]
-uart_used       = 1
+uart_used       = 0
 uart_port       = 2
 uart_type       = 4
 uart_tx         = port:PG06<2><1><default><default>
@@ -215,7 +215,7 @@ uart_rts        = port:PG08<2><1><default><default>
 uart_cts        = port:PG09<2><1><default><default>
 
 [uart_para3]
-uart_used       = 1
+uart_used       = 0
 uart_port       = 3
 uart_type       = 4
 uart_tx         = port:PB05<3><1><default><default>

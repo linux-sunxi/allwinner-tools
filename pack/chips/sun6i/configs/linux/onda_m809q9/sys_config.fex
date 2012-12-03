@@ -15,8 +15,8 @@ eraseflag   = 1
 ;   ?
 ;----------------------------------------------------------------------------------
 [target]
-boot_clock      = 1008
-dcdc2_vol       = 1400
+boot_clock      = 408
+dcdc2_vol       = 1100
 storage_type    = -1
 
 [card_boot]

@@ -460,7 +460,7 @@ deu_mode            = 0
 lcdgamma4iep        = 22
 
 lcd_bl_en           = port:PA25<1><0><default><1>
-lcd_power           = port:power1<1><0><default><1>
+lcd_power           = port:power2<1><0><default><1>
 lcd_pwm             = port:PH13<2><0><default><default>
 
 lcdd0               = port:PD00<3><0><default><default>

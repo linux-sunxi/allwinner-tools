@@ -60,7 +60,7 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [wifi]
 display_name= "网络"
-activated   = 1
+activated   = 0
 program     = "wifitester.sh"
 category    = 0
 run_type    = 1
@@ -89,7 +89,7 @@ device_name = "bma250"
 ;-------------------------------------------------------------------------------
 [nand]
 display_name= "闪存"
-activated   = 0
+activated   = 1
 program     = "nandtester.sh"
 category    = 0
 run_type    = 1
@@ -174,7 +174,7 @@ activated   = 1
 program     = "keytester"
 category    = 1
 run_type    = 1
-;module_path = 
+module_path = "/lib/modules/3.3.0/sw-keyboard.ko"
 
 ;-------------------------------------------------------------------------------
 ; module_path
@@ -182,7 +182,7 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [ir]
 display_name= "红外"
-activated   = 0
+activated   = 1
 program     = "irtester"
 category    = 1
 run_type    = 1
@@ -209,14 +209,14 @@ module_path = "/lib/modules/3.3.0/sun6i-ir.ko"
 ;------------------------------------------------------------------------------------
 [mic]
 display_name= "录音耳机"
-activated   = 1
+activated   = 0
 program     = "mictester"
 category    = 1
 run_type    = 1
 delay       = 5
 volume      = 40
 music_playtime =10
-sound_file  = "/dragonboard/data/test48000.pcm"
+music_file  = "/dragonboard/data/test48000.pcm"
 samplerate  = 48000
 mic1_used   = 1
 mic2_used   = 1

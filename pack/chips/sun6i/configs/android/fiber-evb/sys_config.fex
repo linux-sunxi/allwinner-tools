@@ -297,8 +297,6 @@ ctp_exchange_x_y_flag = 1
 
 ctp_int_port        = port:PA03<6><default><default><default>
 ctp_wakeup          = port:PA02<1><default><default><1>
-ctp_io_port         = port:PA03<0><default><default><default>
-
 ;----------------------------------------------------------------------------------
 ;touch key configuration
 ;----------------------------------------------------------------------------------

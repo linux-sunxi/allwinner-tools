@@ -15,9 +15,10 @@ eraseflag   = 1
 ;   ?
 ;----------------------------------------------------------------------------------
 [target]
-boot_clock   	= 1008
-dcdc2_vol		= 1100
-dcdc3_vol		= 1200
+boot_clock      = 1008
+dcdc2_vol       = 1300
+dcdc3_vol       = 1400
+dcdc4_vol       = 1200
 storage_type    = -1
 
 [card_boot]
@@ -84,14 +85,14 @@ pll10           = 297
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 240
+dram_clk        = 288
 dram_type       = 3
-dram_zq         = 0x0bb
+dram_zq         = 0xfb
 dram_odt_en     = 0
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211
 dram_mr0        = 0x1A50
-dram_mr1        = 0
+dram_mr1        = 0x4
 dram_mr2        = 0x18
 dram_mr3        = 0
 dram_tpr0       = 0
@@ -112,6 +113,52 @@ dram_tpr13      = 0
 ;----------------------------------------------------------------------------------
 ;os life cycle para configuration
 ;----------------------------------------------------------------------------------
+
+;------------------------------------------------------------------------------;
+; 10/100/100Mbps Ethernet MAC Controller Configure                             ;
+;------------------------------------------------------------------------------;
+;   配置选项：                                                                 ;
+;   gmac_used  ---  1: gmac used, 0: not used                                  ;
+;------------------------------------------------------------------------------;
+;         MII  GMII  RGMII        MII  GMII  RGMII        MII  GMII  RGMII     ;
+;PA00~03  *     *      *    PA10        *      *    PA20   *    *      *       ;
+;   PA04        *         PA11~14  *    *      *    PA21   *    *              ;
+;   PA05        *           PA15        *           PA22   *    *              ;
+;   PA06        *           PA16        *           PA23   *    *              ;
+;   PA07        *           PA17        *           PA24   *    *              ;
+;   PA08  *     *           PA18        *           PA25        *      *       ;
+;   PA09  *     *      *    PA19   *    *      *  PA26~27  *    *      *       ;
+;------------------------------------------------------------------------------;
+[gmac_para]
+gmac_used          = 0
+gmac_txd0          = port:PA00<2><default><default><default>
+gmac_txd1          = port:PA01<2><default><default><default>
+gmac_txd2          = port:PA02<2><default><default><default>
+gmac_txd3          = port:PA03<2><default><default><default>
+gmac_txd4          = port:PA04<2><default><default><default>
+gmac_txd5          = port:PA05<2><default><default><default>
+gmac_txd6          = port:PA06<2><default><default><default>
+gmac_txd7          = port:PA07<2><default><default><default>
+gmac_txclk         = port:PA08<2><default><default><default>
+gmac_txen          = port:PA09<2><default><default><default>
+gmac_gtxclk        = port:PA10<2><default><default><default>
+gmac_rxd0          = port:PA11<2><default><default><default>
+gmac_rxd1          = port:PA12<2><default><default><default>
+gmac_rxd2          = port:PA13<2><default><default><default>
+gmac_rxd3          = port:PA14<2><default><default><default>
+gmac_rxd4          = port:PA15<2><default><default><default>
+gmac_rxd5          = port:PA16<2><default><default><default>
+gmac_rxd6          = port:PA17<2><default><default><default>
+gmac_rxd7          = port:PA18<2><default><default><default>
+gmac_rxdv          = port:PA19<2><default><default><default>
+gmac_rxclk         = port:PA20<2><default><default><default>
+gmac_txerr         = port:PA21<2><default><default><default>
+gmac_rxerr         = port:PA22<2><default><default><default>
+gmac_col           = port:PA23<2><default><default><default>
+gmac_crs           = port:PA24<2><default><default><default>
+gmac_clkin         = port:PA25<2><default><default><default>
+gmac_mdc           = port:PA26<2><default><default><default>
+gmac_mdio          = port:PA27<2><default><default><default>
 
 ;----------------------------------------------------------------------------------
 ;i2c configuration
@@ -675,7 +722,7 @@ usb_port_type       = 1
 usb_detect_type     = 0
 usb_id_gpio         =
 usb_det_vbus_gpio   =
-usb_drv_vbus_gpio   = port:PA26<1><0><default><0>
+usb_drv_vbus_gpio   =
 usb_host_init_state = 1
 
 ;--------------------------------
@@ -733,7 +780,7 @@ gsensor_int2        =
 ;wifi_sdc_id   	---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
 ;--------------------------------------------------------------------------------
 [sdio_wifi_para]
-sdio_wifi_used      = 1
+sdio_wifi_used      = 0
 sdio_wifi_sdc_id    = 1
 
 ;for rtl8723es
@@ -746,8 +793,8 @@ wl_host_wk          = port:PG12<1><default><default><0>
 ;usb_wifi_id		---  0- USB0, 1- USB1, 2- USB2
 ;--------------------------------------------------------------------------------
 [usb_wifi_para]
-usb_wifi_used		=
-usb_wifi_usbc_num	=
+usb_wifi_used		= 1
+usb_wifi_usbc_num	= 1
 
 ;--------------------------------------------------------------------------------
 ;3G configuration
@@ -938,7 +985,7 @@ pmu_bat_para30           = 96
 pmu_bat_para31           = 98
 pmu_bat_para32           = 100
 
-pmu_usbvol_limit         = 1
+pmu_usbvol_limit         = 0
 pmu_usbcur_limit         = 0
 pmu_usbvol               = 4400
 pmu_usbcur               = 0

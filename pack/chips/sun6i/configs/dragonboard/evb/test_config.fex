@@ -132,7 +132,7 @@ run_type    = 1
 
 [Usb_OTG]
 display_name= "USB_OTG"
-activated   = 0
+activated   = 1
 program     = "otgtester.sh"
 category    = 1
 run_type    = 1

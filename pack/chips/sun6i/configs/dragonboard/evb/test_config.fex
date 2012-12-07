@@ -156,7 +156,7 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [hdmi]
 display_name= "HDMI"
-activated   = 0
+activated   = 1
 program     = "hdmitester"
 category    = 1
 run_type    = 1

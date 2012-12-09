@@ -510,9 +510,12 @@ csi_twi_addr        = 0x78
 csi_if              = 0
 csi_vflip           = 0
 csi_hflip           = 0
-csi_iovdd           = ""
+csi_iovdd           = "axp22_eldo3"
 csi_avdd            = ""
 csi_dvdd            = ""
+csi_vol_iovdd       = 2800
+csi_vol_avdd        = 2800
+csi_vol_dvdd        = 1500
 csi_flash_pol       = 1
 
 csi_mname_b         = "gc0308"
@@ -521,9 +524,12 @@ csi_twi_addr_b      = 0x42
 csi_if_b            = 0
 csi_vflip_b         = 1
 csi_hflip_b         = 0
-csi_iovdd_b         = ""
+csi_iovdd_b         = "axp22_eldo3"
 csi_avdd_b          = ""
 csi_dvdd_b          = ""
+csi_vol_iovdd_b     = 2800
+csi_vol_avdd_b      = 2800
+csi_vol_dvdd_b      = 1800
 csi_flash_pol_b     = 1
 
 csi_pck             = port:PE00<2><default><default><default>

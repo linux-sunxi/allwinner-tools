@@ -977,7 +977,7 @@ ir_rx               = port:PL04<2><1><default><default>
 ;pmu_ocv_cou_adjust_time---根据OCV百分比来校准库仑计百分比的最大间隔时间,60/120/15/30
 ;pmu_chgled_func        ---CHGKED pin control，0:controlled by pmu,1:controlled by Charger
 ;pmu_chgled_type        ---CHGLED Type select when pmu_chgled_func=0,0:Type A，1：Type B
-----------------------------------------------------------------------------------
+;----------------------------------------------------------------------------------
 [pmu_para]
 pmu_used                 = 1
 pmu_twi_addr             = 0x34

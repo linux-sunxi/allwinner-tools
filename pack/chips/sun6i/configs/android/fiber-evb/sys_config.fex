@@ -984,7 +984,7 @@ ir_rx               = port:PL04<2><1><default><default>
 ;pmu_IRQ_wakeup				       ---press IRQ wakeup or not when sleep or power down.0:not wakeup 1:wakeup
 ;pmu_hot_shutdowm            ---when PMU over temperature protect or not;0:disable 1:enable
 ;pmu_inshort								 ---ACIN and VBUS inshort or not by software;0:auto detect 1:inshort
---------------------------------------------------------------------------------------------------------
+;--------------------------------------------------------------------------------------------------------
 [pmu_para]
 pmu_used                   = 1
 pmu_twi_addr               = 0x34 

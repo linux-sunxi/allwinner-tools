@@ -71,7 +71,7 @@ size = 16384
 [partition]
     name         = recovery
     size         = 65536
-
+    downloadfile = "recovery.fex"
 ;------------------------------>mmcblk0p11/nandh
 [partition]
     name         = cache

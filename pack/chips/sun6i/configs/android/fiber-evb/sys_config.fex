@@ -60,8 +60,8 @@ twi_sda         = port:PH15<2><default><default><default>
 
 [uart_para]
 uart_debug_port = 0
-uart_debug_tx   = port:PF2<4><default><default><default>
-uart_debug_rx   = port:PF4<4><default><default><default>
+uart_debug_tx   = port:PH20<2><default><default><default>
+uart_debug_rx   = port:PH21<2><default><default><default>
 
 [jtag_para]
 jtag_enable     = 1
@@ -190,8 +190,8 @@ twi_sda         = port:PB06<4><default><default><default>
 uart_used       = 1
 uart_port       = 0
 uart_type       = 2
-uart_tx   		= port:PF2<4><1><default><default>
-uart_rx   		= port:PF4<4><1><default><default>
+uart_tx         = port:PH20<2><1><default><default>
+uart_rx         = port:PH21<2><1><default><default>
 
 [uart_para1]
 uart_used       = 0

@@ -943,3 +943,50 @@ pmu_ocv_cou_adjust_time  = 60
 pmu_chgled_func          = 0
 pmu_chgled_type          = A
 
+;----------------------------------------------------------------------------------
+; dvfs voltage-frequency table configuration
+;
+; max_freq: cpu maximum frequency, based on Hz, can not be more than 1008MHz
+; min_freq: cpu minimum frequency, based on Hz, can not be less than 60MHz
+;
+; LV_count: count of LV_freq/LV_volt, must be < 16
+;
+; LV1: core vdd is 1.20v if cpu frequency is (900Mhz,  1008Mhz]
+; LV2: core vdd is 1.20v if cpu frequency is (600Mhz,   900Mhz]
+; LV3: core vdd is 1.20v if cpu frequency is (420Mhz,   600Mhz]
+; LV4: core vdd is 1.20v if cpu frequency is (360Mhz,   420Mhz]
+; LV5: core vdd is 1.20v if cpu frequency is (300Mhz,   360Mhz]
+; LV6: core vdd is 1.20v if cpu frequency is (240Mhz,   300Mhz]
+; LV7: core vdd is 1.20v if cpu frequency is (120Mhz,   240Mhz]
+; LV8: core vdd is 1.20v if cpu frequency is (60Mhz,    120Mhz]
+;
+;----------------------------------------------------------------------------------
+[dvfs_table]
+max_freq = 1008000000
+min_freq = 60000000
+
+LV_count = 8
+
+LV1_freq = 900000000
+LV1_volt = 1200
+
+LV2_freq = 600000000
+LV2_volt = 1200
+
+LV3_freq = 420000000
+LV3_volt = 1200
+
+LV4_freq = 360000000
+LV4_volt = 1200
+
+LV5_freq = 300000000
+LV5_volt = 1200
+
+LV6_freq = 240000000
+LV6_volt = 1200
+
+LV7_freq = 120000000
+LV7_volt = 1200
+
+LV8_freq = 600000000
+LV8_volt = 1200

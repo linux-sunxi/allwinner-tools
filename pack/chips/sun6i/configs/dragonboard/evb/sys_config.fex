@@ -510,9 +510,12 @@ csi_twi_addr        = 0x78
 csi_if              = 0
 csi_vflip           = 0
 csi_hflip           = 0
-csi_iovdd           = ""
+csi_iovdd           = "axp22_eldo3"
 csi_avdd            = ""
 csi_dvdd            = ""
+csi_vol_iovdd       = 2800
+csi_vol_avdd        = 2800
+csi_vol_dvdd        = 1500
 csi_flash_pol       = 1
 
 csi_mname_b         = "gc0308"
@@ -521,9 +524,12 @@ csi_twi_addr_b      = 0x42
 csi_if_b            = 0
 csi_vflip_b         = 1
 csi_hflip_b         = 0
-csi_iovdd_b         = ""
+csi_iovdd_b         = "axp22_eldo3"
 csi_avdd_b          = ""
 csi_dvdd_b          = ""
+csi_vol_iovdd_b     = 2800
+csi_vol_avdd_b      = 2800
+csi_vol_dvdd_b      = 1800
 csi_flash_pol_b     = 1
 
 csi_pck             = port:PE00<2><default><default><default>
@@ -804,7 +810,7 @@ wifi_mod_sel       = 5
 ; 5 - rtl8192cu usb wifi gpio config
 ;rtl8192cu_power    = port:PH27<1><0><default><0>
 
-; 6 - rtl8188eu usb wifi gpio conifg 
+; 6 - rtl8188eu usb wifi gpio conifg
 ;rtl8188eu_power    = port:PH27<1><0><default><0>
 
 ;--------------------------------------------------------------------------------
@@ -984,10 +990,10 @@ ir_rx               = port:PL04<2><1><default><default>
 ;pmu_IRQ_wakeup				       ---press IRQ wakeup or not when sleep or power down.0:not wakeup 1:wakeup
 ;pmu_hot_shutdowm            ---when PMU over temperature protect or not;0:disable 1:enable
 ;pmu_inshort								 ---ACIN and VBUS inshort or not by software;0:auto detect 1:inshort
---------------------------------------------------------------------------------------------------------
+;--------------------------------------------------------------------------------------------------------
 [pmu_para]
 pmu_used                   = 1
-pmu_twi_addr               = 0x34 
+pmu_twi_addr               = 0x34
 pmu_twi_id                 = 1
 pmu_irq_id                 = 0
 pmu_battery_rdc            = 100
@@ -1004,7 +1010,7 @@ pmu_init_adc_freq          = 800
 pmu_init_adcts_freq        = 800
 pmu_init_chg_pretime       = 70
 pmu_init_chg_csttime       = 720
-                           
+
 pmu_bat_para1              = 0
 pmu_bat_para2              = 0
 pmu_bat_para3              = 0
@@ -1037,13 +1043,13 @@ pmu_bat_para29             = 94
 pmu_bat_para30             = 96
 pmu_bat_para31             = 98
 pmu_bat_para32             = 100
-                           
+
 pmu_usbvol_limit           = 1
 pmu_usbcur_limit           = 0
 pmu_usbvol                 = 4400
 pmu_usbcur                 = 0
 pmu_usbvol_pc              = 4400
-pmu_usbcur_pc              = 0 
+pmu_usbcur_pc              = 0
 pmu_pwroff_vol             = 3300
 pmu_pwron_vol              = 2600
 dcdc1_vol                  = 3300
@@ -1071,4 +1077,52 @@ pmu_IRQ_wakeup						 = 0
 pmu_hot_shutdowm					 = 1
 pmu_inshort								 = 0
 power_start								 = 0
+
+;----------------------------------------------------------------------------------
+; dvfs voltage-frequency table configuration
+;
+; max_freq: cpu maximum frequency, based on Hz, can not be more than 1008MHz
+; min_freq: cpu minimum frequency, based on Hz, can not be less than 60MHz
+;
+; LV_count: count of LV_freq/LV_volt, must be < 16
+;
+; LV1: core vdd is 1.20v if cpu frequency is (900Mhz,  1008Mhz]
+; LV2: core vdd is 1.20v if cpu frequency is (600Mhz,   900Mhz]
+; LV3: core vdd is 1.20v if cpu frequency is (420Mhz,   600Mhz]
+; LV4: core vdd is 1.20v if cpu frequency is (360Mhz,   420Mhz]
+; LV5: core vdd is 1.20v if cpu frequency is (300Mhz,   360Mhz]
+; LV6: core vdd is 1.20v if cpu frequency is (240Mhz,   300Mhz]
+; LV7: core vdd is 1.20v if cpu frequency is (120Mhz,   240Mhz]
+; LV8: core vdd is 1.20v if cpu frequency is (60Mhz,    120Mhz]
+;
+;----------------------------------------------------------------------------------
+[dvfs_table]
+max_freq = 1008000000
+min_freq = 60000000
+
+LV_count = 8
+
+LV1_freq = 900000000
+LV1_volt = 1200
+
+LV2_freq = 600000000
+LV2_volt = 1200
+
+LV3_freq = 420000000
+LV3_volt = 1200
+
+LV4_freq = 360000000
+LV4_volt = 1200
+
+LV5_freq = 300000000
+LV5_volt = 1200
+
+LV6_freq = 240000000
+LV6_volt = 1200
+
+LV7_freq = 120000000
+LV7_volt = 1200
+
+LV8_freq = 600000000
+LV8_volt = 1200
 

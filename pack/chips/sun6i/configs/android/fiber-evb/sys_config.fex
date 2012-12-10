@@ -60,8 +60,8 @@ twi_sda         = port:PH15<2><default><default><default>
 
 [uart_para]
 uart_debug_port = 0
-uart_debug_tx   = port:PH20<2><default><default><default>
-uart_debug_rx   = port:PH21<2><default><default><default>
+uart_debug_tx   = port:PF2<4><default><default><default>
+uart_debug_rx   = port:PF4<4><default><default><default>
 
 [jtag_para]
 jtag_enable     = 1
@@ -86,24 +86,24 @@ pll10           = 297
 [dram_para]
 dram_clk        = 240
 dram_type       = 3
-dram_zq         = 0x0bb
+dram_zq         = 0x17b
 dram_odt_en     = 0
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211
 dram_mr0        = 0x1A50
-dram_mr1        = 0
+dram_mr1        = 0x4
 dram_mr2        = 0x18
 dram_mr3        = 0
 dram_tpr0       = 0
 dram_tpr1       = 0x80000800
-dram_tpr2       = 0x46270140
-dram_tpr3       = 0xA0C4284C
-dram_tpr4       = 0x39c8c209
-dram_tpr5       = 0x694552AD
-dram_tpr6       = 0x3002c4a0
-dram_tpr7       = 0x2aaf9b
-dram_tpr8       = 0x604111d
-dram_tpr9       = 0x42da072
+dram_tpr2       = 0x39a70140
+dram_tpr3       = 0xa092e74c
+dram_tpr4       = 0x2948c209
+dram_tpr5       = 0x8944422c
+dram_tpr6       = 0x30028480
+dram_tpr7       = 0x2a3297
+dram_tpr8       = 0x5034fa8
+dram_tpr9       = 0x36353d8
 dram_tpr10      = 0
 dram_tpr11      = 0
 dram_tpr12      = 0
@@ -190,8 +190,8 @@ twi_sda         = port:PB06<4><default><default><default>
 uart_used       = 1
 uart_port       = 0
 uart_type       = 2
-uart_tx         = port:PH20<2><1><default><default>
-uart_rx         = port:PH21<2><1><default><default>
+uart_tx   		= port:PF2<4><1><default><default>
+uart_rx   		= port:PF4<4><1><default><default>
 
 [uart_para1]
 uart_used       = 0

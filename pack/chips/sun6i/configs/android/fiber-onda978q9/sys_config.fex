@@ -18,7 +18,6 @@ eraseflag   = 1
 boot_clock      = 1008
 dcdc2_vol       = 1100
 dcdc3_vol       = 1200
-dcdc4_vol       = 1100
 storage_type    = -1
 
 [card_boot]
@@ -1082,7 +1081,7 @@ pmu_pwron_vol              = 2600
 dcdc1_vol                  = 3300
 dcdc2_vol                  = 1100
 dcdc3_vol                  = 1200
-dcdc4_vol                  = 1100
+dcdc4_vol                  = 1200
 dcdc5_vol                  = 1500
 aldo2_vol                  = 1800
 aldo3_vol                  = 3000

@@ -84,26 +84,26 @@ pll10           = 297
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 240
+dram_clk        = 312
 dram_type       = 3
-dram_zq         = 0x0bb
-dram_odt_en     = 0
+dram_zq         = 0x17b
+dram_odt_en     = 0x1
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211
 dram_mr0        = 0x1A50
-dram_mr1        = 0
+dram_mr1        = 0x4
 dram_mr2        = 0x18
 dram_mr3        = 0
 dram_tpr0       = 0
 dram_tpr1       = 0x80000800
-dram_tpr2       = 0x46270140
-dram_tpr3       = 0xA0C4284C
-dram_tpr4       = 0x39c8c209
-dram_tpr5       = 0x694552AD
-dram_tpr6       = 0x3002c4a0
-dram_tpr7       = 0x2aaf9b
-dram_tpr8       = 0x604111d
-dram_tpr9       = 0x42da072
+dram_tpr2       = 0x39a70140
+dram_tpr3       = 0xa092e74c
+dram_tpr4       = 0x2948c209
+dram_tpr5       = 0x8944422c
+dram_tpr6       = 0x30028480
+dram_tpr7       = 0x2a3297
+dram_tpr8       = 0x5034fa8
+dram_tpr9       = 0x36353d8
 dram_tpr10      = 0
 dram_tpr11      = 0
 dram_tpr12      = 0
@@ -885,7 +885,7 @@ ir_rx               =
 ;pmu_ocv_cou_adjust_time---根据OCV百分比来校准库仑计百分比的最大间隔时间,60/120/15/30
 ;pmu_chgled_func        ---CHGKED pin control，0:controlled by pmu,1:controlled by Charger
 ;pmu_chgled_type        ---CHGLED Type select when pmu_chgled_func=0,0:Type A，1：Type B
-----------------------------------------------------------------------------------
+;----------------------------------------------------------------------------------
 [pmu_para]
 pmu_used                 = 1
 pmu_twi_addr             = 0x34

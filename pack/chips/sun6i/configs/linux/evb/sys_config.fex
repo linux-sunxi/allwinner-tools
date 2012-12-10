@@ -84,26 +84,26 @@ pll10           = 297
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 240
+dram_clk        = 312
 dram_type       = 3
-dram_zq         = 0x0bb
-dram_odt_en     = 0
+dram_zq         = 0x17b
+dram_odt_en     = 0x1
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211
 dram_mr0        = 0x1A50
-dram_mr1        = 0
+dram_mr1        = 0x4
 dram_mr2        = 0x18
 dram_mr3        = 0
 dram_tpr0       = 0
 dram_tpr1       = 0x80000800
-dram_tpr2       = 0x46270140
-dram_tpr3       = 0xA0C4284C
-dram_tpr4       = 0x39c8c209
-dram_tpr5       = 0x694552AD
-dram_tpr6       = 0x3002c4a0
-dram_tpr7       = 0x2aaf9b
-dram_tpr8       = 0x604111d
-dram_tpr9       = 0x42da072
+dram_tpr2       = 0x39a70140
+dram_tpr3       = 0xa092e74c
+dram_tpr4       = 0x2948c209
+dram_tpr5       = 0x8944422c
+dram_tpr6       = 0x30028480
+dram_tpr7       = 0x2a3297
+dram_tpr8       = 0x5034fa8
+dram_tpr9       = 0x36353d8
 dram_tpr10      = 0
 dram_tpr11      = 0
 dram_tpr12      = 0
@@ -957,10 +957,10 @@ ir_rx               = port:PL04<2><1><default><default>
 ;pmu_IRQ_wakeup				       ---press IRQ wakeup or not when sleep or power down.0:not wakeup 1:wakeup
 ;pmu_hot_shutdowm            ---when PMU over temperature protect or not;0:disable 1:enable
 ;pmu_inshort								 ---ACIN and VBUS inshort or not by software;0:auto detect 1:inshort
---------------------------------------------------------------------------------------------------------
+;--------------------------------------------------------------------------------------------------------
 [pmu_para]
 pmu_used                   = 1
-pmu_twi_addr               = 0x34 
+pmu_twi_addr               = 0x34
 pmu_twi_id                 = 1
 pmu_irq_id                 = 0
 pmu_battery_rdc            = 100
@@ -977,7 +977,7 @@ pmu_init_adc_freq          = 800
 pmu_init_adcts_freq        = 800
 pmu_init_chg_pretime       = 70
 pmu_init_chg_csttime       = 720
-                           
+
 pmu_bat_para1              = 0
 pmu_bat_para2              = 0
 pmu_bat_para3              = 0
@@ -1010,13 +1010,13 @@ pmu_bat_para29             = 94
 pmu_bat_para30             = 96
 pmu_bat_para31             = 98
 pmu_bat_para32             = 100
-                           
+
 pmu_usbvol_limit           = 1
 pmu_usbcur_limit           = 0
 pmu_usbvol                 = 4400
 pmu_usbcur                 = 0
 pmu_usbvol_pc              = 4400
-pmu_usbcur_pc              = 0 
+pmu_usbcur_pc              = 0
 pmu_pwroff_vol             = 3300
 pmu_pwron_vol              = 2600
 dcdc1_vol                  = 3300

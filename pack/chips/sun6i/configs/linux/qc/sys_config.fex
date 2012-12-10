@@ -84,26 +84,26 @@ pll10           = 297
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 312
+dram_clk        = 240
 dram_type       = 3
-dram_zq         = 0x17b
-dram_odt_en     = 0x1
+dram_zq         = 0x0bb
+dram_odt_en     = 0
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211
 dram_mr0        = 0x1A50
-dram_mr1        = 0x4
+dram_mr1        = 0
 dram_mr2        = 0x18
 dram_mr3        = 0
 dram_tpr0       = 0
 dram_tpr1       = 0x80000800
-dram_tpr2       = 0x39a70140
-dram_tpr3       = 0xa092e74c
-dram_tpr4       = 0x2948c209
-dram_tpr5       = 0x8944422c
-dram_tpr6       = 0x30028480
-dram_tpr7       = 0x2a3297
-dram_tpr8       = 0x5034fa8
-dram_tpr9       = 0x36353d8
+dram_tpr2       = 0x46270140
+dram_tpr3       = 0xA0C4284C
+dram_tpr4       = 0x39c8c209
+dram_tpr5       = 0x694552AD
+dram_tpr6       = 0x3002c4a0
+dram_tpr7       = 0x2aaf9b
+dram_tpr8       = 0x604111d
+dram_tpr9       = 0x42da072
 dram_tpr10      = 0
 dram_tpr11      = 0
 dram_tpr12      = 0
@@ -893,3 +893,50 @@ pmu_ocv_cou_adjust_time  = 60
 pmu_chgled_func          = 0
 pmu_chgled_type          = A
 
+;----------------------------------------------------------------------------------
+; dvfs voltage-frequency table configuration
+;
+; max_freq: cpu maximum frequency, based on Hz, can not be more than 1008MHz
+; min_freq: cpu minimum frequency, based on Hz, can not be less than 60MHz
+;
+; LV_count: count of LV_freq/LV_volt, must be < 16
+;
+; LV1: core vdd is 1.20v if cpu frequency is (900Mhz,  1008Mhz]
+; LV2: core vdd is 1.20v if cpu frequency is (600Mhz,   900Mhz]
+; LV3: core vdd is 1.20v if cpu frequency is (420Mhz,   600Mhz]
+; LV4: core vdd is 1.20v if cpu frequency is (360Mhz,   420Mhz]
+; LV5: core vdd is 1.20v if cpu frequency is (300Mhz,   360Mhz]
+; LV6: core vdd is 1.20v if cpu frequency is (240Mhz,   300Mhz]
+; LV7: core vdd is 1.20v if cpu frequency is (120Mhz,   240Mhz]
+; LV8: core vdd is 1.20v if cpu frequency is (60Mhz,    120Mhz]
+;
+;----------------------------------------------------------------------------------
+[dvfs_table]
+max_freq = 1008000000
+min_freq = 60000000
+
+LV_count = 8
+
+LV1_freq = 900000000
+LV1_volt = 1200
+
+LV2_freq = 600000000
+LV2_volt = 1200
+
+LV3_freq = 420000000
+LV3_volt = 1200
+
+LV4_freq = 360000000
+LV4_volt = 1200
+
+LV5_freq = 300000000
+LV5_volt = 1200
+
+LV6_freq = 240000000
+LV6_volt = 1200
+
+LV7_freq = 120000000
+LV7_volt = 1200
+
+LV8_freq = 600000000
+LV8_volt = 1200

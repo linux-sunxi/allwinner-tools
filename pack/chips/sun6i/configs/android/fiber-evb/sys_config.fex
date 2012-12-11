@@ -16,6 +16,7 @@ eraseflag   = 1
 ;----------------------------------------------------------------------------------
 [target]
 boot_clock   	= 1008
+dcdc1_vol       = 3000
 dcdc2_vol		= 1100
 dcdc3_vol		= 1200
 storage_type    = -1
@@ -60,8 +61,8 @@ twi_sda         = port:PH15<2><default><default><default>
 
 [uart_para]
 uart_debug_port = 0
-uart_debug_tx   = port:PH20<2><default><default><default>
-uart_debug_rx   = port:PH21<2><default><default><default>
+uart_debug_tx   = port:PH20<2><1><default><default>
+uart_debug_rx   = port:PH21<2><1><default><default>
 
 [jtag_para]
 jtag_enable     = 1
@@ -1052,7 +1053,7 @@ pmu_usbvol_pc              = 4400
 pmu_usbcur_pc              = 900
 pmu_pwroff_vol             = 3300
 pmu_pwron_vol              = 2600
-dcdc1_vol                  = 3300
+dcdc1_vol                  = 3000
 dcdc2_vol                  = 1100
 dcdc3_vol                  = 1200
 dcdc4_vol                  = 1200

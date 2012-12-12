@@ -1060,5 +1060,5 @@ LV6_volt = 1200
 LV7_freq = 120000000
 LV7_volt = 1200
 
-LV8_freq = 600000000
+LV8_freq = 60000000
 LV8_volt = 1200

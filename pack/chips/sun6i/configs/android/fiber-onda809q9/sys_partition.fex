@@ -60,7 +60,7 @@ size = 16384
 ;------------------------------>mmcblk0p8/nande
 [partition]
 	name         = data
-    size         = 524288
+    size         = 2097152
 
 ;------------------------------>mmcblk0p9/nandf
 [partition]

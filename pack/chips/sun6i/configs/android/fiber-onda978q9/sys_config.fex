@@ -27,7 +27,7 @@ storage_type    = -1
 
 [power_sply]
 dcdc1_vol                  = 3000
-dcdc2_vol                  = 1100
+dcdc2_vol                  = 1200
 dcdc3_vol                  = 1200
 dcdc4_vol                  = 1200
 dcdc5_vol                  = 1500
@@ -731,7 +731,7 @@ smc_sda             =
 ;usb_drv_vbus_gpio：USB DRY_VBUS pin脚配置。具体请参考gpio配置说明。
 ;usb_det_vbus_gpio: "axp_ctrl",表示axp 提供
 ;usb_restrict_gpio  usb限流控制pin
-;usb_restric_flag:  usb限流标置 
+;usb_restric_flag:  usb限流标置
 ;--------------------------------
 ;--------------------------------
 ;---       USB0控制标志
@@ -755,8 +755,8 @@ usb_port_type       = 1
 usb_detect_type     = 0
 usb_id_gpio         =
 usb_det_vbus_gpio   =
-usb_drv_vbus_gpio   = 
-usb_restrict_gpio   = 
+usb_drv_vbus_gpio   =
+usb_restrict_gpio   =
 usb_host_init_state = 1
 usb_restric_flag    = 0
 
@@ -770,7 +770,7 @@ usb_detect_type     = 0
 usb_id_gpio         =
 usb_det_vbus_gpio   =
 usb_drv_vbus_gpio   =
-usb_restrict_gpio   = 
+usb_restrict_gpio   =
 usb_host_init_state = 1
 usb_restric_flag    = 0
 

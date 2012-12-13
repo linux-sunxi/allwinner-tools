@@ -127,6 +127,52 @@ dram_tpr13      = 0
 ;os life cycle para configuration
 ;----------------------------------------------------------------------------------
 
+;------------------------------------------------------------------------------;
+; 10/100/100Mbps Ethernet MAC Controller Configure                             ;
+;------------------------------------------------------------------------------;
+;   配置选项：                                                                 ;
+;   gmac_used  ---  1: gmac used, 0: not used                                  ;
+;------------------------------------------------------------------------------;
+;         MII  GMII  RGMII        MII  GMII  RGMII        MII  GMII  RGMII     ;
+;PA00~03  *     *      *    PA10        *      *    PA20   *    *      *       ;
+;   PA04        *         PA11~14  *    *      *    PA21   *    *              ;
+;   PA05        *           PA15        *           PA22   *    *              ;
+;   PA06        *           PA16        *           PA23   *    *              ;
+;   PA07        *           PA17        *           PA24   *    *              ;
+;   PA08  *     *           PA18        *           PA25        *      *       ;
+;   PA09  *     *      *    PA19   *    *      *  PA26~27  *    *      *       ;
+;------------------------------------------------------------------------------;
+[gmac_para]
+gmac_used          = 0
+gmac_txd0          = port:PA00<2><default><default><default>
+gmac_txd1          = port:PA01<2><default><default><default>
+gmac_txd2          = port:PA02<2><default><default><default>
+gmac_txd3          = port:PA03<2><default><default><default>
+gmac_txd4          = port:PA04<2><default><default><default>
+gmac_txd5          = port:PA05<2><default><default><default>
+gmac_txd6          = port:PA06<2><default><default><default>
+gmac_txd7          = port:PA07<2><default><default><default>
+gmac_txclk         = port:PA08<2><default><default><default>
+gmac_txen          = port:PA09<2><default><default><default>
+gmac_gtxclk        = port:PA10<2><default><default><default>
+gmac_rxd0          = port:PA11<2><default><default><default>
+gmac_rxd1          = port:PA12<2><default><default><default>
+gmac_rxd2          = port:PA13<2><default><default><default>
+gmac_rxd3          = port:PA14<2><default><default><default>
+gmac_rxd4          = port:PA15<2><default><default><default>
+gmac_rxd5          = port:PA16<2><default><default><default>
+gmac_rxd6          = port:PA17<2><default><default><default>
+gmac_rxd7          = port:PA18<2><default><default><default>
+gmac_rxdv          = port:PA19<2><default><default><default>
+gmac_rxclk         = port:PA20<2><default><default><default>
+gmac_txerr         = port:PA21<2><default><default><default>
+gmac_rxerr         = port:PA22<2><default><default><default>
+gmac_col           = port:PA23<2><default><default><default>
+gmac_crs           = port:PA24<2><default><default><default>
+gmac_clkin         = port:PA25<2><default><default><default>
+gmac_mdc           = port:PA26<2><default><default><default>
+gmac_mdio          = port:PA27<2><default><default><default>
+
 ;----------------------------------------------------------------------------------
 ;i2c configuration
 ;----------------------------------------------------------------------------------
@@ -419,29 +465,29 @@ lcd_vbp             = 30
 lcd_vt              = 806
 lcd_vspw            = 8
 lcd_lvds_if         = 0
-lcd_lvds_colordepth = 0
+lcd_lvds_colordepth = 1
 lcd_lvds_mode       = 0
 lcd_lvds_io_polarity= 0
-lcd_frm             = 0
+lcd_frm             = 1
 lcd_io_phase        = 0x0000
 
 deu_mode            = 0
 lcdgamma4iep        = 22
 
 lcd_bl_en           = port:PA25<1><0><default><1>
-lcd_power           = port:power2<1><0><default><1>
+lcd_power           = port:power1<1><0><default><1>
 lcd_pwm             = port:PH13<2><0><default><default>
 
-lcdd0               = port:PD00<3><0><default><default>
-lcdd1               = port:PD01<3><0><default><default>
-lcdd2               = port:PD02<3><0><default><default>
-lcdd3               = port:PD03<3><0><default><default>
-lcdd4               = port:PD04<3><0><default><default>
-lcdd5               = port:PD05<3><0><default><default>
-lcdd6               = port:PD06<3><0><default><default>
-lcdd7               = port:PD07<3><0><default><default>
-lcdd8               = port:PD08<3><0><default><default>
-lcdd9               = port:PD09<3><0><default><default>
+lcdd0               = port:PD00<3><0><3><default>
+lcdd1               = port:PD01<3><0><3><default>
+lcdd2               = port:PD02<3><0><3><default>
+lcdd3               = port:PD03<3><0><3><default>
+lcdd4               = port:PD04<3><0><3><default>
+lcdd5               = port:PD05<3><0><3><default>
+lcdd6               = port:PD06<3><0><3><default>
+lcdd7               = port:PD07<3><0><3><default>
+lcdd8               = port:PD08<3><0><3><default>
+lcdd9               = port:PD09<3><0><3><default>
 
 ;----------------------------------------------------------------------------------
 ;hdmi configuration
@@ -550,27 +596,35 @@ tvin_channel_num    =
 ;                4-manually insert and remove by /proc/driver/sunxi-mmc.x/insert|
 ;   sdc_buswidth: card bus width, 1-1bit, 4-4bit, 8-8bit                        |
 ;   sdc_use_wp: 1-with write protect IO, 0-no write protect IO                  |
+;   sdc_isio: for sdio card                                                     |
+;   sdc_regulator: power control.if card supports UHS-I/DDR and HS200 timing for|
+;                  SD3.0 or eMMC4.5, regulator must be configured. the value is |
+;                  the ldo name of AXP221, eg: sdc_regulator = "axp22_eldo2"    |
 ;   other: GPIO Mapping configuration                                           |
 ; ------------------------------------------------------------------------------|
 ;   Note:                                                                       |
 ;   1 if detmode=2, sdc_det's config=6                                          |
 ;     else if detmode=1, sdc_det's config=0                                     |
 ;     else sdc_det IO is not necessary                                          |
+;   2 if the customer wants to support UHS-I and HS200 features, he must provide|
+;     an independent power supply for the card. This is only used in platforms  |
+;     that supports SD3.0 cards and eMMC4.4+ flashes                            |
 ;--------------------------------------------------------------------------------
 [mmc0_para]
 sdc_used          = 1
 sdc_detmode       = 2
 sdc_buswidth      = 4
-sdc_clk           = port:PF02<2><1><default><default>
-sdc_cmd           = port:PF03<2><1><default><default>
-sdc_d0            = port:PF01<2><1><default><default>
-sdc_d1            = port:PF00<2><1><default><default>
-sdc_d2            = port:PF05<2><1><default><default>
-sdc_d3            = port:PF04<2><1><default><default>
-sdc_det           = port:PA08<6><1><default><default>
+sdc_clk           = port:PF02<2><1><2><default>
+sdc_cmd           = port:PF03<2><1><2><default>
+sdc_d0            = port:PF01<2><1><2><default>
+sdc_d1            = port:PF00<2><1><2><default>
+sdc_d2            = port:PF05<2><1><2><default>
+sdc_d3            = port:PF04<2><1><2><default>
+sdc_det           = port:PA08<6><1><2><default>
 sdc_use_wp        = 0
 sdc_wp            =
 sdc_isio          = 0
+sdc_regulator     = "none"
 
 [mmc1_para]
 sdc_used          = 0
@@ -586,41 +640,44 @@ sdc_det           =
 sdc_use_wp        = 0
 sdc_wp            =
 sdc_isio          = 1
+sdc_regulator     = "none"
 
 [mmc2_para]
 sdc_used          = 0
 sdc_detmode       = 3
 sdc_buswidth      = 8
-sdc_clk           = port:PC07<3><1><default><default>
-sdc_cmd           = port:PC06<3><1><default><default>
-sdc_d0            = port:PC08<3><1><default><default>
-sdc_d1            = port:PC09<3><1><default><default>
-sdc_d2            = port:PC10<3><1><default><default>
-sdc_d3            = port:PC11<3><1><default><default>
-sdc_d4            = port:PC12<3><1><default><default>
-sdc_d5            = port:PC13<3><1><default><default>
-sdc_d6            = port:PC14<3><1><default><default>
-sdc_d7            = port:PC15<3><1><default><default>
-emmc_rst          = port:PC24<3><1><default><default>
+sdc_clk           = port:PC07<3><1><2><default>
+sdc_cmd           = port:PC06<3><1><2><default>
+sdc_d0            = port:PC08<3><1><2><default>
+sdc_d1            = port:PC09<3><1><2><default>
+sdc_d2            = port:PC10<3><1><2><default>
+sdc_d3            = port:PC11<3><1><2><default>
+sdc_d4            = port:PC12<3><1><2><default>
+sdc_d5            = port:PC13<3><1><2><default>
+sdc_d6            = port:PC14<3><1><2><default>
+sdc_d7            = port:PC15<3><1><2><default>
+emmc_rst          = port:PC24<3><1><2><default>
 sdc_det           =
 sdc_use_wp        = 0
 sdc_wp            =
 sdc_isio          = 0
+sdc_regulator     = "none"
 
 [mmc3_para]
 sdc_used          = 0
 sdc_detmode       = 2
 sdc_buswidth      = 4
-sdc_clk           = port:PA10<2><1><default><default>
-sdc_cmd           = port:PA09<2><1><default><default>
-sdc_d0            = port:PA11<2><1><default><default>
-sdc_d1            = port:PA12<2><1><default><default>
-sdc_d2            = port:PA13<2><1><default><default>
-sdc_d3            = port:PA14<2><1><default><default>
+sdc_clk           = port:PA10<2><1><2><default>
+sdc_cmd           = port:PA09<2><1><2><default>
+sdc_d0            = port:PA11<2><1><2><default>
+sdc_d1            = port:PA12<2><1><2><default>
+sdc_d2            = port:PA13<2><1><2><default>
+sdc_d3            = port:PA14<2><1><2><default>
 sdc_det           =
 sdc_use_wp        = 0
 sdc_wp            =
 sdc_isio          = 0
+sdc_regulator     = "none"
 
 ; ------------------------------------------------------------------------------|
 ; sim card configuration
@@ -658,7 +715,7 @@ usb_detect_type     = 1
 usb_id_gpio         = port:PA15<0><1><default><default>
 usb_det_vbus_gpio   = port:PA14<0><0><default><default>
 usb_drv_vbus_gpio   = port:PA13<1><0><default><0>
-usb_restrict_gpio   = port:PH27<1><0><default><0>
+usb_restrict_gpio   = port:PA27<1><0><default><0>
 usb_host_init_state = 0
 usb_restric_flag    = 0
 ;--------------------------------
@@ -670,7 +727,7 @@ usb_port_type       = 1
 usb_detect_type     = 0
 usb_id_gpio         =
 usb_det_vbus_gpio   =
-usb_drv_vbus_gpio   = port:PA26<1><0><default><0>
+usb_drv_vbus_gpio   =
 usb_restrict_gpio   =
 usb_host_init_state = 1
 usb_restric_flag    = 0
@@ -705,7 +762,7 @@ serial_number       = "20080411"
 vendor_name         = "USB 2.0"
 product_name        = "USB Flash Driver"
 release             = 100
-luns                = 3
+luns                = 2
 
 ;--------------------------------------------------------------------------------
 ; G sensor configuration
@@ -728,25 +785,52 @@ gsensor_int2        =
 [gps_para]
 
 ;--------------------------------------------------------------------------------
-;sdio wifi configuration
-;wifi_sdc_id   	---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
+;wifi configuration
+;wifi_sdc_id    ---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
+;wifi_usbc_id  ---  0- USB0, 1- USB1, 2- USB2
+;wifi_mod_sel   ---  0- none, 1- bcm40181, 2- bcm40183(wifi+bt),
+;                    3 - rtl8723as(wifi+bt), 4- rtl8189es(SM89E00),
+;                    5 - rtl8192cu, 6 - rtl8188eu
 ;--------------------------------------------------------------------------------
-[sdio_wifi_para]
-sdio_wifi_used      = 1
-sdio_wifi_sdc_id    = 1
+[wifi_para]
+wifi_used          = 1
+wifi_sdc_id        = 1
+wifi_usbc_id       = 1
+wifi_mod_sel       = 6
 
-;for rtl8723es
-wl_enb              = port:PG10<1><default><default><0>
-bt_enb              = port:PG11<1><default><default><0>
-wl_host_wk          = port:PG12<1><default><default><0>
+; 1 - bcm40181 sdio wifi gpio config
+;bcm40181_vdd_en        = port:PG18<1><default><default><0>
+;bcm40181_vcc_en        = port:PG18<1><default><default><0>
+;bcm40181_shdn          = port:PG10<1><default><default><0>
+;bcm40181_host_wake     = port:PG12<0><default><default><0>
 
-;--------------------------------------------------------------------------------
-;usb wifi configuration
-;usb_wifi_id		---  0- USB0, 1- USB1, 2- USB2
-;--------------------------------------------------------------------------------
-[usb_wifi_para]
-usb_wifi_used		=
-usb_wifi_usbc_num	=
+; 2 - bcm40183 sdio wifi gpio config
+;bcm40183_vdd_en        = port:PG18<1><default><default><0>
+;bcm40183_vcc_en        = port:PG18<1><default><default><0>
+;bcm40183_wl_regon      = port:PG10<1><default><default><0>
+;bcm40183_wl_host_wake  = port:PG12<0><default><default><0>
+;bcm40183_bt_rst        = port:PG11<1><default><default><0>
+;bcm40183_bt_regon      = port:PG11<1><default><default><0>
+;bcm40183_bt_wake       = port:XXX<1><default><default><0>
+;bcm40183_bt_host_wake  = port:XXX<0><default><default><0>
+
+; 3 - rtl8723as sdio wifi + bt gpio config
+;rtk_rtl8723as_wl_dis       = port:PG10<1><default><default><0>
+;rtk_rtl8723as_bt_dis       = port:PG11<1><default><default><0>
+;rtk_rtl8723as_wl_host_wake = port:PG12<0><default><default><0>
+;rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
+
+; 4 - rtl8189es sdio wifi gpio config
+;rtl8189es_vdd_en       = port:PG18<1><default><default><0>
+;rtl8189es_vcc_en       = port:PG18<1><default><default><0>
+;rtl8189es_shdn         = port:PG10<1><default><default><0>
+;rtl8189es_wakeup       = port:PG12<1><default><default><1>
+
+; 5 - rtl8192cu usb wifi gpio config
+;rtl8192cu_power    = port:PH27<1><0><default><0>
+
+; 6 - rtl8188eu usb wifi gpio conifg
+;rtl8188eu_power    = port:PH27<1><0><default><0>
 
 ;--------------------------------------------------------------------------------
 ;3G configuration
@@ -755,13 +839,13 @@ usb_wifi_usbc_num	=
 3g_used   			= 0
 3g_usbc_num			= 2
 3g_uart_num			= 0
-bb_vbat             =
-bb_host_wake        =
-bb_on               =
-bb_pwr_on           =
-bb_wake             =
-bb_rf_dis           =
-bb_rst              =
+bb_vbat				= port:PL03<1><default><default><0>
+bb_host_wake        		= port:PM00<1><default><default><0>
+bb_on				= port:PM01<1><default><default><0>
+bb_pwr_on			= port:PM03<1><default><default><0>
+bb_wake				= port:PM04<1><default><default><0>
+bb_rf_dis			= port:PM05<1><default><default><0>
+bb_rst				= port:PM06<1><default><default><0>
 3g_int              =
 
 ;--------------------------------------------------------------------------------
@@ -838,8 +922,8 @@ audio_pa_ctrl       = port:PA18<1><default><default><0>
 ;ir --- infra remote configuration
 ;----------------------------------------------------------------------------------
 [ir_para]
-ir_used             =
-ir_rx               =
+ir_used             = 0
+ir_rx               = port:PL04<2><1><default><default>
 
 
 ;-------------------------------------------------------------------------------------

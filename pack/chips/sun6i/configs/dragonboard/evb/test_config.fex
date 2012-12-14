@@ -209,7 +209,7 @@ module_path = "/lib/modules/3.3.0/sun6i-ir.ko"
 ;------------------------------------------------------------------------------------
 [mic]
 display_name= "录音耳机"
-activated   = 0
+activated   = 0 
 program     = "mictester"
 category    = 1
 run_type    = 1

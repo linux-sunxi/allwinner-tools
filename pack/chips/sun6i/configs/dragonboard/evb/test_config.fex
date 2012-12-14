@@ -60,11 +60,11 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [wifi]
 display_name= "网络"
-activated   = 0
+activated   = 1
 program     = "wifitester.sh"
 category    = 0
 run_type    = 1
-module_path = "/system/vendor/modules/8192cu.ko"
+module_path = "/system/vendor/modules/8723as.ko"
 module_args = 
 
 ;-------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ device_name = "bma250"
 ;-------------------------------------------------------------------------------
 [nand]
 display_name= "闪存"
-activated   = 1
+activated   = 0
 program     = "nandtester.sh"
 category    = 0
 run_type    = 1
@@ -132,7 +132,7 @@ run_type    = 1
 
 [Usb_OTG]
 display_name= "USB_OTG"
-activated   = 1
+activated   = 0
 program     = "otgtester.sh"
 category    = 1
 run_type    = 1
@@ -209,7 +209,7 @@ module_path = "/lib/modules/3.3.0/sun6i-ir.ko"
 ;------------------------------------------------------------------------------------
 [mic]
 display_name= "录音耳机"
-activated   = 0 
+activated   = 1 
 program     = "mictester"
 category    = 1
 run_type    = 1
@@ -219,7 +219,7 @@ music_playtime =10
 music_file  = "/dragonboard/data/test48000.pcm"
 samplerate  = 48000
 mic1_used   = 1
-mic2_used   = 1
+mic2_used   = 0
 mic1_gain   = 1
 mic2_gain   = 1 
 mic1_threshold =16383

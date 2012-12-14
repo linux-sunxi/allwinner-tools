@@ -940,37 +940,37 @@ ir_rx               = port:PL04<2><1><default><default>
 ;pmu_battery_rdc             ---battery initial resistance
 ;pmu_battery_cap             ---battery capability,mAh
 ;pmu_batdeten		     ---battery detect en;0:disable 1:enable
-;pmu_runtime_chgcur          ---set initial charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
-;pmu_earlysuspend_chgcur     ---set earlysuspend charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
-;pmu_suspend_chgcur          ---set suspend charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
-;pmu_shutdown_chgcur         ---set shutdown charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
+;pmu_runtime_chgcur          ---set initial charging current limite,mA，300/450/600/750/900/1050/1200/1350/1500/1650/1800/1950/
+;pmu_earlysuspend_chgcur     ---set earlysuspend charging current limite,mA，300/450/600/750/900/1050/1200/1350/1500/1650/1800/1950/
+;pmu_suspend_chgcur          ---set suspend charging current limite,mA，300/450/600/750/900/1050/1200/1350/1500/1650/1800/1950/
+;pmu_shutdown_chgcur         ---set shutdown charging current limite,mA，300/450/600/750/900/1050/1200/1350/1500/1650/1800/1950/
 ;pmu_init_chgvol             ---set initial charing target voltage,mV,4100/4220/4200/4240
 ;pmu_init_chgend_rate        ---set initial charing end current  rate,10/15
-;pmu_init_chg_enabled        ---set initial charing enabled,0:关闭,1:打开
+;pmu_init_chg_enabled        ---set initial charing enabled,0:disable,1:enable
 ;pmu_init_adc_freq           ---set initial adc frequency,Hz,100/200/400/800
 ;pmu_init_adcts_freq         ---set initial adc TS,Hz,100/200/400/800
 ;pmu_init_chg_pretime        ---set initial pre-charging time,min,40/50/60/70
 ;pmu_init_chg_csttime        ---set initial constance-charging time,min,360/480/600/720
 ;pmu_batt_cap_correct	     ---correct the battery capacity or not when one charge cycle 0:not correct 1:correct
-;pmu_bat_para1 		     ---battery indication at 2.99V
-;pmu_bat_para2               ---battery indication at 3.13V
-;pmu_bat_para3               ---battery indication at 3.27V
-;pmu_bat_para4               ---battery indication at 3.34V
-;pmu_bat_para5               ---battery indication at 3.41V
-;pmu_bat_para6               ---battery indication at 3.48V
-;pmu_bat_para7               ---battery indication at 3.52V
-;pmu_bat_para8               ---battery indication at 3.55V
-;pmu_bat_para9               ---battery indication at 3.57V
-;pmu_bat_para10              ---battery indication at 3.59V
-;pmu_bat_para11              ---battery indication at 3.61V
-;pmu_bat_para12              ---battery indication at 3.63V
-;pmu_bat_para13              ---battery indication at 3.64V
-;pmu_bat_para14              ---battery indication at 3.66V
-;pmu_bat_para15              ---battery indication at 3.7V
-;pmu_bat_para16              ---battery indication at 3.73V
-;pmu_bat_para17              ---battery indication at 3.77V
-;pmu_bat_para18              ---battery indication at 3.78V
-;pmu_bat_para19              ---battery indication at 3.8V
+;pmu_bat_para1 		     			 ---battery indication at 3.13V
+;pmu_bat_para2               ---battery indication at 3.27V
+;pmu_bat_para3               ---battery indication at 3.34V
+;pmu_bat_para4               ---battery indication at 3.41V
+;pmu_bat_para5               ---battery indication at 3.48V
+;pmu_bat_para6               ---battery indication at 3.52V
+;pmu_bat_para7               ---battery indication at 3.55V
+;pmu_bat_para8               ---battery indication at 3.57V
+;pmu_bat_para9               ---battery indication at 3.59V
+;pmu_bat_para10              ---battery indication at 3.61V
+;pmu_bat_para11              ---battery indication at 3.63V
+;pmu_bat_para12              ---battery indication at 3.64V
+;pmu_bat_para13              ---battery indication at 3.66V
+;pmu_bat_para14              ---battery indication at 3.7V
+;pmu_bat_para15              ---battery indication at 3.73V
+;pmu_bat_para16              ---battery indication at 3.77V
+;pmu_bat_para17              ---battery indication at 3.78V
+;pmu_bat_para18              ---battery indication at 3.8V
+;pmu_bat_para19              ---battery indication at 3.82V
 ;pmu_bat_para20              ---battery indication at 3.84V
 ;pmu_bat_para21              ---battery indication at 3.85V
 ;pmu_bat_para22              ---battery indication at 3.87V
@@ -1038,15 +1038,15 @@ pmu_bat_para4              = 0
 pmu_bat_para5              = 0
 pmu_bat_para6              = 0
 pmu_bat_para7              = 0
-pmu_bat_para8              = 5
-pmu_bat_para9              = 7
+pmu_bat_para8              = 2
+pmu_bat_para9              = 5
 pmu_bat_para10             = 8
 pmu_bat_para11             = 9
 pmu_bat_para12             = 10
 pmu_bat_para13             = 13
 pmu_bat_para14             = 16
-pmu_bat_para15             = 26
-pmu_bat_para16             = 36
+pmu_bat_para15             = 20
+pmu_bat_para16             = 33
 pmu_bat_para17             = 41
 pmu_bat_para18             = 46
 pmu_bat_para19             = 50

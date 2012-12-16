@@ -9,7 +9,7 @@ version = "100"
 machine = "evb"
 
 [platform]
-eraseflag   = 0
+eraseflag   = 1
 ;----------------------------------------------------------------------------------
 ;   system configuration
 ;   ?

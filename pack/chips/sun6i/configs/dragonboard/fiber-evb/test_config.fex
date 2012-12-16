@@ -116,19 +116,6 @@ program     = "udisktester.sh"
 category    = 1
 run_type    = 1
 
-[Usb_HOST1]
-display_name= "USB主机1"
-activated   = 0
-program     = "host1tester.sh"
-category    = 1
-run_type    = 1
-
-[Usb_HOST2]
-display_name= "USB主机2"
-activated   = 0
-program     = "host2tester.sh"
-category    = 1
-run_type    = 1
 
 [Usb_OTG]
 display_name= "USB_OTG"

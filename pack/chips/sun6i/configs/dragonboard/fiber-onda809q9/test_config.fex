@@ -111,22 +111,8 @@ run_type    = 1
 
 [udisk]
 display_name= "U盘"
-activated   = 1
+activated   = 0
 program     = "udisktester.sh"
-category    = 1
-run_type    = 1
-
-[Usb_HOST1]
-display_name= "USB主机1"
-activated   = 0
-program     = "host1tester.sh"
-category    = 1
-run_type    = 1
-
-[Usb_HOST2]
-display_name= "USB主机2"
-activated   = 0
-program     = "host2tester.sh"
 category    = 1
 run_type    = 1
 
@@ -182,7 +168,7 @@ module_path = "/lib/modules/3.3.0/sw-keyboard.ko"
 ;-------------------------------------------------------------------------------
 [ir]
 display_name= "红外"
-activated   = 1
+activated   = 0
 program     = "irtester"
 category    = 1
 run_type    = 1

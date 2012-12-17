@@ -812,6 +812,7 @@ wifi_sdc_id        = 1
 wifi_usbc_id       = 1
 wifi_usbc_type     = 1
 wifi_mod_sel       = 3
+wifi_power         = "axp22_aldo1"
 
 ; 1 - bcm40181 sdio wifi gpio config
 ;bcm40181_shdn          = port:PG10<1><default><default><0>

@@ -794,6 +794,7 @@ gsensor_int2        =
 ;wifi configuration
 ;wifi_sdc_id    ---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
 ;wifi_usbc_id  ---  0- USB0, 1- USB1, 2- USB2
+;wifi_usbc_type --  1- EHCI(speed 2.0), 2- OHCI(speed 1.0)
 ;wifi_mod_sel   ---  0- none, 1- bcm40181, 2- bcm40183(wifi+bt),
 ;                    3 - rtl8723as(wifi+bt), 4- rtl8189es(SM89E00),
 ;                    5 - rtl8192cu, 6 - rtl8188eu
@@ -802,23 +803,21 @@ gsensor_int2        =
 wifi_used          = 1
 wifi_sdc_id        = 1
 wifi_usbc_id       = 1
+wifi_usbc_type     = 1
 wifi_mod_sel       = 6
+wifi_power         = "axp22_aldo1"
 
 ; 1 - bcm40181 sdio wifi gpio config
-;bcm40181_vdd_en        = port:PG18<1><default><default><0>
-;bcm40181_vcc_en        = port:PG18<1><default><default><0>
 ;bcm40181_shdn          = port:PG10<1><default><default><0>
 ;bcm40181_host_wake     = port:PG12<0><default><default><0>
 
 ; 2 - bcm40183 sdio wifi gpio config
-;bcm40183_vdd_en        = port:PG18<1><default><default><0>
-;bcm40183_vcc_en        = port:PG18<1><default><default><0>
 ;bcm40183_wl_regon      = port:PG10<1><default><default><0>
 ;bcm40183_wl_host_wake  = port:PG12<0><default><default><0>
 ;bcm40183_bt_rst        = port:PG11<1><default><default><0>
 ;bcm40183_bt_regon      = port:PG11<1><default><default><0>
-;bcm40183_bt_wake       = port:XXX<1><default><default><0>
-;bcm40183_bt_host_wake  = port:XXX<0><default><default><0>
+;bcm40183_bt_wake       = port:PG17<1><default><default><0>
+;bcm40183_bt_host_wake  = port:PG18<0><default><default><0>
 
 ; 3 - rtl8723as sdio wifi + bt gpio config
 ;rtk_rtl8723as_wl_dis       = port:PG10<1><default><default><0>
@@ -827,16 +826,8 @@ wifi_mod_sel       = 6
 ;rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
 
 ; 4 - rtl8189es sdio wifi gpio config
-;rtl8189es_vdd_en       = port:PG18<1><default><default><0>
-;rtl8189es_vcc_en       = port:PG18<1><default><default><0>
 ;rtl8189es_shdn         = port:PG10<1><default><default><0>
 ;rtl8189es_wakeup       = port:PG12<1><default><default><1>
-
-; 5 - rtl8192cu usb wifi gpio config
-;rtl8192cu_power    = port:PH27<1><0><default><0>
-
-; 6 - rtl8188eu usb wifi gpio conifg
-;rtl8188eu_power    = port:PH27<1><0><default><0>
 
 ;--------------------------------------------------------------------------------
 ;3G configuration

@@ -729,7 +729,7 @@ usb_id_gpio         =
 usb_det_vbus_gpio   =
 usb_drv_vbus_gpio   =
 usb_restrict_gpio   =
-usb_host_init_state = 1
+usb_host_init_state = 0
 usb_restric_flag    = 0
 
 ;--------------------------------

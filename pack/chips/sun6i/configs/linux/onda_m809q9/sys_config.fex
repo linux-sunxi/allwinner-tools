@@ -1012,7 +1012,7 @@ pmu_irq_id                 = 0
 pmu_battery_rdc            = 100
 pmu_battery_cap            = 0
 pmu_batdeten               = 1
-pmu_runtime_chgcur         = 600
+pmu_runtime_chgcur         = 900
 pmu_earlysuspend_chgcur    = 900
 pmu_suspend_chgcur         = 1500
 pmu_shutdown_chgcur        = 1500
@@ -1060,7 +1060,7 @@ pmu_bat_para32             = 100
 
 pmu_usbvol_limit           = 0
 pmu_usbcur_limit           = 0
-pmu_usbvol                 = 4400
+pmu_usbvol                 = 4000
 pmu_usbcur                 = 0
 pmu_usbvol_pc              = 4400
 pmu_usbcur_pc              = 900
@@ -1093,14 +1093,14 @@ power_start                = 0
 ;
 ; LV_count: count of LV_freq/LV_volt, must be < 16
 ;
-; LV1: core vdd is 1.20v if cpu frequency is (900Mhz,  1008Mhz]
-; LV2: core vdd is 1.20v if cpu frequency is (600Mhz,   900Mhz]
-; LV3: core vdd is 1.20v if cpu frequency is (420Mhz,   600Mhz]
-; LV4: core vdd is 1.20v if cpu frequency is (360Mhz,   420Mhz]
-; LV5: core vdd is 1.20v if cpu frequency is (300Mhz,   360Mhz]
-; LV6: core vdd is 1.20v if cpu frequency is (240Mhz,   300Mhz]
-; LV7: core vdd is 1.20v if cpu frequency is (120Mhz,   240Mhz]
-; LV8: core vdd is 1.20v if cpu frequency is (60Mhz,    120Mhz]
+; LV1: core vdd is 1.26v if cpu frequency is (1104Mhz,  xxxxMhz]
+; LV2: core vdd is 1.26v if cpu frequency is (1056Mhz,  1104Mhz]
+; LV3: core vdd is 1.20v if cpu frequency is (912Mhz,   1056Mhz]
+; LV4: core vdd is 1.10v if cpu frequency is (720Mhz,   912Mhz]
+; LV5: core vdd is 1.00v if cpu frequency is (480Mhz,   720Mhz]
+; LV6: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
+; LV7: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
+; LV8: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
 ;
 ;----------------------------------------------------------------------------------
 [dvfs_table]
@@ -1109,26 +1109,26 @@ min_freq = 60000000
 
 LV_count = 8
 
-LV1_freq = 900000000
-LV1_volt = 1200
+LV1_freq = 1104000000
+LV1_volt = 1260
 
-LV2_freq = 600000000
+LV2_freq = 1056000000
 LV2_volt = 1200
 
-LV3_freq = 420000000
-LV3_volt = 1200
+LV3_freq = 912000000
+LV3_volt = 1100
 
-LV4_freq = 360000000
-LV4_volt = 1200
+LV4_freq = 720000000
+LV4_volt = 1000
 
-LV5_freq = 300000000
-LV5_volt = 1200
+LV5_freq = 480000000
+LV5_volt = 900
 
-LV6_freq = 240000000
-LV6_volt = 1200
+LV6_freq = 0
+LV6_volt = 900
 
-LV7_freq = 120000000
-LV7_volt = 1200
+LV7_freq = 0
+LV7_volt = 900
 
-LV8_freq = 60000000
-LV8_volt = 1200
+LV8_freq = 0
+LV8_volt = 900

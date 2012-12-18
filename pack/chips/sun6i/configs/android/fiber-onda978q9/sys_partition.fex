@@ -80,3 +80,7 @@ size = 16384
 [partition]
     name         = databk
     size         = 262144
+;------------------------------>nandj, UDISK
+[partition]
+    name         = UDISK
+    downloadfile = "diskfs.fex"

@@ -85,13 +85,11 @@ jtag_do         = port:PH11<3><default><default><default>
 jtag_di         = port:PH12<3><default><default><default>
 
 [clock]
-pll3            = 297
 pll4            = 300
 pll6            = 600
-pll7            = 297
 pll8            = 360
 pll9            = 297
-pll10           = 297
+pll10           = 264
 
 ;*****************************************************************************
 ;sdram configuration
@@ -408,8 +406,8 @@ fb1_scaler_mode_enable   = 0
 fb1_width                = 0
 fb1_height               = 0
 
-lcd0_backlight           = 197
-lcd1_backlight           = 197
+lcd0_backlight           = 50
+lcd1_backlight           = 50
 
 lcd0_bright              = 50
 lcd0_contrast            = 50

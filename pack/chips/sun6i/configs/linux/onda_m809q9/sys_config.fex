@@ -717,7 +717,9 @@ usb_det_vbus_gpio   = port:PA14<0><0><default><default>
 usb_drv_vbus_gpio   = port:PA13<1><0><default><0>
 usb_restrict_gpio   = port:PA27<1><0><default><0>
 usb_host_init_state = 0
-usb_restric_flag    = 0
+usb_restric_flag    = 1
+usb_restric_voltage = 3550000
+usb_restric_capacity= 5
 ;--------------------------------
 ;---       USB1控制标志
 ;--------------------------------

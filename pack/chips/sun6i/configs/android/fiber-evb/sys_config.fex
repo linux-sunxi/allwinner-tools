@@ -98,7 +98,7 @@ pll10           = 264
 [dram_para]
 dram_clk        = 240
 dram_type       = 3
-dram_zq         = 0x17b
+dram_zq         = 0xfb
 dram_odt_en     = 0
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211

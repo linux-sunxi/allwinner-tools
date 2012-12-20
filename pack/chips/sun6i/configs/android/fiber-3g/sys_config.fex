@@ -940,7 +940,7 @@ pcm_din             = port:PG15<3><1><default><default>
 [spdif_para]
 spdif_used          = 1
 spdif_dout          = port:PH28<3><1><default><default>
-spdif_din           =
+spdif_din           = port:PH27<3><1><default><default>
 
 [audio_para]
 audio_used          = 1

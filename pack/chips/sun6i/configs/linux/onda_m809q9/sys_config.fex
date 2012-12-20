@@ -10,6 +10,11 @@ machine = "onda_m809q9"
 
 [platform]
 eraseflag   = 1
+
+[fel_key]
+fel_key_max = 63
+fel_key_min = 1
+
 ;----------------------------------------------------------------------------------
 ;   system configuration
 ;   ?
@@ -96,7 +101,7 @@ pll10           = 264
 ;
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 240
+dram_clk        = 312
 dram_type       = 3
 dram_zq         = 0x17b
 dram_odt_en     = 0

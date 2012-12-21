@@ -132,6 +132,15 @@ do_pack_crane()
 	    cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
 	    TX=`awk  '$0~"a31"{print $2}' pctools/linux/card_debug_pin`
 	    RX=`awk  '$0~"a31"{print $3}' pctools/linux/card_debug_pin`
+	    MS=`awk  '$0~"a31"{print $4}' pctools/linux/card_debug_pin`
+	    CK=`awk  '$0~"a31"{print $5}' pctools/linux/card_debug_pin`
+	    DO=`awk  '$0~"a31"{print $6}' pctools/linux/card_debug_pin`
+	    DI=`awk  '$0~"a31"{print $7}' pctools/linux/card_debug_pin`
+
+	    sed -i s'/jtag_ms = /jtag_ms = '$MS'/g' out/awk_debug_card0
+	    sed -i s'/jtag_ck = /jtag_ck = '$CK'/g' out/awk_debug_card0
+	    sed -i s'/jtag_do = /jtag_do = '$DO'/g' out/awk_debug_card0
+	    sed -i s'/jtag_di = /jtag_di = '$DI'/g' out/awk_debug_card0
 	    sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
 	    sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
 	    sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0

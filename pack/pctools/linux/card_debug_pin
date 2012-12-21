@@ -1,2 +1,2 @@
-board    tx						rx					 NO.
-a31      port:PF2<4><1><1>		port:PF4<4><1><1>	1
+board    tx						rx					jtag_ms 	jtag_ck		jtag_do 	jtag_di 			NO.
+a31      port:PF2<4><1><1>		port:PF4<4><1><1>	port:PF0<4>	port:PF1<4>	port:PF3<4>	port:PF5<4>			1

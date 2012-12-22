@@ -12,8 +12,7 @@ machine = "onda_m809q9"
 eraseflag   = 0
 
 [fel_key]
-fel_key_max = 63
-fel_key_min = 1
+fel_key_type = 1
 
 ;----------------------------------------------------------------------------------
 ;   system configuration
@@ -1138,4 +1137,3 @@ LV7_volt = 1000
 
 LV8_freq = 0
 LV8_volt = 1000
-

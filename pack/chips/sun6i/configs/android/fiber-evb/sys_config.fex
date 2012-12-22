@@ -418,8 +418,8 @@ fb1_scaler_mode_enable   = 0
 fb1_width                = 0
 fb1_height               = 0
 
-lcd0_backlight           = 197
-lcd1_backlight           = 197
+lcd0_backlight           = 50
+lcd1_backlight           = 50
 
 lcd0_bright              = 50
 lcd0_contrast            = 50

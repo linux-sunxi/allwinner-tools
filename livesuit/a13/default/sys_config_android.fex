@@ -1,0 +1,187 @@
+;---------------------------------------------------------------------------------------------------------
+; 说明： 脚本中的字符串区分大小写，用户可以修改"="后面的数值，但是不要修改前面的字符串
+;---------------------------------------------------------------------------------------------------------
+
+[platform]
+chip=0x02000000
+pid =0x02000000
+sid =0x02000100
+bid =0x80
+
+eraseflag   = 1
+jtag        = 1
+
+[fex_misc]
+restore = 0
+
+;------------------------------------------------------------------------------------------
+;                                      系统配置
+;------------------------------------------------------------------------------------------
+
+
+
+
+;--------------------------------------------------------------------------------------------------
+;                                   固件下载参数配置
+;--------------------------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------------------
+;										分区配置管理
+;-----------------------------------------------------------------------------------------
+;****************************************************
+;    mbr的大小, 以Kbyte为单位
+;****************************************************
+[mbr]
+size = 16384
+
+;********************************************************************************************************
+;                                              分区配置
+;
+;  [part_num]
+;      num     = 2              ; //有2个分区
+;      part0   = partiton0      ; //part0的信息存放在partiton0里
+;      parti   = partitoni      ; //parti的信息存放在partitoni里
+;
+;  partition 定义范例:
+;    [partition2]               ; //第2个分区
+;    class_name  = DISK         ; //设备类名, 如："DISK"。
+;    name        = USERFS2      ; //设备节点名.
+;    size_hi     = 0            ; //分区大小的高32位, 单位: Kbyte.
+;    size_lo     = 32           ; //分区大小的低32位, 单位: Kbyte.
+;
+; 注：1、name唯一, 不允许同名
+;     2、class_name和name最大12个字符
+;     3、size_hi + size_lo = 0, 表示此分区不存在
+;     4、为了安全和效率考虑，分区大小最好保证为16M字节的整数倍
+;********************************************************************************************************
+[part_num]
+num     = 8
+
+;------------------------------>nanda, known as bootfs before, includes boot.axf u-boot.bin etc...
+[partition0]
+    class_name  = DISK
+    name        = bootloader
+    size_hi     = 0
+    size_lo     = 16384
+    user_type   = 0
+    ro          = 0
+
+;------------------------------>nandb, enviroment for u-boot
+[partition1]
+    class_name  = DISK
+    name        = env
+    size_hi     = 0
+    size_lo     = 16384
+    user_type   = 0
+    ro          = 0
+
+;------------------------------>nandc, kernel and ramdisk
+[partition2]
+    class_name  = DISK
+    name        = boot
+    size_hi     = 0
+    size_lo     = 32768
+    user_type   = 0
+    ro          = 0
+
+;------------------------------>nandd, android real rootfs
+[partition3]
+    class_name  = DISK
+    name        = system
+    size_hi     = 0
+    size_lo     = 524288
+    user_type   = 0
+    ro          = 0
+
+;------------------------------>nande, user data
+[partition4]
+    class_name  = DISK
+    name        = data
+    size_hi     = 0
+    size_lo     = 262144
+    user_type   = 1
+    ro          = 0
+
+;------------------------------>nandf, misc
+[partition5]
+    class_name  = DISK
+    name        = misc
+    size_hi     = 0
+    size_lo     = 16384
+    user_type   = 0
+    ro          = 0
+
+;------------------------------>nandg, for recovery
+[partition6]
+    class_name  = DISK
+    name        = recovery
+    size_hi     = 0
+    size_lo     = 32768
+    user_type   = 0
+    ro          = 0
+
+;------------------------------>nandh, android app cache
+[partition7]
+    class_name  = DISK
+    name        = cache
+    size_hi     = 0
+    size_lo     = 131072
+    user_type   = 0
+    ro          = 0
+
+;********************************************************************************************************************
+;                     固件包下载位置 ： 把某个固件包下载到指定分区, 下载次数最大为7次
+;
+;[downloadi]                                //固件包0下载位置
+;    part_name      = SYSDATAFS             //分区名
+;    pkt_name       = ROOTFS_000000000      //固件包名称
+;    verify_file    = VERIFY_000000000      //校验文件名称
+;
+; 注：1、 downloadi 表示第i次下载固件, download 唯一, 请不要随意修改
+;     2、 part_num 为分区号, 即固件下载的位置
+;     3、 pkt_name 固件包名称. 最大长度为16byte, 且名称固定. 可参考"..\\ePDK\workspace\suni\liveclick\image.cfg"
+;     4、 verify_file 为校验文件名称. 可参考"..\\ePDK\workspace\suni\liveclick\image.cfg"
+;     5、 pkt_name 内容不填, 表示本次下载取消.  verify_file内容不填, 表示不需要校验.
+;
+; 如：要把固件包zdisk.img, 下载在到SYSDATAFS分区里。其配置为：
+; [download0]
+;      part_name   = SYSDATAFS
+;      pkt_name     = ROOTFS_000000000
+;      verify_file  = VERIFY_000000000
+;********************************************************************************************************************
+[down_num]
+down_num    = 6
+
+[download0]
+part_name   = bootloader
+pkt_name    = BOOTLOADER_00000
+encrypt     = 0
+verify_file = VBOOTLOADER_0000
+
+[download1]
+part_name   = env
+pkt_name    = ENVIROMENT_00000
+encrypt     = 0
+verify_file = VENVIROMENT_0000
+
+[download2]
+part_name   = boot
+pkt_name    = BOOT_00000000000
+encrypt     = 0
+verify_file = VBOOT_0000000000
+
+[download3]
+part_name   = system
+pkt_name    = SYSTEM_000000000
+encrypt     = 0
+verify_file = VSYSTEMFS_000000
+
+[download4]
+part_name   = recovery
+pkt_name    = RECOVERY_0000000
+encrypt     = 0
+verify_file = VRECOVERYFS_0000
+
+[download5]
+part_name   = UDISK
+pkt_name    = DISKFS_000000000
+encrypt     = 0

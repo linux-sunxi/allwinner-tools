@@ -886,7 +886,7 @@ compass_int         = port:PA11<6><1><default><default>
 ;bt_uard_id			---- uart index
 ;--------------------------------------------------------------------------------
 [bt_para]
-bt_used             =
+bt_used             = 1
 bt_uart_id          =
 bt_wakeup           =
 bt_gpio             =

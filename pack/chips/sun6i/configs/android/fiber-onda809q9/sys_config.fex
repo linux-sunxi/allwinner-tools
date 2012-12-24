@@ -1094,7 +1094,7 @@ power_start                = 0
 ; dvfs voltage-frequency table configuration
 ;
 ; max_freq: cpu maximum frequency, based on Hz, can not be more than 1008MHz
-; min_freq: cpu minimum frequency, based on Hz, can not be less than 60MHz
+; min_freq: cpu minimum frequency, based on Hz, can not be less than 96MHz
 ;
 ; LV_count: count of LV_freq/LV_volt, must be < 16
 ;
@@ -1110,7 +1110,7 @@ power_start                = 0
 ;----------------------------------------------------------------------------------
 [dvfs_table]
 max_freq = 1008000000
-min_freq = 60000000
+min_freq = 96000000
 
 LV_count = 8
 

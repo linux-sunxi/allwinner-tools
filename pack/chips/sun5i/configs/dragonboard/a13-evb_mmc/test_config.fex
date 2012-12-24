@@ -42,6 +42,7 @@ activated   = 1
 program     = "memtester.sh"
 category    = 0
 run_type    = 1
+dram_size   = 512
 test_size   = 8
 
 [rtc]

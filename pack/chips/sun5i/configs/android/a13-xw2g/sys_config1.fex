@@ -170,8 +170,8 @@ uart_rx                  = port:PF4<4><1><default><default>
 uart_used = 1
 uart_port = 3
 uart_type = 2
-uart_tx = port:PG09<4><1><default><default>
-uart_rx = port:PG10<4><1><default><default>
+uart_tx = port:PG09<3><1><default><default>
+uart_rx = port:PG10<3><1><default><default>
 ;spi configuration
 ;----------------------------------------------------------------------------------
 [spi1_para]
@@ -250,9 +250,16 @@ gslX680_ctp_revert_y_flag = 0
 gslX680_ctp_exchange_x_y_flag = 0
 
 [2g_para]
-power_on = port:PG12<1><default><default><default>
-power_en = port:PG11<1><default><default><default>
-2g_int_port=port:PG00<6><default><default><default>
+2g_used			= 1
+2g_usbc_num		= 0
+2g_usbc_type    = 0
+2g_uart_num		= 3
+bb_name			= "em55"
+bb_vbat			= port:PG12<1><default><default><0>
+bb_host_wake   	= port:PG00<6><default><default><0>
+bb_pwr_on		= port:PG11<1><default><default><1>
+bb_wake			= port:PV00<1><default><default><0>
+bb_rst			= port:PV02<1><default><default><1> 
 
 [switch_para]
 switch_used               = 1
@@ -271,8 +278,8 @@ tkey_int                 =
 ;motor configuration
 ;----------------------------------------------------------------------------------
 [motor_para]
-motor_used               = 0
-motor_shake              =
+motor_used               = 1
+motor_shake              =port:PV03<1><default><default><0> 
 
 ;----------------------------------------------------------------------------------
 ;disp init configuration
@@ -874,7 +881,7 @@ spdif_din                =
 audio_used               = 1
 capture_used		 = 1
 audio_lr_change      	 = 0
-audio_pa_ctrl            = port:PG10<1><default><default><0>
+;audio_pa_ctrl            = port:PG10<1><default><default><0>
 audio_earphone_ctrl				= port:power02<1><default><default><0>
 
 ;----------------------------------------------------------------------------------

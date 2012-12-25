@@ -1118,26 +1118,25 @@ min_freq = 96000000
 LV_count = 8
 
 LV1_freq = 1104000000
-LV1_volt = 1260
+LV1_volt = 1300
 
 LV2_freq = 1056000000
-LV2_volt = 1200
+LV2_volt = 1260
 
 LV3_freq = 912000000
-LV3_volt = 1100
+LV3_volt = 1200
 
 LV4_freq = 720000000
-LV4_volt = 1000
+LV4_volt = 1100
 
 LV5_freq = 480000000
-LV5_volt = 900
+LV5_volt = 1000
 
 LV6_freq = 0
-LV6_volt = 900
+LV6_volt = 1000
 
 LV7_freq = 0
-LV7_volt = 900
+LV7_volt = 1000
 
 LV8_freq = 0
-LV8_volt = 900
-
+LV8_volt = 1000

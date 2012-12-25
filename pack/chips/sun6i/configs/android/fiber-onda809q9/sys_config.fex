@@ -303,6 +303,7 @@ spi_cs1        = port:PA25<4><default><default><default>
 ;----------------------------------------------------------------------------------
 [ctp_para]
 ctp_used            = 1
+ctp_name            = "gsl2680"
 ctp_twi_id          = 1
 ctp_twi_addr        = 0x40
 ctp_screen_max_x    = 1024

@@ -87,3 +87,5 @@ size = 16384
 [partition]
     name         = UDISK
     downloadfile = "diskfs.fex"
+    verify       = 0
+

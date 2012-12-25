@@ -942,7 +942,7 @@ spdif_din           = port:PH27<3><1><default><default>
 ;cap_val:0x0--0db,0x1--24db,0x2--27db,0x3--30db,0x4--33db,0x5--36db,0x6--39db,0x7--42db
 [audio_para]
 audio_used          = 1
-pa_vol				= 0x1b
+pa_vol				= 0x17
 cap_vol				= 0x5
 audio_pa_ctrl       = port:PA18<1><default><default><0>
 

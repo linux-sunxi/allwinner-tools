@@ -55,12 +55,14 @@ size = 16384
 [partition]
     name         = system
     size         = 1048576
+    user_type    = 2
     downloadfile = "system.fex"
 
 ;------------------------------>mmcblk0p8/nande
 [partition]
 	name         = data
-    size         = 2097152
+    size         = 4194304
+    user_type    = 2
 
 ;------------------------------>mmcblk0p9/nandf
 [partition]
@@ -76,6 +78,7 @@ size = 16384
 [partition]
     name         = cache
     size         = 262144
+    user_type    = 2
 ;------------------------------>nandi, data image backup
 [partition]
     name         = databk

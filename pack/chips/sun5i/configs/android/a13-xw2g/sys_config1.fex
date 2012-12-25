@@ -248,6 +248,18 @@ gslX680_update_file_path = "system/etc/gt811.cfg"
 gslX680_ctp_revert_x_flag = 0
 gslX680_ctp_revert_y_flag = 0
 gslX680_ctp_exchange_x_y_flag = 0
+;--------------------------------------------------------------------------------
+; CTP automatic detection configuration
+;ctp_detect_used  --- Whether startup automatic inspection function. 1:used,0:unused
+;Module name postposition 1 said detection, 0 means no detection. 
+;--------------------------------------------------------------------------------
+[ctp_list_para]
+ctp_det_used              = 0
+ft5x_ts                   = 1
+gt82x                     = 0
+gt818_ts                  = 1
+gt811_ts                  = 0
+zet6221                   = 1
 
 [2g_para]
 power_on = port:PG12<1><default><default><default>
@@ -737,6 +749,22 @@ gsensor_twi_id           = 1
 gsensor_twi_addr         = 0x1c
 gsensor_int1             =
 gsensor_int2             =
+;--------------------------------------------------------------------------------
+; G sensor automatic detection configuration
+;gsensor_detect_used  --- Whether startup automatic inspection function. 1:used,0:unused
+;Module name postposition 1 said detection, 0 means no detection. 
+;--------------------------------------------------------------------------------
+[gsensor_list_para]
+gsensor_det_used          = 1
+bma250                    = 1
+mma7660                   = 1
+dmard06                   = 1
+mma8452                   = 1
+kxtik                     = 0
+mxc622x                   = 1
+afa750                    = 1
+mma865x                   = 0
+lis3dh                    = 0
 
 ;--------------------------------------------------------------------------------
 ; gps gpio configuration

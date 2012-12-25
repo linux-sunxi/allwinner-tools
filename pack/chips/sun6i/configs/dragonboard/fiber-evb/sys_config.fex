@@ -1099,14 +1099,14 @@ power_start                = 0
 ; dvfs voltage-frequency table configuration
 ;
 ; max_freq: cpu maximum frequency, based on Hz, can not be more than 1008MHz
-; min_freq: cpu minimum frequency, based on Hz, can not be less than 60MHz
+; min_freq: cpu minimum frequency, based on Hz, can not be less than 96MHz
 ;
 ; LV_count: count of LV_freq/LV_volt, must be < 16
 ;
 ; LV1: core vdd is 1.26v if cpu frequency is (1104Mhz,  xxxxMhz]
 ; LV2: core vdd is 1.26v if cpu frequency is (1056Mhz,  1104Mhz]
-; LV3: core vdd is 1.20v if cpu frequency is (912Mhz,   1056Mhz]
-; LV4: core vdd is 1.10v if cpu frequency is (720Mhz,   912Mhz]
+; LV3: core vdd is 1.20v if cpu frequency is (864Mhz,   1056Mhz]
+; LV4: core vdd is 1.10v if cpu frequency is (720Mhz,   864Mhz]
 ; LV5: core vdd is 1.00v if cpu frequency is (480Mhz,   720Mhz]
 ; LV6: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
 ; LV7: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
@@ -1115,31 +1115,31 @@ power_start                = 0
 ;----------------------------------------------------------------------------------
 [dvfs_table]
 max_freq = 1008000000
-min_freq = 60000000
+min_freq = 384000000
 
 LV_count = 8
 
 LV1_freq = 1104000000
-LV1_volt = 1260
+LV1_volt = 1300
 
 LV2_freq = 1056000000
-LV2_volt = 1200
+LV2_volt = 1260
 
-LV3_freq = 912000000
-LV3_volt = 1100
+LV3_freq = 864000000
+LV3_volt = 1200
 
 LV4_freq = 720000000
-LV4_volt = 1000
+LV4_volt = 1100
 
 LV5_freq = 480000000
-LV5_volt = 900
+LV5_volt = 1000
 
 LV6_freq = 0
-LV6_volt = 900
+LV6_volt = 1000
 
 LV7_freq = 0
-LV7_volt = 900
+LV7_volt = 1000
 
 LV8_freq = 0
-LV8_volt = 900
+LV8_volt = 1000
 

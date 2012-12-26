@@ -909,7 +909,7 @@ spdif_din                =
 audio_used               = 1
 capture_used		 = 1
 audio_lr_change      	 = 0
-;audio_pa_ctrl            = port:PG10<1><default><default><0>
+audio_pa_ctrl             =  ;port:PG10<1><default><default><0>
 audio_earphone_ctrl				= port:power02<1><default><default><0>
 
 ;----------------------------------------------------------------------------------

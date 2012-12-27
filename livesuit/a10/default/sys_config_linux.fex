@@ -78,7 +78,7 @@ num     = 4
     class_name  = DISK
     name        = rootfs
     size_hi     = 0
-    size_lo     = 524288
+    size_lo     = 1524288
     user_type   = 0
     ro          = 0
 

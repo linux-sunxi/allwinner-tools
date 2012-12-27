@@ -483,6 +483,7 @@ lcd_io_phase        = 0x0000
 
 deu_mode            = 0
 lcdgamma4iep        = 22
+florid_color        = 90
 
 lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>

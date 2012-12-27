@@ -450,6 +450,7 @@ lcd1_hue                 = 50
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
 ;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
+;florid_color          90:normal lcd screen 65:retina lcd screen(9.7inch)
 ;----------------------------------------------------------------------------------
 [lcd0_para]
 lcd_used            = 1
@@ -476,6 +477,7 @@ lcd_io_phase        = 0x0000
 
 deu_mode            = 0
 lcdgamma4iep        = 22
+florid_color        = 90
 
 lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>

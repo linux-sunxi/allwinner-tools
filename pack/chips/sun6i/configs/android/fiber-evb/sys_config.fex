@@ -38,13 +38,6 @@ aldo3_vol                  = 3000
 logical_start   = 40960
 sprite_gpio0    =
 
-;---------------------------------------------------------------------------------------------------------
-; if 1 == standby_mode, then support super standby;
-; else, support normal standby.
-;---------------------------------------------------------------------------------------------------------
-[pm_para]
-standby_mode		= 1
-
 [card0_boot_para]
 card_ctrl       = 0
 card_high_speed = 1
@@ -124,6 +117,40 @@ dram_tpr13      = 0
 ;----------------------------------------------------------------------------------
 ;os life cycle para configuration
 ;----------------------------------------------------------------------------------
+
+;---------------------------------------------------------------------------------------------------------
+; if 1 == standby_mode, then support super standby;
+; else, support normal standby.
+;---------------------------------------------------------------------------------------------------------
+[pm_para]
+standby_mode		= 1
+
+;---------------------------------------------------------------------------------------------------------
+; wakeup_src_para: 
+;	sometimes, u would like to add more wakeup src in standby mode, these para will be 
+;	help; 
+;	u need to make sure the standby mode support the wakeup src. Also, some hw 
+;	condition must be guaranteed.
+;	including: 
+;	cpu_en: power on or off. 
+;		1: mean power on
+;		0: mean power off
+;	cpu_freq: indicating lowest freq. unit is Mhz;
+;	dram selfresh_en: selfresh or not. 
+;		1: enable enter selfresh
+;		0: disable enter selfresh
+;	dram_pll: if not enter selfresh, indicating lowest freq. unit is Mhz;
+;	wakeup_src: to make the scenario work, the wakeup src is needed.
+;---------------------------------------------------------------------------------------------------------
+[wakeup_src_para]
+cpu_en				= 	0
+cpu_freq			=	48
+; (cpu:apb:ahb)
+pll_ratio			= 	0x111	
+dram_selfresh_en		= 	1
+dram_freq			= 	36
+wakeup_src0			= 	port:PL5<2><1><default><default>
+
 
 ;------------------------------------------------------------------------------;
 ; 10/100/100Mbps Ethernet MAC Controller Configure                             ;

@@ -38,13 +38,6 @@ aldo3_vol                  = 3000
 logical_start   = 40960
 sprite_gpio0    =
 
-;---------------------------------------------------------------------------------------------------------
-; if 1 == standby_mode, then support super standby;
-; else, support normal standby.
-;---------------------------------------------------------------------------------------------------------
-[pm_para]
-standby_mode		= 1
-
 [card0_boot_para]
 card_ctrl       = 0
 card_high_speed = 1
@@ -85,13 +78,11 @@ jtag_do         = port:PH11<3><default><default><default>
 jtag_di         = port:PH12<3><default><default><default>
 
 [clock]
-pll3            = 297
 pll4            = 300
 pll6            = 600
-pll7            = 297
 pll8            = 360
 pll9            = 297
-pll10           = 297
+pll10           = 264
 
 ;*****************************************************************************
 ;sdram configuration
@@ -100,7 +91,7 @@ pll10           = 297
 [dram_para]
 dram_clk        = 240
 dram_type       = 3
-dram_zq         = 0x17b
+dram_zq         = 0xfb
 dram_odt_en     = 0
 dram_para1      = 0x10F40800
 dram_para2      = 0x1211
@@ -126,6 +117,39 @@ dram_tpr13      = 0
 ;----------------------------------------------------------------------------------
 ;os life cycle para configuration
 ;----------------------------------------------------------------------------------
+
+;---------------------------------------------------------------------------------------------------------
+; if 1 == standby_mode, then support super standby;
+; else, support normal standby.
+;---------------------------------------------------------------------------------------------------------
+[pm_para]
+standby_mode		= 1
+
+;---------------------------------------------------------------------------------------------------------
+; wakeup_src_para:
+;	sometimes, u would like to add more wakeup src in standby mode, these para will be
+;	help;
+;	u need to make sure the standby mode support the wakeup src. Also, some hw
+;	condition must be guaranteed.
+;	including:
+;	cpu_en: power on or off.
+;		1: mean power on
+;		0: mean power off
+;	cpu_freq: indicating lowest freq. unit is Mhz;
+;	dram selfresh_en: selfresh or not.
+;		1: enable enter selfresh
+;		0: disable enter selfresh
+;	dram_pll: if not enter selfresh, indicating lowest freq. unit is Mhz;
+;	bb_wake_ap: 2g/3g to make the scenario work, the wakeup src is needed.
+;---------------------------------------------------------------------------------------------------------
+[wakeup_src_para]
+cpu_en				= 	0
+cpu_freq			=	48
+; (cpu:apb:ahb)
+pll_ratio			= 	0x111
+dram_selfresh_en		= 	1
+dram_freq			= 	36
+bb_wake_ap     		= port:PM00<0><default><default><0>
 
 ;------------------------------------------------------------------------------;
 ; 10/100/100Mbps Ethernet MAC Controller Configure                             ;
@@ -221,7 +245,7 @@ uart_cts        = port:PA07<4><1><default><default>
 ;uart_ring      = port:PA03<4><1><default><default>
 
 [uart_para2]
-uart_used       = 0
+uart_used       = 1
 uart_port       = 2
 uart_type       = 4
 uart_tx         = port:PG06<2><1><default><default>
@@ -420,8 +444,8 @@ fb1_scaler_mode_enable   = 0
 fb1_width                = 0
 fb1_height               = 0
 
-lcd0_backlight           = 197
-lcd1_backlight           = 197
+lcd0_backlight           = 50
+lcd1_backlight           = 50
 
 lcd0_bright              = 50
 lcd0_contrast            = 50
@@ -483,7 +507,6 @@ lcd_io_phase        = 0x0000
 
 deu_mode            = 0
 lcdgamma4iep        = 22
-florid_color        = 90
 
 lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>
@@ -642,7 +665,7 @@ sdc_isio          = 0
 sdc_regulator     = "none"
 
 [mmc1_para]
-sdc_used          = 0
+sdc_used          = 1
 sdc_detmode       = 4
 sdc_buswidth      = 4
 sdc_clk           = port:PG00<2><1><2><default>
@@ -733,6 +756,8 @@ usb_drv_vbus_gpio   = port:PA13<1><0><default><0>
 usb_restrict_gpio   = port:PH26<1><0><default><0>
 usb_host_init_state = 0
 usb_restric_flag    = 0
+usb_restric_voltage = 3550000
+usb_restric_capacity= 5
 ;--------------------------------
 ;---       USB1控制标志
 ;--------------------------------
@@ -751,7 +776,7 @@ usb_restric_flag    = 0
 ;---       USB2控制标志
 ;--------------------------------
 [usbc2]
-usb_used            = 0
+usb_used            = 1
 usb_port_type       = 1
 usb_detect_type     = 0
 usb_id_gpio         =
@@ -802,6 +827,7 @@ gsensor_int2        =
 ;wifi configuration
 ;wifi_sdc_id    ---  0- SDC0, 1- SDC1, 2- SDC2, 3- SDC3
 ;wifi_usbc_id  ---  0- USB0, 1- USB1, 2- USB2
+;wifi_usbc_type --  1- EHCI(speed 2.0), 2- OHCI(speed 1.0)
 ;wifi_mod_sel   ---  0- none, 1- bcm40181, 2- bcm40183(wifi+bt),
 ;                    3 - rtl8723as(wifi+bt), 4- rtl8189es(SM89E00),
 ;                    5 - rtl8192cu, 6 - rtl8188eu
@@ -810,41 +836,31 @@ gsensor_int2        =
 wifi_used          = 1
 wifi_sdc_id        = 1
 wifi_usbc_id       = 1
-wifi_mod_sel       = 5
+wifi_usbc_type     = 1
+wifi_mod_sel       = 3
+wifi_power         = "axp22_aldo1"
 
 ; 1 - bcm40181 sdio wifi gpio config
-;bcm40181_vdd_en        = port:PG18<1><default><default><0>
-;bcm40181_vcc_en        = port:PG18<1><default><default><0>
 ;bcm40181_shdn          = port:PG10<1><default><default><0>
 ;bcm40181_host_wake     = port:PG12<0><default><default><0>
 
 ; 2 - bcm40183 sdio wifi gpio config
-;bcm40183_vdd_en        = port:PG18<1><default><default><0>
-;bcm40183_vcc_en        = port:PG18<1><default><default><0>
 ;bcm40183_wl_regon      = port:PG10<1><default><default><0>
 ;bcm40183_wl_host_wake  = port:PG12<0><default><default><0>
 ;bcm40183_bt_rst        = port:PG11<1><default><default><0>
 ;bcm40183_bt_regon      = port:PG11<1><default><default><0>
-;bcm40183_bt_wake       = port:XXX<1><default><default><0>
-;bcm40183_bt_host_wake  = port:XXX<0><default><default><0>
+;bcm40183_bt_wake       = port:PG17<1><default><default><0>
+;bcm40183_bt_host_wake  = port:PG18<0><default><default><0>
 
 ; 3 - rtl8723as sdio wifi + bt gpio config
-;rtk_rtl8723as_wl_dis       = port:PG10<1><default><default><0>
-;rtk_rtl8723as_bt_dis       = port:PG11<1><default><default><0>
-;rtk_rtl8723as_wl_host_wake = port:PG12<0><default><default><0>
-;rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
+rtk_rtl8723as_wl_dis       = port:PG10<1><default><default><0>
+rtk_rtl8723as_bt_dis       = port:PG11<1><default><default><0>
+rtk_rtl8723as_wl_host_wake = port:PG12<0><default><default><0>
+rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
 
 ; 4 - rtl8189es sdio wifi gpio config
-;rtl8189es_vdd_en       = port:PG18<1><default><default><0>
-;rtl8189es_vcc_en       = port:PG18<1><default><default><0>
 ;rtl8189es_shdn         = port:PG10<1><default><default><0>
 ;rtl8189es_wakeup       = port:PG12<1><default><default><1>
-
-; 5 - rtl8192cu usb wifi gpio config
-;rtl8192cu_power    = port:PH27<1><0><default><0>
-
-; 6 - rtl8188eu usb wifi gpio conifg
-;rtl8188eu_power    = port:PH27<1><0><default><0>
 
 ;--------------------------------------------------------------------------------
 ;3G configuration
@@ -856,10 +872,9 @@ wifi_mod_sel       = 5
 3g_uart_num		= 3
 bb_name			= "em55"
 bb_vbat			= port:PL03<1><default><default><0>
-bb_host_wake	= port:PM00<1><default><default><0>
 bb_on			= port:PM01<1><default><default><0>
 bb_pwr_on		= port:PM03<1><default><default><0>
-bb_wake			= port:PM04<1><default><default><0>
+bb_wake			= port:PM04<1><default><default><1>
 bb_rf_dis		= port:PM05<1><default><default><0>
 bb_rst			= port:PM06<1><default><default><0>
 
@@ -870,7 +885,6 @@ bb_rst			= port:PM06<1><default><default><0>
 ;3g_uart_num		= 0
 ;bb_name			= "mu509"
 ;bb_vbat			= port:PL03<1><default><default><0>
-;bb_host_wake	= port:PM00<1><default><default><0>
 ;bb_on			= port:PM01<1><default><default><0>
 ;bb_pwr_on		= port:PM03<1><default><default><0>
 ;bb_wake			= port:PM04<1><default><default><0>
@@ -911,7 +925,7 @@ compass_int         = port:PA11<6><1><default><default>
 ;bt_uard_id			---- uart index
 ;--------------------------------------------------------------------------------
 [bt_para]
-bt_used             =
+bt_used             = 1
 bt_uart_id          =
 bt_wakeup           =
 bt_gpio             =
@@ -1045,7 +1059,7 @@ pmu_irq_id                 = 0
 pmu_battery_rdc            = 100
 pmu_battery_cap            = 0
 pmu_batdeten               = 1
-pmu_runtime_chgcur         = 300
+pmu_runtime_chgcur         = 900
 pmu_earlysuspend_chgcur    = 900
 pmu_suspend_chgcur         = 1500
 pmu_shutdown_chgcur        = 1500
@@ -1065,7 +1079,7 @@ pmu_bat_para4              = 0
 pmu_bat_para5              = 0
 pmu_bat_para6              = 0
 pmu_bat_para7              = 0
-pmu_bat_para8              = 2
+pmu_bat_para8              = 0
 pmu_bat_para9              = 5
 pmu_bat_para10             = 8
 pmu_bat_para11             = 9
@@ -1091,12 +1105,12 @@ pmu_bat_para30             = 94
 pmu_bat_para31             = 95
 pmu_bat_para32             = 100
 
-pmu_usbvol_limit           = 1
+pmu_usbvol_limit           = 0
 pmu_usbcur_limit           = 0
-pmu_usbvol                 = 4400
+pmu_usbvol                 = 4000
 pmu_usbcur                 = 0
 pmu_usbvol_pc              = 4400
-pmu_usbcur_pc              = 900
+pmu_usbcur_pc              = 500
 pmu_pwroff_vol             = 3300
 pmu_pwron_vol              = 2600
 pmu_pekoff_time            = 6000
@@ -1126,43 +1140,42 @@ power_start                = 0
 ;
 ; LV_count: count of LV_freq/LV_volt, must be < 16
 ;
-; LV1: core vdd is 1.20v if cpu frequency is (900Mhz,  1008Mhz]
-; LV2: core vdd is 1.20v if cpu frequency is (600Mhz,   900Mhz]
-; LV3: core vdd is 1.20v if cpu frequency is (420Mhz,   600Mhz]
-; LV4: core vdd is 1.20v if cpu frequency is (360Mhz,   420Mhz]
-; LV5: core vdd is 1.20v if cpu frequency is (300Mhz,   360Mhz]
-; LV6: core vdd is 1.20v if cpu frequency is (240Mhz,   300Mhz]
-; LV7: core vdd is 1.20v if cpu frequency is (120Mhz,   240Mhz]
-; LV8: core vdd is 1.20v if cpu frequency is (60Mhz,    120Mhz]
+; LV1: core vdd is 1.26v if cpu frequency is (1104Mhz,  xxxxMhz]
+; LV2: core vdd is 1.26v if cpu frequency is (1056Mhz,  1104Mhz]
+; LV3: core vdd is 1.20v if cpu frequency is (864Mhz,   1056Mhz]
+; LV4: core vdd is 1.10v if cpu frequency is (720Mhz,   864Mhz]
+; LV5: core vdd is 1.00v if cpu frequency is (480Mhz,   720Mhz]
+; LV6: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
+; LV7: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
+; LV8: core vdd is 0.90v if cpu frequency is (0Mhz,     480Mhz]
 ;
 ;----------------------------------------------------------------------------------
 [dvfs_table]
 max_freq = 1008000000
-min_freq = 96000000
+min_freq = 384000000
 
 LV_count = 8
 
-LV1_freq = 900000000
-LV1_volt = 1200
+LV1_freq = 1104000000
+LV1_volt = 1300
 
-LV2_freq = 600000000
-LV2_volt = 1200
+LV2_freq = 1056000000
+LV2_volt = 1260
 
-LV3_freq = 420000000
+LV3_freq = 864000000
 LV3_volt = 1200
 
-LV4_freq = 360000000
-LV4_volt = 1200
+LV4_freq = 720000000
+LV4_volt = 1100
 
-LV5_freq = 300000000
-LV5_volt = 1200
+LV5_freq = 480000000
+LV5_volt = 1000
 
-LV6_freq = 240000000
-LV6_volt = 1200
+LV6_freq = 0
+LV6_volt = 1000
 
-LV7_freq = 120000000
-LV7_volt = 1200
+LV7_freq = 0
+LV7_volt = 1000
 
-LV8_freq = 60000000
-LV8_volt = 1200
-
+LV8_freq = 0
+LV8_volt = 1000

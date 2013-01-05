@@ -23,7 +23,7 @@ size = 16384
 ;    downloadfile = "123.fex"   ; //下载文件的路径和名称，可以使用相对路径，相对是指相对于image.cfg文件所在分区。也可以使用绝对路径
 ;    keydata     = 1            ; //私有数据分区，重新量产数据将不丢失
 ;    encrypt     = 1            ; //采用加密方式烧录，将提供数据加密，但损失烧录速度
-;    user_type   = ?            ; //私有用法
+;    	   = ?            ; //私有用法
 ;    verify      = 1            ; //要求量产完成后校验是否正确
 ;
 ; 注：1、name唯一, 不允许同名
@@ -56,12 +56,13 @@ size = 16384
     name         = system
     size         = 1048576
     downloadfile = "system.fex"
+    user_type    = 0x2
 
 ;------------------------------>mmcblk0p8/nande
 [partition]
 	name         = data
     size         = 524288
-
+		user_type    = 0x2
 ;------------------------------>mmcblk0p9/nandf
 [partition]
     name         = misc
@@ -76,6 +77,7 @@ size = 16384
 [partition]
     name         = cache
     size         = 262144
+    user_type    = 0x2
 ;------------------------------>nandi, data image backup
 [partition]
     name         = databk

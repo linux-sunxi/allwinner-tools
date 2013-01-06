@@ -7,3 +7,4 @@ FastbootWin32       fastboot工具
 AndroidModify_xx    固件修改工具(for Android 4.0.x)
 OEMDataPacket_xx    把文件夹写入小机的用户数据区
 HerculesV100        PC端fastboot刷分区工具
+livecom             通过串口烧写mac地址

@@ -54,7 +54,7 @@ size = 16384
 ;------------------------------>mmcblk0p7/nandd
 [partition]
     name         = system
-    size         = 1048576
+    size         = 1572864
     user_type    = 2
     downloadfile = "system.fex"
 

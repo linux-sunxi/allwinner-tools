@@ -93,7 +93,7 @@ pll4            = 300
 pll6            = 600
 pll8            = 360
 pll9            = 297
-pll10           = 264
+pll10           = 702 
 
 ;*****************************************************************************
 ;sdram configuration
@@ -434,6 +434,7 @@ lcd1_hue                 = 50
 ;lcd_dclk_freq:        in MHZ unit
 ;lcd_pwm_freq:         in HZ unit
 ;lcd_pwm_pol:          lcd backlight PWM polarity
+;lcd_pwm_max_limit     lcd backlight PWM max limit(<=255)
 ;lcd_hbp:              hsync back porch
 ;lcd_ht:               hsync total cycle
 ;lcd_vbp:              vsync back porch
@@ -452,6 +453,7 @@ lcd1_hue                 = 50
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
 ;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
+;smart_color          90:normal lcd screen 65:retina lcd screen(9.7inch)
 ;----------------------------------------------------------------------------------
 [lcd0_para]
 lcd_used            = 1
@@ -462,6 +464,7 @@ lcd_y               = 1536
 lcd_dclk_freq       = 205
 lcd_pwm_freq        = 50000
 lcd_pwm_pol         = 1
+lcd_pwm_max_limit   = 150
 lcd_hbp             = 10
 lcd_ht              = 2208
 lcd_hspw            = 5
@@ -476,7 +479,7 @@ lcd_io_phase        = 0x0000
 
 deu_mode            = 0
 lcdgamma4iep        = 22
-florid_color        = 90
+smart_color         = 65
 
 lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>

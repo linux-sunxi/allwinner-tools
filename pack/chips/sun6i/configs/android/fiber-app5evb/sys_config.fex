@@ -233,7 +233,7 @@ uart_tx         = port:PH20<2><1><default><default>
 uart_rx         = port:PH21<2><1><default><default>
 
 [uart_para1]
-uart_used       = 1
+uart_used       = 0
 uart_port       = 1
 uart_type       = 4
 uart_tx         = port:PA04<4><1><default><default>
@@ -255,7 +255,7 @@ uart_rts        = port:PG08<2><1><default><default>
 uart_cts        = port:PG09<2><1><default><default>
 
 [uart_para3]
-uart_used       = 0
+uart_used       = 1
 uart_port       = 3
 uart_type       = 4
 uart_tx         = port:PB05<3><1><default><default>
@@ -874,17 +874,18 @@ rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
 ;3G configuration
 ;--------------------------------------------------------------------------------
 [3g_para]
-3g_used   			= 0
-3g_usbc_num			= 2
-3g_uart_num			= 0
-bb_vbat				= port:PL03<1><default><default><0>
-bb_host_wake        = port:PM00<1><default><default><0>
-bb_on				= port:PM01<1><default><default><0>
-bb_pwr_on			= port:PM03<1><default><default><0>
-bb_wake				= port:PM04<1><default><default><0>
-bb_rf_dis			= port:PM05<1><default><default><0>
-bb_rst				= port:PM06<1><default><default><0>
-3g_int              =
+3g_used			= 1
+3g_usbc_num		= 0
+3g_usbc_type	= 0
+3g_uart_num		= 1
+bb_name			= "em55"
+bb_vbat			= port:PL03<1><default><default><0>
+bb_on			= port:PM01<1><default><default><0>
+bb_pwr_on		= port:PM03<1><default><default><0>
+bb_wake			= port:PM04<1><default><default><1>
+bb_rf_dis		= port:PM05<1><default><default><0>
+bb_rst			= port:PM06<1><default><default><0>
+
 
 ;--------------------------------------------------------------------------------
 ;gyroscope

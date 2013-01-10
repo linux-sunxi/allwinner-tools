@@ -816,6 +816,12 @@ gsensor_twi_addr    = 0x18
 gsensor_int1        = port:PA09<6><1><default><default>
 gsensor_int2        =
 
+[light_distance_sensor_para]
+light_distance_sensor_used        = 1
+light_distance_sensor_twi_id      = 2
+light_distance_sensor_twi_addr    = 0x23
+light_distance_sensor_int1        = port:PA12<6><1><default><default>
+light_distance_sensor_int2        =
 ;--------------------------------------------------------------------------------
 ; gps gpio configuration
 ; gps_spi_id		--- the index of SPI controller. 0: SPI0, 1: SPI1, 2: SPI2, 15: no SPI used

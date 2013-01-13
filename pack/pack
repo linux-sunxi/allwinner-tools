@@ -4,9 +4,9 @@
 
 ROOT_DIR=$PWD
 TOOLS_DIR=${ROOT_DIR}/pctools/linux
-PACK_CHIP=""
-PACK_PLATFORM=""
-PACK_BOARD=""
+PACK_CHIP="sun7i"
+PACK_PLATFORM="linux"
+PACK_BOARD="sun6i"
 PACK_BOOT="nand"
 PACK_DEBUG="uart0"
 
@@ -126,13 +126,39 @@ do_pack_crane()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
-    cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
-        eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-        wboot/bootfs wboot/bootfs.ini wboot/diskfs.fex  \
+    # modify the debug opt
+    if [ $PACK_CHIP = sun6i ]; then
+	if [ $PACK_DEBUG = card0 ]; then
+	    cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+	    TX=`awk  '$0~"a31"{print $2}' pctools/linux/card_debug_pin`
+	    RX=`awk  '$0~"a31"{print $3}' pctools/linux/card_debug_pin`
+	    MS=`awk  '$0~"a31"{print $4}' pctools/linux/card_debug_pin`
+	    CK=`awk  '$0~"a31"{print $5}' pctools/linux/card_debug_pin`
+	    DO=`awk  '$0~"a31"{print $6}' pctools/linux/card_debug_pin`
+	    DI=`awk  '$0~"a31"{print $7}' pctools/linux/card_debug_pin`
+
+	    sed -i s'/jtag_ms = /jtag_ms = '$MS'/g' out/awk_debug_card0
+	    sed -i s'/jtag_ck = /jtag_ck = '$CK'/g' out/awk_debug_card0
+	    sed -i s'/jtag_do = /jtag_do = '$DO'/g' out/awk_debug_card0
+	    sed -i s'/jtag_di = /jtag_di = '$DI'/g' out/awk_debug_card0
+	    sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
+	    sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+	    sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
+	    sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
+	    awk -f out/awk_debug_card0 out/sys_config.fex > out/a.fex
+	    rm out/sys_config.fex
+	    mv out/a.fex out/sys_config.fex
+	    echo "uart -> card0 !!!"
+	fi
+    fi
+    cp -rf eFex/split_xxxx.fex  wboot/bootfs wboot/bootfs.ini \
         out/
 
-    cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
-    cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+    cp -rf eGon/boot0_nand.bin out/boot0_nand.bin
+    cp -rf eGon/boot1_nand.bin out/boot1_nand.fex
+
+    cp -rf eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -rf eGon/boot1_sdcard.bin out/boot1_sdcard.fex
 
     cd out/
 
@@ -152,16 +178,20 @@ do_pack_crane()
 
 
     	busybox unix2dos sys_config.fex
-    	busybox unix2dos sys_config1.fex
+    	busybox unix2dos sys_partition.fex
     	script sys_config.fex
-    	script sys_config1.fex
-    	update_23 sys_config1.bin boot0.bin boot1.bin
-    	update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-    	cp sys_config1.bin bootfs/script0.bin
-    	cp sys_config1.bin bootfs/script.bin
+		script sys_partition.fex
 
+		update_boot0 boot0_nand.bin   sys_config.bin NAND
+    	update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
 
-    update_mbr sys_config.bin mbr.fex 4 16777216
+		update_boot1 boot1_nand.fex   sys_config.bin NAND
+    	update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+
+		cp sys_config.bin bootfs/script.bin
+
+    update_mbr sys_partition.bin  4
+
     fsbuild bootfs.ini split_xxxx.fex
 
     # get bootloader.fex
@@ -182,7 +212,7 @@ do_pack_crane()
     FileAddSum system.fex vsystem.fex
     FileAddSum recovery.fex vrecovery.fex
 
-    dragon image.cfg
+    dragon image.cfg sys_partition.fex
 
     if [ -e ${IMG_NAME} ]; then
         mv ${IMG_NAME} ../${IMG_NAME}
@@ -207,17 +237,34 @@ do_pack_linux()
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
 
-    cp -rf eFex/split_xxxx.fex eFex/card/mbr.fex \
-        eGon/storage_media/nand/boot0.bin eGon/storage_media/nand/boot1.bin \
-        wboot/bootfs wboot/bootfs.ini \
+    if [ $PACK_CHIP = sun6i ]; then
+	if [ $PACK_DEBUG = card0 ]; then
+	    cp $TOOLS_DIR/awk_debug_card0 out/awk_debug_card0
+	    TX=`awk  '$0~"a31"{print $2}' pctools/linux/card_debug_pin`
+	    RX=`awk  '$0~"a31"{print $3}' pctools/linux/card_debug_pin`
+	    sed -i s'/uart_debug_tx =/uart_debug_tx = '$TX'/g' out/awk_debug_card0
+	    sed -i s'/uart_debug_rx =/uart_debug_rx = '$RX'/g' out/awk_debug_card0
+	    sed -i s'/uart_tx =/uart_tx = '$TX'/g' out/awk_debug_card0
+	    sed -i s'/uart_rx =/uart_rx = '$RX'/g' out/awk_debug_card0
+	    awk -f out/awk_debug_card0 out/sys_config.fex > out/a.fex
+	    rm out/sys_config.fex
+	    mv out/a.fex out/sys_config.fex
+	    echo "uart -> card0 !!!"
+	fi
+    fi
+    cp -rf eFex/split_xxxx.fex  wboot/bootfs wboot/bootfs.ini \
         out/
 
-    cp -rf eGon/storage_media/sdcard/boot0.bin out/card_boot0.fex
-    cp -rf eGon/storage_media/sdcard/boot1.bin out/card_boot1.fex
+    cp -rf eGon/boot0_nand.bin out/boot0_nand.bin
+    cp -rf eGon/boot1_nand.bin out/boot1_nand.fex
+
+    cp -rf eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -rf eGon/boot1_sdcard.bin out/boot1_sdcard.fex
 
     cd out/
 
     cp -v $LICHEE_OUT/u-boot.bin bootfs/linux/
+	#cp -v ../../../u-boot/u-boot.bin bootfs/linux/
 
     #remove me later
     if [ "$PACK_CHIP" = "sun5i" ]; then
@@ -236,19 +283,21 @@ do_pack_linux()
     echo "imagename = $IMG_NAME" >> image.cfg
     echo "" >> image.cfg
 
-
-
     	busybox unix2dos sys_config.fex
-    	busybox unix2dos sys_config1.fex
+    	busybox unix2dos sys_partition.fex
     	script sys_config.fex
-		script sys_config1.fex
-		update_23 sys_config1.bin boot0.bin boot1.bin
-		update_23 sys_config1.bin card_boot0.fex card_boot1.fex SDMMC_CARD
-		cp sys_config1.bin bootfs/script0.bin
-		cp sys_config1.bin bootfs/script.bin
+		script sys_partition.fex
 
+		update_boot0 boot0_nand.bin   sys_config.bin NAND
+    	update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
 
-    update_mbr sys_config.bin mbr.fex 4 16777216
+		update_boot1 boot1_nand.fex   sys_config.bin NAND
+    	update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+
+		cp sys_config.bin bootfs/script.bin
+
+    update_mbr sys_partition.bin  4
+
     fsbuild bootfs.ini split_xxxx.fex
 
     # get bootloader.fex
@@ -263,7 +312,95 @@ do_pack_linux()
     # get the rootfs
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
 
-    dragon image.cfg
+    # checksum for all fex
+    # FileAddSum bootloader.fex vbootloader.fex
+    # FileAddSum env.fex venv.fex
+    # FileAddSum boot.fex vboot.fex
+
+    dragon image.cfg sys_partition.fex
+
+    if [ -e ${IMG_NAME} ]; then
+        mv ${IMG_NAME} ../${IMG_NAME}
+        echo '---------image is at-------------'
+        echo -e '\033[0;31;1m'
+        echo ${ROOT_DIR}/${IMG_NAME}
+        echo -e '\033[0m'
+    fi
+
+    cd - 1>/dev/null
+}
+
+do_pack_dragonboard()
+{
+    printf "!!!Packing for dragonboard!!!\n"
+
+    if [ -z "$LICHEE_OUT" ]; then
+        LICHEE_OUT=`cd ../../out; pwd`
+    fi
+
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/default/* out/
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
+
+    cp -rf eFex/split_xxxx.fex  wboot/bootfs wboot/bootfs.ini \
+        out/
+
+    cp -rf eGon/boot0_nand.bin out/boot0_nand.bin
+    cp -rf eGon/boot1_nand.bin out/boot1_nand.fex
+
+    cp -rf eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -rf eGon/boot1_sdcard.bin out/boot1_sdcard.fex
+
+    cd out/
+
+    cp -v $LICHEE_OUT/dragonboard/u-boot.bin bootfs/linux/
+
+    sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
+    sed -i 's/\\\\/\//g' image.cfg
+    sed -i 's/imagename/;imagename/g' image.cfg
+
+    if [ $PACK_DEBUG = card0 ]; then
+	    IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}_$PACK_DEBUG.img"
+    else
+        IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
+    fi
+    echo "imagename = $IMG_NAME" >> image.cfg
+    echo "" >> image.cfg
+
+
+    	busybox unix2dos sys_config.fex
+    	busybox unix2dos sys_partition.fex
+    	script sys_config.fex
+		script sys_partition.fex
+        
+        cp test_config.fex bootfs/test_config.fex
+        busybox unix2dos test_config.fex
+        script test_config.fex
+        cp test_config.bin bootfs/test_config.bin
+
+		update_boot0 boot0_nand.bin   sys_config.bin NAND
+    	update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
+
+		update_boot1 boot1_nand.fex   sys_config.bin NAND
+    	update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+
+		cp sys_config.bin bootfs/script.bin
+
+    update_mbr sys_partition.bin  4
+
+    fsbuild bootfs.ini split_xxxx.fex
+
+    # get bootloader.fex
+    mv bootfs.fex bootloader.fex
+
+    # get env.fex
+    u_boot_env_gen env.cfg env.fex
+
+    # get other images from dragonboard build
+    ln -s $LICHEE_OUT/dragonboard/boot.img boot.fex
+    ln -s $LICHEE_OUT/dragonboard/rootfs.ext4 rootfs.fex
+
+    dragon image.cfg sys_partition.fex
 
     if [ -e ${IMG_NAME} ]; then
         mv ${IMG_NAME} ../${IMG_NAME}

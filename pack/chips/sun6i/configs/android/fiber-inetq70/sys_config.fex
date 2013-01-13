@@ -338,15 +338,15 @@ rtp_exchange_x_y_flag = 0
 ;----------------------------------------------------------------------------------
 [ctp_para]
 ctp_used            = 1
+ctp_name            = "gsl1680"
 ctp_twi_id          = 1
-ctp_twi_addr        = 0x5d
+ctp_twi_addr        = 0x40
 ctp_screen_max_x    = 1280
 ctp_screen_max_y    = 800
-ctp_revert_x_flag   = 1
+ctp_revert_x_flag   = 0
 ctp_revert_y_flag   = 1
 ctp_exchange_x_y_flag = 1
 
-ctp_name            = "gsl1680"
 ctp_int_port        = port:PA03<6><default><default><default>
 ctp_wakeup          = port:PA02<1><default><default><1>
 ;----------------------------------------------------------------------------------

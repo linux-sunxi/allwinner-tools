@@ -389,7 +389,7 @@ nand0_ce3           = port:PC26<2><default><default><default>
 nand0_ndqs          = port:PC24<2><default><default><default>
 
 [nand1_para]
-nand1_used          = 1
+nand1_used          = 0
 nand1_we            = port:PH00<2><default><default><default>
 nand1_ale           = port:PH01<2><default><default><default>
 nand1_cle           = port:PH02<2><default><default><default>
@@ -817,12 +817,6 @@ gsensor_twi_addr    = 0x18
 gsensor_int1        = port:PA09<6><1><default><default>
 gsensor_int2        =
 
-[light_distance_sensor_para]
-light_distance_sensor_used        = 1
-light_distance_sensor_twi_id      = 2
-light_distance_sensor_twi_addr    = 0x23
-light_distance_sensor_int1        = port:PA12<6><1><default><default>
-light_distance_sensor_int2        =
 ;--------------------------------------------------------------------------------
 ; gps gpio configuration
 ; gps_spi_id		--- the index of SPI controller. 0: SPI0, 1: SPI1, 2: SPI2, 15: no SPI used
@@ -870,6 +864,17 @@ rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
 ;rtl8189es_shdn         = port:PG10<1><default><default><0>
 ;rtl8189es_wakeup       = port:PG12<1><default><default><1>
 
+; 5 - rtl8192cu
+
+; 6 - rtl8188eu
+
+; 7 - mt6620
+mtk_6620_ldo      = port:PM03<1><default><default><0>
+mtk_6620_pmu_en   = port:PM00<1><default><default><0>
+mtk_6620_sys_rst  = port:PM06<1><default><default><0>
+mtk_6620_wifi_int = port:PM04<6><1><default><default>
+mtk_6620_bgf_int  = port:PM05<6><1><default><default>
+
 ;--------------------------------------------------------------------------------
 ;3G configuration
 ;--------------------------------------------------------------------------------
@@ -900,11 +905,12 @@ gy_int2             =
 ;--------------------------------------------------------------------------------
 ;light sensor
 ;--------------------------------------------------------------------------------
-[ls_para]
-ls_used             = 1
-ls_twi_id           = 2
-ls_twi_addr         = 0x23
-ls_int              = port:PA12<6><1><default><default>
+[light_distance_sensor_para]
+light_distance_sensor_used        = 1
+light_distance_sensor_twi_id      = 2
+light_distance_sensor_twi_addr    = 0x23
+light_distance_sensor_int1        = port:PA12<6><1><default><default>
+light_distance_sensor_int2        =
 
 ;--------------------------------------------------------------------------------
 ;compass

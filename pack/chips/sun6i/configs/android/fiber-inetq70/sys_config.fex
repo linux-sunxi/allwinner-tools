@@ -557,7 +557,7 @@ csi_mode            = 0
 csi_dev_qty         = 1
 csi_stby_mode       = 0
 
-csi_mname           = "ov5640"
+csi_mname           = "gc2035"
 csi_twi_id          = 0
 csi_twi_addr        = 0x78
 csi_if              = 0

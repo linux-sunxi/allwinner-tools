@@ -1,0 +1,8 @@
+#! /bin/sh -e
+if [ "$#" -gt 0 ]; then
+	echo batch accepts no parameters
+	exit 1
+fi
+prefix=/usr
+exec_prefix=/usr
+exec ${exec_prefix}/bin/at -qb now

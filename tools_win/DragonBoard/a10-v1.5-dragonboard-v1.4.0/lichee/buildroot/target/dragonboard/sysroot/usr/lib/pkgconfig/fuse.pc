@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: fuse
+Description: Filesystem in Userspace
+Version: 2.8.5
+Libs: -L${libdir} -lfuse -pthread -lrt -ldl  
+Cflags: -I${includedir}/fuse -D_FILE_OFFSET_BITS=64

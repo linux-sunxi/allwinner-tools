@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=/usr
+moduledir=${exec_prefix}/lib/directfb-1.4-5
+moduledirname=directfb-1.4-5
+includedir=${prefix}/include/directfb-internal
+
+Name: DirectFB-Internal
+Description: Third party module support package for DirectFB.
+Version: 1.4.11
+Requires: directfb = 1.4.11
+Cflags: -D_GNU_SOURCE  -I${prefix}/include/directfb-internal

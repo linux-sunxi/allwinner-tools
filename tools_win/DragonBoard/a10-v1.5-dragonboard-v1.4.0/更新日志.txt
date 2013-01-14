@@ -1,0 +1,48 @@
+﻿2012-09-26
+
+版本：a10-v1.5-dragonboard-v1.4.0
+
+日志：
+1.添加wifi热点扫描ssid按信号强度排序显示，并同时显示DB值与信号强度条;
+2.添加双mic录音能量条，动态直观的显示录音能量强度,根据配置，录音输出在耳机和hdmi audio自动切换;
+3.添加根据配置自动在LCD和hdmi显示中切换功能;
+4.取消测试窗口高度调节配置项，程序自动调整UI布局;
+5.添加USBHOST,USBOTG读取VID,PID的测试项目;
+
+2012-08-13
+
+版本：a10-v1.5-dragonboard-v1.3.0
+
+日志：
+1. 添加双摄相头支持，具体配置参考《DragonBoard使用说明书V1.3》;
+2. 修复wifi驱动下载固件失败的问题；
+3. 修复“windows下格式化的U盘”检测失败的问题；
+4. 修改“windows下格式化的SD卡”检测失败的问题；
+5. HDMI支持480P，576P输出模式，具体配置参考《DragonBoard使用说明书V1.3》;
+6. 默认关闭内核打印和u-boot延时，提高启动速度，主要修改env_mmc.cfg和
+   env_nand.cfg；
+
+
+===============================================================================
+2012-07-25
+
+版本：a10-v1.5-dragonboard-v1.2.0
+
+日志：
+1. 解决录音喇叭没有声音的问题；
+2. G-Sensor增加坐标计数；
+3. rtc, wifi增加出错判断；
+4. 录音增加初始音量设置；
+5. 修改U盘mount设备节点；
+6. 解决camera设置频率失败的问题；
+
+patch:
+1. lichee/linux-3.0/mmc-boot-nand-test.patch
+    卡启动测nand内核的patch，使用方法：
+    $ cd lichee/linux-3.0
+    $ patch -p 1 < mmc-boot-nand-test.patch
+
+2. lichee/u-boot/mmc0-boot.patch
+    卡0启动u-boot的patch，使用方法：
+    $ cd lichee/linux-3.0
+    $ patch -p 1 < mmc0-boot.patch

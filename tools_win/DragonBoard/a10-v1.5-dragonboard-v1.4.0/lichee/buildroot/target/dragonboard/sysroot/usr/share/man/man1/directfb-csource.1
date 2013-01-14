@@ -1,0 +1,85 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This manual page is Copyright (C) 2002-2003 Sven Neumann <neo@directfb.org>
+
+.TH DIRECTFB-CSOURCE 1 "14 May 2009" "Version 1.4.11" "DirectFB Manual Pages"
+
+.SH NAME
+directfb-csource \- C code generation utility for DirectFB surfaces
+
+.SH SYNOPSIS
+\fBdirectfb-csource\fP [\fIoptions\fP] <\fIimagefiles\fP>
+
+.SH DESCRIPTION
+\fBdirectfb-csource\fP is a small utility that reads PNG (Portable
+Network Graphics) image files and generates C code that can be used to
+compile an image into a DirectFB application.  Below is a simple
+example to illustrate this.
+
+If multiple PNG image files are passed to \fBdirectfb-csource\fP, they
+are combined into a single surface. The different images can then be
+blitted from this surface using the array of rectangles that is also
+dumped. This can be useful for example for icons or sprites.
+
+
+.SH OPTIONS
+.TP
+.B --name=identifier
+Specifies the identifier name (prefix) for the generated variables.
+If this option is not used, the identifier is generated from the
+filename. You have to specify an identifer name when processing
+multiple images.
+
+.TP
+.B --format=pixelformat
+Specifies the pixel-format of the generated inline surface. Possible
+values are ARGB, RGB32, RGB24, RGB16, RGB15, RGB332, A8 and LUT8.
+By default the format is ARGB if the PNG image has an alpha channel
+or RGB32 otherwise.
+
+.TP
+.B --dither-rgb16
+If specified, images rendered to RGB16 surfaces are dithered. This
+reduces banding caused by the limited colorspace. This option has no
+effect for other pixel-formats than RGB16.
+
+.TP
+.B --transparent=AARRGGBB
+If specified, completely transparent pixels are set to this color value.
+This may be useful for color keying and to work around bugs in graphics
+driver.
+
+.TP
+.B --version
+Output version information.
+
+.TP
+.B --help
+Print brief help and exit.
+
+
+.SH EXAMPLE
+Generate a header file from a PNG image file:
+
+	directfb-csource --name=foo foo.png > foo.h
+
+Include the generated header in your application and create a
+surface using the surface description from the header file:
+
+  #include <directfb.h>
+  #include "foo.h"
+
+  IDirectFB        *dfb;
+  IDirectFBSurface *surface;
+
+  ...
+
+  dfb->CreateSurface( dfb, &foo_desc, &surface );
+
+
+.SH OTHER INFO
+\fBdirectfb-csource\fP was inspired by and uses code from
+\fBgdk-pixbuf-csource\fP, a similar program written by Tim Janik.
+
+The canonical place to find informations about DirectFB is at
+http://www.directfb.org/.

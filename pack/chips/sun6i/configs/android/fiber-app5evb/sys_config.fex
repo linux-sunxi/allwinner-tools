@@ -555,7 +555,7 @@ csi_used            = 0
 [csi1_para]
 csi_used            = 1
 csi_mode            = 0
-csi_dev_qty         = 2
+csi_dev_qty         = 1
 csi_stby_mode       = 0
 
 csi_mname           = "gc2035"

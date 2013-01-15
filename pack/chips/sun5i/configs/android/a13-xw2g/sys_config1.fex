@@ -468,6 +468,29 @@ dac0_src                 = 0
 [hdmi_para]
 hdmi_used                = 0
 
+[camera_list_para]
+camera_list_para_used   = 1
+ov7670                  = 0
+gc0308                  = 1
+gt2005                  = 1
+hi704                   = 0
+sp0838                  = 1
+mt9m112                 = 1
+mt9m113                 = 0
+ov2655                  = 0
+hi253                   = 0
+gc0307                  = 1
+mt9d112                 = 0
+ov5640                  = 1
+gc2015                  = 1
+ov2643                  = 1
+gc0329                  = 1
+gc0309                  = 0
+tvp5150                 = 0
+s5k4ec                  = 0
+ov5650_mv9335           = 0
+siv121d                 = 1
+
 ;--------------------------------------------------------------------------------
 ;csi gpio configuration
 ;csi_if: 0:hv_8bit 1:hv_16bit 2:hv_24bit 3:bt656 1ch 4:bt656 2ch 5:bt656 4ch
@@ -500,6 +523,7 @@ csi_iovdd                = ""
 csi_avdd                 = ""
 csi_dvdd                 = ""
 csi_flash_pol            = 1
+csi_facing               = 0
 
 csi_mname_b              = ""
 csi_twi_id_b             = 1
@@ -511,6 +535,7 @@ csi_iovdd_b              = ""
 csi_avdd_b               = ""
 csi_dvdd_b               = ""
 csi_flash_pol_b          = 1
+csi_facing               = 1
 
 csi_pck                  = port:PE00<3><default><default><default>
 csi_ck                   = port:PE01<3><default><default><default>
@@ -553,6 +578,7 @@ csi_iovdd                = ""
 csi_avdd                 = ""
 csi_dvdd                 = ""
 csi_flash_pol            = 1
+csi_facing               = 0
 
 csi_mname_b              = ""
 csi_twi_id_b             = 1
@@ -564,6 +590,7 @@ csi_iovdd_b              = ""
 csi_avdd_b               = ""
 csi_dvdd_b               = ""
 csi_flash_pol_b          = 1
+csi_facing               = 1
 
 csi_reset                =
 csi_power_en             =

@@ -21,7 +21,7 @@ dcdc3_vol			= 1250
 ldo2_vol			= 3000
 ldo3_vol			= 2800
 ldo4_vol			= 2800
-;storage_type		= 2
+storage_type		= -1
 
 [card_boot]
 logical_start   	= 40960

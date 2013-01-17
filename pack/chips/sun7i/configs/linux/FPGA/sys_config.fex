@@ -634,77 +634,100 @@ sata_power_en		=
 
 
 ;--------------------------------------------------------------------------------
-;   SDMMC PINS MAPPING                                                         |
+;   SDMMC PINS MAPPING                                                          |
 ; ------------------------------------------------------------------------------|
-;   配置选项：                                                                  |
-;   sdc_used	--- 此sdc控制器是否使用，1-使用，0-不使用                       |
-;   sdc_detmode	--- 卡检测模式													|
-;					1-gpio检测，2-data3检测，3-无检测，卡常在(不卡拔插)			|
-;                	4 - manual mode(from proc file system node)                 |
-;   sdc_bwid	--- 卡数据位宽，1-1bit， 4-4bit， other-no use                  |
-;   其余: port配置                                                              |
+;   Config Guide                                                                |
+;   sdc_used: 1-enable card, 0-disable card                                     |
+;   sdc_detmode: card detect mode                                               |
+;                1-detect card by gpio polling                                  |
+;                2-detect card by gpio irq(must use IO with irq function)       |
+;                3-no detect, always in for boot card                           |
+;                4-manually insert and remove by /proc/driver/sunxi-mmc.x/insert|
+;   sdc_buswidth: card bus width, 1-1bit, 4-4bit, 8-8bit                        |
+;   sdc_use_wp: 1-with write protect IO, 0-no write protect IO                  |
+;   sdc_isio: for sdio card                                                     |
+;   sdc_regulator: power control.if card supports UHS-I/DDR and HS200 timing for|
+;                  SD3.0 or eMMC4.5, regulator must be configured. the value is |
+;                  the ldo name of AXP221, eg: sdc_regulator = "axp22_eldo2"    |
+;   other: GPIO Mapping configuration                                           |
 ; ------------------------------------------------------------------------------|
-;   特别说明：                                                                  |
-;   1.每个卡控制器必须有sdc_used配置，当sdc_used 为 0时，其余参数可不配          |
-;   2.卡使用data3检测的时候(sdc_detmode 为 2)，gpio配置里SDC_D3的pull up/down需要|
-;   保证高阻状态且外部电路需要对data3使用1MΩ左右的电阻下拉，使用请详细咨询，误擅|
-;   自决定                                                                      |
-;   3.使用gpio检测时必须配置sdc_det检测pin脚端口                                |
+;   Note:                                                                       |
+;   1 if detmode=2, sdc_det's config=6                                          |
+;     else if detmode=1, sdc_det's config=0                                     |
+;     else sdc_det IO is not necessary                                          |
+;   2 if the customer wants to support UHS-I and HS200 features, he must provide|
+;     an independent power supply for the card. This is only used in platforms  |
+;     that supports SD3.0 cards and eMMC4.4+ flashes                            |
 ;--------------------------------------------------------------------------------
 [mmc0_para]
-sdc_used    		= 1
-sdc_detmode 		= 1
-bus_width   		= 4
-sdc_d1      		= port:PF0<2><1><default><default>
-sdc_d0      		= port:PF1<2><1><default><default>
-sdc_ckj     		= port:PF2<2><1><default><default>
-sdc_cmd     		= port:PF3<2><1><default><default>
-sdc_d3      		= port:PF4<2><1><default><default>
-sdc_d2      		= port:PF5<2><1><default><default>
-sdc_det     		= port:PH1<0><1><default><default>
-sdc_use_wp  		= 0
-sdc_wp      		=
+sdc_used          = 1
+sdc_detmode       = 3
+sdc_buswidth      = 4
+sdc_clk           = port:PF02<2><1><2><default>
+sdc_cmd           = port:PF03<2><1><2><default>
+sdc_d0            = port:PF01<2><1><2><default>
+sdc_d1            = port:PF00<2><1><2><default>
+sdc_d2            = port:PF05<2><1><2><default>
+sdc_d3            = port:PF04<2><1><2><default>
+sdc_det           = port:PA08<6><1><2><default>
+sdc_use_wp        = 0
+sdc_wp            =
+sdc_isio          = 0
+sdc_regulator     = "none"
 
 [mmc1_para]
-sdc_used    		= 1
-sdc_detmode 		= 1
-bus_width   		= 4
-sdc_cmd     		= port:PH22<5><1><default><default>
-sdc_clk     		= port:PH23<5><1><default><default>
-sdc_d0      		= port:PH24<5><1><default><default>
-sdc_d1      		= port:PH25<5><1><default><default>
-sdc_d2      		= port:PH26<5><1><default><default>
-sdc_d3      		= port:PH27<5><1><default><default>
-sdc_det     		= port:PH2<0><1><default><default>
-sdc_use_wp  		= 0
-sdc_wp      		=
+sdc_used          = 0
+sdc_detmode       = 4
+sdc_buswidth      = 4
+sdc_clk           = port:PG00<2><1><2><default>
+sdc_cmd           = port:PG01<2><1><2><default>
+sdc_d0            = port:PG02<2><1><2><default>
+sdc_d1            = port:PG03<2><1><2><default>
+sdc_d2            = port:PG04<2><1><2><default>
+sdc_d3            = port:PG05<2><1><2><default>
+sdc_det           =
+sdc_use_wp        = 0
+sdc_wp            =
+sdc_isio          = 1
+sdc_regulator     = "none"
 
 [mmc2_para]
-sdc_used    		= 2
-sdc_cmd                  = port:PC6<3><1><default><default>
-sdc_clk                  = port:PC7<3><1><default><default>
-sdc_d0                   = port:PC8<3><1><default><default>
-sdc_d1                   = port:PC9<3><1><default><default>
-sdc_d2                   = port:PC10<3><1><default><default>
-sdc_d3                   = port:PC11<3><1><default><default>
-sdc_det                  =
-sdc_use_wp               = 0
-sdc_wp                   =
-
+sdc_used          = 0
+sdc_detmode       = 3
+sdc_buswidth      = 8
+sdc_clk           = port:PC07<3><1><2><default>
+sdc_cmd           = port:PC06<3><1><2><default>
+sdc_d0            = port:PC08<3><1><2><default>
+sdc_d1            = port:PC09<3><1><2><default>
+sdc_d2            = port:PC10<3><1><2><default>
+sdc_d3            = port:PC11<3><1><2><default>
+sdc_d4            = port:PC12<3><1><2><default>
+sdc_d5            = port:PC13<3><1><2><default>
+sdc_d6            = port:PC14<3><1><2><default>
+sdc_d7            = port:PC15<3><1><2><default>
+emmc_rst          = port:PC24<3><1><2><default>
+sdc_det           =
+sdc_use_wp        = 0
+sdc_wp            =
+sdc_isio          = 0
+sdc_regulator     = "none"
 
 [mmc3_para]
-sdc_used    		= 1
-sdc_detmode 		= 1
-bus_width   		= 4
-sdc_cmd    		= port:PI04<2><1><default><default>
-sdc_clk    		= port:PI05<2><1><default><default>
-sdc_d0     		= port:PI06<2><1><default><default>
-sdc_d1     		= port:PI07<2><1><default><default>
-sdc_d2     		= port:PI08<2><1><default><default>
-sdc_d3     		= port:PI09<2><1><default><default>
-sdc_det     		= port:PH11<0><1><default><default>
-sdc_use_wp  		= 0
-sdc_wp      		=
+sdc_used          = 0
+sdc_detmode       = 2
+sdc_buswidth      = 4
+sdc_clk           = port:PA10<2><1><2><default>
+sdc_cmd           = port:PA09<2><1><2><default>
+sdc_d0            = port:PA11<2><1><2><default>
+sdc_d1            = port:PA12<2><1><2><default>
+sdc_d2            = port:PA13<2><1><2><default>
+sdc_d3            = port:PA14<2><1><2><default>
+sdc_det           =
+sdc_use_wp        = 0
+sdc_wp            =
+sdc_isio          = 0
+sdc_regulator     = "none"
+
 
 ; ------------------------------------------------------------------------------|
 ; memory stick configuration

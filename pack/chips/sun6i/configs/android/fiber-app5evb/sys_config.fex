@@ -152,6 +152,7 @@ dram_freq			= 	36
 wakeup_src0			= 	port:PL5<2><1><default><default>
 wakeup_src_wifi			=	port:PM04<6><1><default><default>
 wakeup_src_bgf                  =	port:PM05<6><1><default><default>
+bb_wake_ap     			= 	port:PM00<0><default><default><0>
 
 ;------------------------------------------------------------------------------;
 ; 10/100/100Mbps Ethernet MAC Controller Configure                             ;
@@ -887,9 +888,9 @@ mtk_6620_bgf_int  = port:PM05<6><1><default><default>
 bb_name			= "em55"
 bb_vbat			= port:PL03<1><default><default><0>
 bb_on			= port:PM01<1><default><default><0>
-bb_pwr_on		= port:PM03<1><default><default><0>
+bb_pwr_on		= port:PM03<1><default><default><1>
 bb_wake			= port:PM04<1><default><default><1>
-bb_rf_dis		= port:PM05<1><default><default><0>
+bb_rf_dis		= 
 bb_rst			= port:PM06<1><default><default><0>
 
 

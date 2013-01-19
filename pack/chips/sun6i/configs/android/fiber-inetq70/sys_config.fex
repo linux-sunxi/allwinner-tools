@@ -6,7 +6,7 @@
 
 [product]
 version = "100"
-machine = "enetq70"
+machine = "inetq70"
 
 [platform]
 eraseflag   = 0
@@ -143,14 +143,16 @@ standby_mode		= 1
 ;	wakeup_src: to make the scenario work, the wakeup src is needed.
 ;---------------------------------------------------------------------------------------------------------
 [wakeup_src_para]
-cpu_en				= 	0
+cpu_en				=	0
 cpu_freq			=	48
 ; (cpu:apb:ahb)
-pll_ratio			= 	0x111	
-dram_selfresh_en		= 	1
-dram_freq			= 	36
-wakeup_src0			= 	port:PL5<2><1><default><default>
-
+pll_ratio			=	0x111
+dram_selfresh_en		=	1
+dram_freq			=	36
+wakeup_src0			=	port:PL5<2><1><default><default>
+wakeup_src_wifi			=	port:PL06<6><1><default><default>
+wakeup_src_bgf			=	port:PL07<6><1><default><default>
+bb_wake_ap			=	port:PM00<0><default><default><0>
 
 ;------------------------------------------------------------------------------;
 ; 10/100/100Mbps Ethernet MAC Controller Configure                             ;
@@ -343,7 +345,7 @@ ctp_twi_id          = 1
 ctp_twi_addr        = 0x40
 ctp_screen_max_x    = 1280
 ctp_screen_max_y    = 800
-ctp_revert_x_flag   = 0
+ctp_revert_x_flag   = 1
 ctp_revert_y_flag   = 1
 ctp_exchange_x_y_flag = 1
 
@@ -869,12 +871,12 @@ rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
 
 ; 6 - rtl8188eu
 
-; 7 - mt6620
+; 7 - mtk6620 sdio+uart wii+bt+gps+fm gpio config
 mtk_6620_ldo      = port:PL04<1><default><default><0>
 mtk_6620_pmu_en   = port:PL05<1><default><default><0>
+mtk_6620_sys_rst  = port:PL08<1><default><default><0>
 mtk_6620_wifi_int = port:PL06<6><1><default><default>
 mtk_6620_bgf_int  = port:PL07<6><1><default><default>
-mtk_6620_sys_rst  = port:PL08<1><default><default><0>
 
 ;--------------------------------------------------------------------------------
 ;3G configuration

@@ -567,8 +567,23 @@ dac3_src                 = 0
 ;--------------------------------------------------------------------------------
 [csi0_para]
 csi_used			= 1
+
+csi_dev_qty         = 1
+csi_stby_mode       = 0
+csi_mname           = "ov5640"
+csi_if              = 0
+csi_iovdd           = ""
+csi_avdd            = ""
+csi_dvdd            = ""
+csi_vol_iovdd       = 0
+csi_vol_dvdd        = 0
+csi_vol_avdd        = 0
+csi_vflip           = 0
+csi_hflip           = 0
+csi_flash_pol       = 0
+
 csi_twi_id			= 1
-csi_twi_addr		= 0x42
+csi_twi_addr		= 0x78
 csi_pck 			= port:PE00<3><default><default><default>
 csi_ck	 			= port:PE01<3><default><default><default>
 csi_hsync 			= port:PE02<3><default><default><default>

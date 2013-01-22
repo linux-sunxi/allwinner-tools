@@ -981,6 +981,7 @@ ir_rx               = port:PL04<2><1><default><default>
 ;pmu_init_chg_pretime        ---set initial pre-charging time,min,40/50/60/70
 ;pmu_init_chg_csttime        ---set initial constance-charging time,min,360/480/600/720
 ;pmu_batt_cap_correct	     ---correct the battery capacity or not when one charge cycle 0:not correct 1:correct
+;pmu_bat_regu_en			 ---bat regulator is enable or not when charge done 0:disable 1:enable
 ;pmu_bat_para1 		     			 ---battery indication at 3.13V
 ;pmu_bat_para2               ---battery indication at 3.27V
 ;pmu_bat_para3               ---battery indication at 3.34V
@@ -1059,6 +1060,7 @@ pmu_init_adcts_freq        = 800
 pmu_init_chg_pretime       = 70
 pmu_init_chg_csttime       = 720
 pmu_batt_cap_correct       = 1
+pmu_bat_regu_en			   = 0
 
 pmu_bat_para1              = 0
 pmu_bat_para2              = 0
@@ -1109,7 +1111,7 @@ pmu_pekon_time             = 1000
 pmu_pwrok_time             = 64
 pmu_battery_warning_level1 = 15
 pmu_battery_warning_level2 = 0
-pmu_restvol_adjust_time    = 30
+pmu_restvol_adjust_time    = 60
 pmu_ocv_cou_adjust_time    = 60
 pmu_chgled_func            = 0
 pmu_chgled_type            = 0

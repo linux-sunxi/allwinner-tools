@@ -8,6 +8,7 @@ PACK_CHIP="sun6i"
 PACK_PLATFORM="linux"
 PACK_BOARD="sun6i"
 PACK_BOOT="nand"
+PACK_FUNC="android"
 PACK_DEBUG="uart0"
 
 export PATH=${TOOLS_DIR}/mod_update:${TOOLS_DIR}/eDragonEx:${TOOLS_DIR}/fsbuild200:${TOOLS_DIR}/android:$PATH
@@ -57,7 +58,7 @@ do
 done
 }
 
-while getopts hc:p:b:B:d: OPTION
+while getopts hc:p:b:B:d:f: OPTION
 do
     case $OPTION in
     h) show_help
@@ -72,6 +73,8 @@ do
     B) PACK_BOOT=$OPTARG
     ;;
 	d) PACK_DEBUG=$OPTARG
+	;;
+	f) PACK_FUNC=$OPTARG
 	;;
     *) show_help
     exit 0
@@ -104,9 +107,23 @@ do_clean()
     rm -rf eFex eGon wboot
     #rm -rf out/*.fex out/*.bin
 }
+
+do_pack_linux()
+{
+	if [ "$PACK_FUNC" = "prvt" ]; then
+   		do_pack_prvt
+   	else
+		do_pack_linux0
+	fi
+}
+
 do_pack_android()
 {
-do_pack_crane
+	if [ "$PACK_FUNC" = "prvt" ]; then
+   		do_pack_prvt
+   	else
+		do_pack_crane
+	fi
 }
 
 do_pack_crane()
@@ -225,7 +242,7 @@ do_pack_crane()
     cd - 1>/dev/null
 }
 
-do_pack_linux()
+do_pack_linux0()
 {
     printf "!!!Packing for linux!!!\n"
 
@@ -372,7 +389,7 @@ do_pack_dragonboard()
     	busybox unix2dos sys_partition.fex
     	script sys_config.fex
 		script sys_partition.fex
-        
+
         cp test_config.fex bootfs/test_config.fex
         busybox unix2dos test_config.fex
         script test_config.fex
@@ -401,6 +418,76 @@ do_pack_dragonboard()
     ln -s $LICHEE_OUT/dragonboard/rootfs.ext4 rootfs.fex
 
     dragon image.cfg sys_partition.fex
+
+    if [ -e ${IMG_NAME} ]; then
+        mv ${IMG_NAME} ../${IMG_NAME}
+        echo '---------image is at-------------'
+        echo -e '\033[0;31;1m'
+        echo ${ROOT_DIR}/${IMG_NAME}
+        echo -e '\033[0m'
+    fi
+
+    cd - 1>/dev/null
+}
+
+do_pack_prvt()
+{
+    printf "!!!Packing for Private!!!\n"
+
+    if [ -z "$LICHEE_OUT" ]; then
+        LICHEE_OUT=`cd ../../out; pwd`
+    fi
+
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/default/* out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.fex out/ 2>/dev/null
+    cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/$PACK_BOARD/*.cfg out/ 2>/dev/null
+
+
+    cp -rf eFex/split_xxxx.fex  wboot/bootfs wboot/bootfs.ini \
+        out/
+
+    cp -rf eGon/boot0_nand.bin out/boot0_nand.bin
+    cp -rf eGon/boot1_nand.bin out/boot1_nand.fex
+
+    cp -rf eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -rf eGon/boot1_sdcard.bin out/boot1_sdcard.fex
+
+	cd out/
+
+	rm -rf bootfs/boot.axf bootfs/sprite.axf
+	cp -rf bootfs/prvt.axf bootfs/boot.axf
+	cp -rf bootfs/prvt.axf bootfs/sprite.axf
+
+
+    sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
+    sed -i 's/\\\\/\//g' image.cfg
+    sed -i 's/imagename/;imagename/g' image.cfg
+
+    IMG_NAME="${PACK_CHIP}_${PACK_FUNC}.img"
+
+    echo "imagename = $IMG_NAME" >> image.cfg
+    echo "" >> image.cfg
+
+    	busybox unix2dos sys_config.fex
+    	busybox unix2dos sys_partition_private.fex
+    	script sys_config.fex
+		script sys_partition_private.fex
+
+		update_boot0 boot0_nand.bin   sys_config.bin NAND
+    	update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
+
+		update_boot1 boot1_nand.fex   sys_config.bin NAND
+    	update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+
+		cp sys_config.bin bootfs/script.bin
+
+    update_mbr sys_partition_private.bin  4
+
+    fsbuild bootfs.ini split_xxxx.fex
+
+	mv bootfs.fex bootloader.fex
+
+    dragon image.cfg sys_partition_private.fex
 
     if [ -e ${IMG_NAME} ]; then
         mv ${IMG_NAME} ../${IMG_NAME}

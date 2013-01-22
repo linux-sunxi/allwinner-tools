@@ -343,9 +343,9 @@ ctp_used            = 1
 ctp_name            = "gsl1680"
 ctp_twi_id          = 1
 ctp_twi_addr        = 0x40
-ctp_screen_max_x    = 1280
-ctp_screen_max_y    = 800
-ctp_revert_x_flag   = 1
+ctp_screen_max_x    = 1024
+ctp_screen_max_y    = 600
+ctp_revert_x_flag   = 0
 ctp_revert_y_flag   = 1
 ctp_exchange_x_y_flag = 1
 
@@ -490,18 +490,20 @@ lcd1_hue                 = 50
 [lcd0_para]
 lcd_used            = 1
 
-lcd_if              = 3
-lcd_x               = 1280
-lcd_y               = 800
-lcd_dclk_freq       = 70
-lcd_pwm_freq        = 50000
+;; temp for RGB lcd 1024x600
+lcd_if              = 0
+lcd_x               = 1024
+lcd_y               = 600
+lcd_dclk_freq       = 51
+lcd_pwm_freq        = 10000
 lcd_pwm_pol         = 0
-lcd_hbp             = 20
-lcd_ht              = 1418
-lcd_hspw            = 10
-lcd_vbp             = 10
-lcd_vt              = 814
-lcd_vspw            = 5
+lcd_hbp             = 160
+lcd_ht              = 1344
+lcd_hspw            = 20
+lcd_vbp             = 23
+lcd_vt              = 635
+lcd_vspw            = 3
+lcd_hv_if           = 0
 lcd_lvds_if         = 0
 lcd_lvds_colordepth = 1
 lcd_lvds_mode       = 0
@@ -517,14 +519,34 @@ lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>
 lcd_pwm             = port:PH13<2><0><default><default>
 
-lcdd0               = port:PD00<3><0><default><default>
-lcdd1               = port:PD01<3><0><default><default>
-lcdd2               = port:PD02<3><0><default><default>
-lcdd3               = port:PD03<3><0><default><default>
-lcdd4               = port:PD04<3><0><default><default>
-lcdd5               = port:PD05<3><0><default><default>
-lcdd6               = port:PD06<3><0><default><default>
-lcdd7               = port:PD07<3><0><default><default>
+lcdd0               = port:PD00<2><0><default><default>
+lcdd1               = port:PD01<2><0><default><default>
+lcdd2               = port:PD02<2><0><default><default>
+lcdd3               = port:PD03<2><0><default><default>
+lcdd4               = port:PD04<2><0><default><default>
+lcdd5               = port:PD05<2><0><default><default>
+lcdd6               = port:PD06<2><0><default><default>
+lcdd7               = port:PD07<2><0><default><default>
+lcdd8               = port:PD08<2><0><default><default>
+lcdd9               = port:PD09<2><0><default><default>
+lcdd10              = port:PD10<2><0><default><default>
+lcdd11              = port:PD11<2><0><default><default>
+lcdd12              = port:PD12<2><0><default><default>
+lcdd13              = port:PD13<2><0><default><default>
+lcdd14              = port:PD14<2><0><default><default>
+lcdd15              = port:PD15<2><0><default><default>
+lcdd16              = port:PD16<2><0><default><default>
+lcdd17              = port:PD17<2><0><default><default>
+lcdd18              = port:PD18<2><0><default><default>
+lcdd19              = port:PD19<2><0><default><default>
+lcdd20              = port:PD20<2><0><default><default>
+lcdd21              = port:PD21<2><0><default><default>
+lcdd22              = port:PD22<2><0><default><default>
+lcdd23              = port:PD23<2><0><default><default>
+lcdclk              = port:PD24<2><0><default><default>
+lcdde               = port:PD25<2><0><default><default>
+lcdhsync            = port:PD26<2><0><default><default>
+lcdvsync            = port:PD27<2><0><default><default>
 
 ;----------------------------------------------------------------------------------
 ;hdmi configuration
@@ -843,7 +865,7 @@ wifi_sdc_id        = 1
 wifi_usbc_id       = 1
 wifi_usbc_type     = 1
 wifi_mod_sel       = 7
-wifi_power         = "axp22_aldo1"
+wifi_power         = "axp22_dldo2"
 
 ; 1 - bcm40181 sdio wifi gpio config
 ;bcm40181_shdn          = port:PG10<1><default><default><0>
@@ -882,18 +904,20 @@ mtk_6620_bgf_int  = port:PL07<6><1><default><default>
 ;3G configuration
 ;--------------------------------------------------------------------------------
 [3g_para]
-3g_used			= 1
-3g_usbc_num		= 0
-3g_usbc_type	= 0
-3g_uart_num		= 1
-bb_name			= "em55"
-bb_vbat			= port:PL03<1><default><default><0>
-bb_pwr_on		= port:PM01<1><default><default><0>
-bb_wake			= port:PM02<1><default><default><1>
-bb_rst			= port:PM03<1><default><default><0>
-bb_host_wake		= port:PM00<6><1><default><0>
-bb_on			= 
-bb_rf_dis		= 
+3g_used         = 1
+3g_usbc_num     = 0
+3g_usbc_type    = 0
+3g_uart_num     = 1
+bb_name         = "em55"
+;bb_vbat        = port:PL03<1><default><default><0>
+;bb_pwr_on      = port:PM01<1><default><default><0>
+bb_vbat         = port:PM01<1><default><default><0>
+bb_pwr_on       = port:PL03<1><default><default><0>
+bb_wake         = port:PM02<1><default><default><1>
+bb_rst          = port:PM03<1><default><default><0>
+bb_host_wake    = port:PM00<6><1><default><0>
+bb_on           =
+bb_rf_dis       =
 
 ;--------------------------------------------------------------------------------
 ;gyroscope

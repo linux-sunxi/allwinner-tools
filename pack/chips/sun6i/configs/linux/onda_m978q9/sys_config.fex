@@ -945,7 +945,7 @@ cap_vol					= 0x5
 pa_single_vol			= 0x1b
 pa_double_used			= 0
 pa_double_vol			= 0x1f
-headphone_direct_used	= 1
+headphone_direct_used	= 0
 audio_pa_ctrl       	= port:PA18<1><default><default><0>
 
 ;----------------------------------------------------------------------------------

@@ -880,10 +880,10 @@ wifi_power         = "axp22_dldo2"
 ;bcm40183_bt_host_wake  = port:PG18<0><default><default><0>
 
 ; 3 - rtl8723as sdio wifi + bt gpio config
-rtk_rtl8723as_wl_dis       = port:PG10<1><default><default><0>
-rtk_rtl8723as_bt_dis       = port:PG11<1><default><default><0>
-rtk_rtl8723as_wl_host_wake = port:PG12<0><default><default><0>
-rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
+;rtk_rtl8723as_wl_dis       = port:PG10<1><default><default><0>
+;rtk_rtl8723as_bt_dis       = port:PG11<1><default><default><0>
+;rtk_rtl8723as_wl_host_wake = port:PG12<0><default><default><0>
+;rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
 
 ; 4 - rtl8189es sdio wifi gpio config
 ;rtl8189es_shdn         = port:PG10<1><default><default><0>
@@ -893,7 +893,7 @@ rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
 
 ; 6 - rtl8188eu
 
-; 7 - mtk6620 sdio+uart wii+bt+gps+fm gpio config
+; 7 - mt6620 sdio+uart wifi+bt+gps+fm gpio config
 mtk_6620_ldo      = port:PL04<1><default><default><0>
 mtk_6620_pmu_en   = port:PL05<1><default><default><0>
 mtk_6620_sys_rst  = port:PL08<1><default><default><0>

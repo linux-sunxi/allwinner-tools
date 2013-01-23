@@ -990,12 +990,13 @@ spdif_din           = port:PH27<3><1><default><default>
 ;cap_val:0x0--0db,0x1--24db,0x2--27db,0x3--30db,0x4--33db,0x5--36db,0x6--39db,0x7--42db
 ;headphone_vol must least than 0x3b. 0x1 is a step.
 [audio_para]
-audio_used          	= 1
-headphone_vol			= 0x3b
-cap_vol					= 0x5
-pa_single_vol			= 0x1b
-pa_double_used			= 0
-pa_double_vol			= 0x1f
+audio_used         = 1
+audio_hp_ldo       = "axp22_aldo1"
+headphone_vol      = 0x3b
+cap_vol            = 0x5
+pa_single_vol      = 0x1b
+pa_double_used     = 0
+pa_double_vol      = 0x1f
 headphone_direct_used	= 0
 audio_pa_ctrl       	= port:PA18<1><default><default><0>
 

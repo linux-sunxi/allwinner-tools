@@ -322,13 +322,13 @@ spi_cs1        = port:PA25<4><default><default><default>
 ;resistance tp configuration
 ;----------------------------------------------------------------------------------
 [rtp_para]
-rtp_used      = 0
-rtp_screen_size = 5
-rtp_regidity_level = 5
+rtp_used                   = 0
+rtp_screen_size            = 5
+rtp_regidity_level         = 5
 rtp_press_threshold_enable = 0
-rtp_press_threshold = 0x1f40
-rtp_sensitive_level = 0xf
-rtp_exchange_x_y_flag = 0
+rtp_press_threshold        = 0x1f40
+rtp_sensitive_level        = 0xf
+rtp_exchange_x_y_flag      = 0
 
 ;----------------------------------------------------------------------------------
 ;capacitor tp configuration

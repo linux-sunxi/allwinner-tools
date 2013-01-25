@@ -935,9 +935,10 @@ gy_int2             =
 ;--------------------------------------------------------------------------------
 [light_distance_sensor_para]
 light_distance_sensor_used        = 1
+light_distance_sensor_ldo         = "axp22_dldo2"
 light_distance_sensor_twi_id      = 3
 light_distance_sensor_twi_addr    = 0x23
-light_distance_sensor_int1        = port:PA12<6><1><default><default>
+light_distance_sensor_int1        = port:PG12<6><1><default><default>
 light_distance_sensor_int2        =
 
 ;--------------------------------------------------------------------------------

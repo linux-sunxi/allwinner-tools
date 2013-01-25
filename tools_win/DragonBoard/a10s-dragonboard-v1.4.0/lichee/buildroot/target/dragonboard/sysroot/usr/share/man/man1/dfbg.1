@@ -1,0 +1,54 @@
+.\" Hey Emacs! This file is -*- nroff -*- source.
+.\"
+.\" This man page is Copyright (C) 2002-2003 Sven Neumann <neo@directfb.org>
+
+.TH DFBG 1 "9 Jul 2003" "Version 1.4.11" "DirectFB Manual Pages"
+
+.SH NAME
+dfbg \- DirectFB background configuration tool
+
+.SH SYNOPSIS
+\fBdfbg\fP [\fIoptions\fP] <\fIfilename\fP>|<color>
+
+.SH DESCRIPTION
+\fBdfbg\fP is a small utility to configure the background of the DirectFB
+desktop. It loads the specified image and sets it as background image.
+
+\fBdfbg\fP requires DirectFB with the multi-application core enabled.
+
+.SH OPTIONS
+.TP
+.B -c, --color
+Set color fill mode using <color> in AARRGGBB format (hexadecimal).
+The alpha component can be omitted in most configurations.
+
+.TP
+.B -t, --tile
+Set tiled mode instead of scaling the image to fit the screen size.
+
+.TP
+.B -v, --version
+Output version information.
+
+.TP
+.B -h, --help
+Print brief help and exit.
+
+.SH EXAMPLES
+
+Set background color to DirectFB's default color
+
+	dfbg -c ff107ce8
+
+Set image stretched to fit the screen
+
+	dfbg bg.png
+
+Set image tiled
+
+	dfbg -t bg.png
+
+
+.SH OTHER INFO
+The canonical place to find informations about DirectFB is at
+http://www.directfb.org/.

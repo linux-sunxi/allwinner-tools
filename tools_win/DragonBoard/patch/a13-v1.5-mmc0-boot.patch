@@ -1,0 +1,13 @@
+diff --git a/include/configs/sun5i_a13.h b/include/configs/sun5i_a13.h
+index 08e5290..13b5dfb 100644
+--- a/include/configs/sun5i_a13.h
++++ b/include/configs/sun5i_a13.h
+@@ -100,7 +100,7 @@
+ #define CONFIG_GENERIC_MMC
+ #define CONFIG_CMD_MMC
+ #define CONFIG_MMC_SUNXI
+-#define CONFIG_MMC_SUNXI_SLOT		2		/* which mmc slot to use, could be 0,1,2,3 */
++#define CONFIG_MMC_SUNXI_SLOT		0		/* which mmc slot to use, could be 0,1,2,3 */
+ #define CONFIG_MMC_SUNXI_USE_DMA
+ #define CONFIG_ENV_IS_IN_MMC
+ #define CONFIG_SYS_MMC_ENV_DEV		CONFIG_MMC_SUNXI_SLOT		/* env in which mmc */

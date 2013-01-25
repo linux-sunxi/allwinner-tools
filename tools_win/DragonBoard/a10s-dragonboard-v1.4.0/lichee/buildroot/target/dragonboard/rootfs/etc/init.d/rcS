@@ -1,0 +1,34 @@
+#!/bin/sh
+
+ROOT_DEVICE=/dev/nandd
+
+mount -t devtmpfs none /dev
+mkdir /dev/pts
+mount -t devpts none /dev/pts
+
+mknod /dev/mali c 230 0
+hostname dragonboard
+mkdir -p /boot
+
+for parm in $(cat /proc/cmdline); do
+    case $parm in
+        root=*)
+            ROOT_DEVICE=`echo $parm | awk -F\= '{print $2}'`
+            ;;
+    esac
+done
+
+case $ROOT_DEVICE in
+    /dev/nand*)
+        echo "nand boot"
+        mount /dev/nanda /boot
+        ;;
+    /dev/mmc*)
+        echo "mmc boot"
+        mount /dev/mmcblk0p2 /boot
+        ;;
+    *)
+        echo "default boot type"
+        mount /dev/nanda /boot
+        ;;
+esac

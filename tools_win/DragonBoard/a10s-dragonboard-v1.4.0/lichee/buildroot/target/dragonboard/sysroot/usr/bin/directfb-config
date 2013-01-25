@@ -1,0 +1,315 @@
+#!/bin/sh
+
+prefix='/home/csjamesdeng/workspace/a10/dev/lichee_linux/buildroot/output/host/usr/arm-unknown-linux-gnueabi/sysroot/usr'
+exec_prefix='/home/csjamesdeng/workspace/a10/dev/lichee_linux/buildroot/output/host/usr/arm-unknown-linux-gnueabi/sysroot/usr'
+exec_prefix_set=no
+moduledir=${exec_prefix}/lib/directfb-1.4-5
+
+usage()
+{
+	cat <<EOF
+Usage: directfb-config [OPTIONS] [LIBRARIES]
+Options:
+	[--prefix[=DIR]]
+	[--exec-prefix[=DIR]]
+	[--version]
+	[--libs]
+	[--cflags]
+	
+For static linking:
+	[--input=<driver>[,<driver>]...]	(default: none)
+	[--graphics=<driver>[,<driver>]...]	(default: none)
+	[--system=<system>[,<system>]...]	(default: 'fbdev')
+	[--wm=<wm>[,<wm>]...]			(default: 'default')
+	[--font=<impl>[,<impl>]...]		(default: none)
+	[--imageprovider=<impl>[,<impl>]...]	(default: none)
+	[--videoprovider=<impl>[,<impl>]...]	(default: none)
+	[--fusionsound]
+	[--voodoo]
+	
+Example for static linking:
+	directfb-config --libs --graphics=matrox,r200
+			--input=linux_input --font=ft2
+			--imageprovider=jpeg,png,gif
+EOF
+	exit $1
+}
+
+if test $# -eq 0; then
+	usage 1 1>&2
+fi
+
+lib_directfb=yes
+lib_avifile=no
+
+while test $# -gt 0; do
+  case "$1" in
+    -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+    *) optarg= ;;
+  esac
+
+  case $1 in
+    --prefix=*)
+      prefix=$optarg
+      if test $exec_prefix_set = no ; then
+        exec_prefix=$optarg
+      fi
+      ;;
+    --prefix)
+      echo_prefix=yes
+      ;;
+    --exec-prefix=*)
+      exec_prefix=$optarg
+      exec_prefix_set=yes
+      ;;
+    --exec-prefix)
+      echo_exec_prefix=yes
+      ;;
+    --version)
+      echo 1.4.11
+      ;;
+    --cflags)
+      echo_cflags=yes
+      ;;
+    --libs)
+      echo_libs=yes
+      ;;
+    directfb)
+      lib_directfb=yes
+      ;;
+    avifile)
+      lib_avifile=yes
+      ;;
+    --input=*)
+      if test -z "$optarg"; then
+        usage 2 1>&2
+      fi
+        
+      for i in `echo $optarg | sed 's/,/ /g'`; do
+        echo_input="$echo_input $moduledir/inputdrivers/libdirectfb_$i.o"
+      done
+
+      echo_static=yes
+      ;;
+    --graphics=*)
+      if test -z "$optarg"; then
+        usage 2 1>&2
+      fi
+        
+      for i in `echo $optarg | sed 's/,/ /g'`; do
+        echo_graphics="$echo_graphics $moduledir/gfxdrivers/libdirectfb_$i.o"
+      done
+
+      echo_static=yes
+      ;;
+    --font=*)
+      if test -z "$optarg"; then
+        usage 2 1>&2
+      fi
+        
+      for i in `echo $optarg | sed 's/,/ /g'`; do
+        echo_font="$echo_font $moduledir/interfaces/IDirectFBFont/libidirectfbfont_$i.o"
+        case $i in
+          ft2)
+            echo_font="$echo_font -lfreetype"
+            ;;
+        esac
+      done
+
+      echo_static=yes
+      ;;
+    --system=*)
+      if test -z "$optarg"; then
+        usage 2 1>&2
+      fi
+        
+      for i in `echo $optarg | sed 's/,/ /g'`; do
+        echo_system="$echo_system $moduledir/systems/libdirectfb_$i.o"
+        case $i in
+          fbdev)
+            echo_system="$echo_system "
+            ;;
+          sdl)
+            echo_system="$echo_system "
+            ;;
+        esac
+      done
+
+      echo_static=yes
+      ;;
+    --wm=*)
+      if test -z "$optarg"; then
+        usage 2 1>&2
+      fi
+        
+      for i in `echo $optarg | sed 's/,/ /g'`; do
+        echo_wm="$echo_wm $moduledir/wm/libidirectfb_$i.o"
+        case $i in
+          unique)
+            echo_wm="$echo_wm -luniquewm"
+            ;;
+        esac
+      done
+
+      echo_static=yes
+      ;;
+    --imageprovider=*)
+      if test -z "$optarg"; then
+        usage 2 1>&2
+      fi
+        
+      for i in `echo $optarg | sed 's/,/ /g'`; do
+        echo_imageprovider="$echo_imageprovider $moduledir/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_$i.o"
+        case $i in
+          imlib2)
+            echo_imageprovider="$echo_imageprovider -lImlib2 -lttf -lm -lXext -lX11"
+            ;;
+          jpeg)
+            echo_imageprovider="$echo_imageprovider -ljpeg"
+            ;;
+          png)
+            echo_imageprovider="$echo_imageprovider -lpng -lz -lm"
+            ;;
+          gif)
+            ;;
+        esac
+      done
+
+      echo_static=yes
+      ;;
+    --videoprovider=*)
+      if test -z "$optarg"; then
+        usage 2 1>&2
+      fi
+        
+      for i in `echo $optarg | sed 's/,/ /g'`; do
+        echo_videoprovider="$echo_videoprovider $moduledir/interfaces/IDirectFBVideoProvider/libidirectfbvideoprovider_$i.o"
+        case $i in
+          libmpeg3)
+            echo_videoprovider="$echo_videoprovider -lmpeg3"
+            ;;
+          swf)
+            echo_videoprovider="$echo_videoprovider -ljpeg -lz"
+            ;;
+          openquicktime)
+            echo_videoprovider="$echo_videoprovider -lopenquicktime -lz -lglib -lm"
+            ;;
+        esac
+      done
+
+      echo_static=yes
+      ;;
+    --fusionsound)
+      echo_fusionsound="-Wl,-uIFusionSound_default -lifusionsound"
+      echo_static=yes
+      ;;
+    --voodoo)
+      echo_voodoo=yes
+      echo_static=yes
+      ;;
+    *)
+      usage 1 1>&2
+      ;;
+  esac
+  shift
+done
+
+if test "$echo_prefix" = "yes"; then
+	echo $prefix
+fi
+
+if test "$echo_exec_prefix" = "yes"; then
+	echo $exec_prefix
+fi
+
+if test "$echo_cflags" = "yes"; then
+      if test ${prefix}/include/directfb != /usr/include ; then
+        cflags="-I${SYSROOT}${prefix}/include/directfb"
+      fi
+      echo $cflags -D_REENTRANT
+fi
+
+if test -n "$echo_static"; then
+	echo -static
+
+	if test -z "$echo_system"; then
+		echo $moduledir/systems/libdirectfb_fbdev.o 
+	fi
+
+	if test -z "$echo_wm"; then
+		echo $moduledir/wm/libdirectfbwm_default.o
+	fi
+fi
+
+
+if test -n "$echo_font"; then
+	echo $echo_font
+fi
+
+if test -n "$echo_imageprovider"; then
+	echo $echo_imageprovider
+fi
+
+if test -n "$echo_videoprovider"; then
+	echo $echo_videoprovider
+fi
+
+
+if test -n "$echo_input"; then
+	echo $echo_input
+fi
+
+if test -n "$echo_graphics"; then
+	echo $echo_graphics
+fi
+
+if test -n "$echo_system"; then
+	echo $echo_system
+fi
+
+if test -n "$echo_wm"; then
+	echo $echo_wm
+fi
+
+if test -n "$echo_fusionsound"; then
+	echo -L${SYSROOT}$moduledir/interfaces/IFusionSound $echo_fusionsound
+fi
+
+
+print_voodoo ()
+{
+	echo $moduledir/interfaces/$1/lib$2_dispatcher.o $moduledir/interfaces/$1/lib$2_requestor.o
+}
+
+if test -n "$echo_voodoo"; then
+	print_voodoo  IDirectFB              idirectfb
+	print_voodoo  IDirectFBDataBuffer    idirectfbdatabuffer
+	print_voodoo  IDirectFBDisplayLayer  idirectfbdisplaylayer
+	print_voodoo  IDirectFBEventBuffer   idirectfbeventbuffer
+	print_voodoo  IDirectFBFont          idirectfbfont
+	print_voodoo  IDirectFBImageProvider idirectfbimageprovider
+	print_voodoo  IDirectFBInputDevice   idirectfbinputdevice
+	print_voodoo  IDirectFBPalette       idirectfbpalette
+	print_voodoo  IDirectFBScreen        idirectfbscreen
+	print_voodoo  IDirectFBSurface       idirectfbsurface
+	print_voodoo  IDirectFBWindow        idirectfbwindow
+	echo -lvoodoo
+fi
+
+if test "$echo_libs" = "yes"; then
+      libs=-L${SYSROOT}${exec_prefix}/lib
+
+      if test "$lib_directfb" = "yes"; then
+	 libs="$libs -ldirectfb -lfusion -ldirect -lpthread"
+
+	 if test -n "$echo_static"; then
+	    libs="$libs -ldl -lz"
+	 fi
+      fi
+
+      if test "$lib_avifile" = "yes"; then
+	 libs="$libs @AVIFILE_LIBS@"
+      fi
+
+      echo $libs
+fi      

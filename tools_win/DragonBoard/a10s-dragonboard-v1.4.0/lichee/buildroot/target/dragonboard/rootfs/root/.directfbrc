@@ -1,0 +1,5 @@
+module-dir=/usr/lib/directfb-1.4-5
+no-vt
+software
+fbdev=/dev/fb0
+#debug

@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: DiVine
+Description: DirectFB Virtual Input
+Version: 0.4.0
+Libs: -L${libdir} -ldivine
+Cflags: -I${includedir}/divine -D_REENTRANT -I/home/csjamesdeng/workspace/a10/dev/lichee_linux/buildroot/output/host/usr/arm-unknown-linux-gnueabi/sysroot/usr/include/directfb  

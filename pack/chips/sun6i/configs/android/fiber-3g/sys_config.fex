@@ -149,7 +149,7 @@ cpu_freq			=	48
 pll_ratio			= 	0x111
 dram_selfresh_en		= 	1
 dram_freq			= 	36
-bb_wake_ap     		= port:PM00<0><default><default><0>
+bb_wake_ap     		= port:PM00<6><default><default><0>
 
 ;------------------------------------------------------------------------------;
 ; 10/100/100Mbps Ethernet MAC Controller Configure                             ;
@@ -901,10 +901,10 @@ bb_rst			= port:PM06<1><default><default><0>
 ;bb_name			= "mu509"
 ;bb_vbat			= port:PL03<1><default><default><0>
 ;bb_on			= port:PM01<1><default><default><0>
-;bb_pwr_on		= port:PM03<1><default><default><0>
-;bb_wake			= port:PM04<1><default><default><0>
+;bb_pwr_on		= port:PM03<1><default><default><1>
+;bb_wake			= port:PM04<1><default><default><1>
 ;bb_rf_dis		= port:PM05<1><default><default><0>
-;bb_rst			= port:PM06<1><default><default><0>
+;bb_rst			= port:PM06<1><default><default><1>
 
 ;--------------------------------------------------------------------------------
 ;gyroscope

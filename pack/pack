@@ -311,6 +311,7 @@ do_pack_linux()
 
     # get the rootfs
     ln -s $LICHEE_OUT/rootfs.ext4 rootfs.fex
+    e2fsck -y rootfs.ext4 > /dev/null
 
     # checksum for all fex
     # FileAddSum bootloader.fex vbootloader.fex

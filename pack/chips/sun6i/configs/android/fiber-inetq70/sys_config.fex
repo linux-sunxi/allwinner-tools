@@ -153,6 +153,7 @@ wakeup_src0			=	port:PL5<2><1><default><default>
 wakeup_src_wifi			=	port:PL06<6><1><default><default>
 wakeup_src_bgf			=	port:PL07<6><1><default><default>
 bb_wake_ap			=	port:PM00<0><default><default><0>
+proximity_wake_ap	=	port:PG12<6><1><default><default>
 
 ;------------------------------------------------------------------------------;
 ; 10/100/100Mbps Ethernet MAC Controller Configure                             ;

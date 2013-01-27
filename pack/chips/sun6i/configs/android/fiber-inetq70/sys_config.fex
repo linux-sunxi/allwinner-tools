@@ -995,7 +995,8 @@ spdif_din           = port:PH27<3><1><default><default>
 [audio_para]
 audio_used         = 1
 audio_hp_ldo       = "axp22_aldo1"
-headphone_vol      = 0x3b
+headphone_vol      = 0x3a
+earpiece_vol      = 0x3a
 cap_vol            = 0x7
 main_mic_vol       = 0x7
 headset_mic_vol    = 0x7

@@ -1173,7 +1173,7 @@ pmu_reset                  = 0
 pmu_IRQ_wakeup             = 0
 pmu_hot_shutdowm           = 1
 pmu_inshort                = 0
-power_start                = 0
+power_start                = 1
 
 ;----------------------------------------------------------------------------------
 ; dvfs voltage-frequency table configuration

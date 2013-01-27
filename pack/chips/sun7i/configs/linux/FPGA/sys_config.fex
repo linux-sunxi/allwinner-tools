@@ -214,36 +214,40 @@ uart7_rx   			= port:PA15<4><default><default><default>
 ;spi configuration
 ;----------------------------------------------------------------------------------
 [spi0_para]
-spi_used			= 0
-spi_cs0   			= port:PI10<3><default><default><default>
-spi_cs1   			= port:PI14<3><default><default><default>
-spi_sclk  			= port:PI11<3><default><default><default>
-spi_mosi  			= port:PI12<3><default><default><default>
-spi_miso  			= port:PI13<3><default><default><default>
+spi_used            = 0
+spi_cs_bitmap       = 1
+spi_cs0             = port:PI10<2><default><default><default>
+spi_cs1             = port:PI14<2><default><default><default>
+spi_sclk            = port:PI11<2><default><default><default>
+spi_mosi            = port:PI12<2><default><default><default>
+spi_miso            = port:PI13<2><default><default><default>
 
 [spi1_para]
-spi_used			= 0
-spi_cs0   			= port:PA00<4><default><default><default>
-spi_cs1   			= port:PA04<4><default><default><default>
-spi_sclk  			= port:PI01<4><default><default><default>
-spi_mosi  			= port:PI02<4><default><default><default>
-spi_miso  			= port:PI03<4><default><default><default>
+spi_used            = 0
+spi_cs_bitmap       = 1
+spi_cs0             = port:PA00<3><default><default><default>
+spi_cs1             = port:PA04<3><default><default><default>
+spi_sclk            = port:PA01<3><default><default><default>
+spi_mosi            = port:PA02<3><default><default><default>
+spi_miso            = port:PA03<3><default><default><default>
 
 [spi2_para]
-spi_used			= 0
-spi_cs0   			= port:PC19<3><default><default><default>
-spi_cs1   			=
-spi_sclk  			= port:PC20<3><default><default><default>
-spi_mosi  			= port:PC21<3><default><default><default>
-spi_miso  			= ?
+spi_used            = 0
+spi_cs_bitmap       = 1
+spi_cs0             = port:PC19<3><default><default><default>
+spi_cs1             = port:PB13<3><default><default><default>
+spi_sclk            = port:PC20<3><default><default><default>
+spi_mosi            = port:PC21<3><default><default><default>
+spi_miso            = port:PC22<3><default><default><default>
 
 [spi3_para]
-spi_used			= 0
-spi_cs0   			= port:PA05<4><default><default><default>
-spi_cs1   			= port:PA09<4><default><default><default>
-spi_sclk  			= port:PI06<4><default><default><default>
-spi_mosi  			= port:PI07<4><default><default><default>
-spi_miso  			= port:PI08<4><default><default><default>
+spi_used            = 0
+spi_cs_bitmap       = 1
+spi_cs0             = port:PA05<3><default><default><default>
+spi_cs1             = port:PA09<3><default><default><default>
+spi_sclk            = port:PI06<3><default><default><default>
+spi_mosi            = port:PI07<3><default><default><default>
+spi_miso            = port:PI08<3><default><default><default>
 
 
 

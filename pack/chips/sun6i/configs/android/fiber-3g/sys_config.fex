@@ -784,7 +784,7 @@ usb_drv_vbus_gpio   = port:PH27<1><0><default><0>
 usb_restrict_gpio   = port:PH26<1><0><default><0>
 usb_host_init_state = 1
 usb_restric_flag    = 0
-usb_not_suspend     = 1
+usb_not_suspend     = 0
 
 ;--------------------------------
 ;---       USB2控制标志
@@ -799,7 +799,7 @@ usb_drv_vbus_gpio   =
 usb_restrict_gpio   =
 usb_host_init_state = 1
 usb_restric_flag    = 0
-usb_not_suspend     = 1
+usb_not_suspend     = 0
 
 ;--------------------------------
 ;---       USB Device

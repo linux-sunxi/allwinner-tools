@@ -230,7 +230,7 @@ do_pack_linux()
     printf "!!!Packing for linux!!!\n"
 
     if [ -z "$LICHEE_OUT" ]; then
-        LICHEE_OUT=`cd ../../out; pwd`
+        LICHEE_OUT=`cd ../../out/${PACK_CHIP}/${PACK_PLATFORM}/common; pwd`
     fi
 
     cp -v chips/$PACK_CHIP/configs/$PACK_PLATFORM/default/* out/ 2>/dev/null

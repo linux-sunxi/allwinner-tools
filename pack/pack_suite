@@ -1,0 +1,368 @@
+#!/bin/bash
+#
+# pack/pack
+# (c) Copyright 2013
+# Allwinner Technology Co., Ltd. <www.allwinnertech.com>
+# James Deng <csjamesdeng@allwinnertech.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+
+if [ $(basename `pwd`) != "pack" ] ; then
+    echo "Please run at the top directory of pack"
+    exit 1
+fi
+
+function pack_error()
+{
+    echo -e "\033[47;31mERROR: $*\033[0m"
+}
+
+function pack_warn()
+{
+    echo -e "\033[47;34mWARN: $*\033[0m"
+}
+
+function pack_info()
+{
+    echo -e "\033[47;30mINFO: $*\033[0m"
+}
+
+. ../../buildroot/scripts/shflags/shflags
+
+# define option, format:
+#   'long option' 'default value' 'help message' 'short option'
+DEFINE_string 'chip' '' 'chip to build, e.g. sun7i' 'c'
+DEFINE_string 'platform' '' 'platform to build, e.g. linux, android' 'p'
+DEFINE_string 'board' '' 'board to build, e.g. evb' 'b'
+DEFINE_string 'boot_type' '' 'boot type, e.g. nand, card0, card2' 'B'
+DEFINE_string 'debug_mode' 'uart0' 'config debug mode, e.g. uart0, card0' 'd'
+
+# parse the command-line
+FLAGS "$@" || exit $?
+eval set -- "${FLAGS_ARGV}"
+
+PACK_CHIP=${FLAGS_chip}
+PACK_PLATFORM=${FLAGS_platform}
+PACK_BOARD=${FLAGS_board}
+PACK_DEBUG=${FLAGS_debug_mode}
+
+ROOT_DIR=`pwd`
+TOOLS_DIR="${ROOT_DIR}/pctools/linux"
+LICHEE_OUT="../../out/${PACK_CHIP}/${PACK_PLATFORM}/common"
+if [ -d ${LICHEE_OUT} ] ; then
+    LICHEE_OUT=`cd ../../out/${PACK_CHIP}/${PACK_PLATFORM}/common; pwd`
+else
+    pack_error "build lichee before you pack"
+    exit 1
+fi
+
+export PATH=${TOOLS_DIR}/mod_update:${TOOLS_DIR}/eDragonEx:${TOOLS_DIR}/fsbuild200:${TOOLS_DIR}/android:$PATH 
+
+function cmd_done()
+{
+    printf "[OK]\n"
+}
+
+function cmd_fail()
+{
+    printf "\033[0;31;1m[Failed]\033[0m\n"
+    printf "\nrefer to out/pack.log for detail information.\n\n"
+    pack_error "Packing Failed."
+    exit 1
+}
+
+function stan_cmd()
+{
+    printf "$* "
+    
+    $@ 2>> pack.log
+    if [ $? -ne 0 ] ; then
+        cmd_fail
+    else
+        cmd_done
+    fi
+}
+
+function pack_cmd()
+{
+    printf "$* "
+    local cmdlog="./cmd.log"
+    $@ > $cmdlog
+
+    local ret=1
+    case "$1" in
+        cp)
+            if [ $? = 0 ] ; then
+                ret=0
+            fi
+            ;;
+
+        script)
+            if grep -q "parser 1 file ok" $cmdlog ; then
+                ret=0
+            fi
+            ;;
+
+        update_mbr)
+            if grep -q "update mbr file ok" $cmdlog ; then
+                ret=0
+            fi
+            ;;
+
+        update_boot0)
+            if grep -q "update boot0 ok" $cmdlog ; then
+                ret=0
+            fi
+            ;;
+
+        fsbuild)
+            if [ $2 = "bootfs.ini" -a -f ./bootfs.fex ] ; then
+                ret=0
+            fi
+            ;;
+
+        FileAddSum)
+            if [ -f ./$2 ] ; then
+                ret=0
+            fi
+            ;;
+
+        dragon)
+            if grep -q "Dragon execute image.cfg SUCCESS" $cmdlog ; then
+                [ -f ${IMG_NAME} ] && ret=0
+            fi
+            ;;
+
+        *)
+            printf " [Uncheck]\n"
+            cat $cmdlog >> pack.log
+            echo "----------" >> pack.log
+            return 0
+            ;;
+    esac
+    
+    cat $cmdlog >> pack.log
+    echo "----------" >> pack.log
+
+    if [ $ret -ne 0 ] ; then
+        cmd_fail
+    else
+        cmd_done
+    fi
+}
+
+function show_boards()
+{
+    printf "\nAll avaiable chips, platforms and boards:\n\n"
+    printf "CHIP    PLATFORM        BOARD\n"
+    for chipdir in $(find chips/ -mindepth 1 -maxdepth 1 -type d) ; do
+        chip=`basename ${chipdir}`
+        printf "${chip}\n"
+        for platformdir in $(find chips/${chip}/configs/ -mindepth 1 -maxdepth 1 -type d) ; do
+            platform=`basename ${platformdir}`
+            printf "        ${platform}\n"
+            for boarddir in $(find chips/${chip}/configs/${platform} -mindepth 1 -maxdepth 1 -type d) ; do
+                board=`basename ${boarddir}`
+                printf "                        ${board}\n"
+            done
+        done
+    done
+    printf "\nFor Usage:\n"
+    printf "     $(basename $0) -h\n\n"
+}
+
+function do_prepare()
+{
+    if [ -z "${PACK_CHIP}" -o \
+         -z "${PACK_PLATFORM}" -o \
+         -z "${PACK_BOARD}" ] ; then
+        pack_error "invalid chip, platform or board."
+        show_boards
+        exit 1
+    fi
+
+    if [ ! -d chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD} ] ; then
+        pack_error "board dir or path do not exist."
+        show_boards
+        exit 1
+    fi
+
+    cp -r chips/${PACK_CHIP}/eFex     .
+    cp -r chips/${PACK_CHIP}/eGon     .
+    cp -r chips/${PACK_CHIP}/wboot    .
+    
+    rm -rf out/
+    mkdir -p out/
+}
+
+function do_clean()
+{
+    rm -rf eFex eGon wboot
+}
+
+function do_pack_android()
+{
+    pack_info "Packing for android"
+
+    if [ -z "${ANDROID_IMAGE_OUT}" ] ; then
+        pack_error "please specify ANDROID_IMAGE_OUT env"
+        exit 1
+    fi
+    
+    cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/default/*           out/
+    cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.fex out/
+    cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.cfg out/ 2>> pack.log
+    
+    # TODO
+    # modify the debug option
+    
+    cp -rf eFex/split_xxxx.fex wboot/bootfs wboot/bootfs.ini out/
+    
+    cp -f eGon/boot0_nand.bin   out/boot0_nand.bin
+    cp -f eGon/boot1_nand.bin   out/boot1_nand.fex
+    cp -f eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -f eGon/boot1_sdcard.bin out/boot1_sdcard.fex
+    
+    cd out/
+    stan_cmd cp ${LICHEE_OUT}/u-boot.bin bootfs/linux/
+    
+    sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
+    sed -i 's/\\\\/\//g' image.cfg
+    sed -i 's/imagename/;imagename/g' image.cfg
+    
+    local IMG_NAME
+    if [ $PACK_DEBUG = "card0" ] ; then
+        IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
+    else
+        IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
+    fi
+    
+    echo "imagename = ${IMG_NAME}" >> image.cfg
+    echo "" >> image.cfg
+    
+    busybox unix2dos sys_config.fex
+    busybox unix2dos sys_partition.fex
+    pack_cmd script sys_config.fex
+    pack_cmd script sys_partition.fex
+    
+    cp sys_config.bin bootfs/script.bin
+    pack_cmd update_mbr sys_partition.bin 4
+    
+    pack_cmd update_boot0 boot0_nand.bin   sys_config.bin NAND
+    pack_cmd update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
+    pack_cmd update_boot1 boot1_nand.fex   sys_config.bin NAND
+    pack_cmd update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+    
+    pack_cmd fsbuild bootfs.ini split_xxxx.fex
+    mv bootfs.fex bootloader.fex
+    
+    u_boot_env_gen env.cfg env.fex
+    
+    ln -s ${ANDROID_IMAGE_OUT}/boot.img     boot.fex
+    ln -s ${ANDROID_IMAGE_OUT}/system.img   system.fex
+    ln -s ${ANDROID_IMAGE_OUT}/recovery.img recovery.fex
+    
+    pack_cmd FileAddSum bootloader.fex vbootloader.fex
+    pack_cmd FileAddSum env.fex venv.fex
+    pack_cmd FileAddSum boot.fex vboot.fex
+    pack_cmd FileAddSum system.fex vsystem.fex
+    pack_cmd FileAddSum recovery.fex vrecovery.fex
+    
+    pack_cmd dragon image.cfg sys_partition.fex
+    
+    if [ -e ${IMG_NAME} ]; then
+        mv ${IMG_NAME} ../${IMG_NAME}
+        echo '----------image is at----------'
+        echo -e '\033[0;31;1m'
+        echo ${ROOT_DIR}/${IMG_NAME}
+        echo -e '\033[0m'
+    fi
+
+    cd ..
+}
+
+function do_pack_linux()
+{
+    pack_info "Packing for linux"
+    
+    cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/default/*           out/
+    cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.fex out/
+    cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.cfg out/ 2>> /dev/null
+    
+    # TODO
+    # modify the debug option
+    
+    cp -rf eFex/split_xxxx.fex wboot/bootfs wboot/bootfs.ini out/
+    
+    cp -f eGon/boot0_nand.bin   out/boot0_nand.bin
+    cp -f eGon/boot1_nand.bin   out/boot1_nand.fex
+    cp -f eGon/boot0_sdcard.bin out/boot0_sdcard.fex
+    cp -f eGon/boot1_sdcard.bin out/boot1_sdcard.fex
+    
+    cd out/
+    stan_cmd cp ${LICHEE_OUT}/u-boot.bin bootfs/linux/
+    
+    sed -i 's/\\bootfs/\/bootfs/g' bootfs.ini
+    sed -i 's/\\\\/\//g' image.cfg
+    sed -i 's/imagename/;imagename/g' image.cfg
+    
+    local IMG_NAME
+    if [ $PACK_DEBUG = "card0" ] ; then
+        IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
+    else
+        IMG_NAME="${PACK_CHIP}_${PACK_PLATFORM}_${PACK_BOARD}.img"
+    fi
+    
+    echo "imagename = ${IMG_NAME}" >> image.cfg
+    echo "" >> image.cfg
+    
+    busybox unix2dos sys_config.fex
+    busybox unix2dos sys_partition.fex
+    pack_cmd script sys_config.fex
+    pack_cmd script sys_partition.fex
+    
+    cp sys_config.bin bootfs/script.bin
+    pack_cmd update_mbr sys_partition.bin 4
+    
+    pack_cmd update_boot0 boot0_nand.bin   sys_config.bin NAND
+    pack_cmd update_boot0 boot0_sdcard.fex sys_config.bin SDMMC_CARD
+    pack_cmd update_boot1 boot1_nand.fex   sys_config.bin NAND
+    pack_cmd update_boot1 boot1_sdcard.fex sys_config.bin SDMMC_CARD
+    
+    pack_cmd fsbuild bootfs.ini split_xxxx.fex
+    mv bootfs.fex bootloader.fex
+    
+    u_boot_env_gen env.cfg env.fex
+    
+    ln -s ${LICHEE_OUT}/boot.img boot.fex
+    ln -s ${LICHEE_OUT}/rootfs.ext4 rootfs.fex
+    
+    pack_cmd FileAddSum bootloader.fex vbootloader.fex
+    pack_cmd FileAddSum env.fex venv.fex
+    pack_cmd FileAddSum boot.fex vboot.fex
+    pack_cmd FileAddSum rootfs.fex vrootfs.fex
+    
+    pack_cmd dragon image.cfg sys_partition.fex
+    
+    if [ -e ${IMG_NAME} ]; then
+        mv ${IMG_NAME} ../${IMG_NAME}
+        echo '----------image is at----------'
+        echo -e '\033[0;31;1m'
+        echo ${ROOT_DIR}/${IMG_NAME}
+        echo -e '\033[0m'
+    fi
+
+    cd ..
+}
+
+function do_pack_dragonboard()
+{
+    echo "Packing for dragonboard"
+}
+
+do_prepare
+do_pack_${PACK_PLATFORM}
+do_clean

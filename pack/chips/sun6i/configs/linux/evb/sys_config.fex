@@ -434,12 +434,15 @@ lcd1_hue                 = 50
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
 
-;lcd_if:               0:hv(sync+de); 1:8080; 2:ttl; 3:lvds; 4:dsi
+;lcd_if:               0:hv(sync+de); 1:8080; 2:ttl; 3:lvds; 4:dsi; 5:edp
 ;lcd_x:                lcd horizontal resolution
 ;lcd_y:                lcd vertical resolution
+;lcd_width:            width of lcd in mm
+;lcd_height:           height of lcd in mm
 ;lcd_dclk_freq:        in MHZ unit
 ;lcd_pwm_freq:         in HZ unit
 ;lcd_pwm_pol:          lcd backlight PWM polarity
+;lcd_pwm_max_limit     lcd backlight PWM max limit(<=255)
 ;lcd_hbp:              hsync back porch
 ;lcd_ht:               hsync total cycle
 ;lcd_vbp:              vsync back porch
@@ -449,13 +452,16 @@ lcd1_hue                 = 50
 ;lcd_lvds_if:          0:single link;  1:dual link
 ;lcd_lvds_colordepth:  0:8bit; 1:6bit
 ;lcd_lvds_mode:        0:NS mode; 1:JEIDA mode
-;lcd_lvds_io_polarity: 0:normal; 1:pn cross
 ;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
 ;lcd_io_phase:         0:noraml; 1:intert phase(0~3bit: vsync phase; 4~7bit:hsync phase;
 ;                      8~11bit:dclk phase; 12~15bit:de phase)
+;lcd_gamma_en          lcd gamma correction enable
+;lcd_bright_curve_en   lcd bright curve correction enable
+;lcd_cmap_en           lcd color map function enable
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
 ;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
+;smart_color           90:normal lcd screen 65:retina lcd screen(9.7inch)
 ;----------------------------------------------------------------------------------
 [lcd0_para]
 lcd_used            = 1
@@ -463,6 +469,8 @@ lcd_used            = 1
 lcd_if              = 3
 lcd_x               = 1280
 lcd_y               = 800
+lcd_width           = 150
+lcd_height          = 94
 lcd_dclk_freq       = 70
 lcd_pwm_freq        = 50000
 lcd_pwm_pol         = 0
@@ -475,12 +483,15 @@ lcd_vspw            = 5
 lcd_lvds_if         = 0
 lcd_lvds_colordepth = 1
 lcd_lvds_mode       = 0
-lcd_lvds_io_polarity= 0
 lcd_frm             = 1
 lcd_io_phase        = 0x0000
+lcd_gamma_en        = 0
+lcd_bright_curve_en = 0
+lcd_cmap_en         = 0
 
 deu_mode            = 0
 lcdgamma4iep        = 22
+smart_color        = 90
 
 lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>
@@ -534,9 +545,12 @@ csi_twi_addr        = 0x78
 csi_if              = 0
 csi_vflip           = 0
 csi_hflip           = 0
-csi_iovdd           = ""
+csi_iovdd           = "axp22_eldo3"
 csi_avdd            = ""
 csi_dvdd            = ""
+csi_vol_iovdd       = 2800
+csi_vol_avdd        = 2800
+csi_vol_dvdd        = 1500
 csi_flash_pol       = 1
 
 csi_mname_b         = "gc0308"
@@ -545,9 +559,12 @@ csi_twi_addr_b      = 0x42
 csi_if_b            = 0
 csi_vflip_b         = 1
 csi_hflip_b         = 0
-csi_iovdd_b         = ""
+csi_iovdd_b         = "axp22_eldo3"
 csi_avdd_b          = ""
 csi_dvdd_b          = ""
+csi_vol_iovdd_b     = 2800
+csi_vol_avdd_b      = 2800
+csi_vol_dvdd_b      = 1800
 csi_flash_pol_b     = 1
 
 csi_pck             = port:PE00<2><default><default><default>

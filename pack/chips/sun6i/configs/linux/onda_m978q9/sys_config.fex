@@ -422,30 +422,37 @@ lcd1_hue                 = 50
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
 
-;lcd_if:               0:hv(sync+de); 1:8080; 2:ttl; 3:lvds; 4:dsi
+;lcd_if:               0:hv(sync+de); 1:8080; 2:ttl; 3:lvds; 4:dsi; 5:edp
 ;lcd_x:                lcd horizontal resolution
 ;lcd_y:                lcd vertical resolution
+;lcd_width:            width of lcd in mm
+;lcd_height:           height of lcd in mm
 ;lcd_dclk_freq:        in MHZ unit
 ;lcd_pwm_freq:         in HZ unit
 ;lcd_pwm_pol:          lcd backlight PWM polarity
+;lcd_pwm_max_limit     lcd backlight PWM max limit(<=255)
 ;lcd_hbp:              hsync back porch
 ;lcd_ht:               hsync total cycle
 ;lcd_vbp:              vsync back porch
 ;lcd_vt:               vysnc total cycle
 ;lcd_hspw:             hsync plus width
 ;lcd_vspw:             vysnc plus width
-;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
-;lcd_io_phase:         0:noraml; 1:intert phase(0~3bit: vsync phase; 4~7bit:hsync phase;
-;                      8~11bit:dclk phase; 12~15bit:de phase)
 ;lcd_edp_tx_ic         0:anx9804;  1:anx6345
 ;lcd_edp_tx_rate       1:1.62G;   2:2.7G;    3:5.4G
 ;lcd_edp_tx_lane       1/2/4lane
+;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
+;lcd_io_phase:         0:noraml; 1:intert phase(0~3bit: vsync phase; 4~7bit:hsync phase;
+;                      8~11bit:dclk phase; 12~15bit:de phase)
+;lcd_gamma_en          lcd gamma correction enable
+;lcd_bright_curve_en   lcd bright curve correction enable
+;lcd_cmap_en           lcd color map function enable
 ;lcd_gpio_scl:         iic SCL
 ;lcd_gpio_sda          iic SDA
 ;lcd_gpio_0/1/2/3      lcd gpio
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
 ;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
+;smart_color          90:normal lcd screen 65:retina lcd screen(9.7inch)
 ;----------------------------------------------------------------------------------
 [lcd0_para]
 lcd_used            = 1
@@ -453,9 +460,12 @@ lcd_used            = 1
 lcd_if              = 5
 lcd_x               = 2048
 lcd_y               = 1536
+lcd_width           = 196
+lcd_height          = 147
 lcd_dclk_freq       = 205
 lcd_pwm_freq        = 50000
 lcd_pwm_pol         = 1
+lcd_pwm_max_limit   = 150
 lcd_hbp             = 10
 lcd_ht              = 2208
 lcd_hspw            = 5
@@ -467,9 +477,13 @@ lcd_edp_tx_ic       = 0
 lcd_edp_tx_rate     = 1
 lcd_edp_tx_lane     = 4
 lcd_io_phase        = 0x0000
+lcd_gamma_en        = 0
+lcd_bright_curve_en = 1
+lcd_cmap_en         = 0
 
 deu_mode            = 0
 lcdgamma4iep        = 22
+smart_color         = 65
 
 lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>

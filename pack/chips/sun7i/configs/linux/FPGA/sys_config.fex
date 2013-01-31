@@ -352,9 +352,18 @@ fb1_format               = 10
 fb1_pixel_sequence       = 0
 fb1_scaler_mode_enable   = 0
 
-lcd0_bright              = 192
-lcd1_bright              = 192
+lcd0_backlight           = 197
+lcd1_backlight           = 197
 
+lcd0_bright              = 50
+lcd0_contrast            = 50
+lcd0_saturation          = 57
+lcd0_hue                 = 50
+
+lcd1_bright              = 50
+lcd1_contrast            = 50
+lcd1_saturation          = 57
+lcd1_hue                 = 50
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
 
@@ -567,6 +576,29 @@ dac1_src                 = 5
 dac2_src                 = 6
 dac3_src                 = 0
 
+[camera_list_para]
+camera_list_para_used   = 1
+ov7670                  = 0
+gc0308                  = 1
+gt2005                  = 0
+hi704                   = 0
+sp0838                  = 0
+mt9m112                 = 0
+mt9m113                 = 0
+ov2655                  = 0
+hi253                   = 0
+gc0307                  = 0
+mt9d112                 = 0
+ov5640                  = 1
+gc2015                  = 0
+ov2643                  = 0
+gc0329                  = 0
+gc0309                  = 0
+tvp5150                 = 0
+s5k4ec                  = 0
+ov5650_mv9335           = 0
+siv121d                 = 0
+
 ;--------------------------------------------------------------------------------
 ;csi gpio configuration
 ;--------------------------------------------------------------------------------
@@ -586,6 +618,7 @@ csi_vol_avdd        = 0
 csi_vflip           = 0
 csi_hflip           = 0
 csi_flash_pol       = 0
+csi_facing          = 0
 
 csi_twi_id			= 1
 csi_twi_addr		= 0x78
@@ -606,7 +639,7 @@ csi_power_en 		= port:PH16<1><default><default><0>
 csi_stby	 		= port:PH18<1><default><default><0>
 
 [csi1_para]
-csi_used			= 1
+csi_used			= 0
 csi_twi_id			= 1
 csi_twi_addr		= 0x78
 csi_pck 			= port:PG00<3><default><default><default>

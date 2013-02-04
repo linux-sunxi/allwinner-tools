@@ -428,7 +428,7 @@ lcd_bl_en_used           = 1
 lcd_bl_en                = port:PH07<1><0><default><1>
 
 lcd_power_used           = 1
-lcd_power                = port:PH08<1><0><default><1>
+lcd_power                = port:PH00<1><0><default><1>
 
 lcd_pwm_used             = 1
 lcd_pwm                  = port:PB02<2><0><default><default>

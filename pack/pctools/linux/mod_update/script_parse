@@ -1,0 +1,245 @@
+#!/usr/bin/python
+#
+# (c) Copyright 2013
+# Allwinner Technology Co., Ltd. <www.allwinnertech.com>
+# James Deng <csjamesdeng@allwinnertech.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+
+import sys
+import os
+
+from optparse import OptionParser
+
+def error_msg(msg):
+    print "\033[0;31;1m[Error] %s\033[0m" % msg
+
+def is_empty_line(line):
+    if len(line) > 0:
+        return False
+    return True
+
+def is_comment_line(line):
+    if line[0] == ';':
+        return True
+    return False
+
+def is_mainkey_line(line):
+    if line[0] == '[' and line.find(']') == len(line) - 1:
+        return True
+    return False
+
+def is_int_type(value):
+    if value.startswith('-'):
+        value = value[1:]
+    if value.startswith("0x"):
+        value = value[2:]
+    if value.isdigit():
+        return True
+    return False
+
+def _is_pio_conf(conf, minv, maxv):
+    if cmp(conf, "default"):
+        if conf.isdigit():
+            confv = int(conf)
+            if confv < minv or confv > maxv:
+                return False
+            else:
+                return True
+        else:
+            return False
+    else:
+        return True
+
+def is_pio_conf(value):
+    offset = value.find('<')
+    if offset <= 0:
+        return False
+
+    # check pio number
+    num = value[0:offset]
+    if not num.isdigit():
+        return False
+    num = int(num)
+    if num < 0 or num > 31:
+        return False
+
+    # check pio function
+    rest = value[offset+1:]
+    offset = rest.find('>')
+    if offset <= 0:
+        return False
+
+    func = rest[0:offset]
+    if not func.isdigit():
+        return False
+    func = int(func)
+    if func < 0 or func > 7:
+        return False
+
+    # pull, drive, data
+    minv = [0, 0, 0]
+    maxv = [2, 3, 1]
+    for i in range(3):
+        rest = rest[offset+1:]
+        offset = rest.find('<')
+        if offset < 0:
+            return True
+        if offset > 0:
+            return False
+
+        rest = rest[1:]
+        offset = rest.find('>')
+        if offset <= 0:
+            return False
+
+        conf = rest[0:offset]
+        if not _is_pio_conf(conf, minv[i], maxv[i]):
+            return False
+
+    return True
+
+# Returns 0: pio type
+#        -1: format error
+#        -2: not pio type
+def is_pio_type(value):
+    if value.startswith("port:"):
+        if not cmp(value[5:10], "power"):
+            if is_pio_conf(value[10:]):
+                return 0
+            else:
+                return -1
+
+        if value[5].upper() != 'P':
+            return -1
+        if not value[6].isalpha():
+            return -1
+        if is_pio_conf(value[7:]):
+            return 0
+        else:
+            return -1
+
+    return -2
+
+def is_str_type(value):
+    if value.startswith('"') and value.endswith('"'):
+        return (True, "valid")
+    if value.startswith("string:"):
+        return (True, "valid")
+
+    if value.startswith('"') and not value.endswith('"'):
+        return (False, "invalid key value, '\"' must come in pairs")
+
+    for ch in value:
+        if not ch.isdigit() and not ch.isalpha() and ch != '_':
+            return (False, "invalid character in key value, using '\"' or 'string:' defines a string instead")
+
+    return (True, "valid")
+
+def check_mainkey_valid(line):
+    mainkey = line[1:-1]
+    if len(mainkey) > 0 and len(mainkey) < 32:
+        for ch in mainkey:
+            if not ch.isalpha() and not ch.isdigit() and ch != '_':
+                return (False, "invalid character in main key name, must a combination of character, number or '_'")
+        return (True, "valid")
+    return (False, "invalid length of main key name")
+
+def check_subkey_valid(line):
+    offset = line.find('=')
+    if offset <= 0:
+        if line.startswith('['):
+            return (False, "invalid main key format, '[' and ']' must come in pairs")
+        return (False, "invalid subkey format, '=' must exist")
+
+    subkey = line[0:offset].strip()
+    if len(subkey) == 0:
+        return (False, "invalid length of subkey name")
+
+    for ch in subkey:
+        if not ch.isalpha() and not ch.isdigit() and ch != '_':
+            return (False, "invalid character in subkey name, must a combination of character, number or '_'")
+
+    value = line[offset+1:].strip()
+    if len(value) == 0:
+        return (True, "valid")
+
+    if is_int_type(value):
+        return (True, "valid")
+    ret = is_pio_type(value)
+    if ret ==  0:
+        return (True, "valid")
+    if ret == -1:
+        return (False, "invalid pio config")
+    (ret, msg) = is_str_type(value)
+    if ret:
+        return (True, "valid")
+    else:
+        return (False, msg)
+
+    return (False, "invalid line format")
+
+def check_line_format(conf_lines):
+    print ">>> check sys_config line format"
+    for i, line in enumerate(conf_lines):
+        # omit empty line
+        if is_empty_line(line):
+            continue
+
+        # omit comment line
+        if is_comment_line(line):
+            continue
+
+        # check mainkey valid
+        if is_mainkey_line(line):
+            (ret, msg) = check_mainkey_valid(line)
+            if ret:
+                continue
+            else:
+                error_msg("L%d: %s" % (i, line))
+                error_msg(msg)
+                return False
+
+        # check subkey valid
+        (ret, msg) = check_subkey_valid(line)
+        if ret:
+            continue
+        else:
+            error_msg("L%d: %s" % (i, line))
+            error_msg(msg)
+            return False
+
+    print ">>> done."
+    return True
+
+def check_module_rule(conf_lines):
+    print ">>> check module rule"
+    print ">>> not implement yet"
+
+def main():
+    parser = OptionParser()
+    parser.add_option("-f", "--file", dest="filename", help="the path of sys_config.fex", metavar="FILE")
+
+    (options, args) = parser.parse_args()
+    if options.filename == None:
+        error_msg("the path of sys_config.fex is needed")
+        sys.exit(1)
+
+    if not os.path.exists(options.filename):
+        error_msg("File not exist: %s" % options.filename)
+        sys.exit(1)
+
+    sys_config = open(options.filename, "r")
+    conf_lines = [ line.strip() for line in sys_config.readlines() ]
+    sys_config.close()
+
+    check_line_format(conf_lines)
+    check_module_rule(conf_lines)
+
+    sys.exit(0)
+
+if __name__ == "__main__":
+    main()

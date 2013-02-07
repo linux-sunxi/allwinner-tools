@@ -231,6 +231,12 @@ function do_debug()
     fi
 } 
 
+function do_parse()
+{
+    [ -f out/sys_partition.fex ] && script_parse -f out/sys_partition.fex
+    [ -f out/sys_config.fex ] && script_parse -f out/sys_config.fex
+}
+
 function do_pack_android()
 {
     pack_info "Packing for android"
@@ -245,6 +251,7 @@ function do_pack_android()
     cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.cfg out/ 2>> /dev/null
     
     do_debug
+    do_parse
    
     cp -rf eFex/split_xxxx.fex wboot/bootfs wboot/bootfs.ini out/
     
@@ -320,6 +327,7 @@ function do_pack_linux()
     cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.cfg out/ 2>> /dev/null
     
     do_debug
+    do_parse
     
     cp -rf eFex/split_xxxx.fex wboot/bootfs wboot/bootfs.ini out/
     
@@ -393,6 +401,7 @@ function do_pack_dragonboard()
     cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.cfg out/ 2>> /dev/null
     
     do_debug
+    do_parse
     
     cp -rf eFex/split_xxxx.fex wboot/bootfs wboot/bootfs.ini out/
     

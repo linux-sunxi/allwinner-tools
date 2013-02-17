@@ -76,7 +76,7 @@ size = 16384
 ;------------------------------>mmcblk0p11/nandh
 [partition]
     name         = cache
-    size         = 262144
+    size         = 1048576
     user_type    = 0x2
 ;------------------------------>nandi, data image backup
 [partition]

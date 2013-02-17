@@ -465,12 +465,15 @@ lcd1_hue                 = 50
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
 
-;lcd_if:               0:hv(sync+de); 1:8080; 2:ttl; 3:lvds; 4:dsi
+;lcd_if:               0:hv(sync+de); 1:8080; 2:ttl; 3:lvds; 4:dsi; 5:edp
 ;lcd_x:                lcd horizontal resolution
 ;lcd_y:                lcd vertical resolution
+;lcd_width:            width of lcd in mm
+;lcd_height:           height of lcd in mm
 ;lcd_dclk_freq:        in MHZ unit
 ;lcd_pwm_freq:         in HZ unit
 ;lcd_pwm_pol:          lcd backlight PWM polarity
+;lcd_pwm_max_limit     lcd backlight PWM max limit(<=255)
 ;lcd_hbp:              hsync back porch
 ;lcd_ht:               hsync total cycle
 ;lcd_vbp:              vsync back porch
@@ -484,9 +487,13 @@ lcd1_hue                 = 50
 ;lcd_frm:              0:disable; 1:enable rgb666 dither; 2:enable rgb656 dither
 ;lcd_io_phase:         0:noraml; 1:intert phase(0~3bit: vsync phase; 4~7bit:hsync phase;
 ;                      8~11bit:dclk phase; 12~15bit:de phase)
+;lcd_gamma_en          lcd gamma correction enable
+;lcd_bright_curve_en   lcd bright curve correction enable
+;lcd_cmap_en           lcd color map function enable
 ;deu_mode              0:smoll lcd screen; 1:large lcd screen(larger than 10inch)
 ;lcdgamma4iep:         Smart Backlight parameter, lcd gamma vale * 10;
 ;                      decrease it while lcd is not bright enough; increase while lcd is too bright
+;smart_color           90:normal lcd screen 65:retina lcd screen(9.7inch)
 ;----------------------------------------------------------------------------------
 [lcd0_para]
 lcd_used            = 1
@@ -514,7 +521,7 @@ lcd_io_phase        = 0x0000
 
 deu_mode            = 0
 lcdgamma4iep        = 22
-florid_color        = 90
+smart_color        = 90
 
 lcd_bl_en           = port:PA25<1><0><default><1>
 lcd_power           = port:power2<1><0><default><1>
@@ -614,10 +621,10 @@ csi_pck             = port:PE00<2><default><default><default>
 csi_mck             = port:PE01<2><default><default><default>
 csi_hsync           = port:PE02<2><default><default><default>
 csi_vsync           = port:PE03<2><default><default><default>
-csi_d0              = 
-csi_d1              = 
-csi_d2              = 
-csi_d3              = 
+csi_d0              = port:PE04<2><default><default><default>
+csi_d1              = port:PE05<2><default><default><default>
+csi_d2              = port:PE06<2><default><default><default>
+csi_d3              = port:PE07<2><default><default><default>
 csi_d4              = port:PE08<2><default><default><default>
 csi_d5              = port:PE09<2><default><default><default>
 csi_d6              = port:PE10<2><default><default><default>
@@ -910,7 +917,7 @@ mtk_6620_bgf_int  = port:PL07<6><1><default><default>
 3g_usbc_type    = 0
 3g_uart_num     = 1
 bb_name         = "em55"
-bb_dldo					= "axp22_dldo4"
+bb_dldo         = "axp22_dldo4"
 ;bb_vbat        = port:PL03<1><default><default><0>
 ;bb_pwr_on      = port:PM01<1><default><default><0>
 bb_vbat         = 
@@ -996,7 +1003,7 @@ spdif_din           = port:PH27<3><1><default><default>
 audio_used         = 1
 audio_hp_ldo       = "axp22_aldo1"
 headphone_vol      = 0x3a
-earpiece_vol      = 0x3a
+earpiece_vol       = 0x3a
 cap_vol            = 0x7
 main_mic_vol       = 0x7
 headset_mic_vol    = 0x7

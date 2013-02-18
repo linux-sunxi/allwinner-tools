@@ -60,9 +60,9 @@ size = 16384
 
 ;------------------------------>mmcblk0p8/nande
 [partition]
-	name         = data
-    size         = 524288
-		user_type    = 0x2
+    name         = data
+    size         = 2097152
+    user_type    = 0x2
 ;------------------------------>mmcblk0p9/nandf
 [partition]
     name         = misc

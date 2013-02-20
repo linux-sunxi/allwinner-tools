@@ -318,7 +318,7 @@ nand_ce6            =
 nand_ce7            =
 nand_spi            = port:PC23<3><default><default><default>
 nand_ndqs           = port:PC24<2><default><default><default>
-
+good_block_ratio    = 0
 
 ;-------------------------------------------------------------------------------
 ;disp init configuration

@@ -238,7 +238,7 @@ spi_miso            = port:PA03<3><default><default><default>
 spi_used            = 0
 spi_cs_bitmap       = 1
 spi_cs0             = port:PC19<3><default><default><default>
-spi_cs1             = port:PB13<3><default><default><default>
+spi_cs1             = port:PB13<2><default><default><default>
 spi_sclk            = port:PC20<3><default><default><default>
 spi_mosi            = port:PC21<3><default><default><default>
 spi_miso            = port:PC22<3><default><default><default>
@@ -248,9 +248,9 @@ spi_used            = 0
 spi_cs_bitmap       = 1
 spi_cs0             = port:PA05<3><default><default><default>
 spi_cs1             = port:PA09<3><default><default><default>
-spi_sclk            = port:PI06<3><default><default><default>
-spi_mosi            = port:PI07<3><default><default><default>
-spi_miso            = port:PI08<3><default><default><default>
+spi_sclk            = port:PA06<3><default><default><default>
+spi_mosi            = port:PA07<3><default><default><default>
+spi_miso            = port:PA08<3><default><default><default>
 
 ;-------------------------------------------------------------------------------
 ;capacitor tp configuration
@@ -429,7 +429,7 @@ lcd_bl_en_used          = 1
 lcd_bl_en               = port:PH07<1><0><default><1>
 
 lcd_power_used          = 1
-lcd_power               = port:PH00<1><0><default><1>
+lcd_power               = port:PH08<1><0><default><1>
 
 lcd_pwm_used            = 1
 lcd_pwm                 = port:PB02<2><0><default><default>
@@ -665,7 +665,6 @@ csi_stby            = port:PH19<1><default><default><0>
 [tvout_para]
 tvout_used          = 1
 tvout_channel_num   = 1
-tv_en               = port:PI12<1><default><default><0>
 
 [tvin_para]
 tvin_used           = 0
@@ -717,7 +716,7 @@ sdc_d0              = port:PF01<2><1><2><default>
 sdc_d1              = port:PF00<2><1><2><default>
 sdc_d2              = port:PF05<2><1><2><default>
 sdc_d3              = port:PF04<2><1><2><default>
-sdc_det             = port:PA08<6><1><2><default>
+sdc_det             = port:PH1<0><1><default><default>
 sdc_use_wp          = 0
 sdc_wp              =
 sdc_isio            = 0
@@ -740,41 +739,31 @@ sdc_isio            = 1
 sdc_regulator       = "none"
 
 [mmc2_para]
-sdc_used            = 0
-sdc_detmode         = 3
-sdc_buswidth        = 8
-sdc_clk             = port:PC07<3><1><2><default>
-sdc_cmd             = port:PC06<3><1><2><default>
-sdc_d0              = port:PC08<3><1><2><default>
-sdc_d1              = port:PC09<3><1><2><default>
-sdc_d2              = port:PC10<3><1><2><default>
-sdc_d3              = port:PC11<3><1><2><default>
-sdc_d4              = port:PC12<3><1><2><default>
-sdc_d5              = port:PC13<3><1><2><default>
-sdc_d6              = port:PC14<3><1><2><default>
-sdc_d7              = port:PC15<3><1><2><default>
-emmc_rst            = port:PC24<3><1><2><default>
-sdc_det             =
-sdc_use_wp          = 0
-sdc_wp              =
-sdc_isio            = 0
-sdc_regulator       = "none"
+sdc_used                 = 0
+sdc_used                 = 0
+sdc_detmode              = 3
+bus_width                = 4
+sdc_cmd                  = port:PC6<3><1><2><default>
+sdc_clk                  = port:PC7<3><1><2><default>
+sdc_d0                   = port:PC8<3><1><2><default>
+sdc_d1                   = port:PC9<3><1><2><default>
+sdc_d2                   = port:PC10<3><1><2><default>
+sdc_d3                   = port:PC11<3><1><2><default>
+
 
 [mmc3_para]
-sdc_used            = 0
-sdc_detmode         = 2
-sdc_buswidth        = 4
-sdc_clk             = port:PA10<2><1><2><default>
-sdc_cmd             = port:PA09<2><1><2><default>
-sdc_d0              = port:PA11<2><1><2><default>
-sdc_d1              = port:PA12<2><1><2><default>
-sdc_d2              = port:PA13<2><1><2><default>
-sdc_d3              = port:PA14<2><1><2><default>
-sdc_det             =
-sdc_use_wp          = 0
-sdc_wp              =
-sdc_isio            = 0
-sdc_regulator       = "none"
+sdc_used                 = 1
+sdc_detmode              = 4
+bus_width                = 4
+sdc_cmd                  = port:PI04<2><1><2><default>
+sdc_clk                  = port:PI05<2><1><2><default>
+sdc_d0                   = port:PI06<2><1><2><default>
+sdc_d1                   = port:PI07<2><1><2><default>
+sdc_d2                   = port:PI08<2><1><2><default>
+sdc_d3                   = port:PI09<2><1><2><default>
+sdc_det                  =
+sdc_use_wp               = 0
+sdc_wp                   =
 
 
 ; ------------------------------------------------------------------------------
@@ -866,12 +855,12 @@ kp_out7             = port:PH27<4><1><default><default>
 ;-------------------------------------------------------------------------------
 [usbc0]
 usb_used            = 1
-usb_port_type       = 0
+usb_port_type       = 2
 usb_detect_type     = 1
-usb_id_gpio         = port:PA15<0><1><default><default>
-usb_det_vbus_gpio   = port:PA14<0><0><default><default>
-usb_drv_vbus_gpio   = port:PA13<1><0><default><0>
-usb_restrict_gpio   = port:PH26<1><0><default><0>
+usb_id_gpio         = port:PH04<0><1><default><default>
+usb_det_vbus_gpio   = port:PH05<0><0><default><default>
+usb_drv_vbus_gpio   = port:PB09<1><0><default><0>
+usb_restrict_gpio   = port:PH0<1><0><default><0>
 usb_host_init_state = 0
 usb_restric_flag    = 0
 usb_restric_voltage = 3550000
@@ -884,8 +873,8 @@ usb_restric_capacity= 5
 usb_used            = 1
 usb_port_type       = 1
 usb_detect_type     = 0
-usb_drv_vbus_gpio   = port:PH27<1><0><default><0>
-usb_restrict_gpio   = port:PH26<1><0><default><0>
+usb_drv_vbus_gpio   = port:PH6<1><0><default><0>
+usb_restrict_gpio   = 
 usb_host_init_state = 1
 usb_restric_flag    = 0
 
@@ -893,11 +882,12 @@ usb_restric_flag    = 0
 ;---       USB2控制标志
 ;------------------------------------------------------------------------------
 [usbc2]
-usb_used            = 0
+usb_used            = 1
 usb_port_type       = 1
 usb_detect_type     = 0
-usb_drv_vbus_gpio   =
+usb_drv_vbus_gpio   = port:PH03<1><0><default><0>
 usb_restrict_gpio   =
+
 usb_host_init_state = 1
 usb_restric_flag    = 0
 
@@ -908,9 +898,8 @@ usb_restric_flag    = 0
 [gsensor_para]
 gsensor_used         = 1
 gsensor_twi_id       = 1
-gsensor_twi_addr     = 0x18
-gsensor_int1         = port:PH00<6><1><default><default>
-gsensor_int2         = port:PI10<6><1><default><default>
+gsensor_int1         = 
+gsensor_int2         = 
 
 ;-------------------------------------------------------------------------------
 ; gps gpio configuration
@@ -941,11 +930,11 @@ gps_rx_en           = port:PI15<1><default><default><0>
 ;--------------------------------------------------------------------------------
 [wifi_para]
 wifi_used          = 1
-wifi_sdc_id        = 0
-wifi_usbc_id       = 1
+wifi_sdc_id        = 3
+wifi_usbc_id       = 2
 wifi_usbc_type     = 1
 wifi_mod_sel       = 3
-wifi_power         = "axp22_aldo1"
+wifi_power         = ""
 
 ; 1 - bcm40181 sdio wifi gpio config
 ;bcm40181_shdn          = port:PG10<1><default><default><0>
@@ -1021,7 +1010,7 @@ bt_gpio             = port:PI21<1><default><default><default>
 bt_rst              = port:PB05<1><default><default><default>
 
 [i2s_para]
-i2s_used            = 1
+i2s_used            = 0
 i2s_channel         = 2
 i2s_mclk            = port:PB5<2><1><default><default>
 i2s_bclk            = port:PB6<2><1><default><default>
@@ -1033,7 +1022,7 @@ i2s_dout3           =
 i2s_din             = port:PB12<2><1><default><default>
 
 [spdif_para]
-spdif_used          = 1
+spdif_used          = 0
 spdif_mclk          =
 spdif_dout          = port:PB13<4><1><default><default>
 spdif_din           =
@@ -1056,19 +1045,35 @@ ir_rx               = port:PB04<2><default><default><default>
 ;-------------------------------------------------------------------------------
 ;pmu_twi_addr           ---slave address
 ;pmu_twi_id             ---i2c bus number (0 TWI0, 1 TWI2, 2 TWI3)
-;pmu_battery_rdc        ---battery initial resistance
-;pmu_battery_cap        ---battery capability
-;pmu_init_chgcur        ---set initial charging current limite
-;pmu_suspend_chgcur     ---set suspend charging current limite
-;pmu_resume_chgcur      ---set resume charging current limite
-;pmu_shutdown_chgcur    ---set shutdown charging current limite
-;pmu_init_chgvol        ---set initial charing target voltage
-;pmu_init_chgend_rate   ---set initial charing end current  rate
-;pmu_init_chg_enabled   ---set initial charing enabled
-;pmu_init_adc_freq      ---set initial adc frequency
-;pmu_init_adc_freqc     ---set initial coulomb adc coufrequency
-;pmu_init_chg_pretime   ---set initial pre-charging time
-;pmu_init_chg_csttime   ---set initial constance-charging time
+;pmu_irq_id             ---irq number (0 irq0,1 irq1,……)
+;pmu_battery_rdc        ---battery initial resistance,mΩ,根据实际电池内阻填写
+;pmu_battery_cap        ---battery capability,mAh，根据实际电池容量填写
+;pmu_init_chgcur        ---set initial charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
+;pmu_suspend_chgcur     ---set suspend charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
+;pmu_resume_chgcur      ---set resume charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
+;pmu_shutdown_chgcur    ---set shutdown charging current limite,mA，300/400/500/600/700/800/900/1000/1100/1200/1300/1400/1500/1600/1700/1800
+;pmu_init_chgvol        ---set initial charing target voltage,mV,4100/4150/4200/4360
+;pmu_init_chgend_rate   ---set initial charing end current  rate,10/15
+;pmu_init_chg_enabled   ---set initial charing enabled,0:关闭,1:打开
+;pmu_init_adc_freq      ---set initial adc frequency,Hz,25/50/100/200
+;pmu_init_adc_freqc     ---set initial coulomb adc coufrequency,Hz,25/50/100/200
+;pmu_init_chg_pretime   ---set initial pre-charging time,min,40/50/60/70
+;pmu_init_chg_csttime   ---set initial constance-charging time,min,360/480/600/720
+;pmu_usbvol             ---set usb-ac limited voltage level,mV,4000/4100/4200/4300/4400/4500/4600/4700,0 - not limite
+;pmu_usbcur             ---set usb-ac limited voltage level,mA,100/500/900, 0 - not limite
+;pmu_usbvol_pc	        ---set usb-pc limited voltage level,mV,4000/4100/4200/4300/4400/4500/4600/4700,0 - not limite
+;pmu_usbcur_pc          ---set usb-pc limited voltage level,mA,100/500/900, 0 - not limite
+;pmu_pwroff_vol         ---set protect voltage when system start up,mV,2600/2700/2800/2900/3000/3100/3200/3300
+;pmu_pwron_vol          ---set protect voltage after system start up,mV,2600/2700/2800/2900/3000/3100/3200/3300
+;pmu_pekoff_time        ---set pek off time,ms, 4000/6000/8000/10000
+;pmu_pekoff_en          ---set pek off enable, 0:关闭,1:打开
+;pmu_peklong_time       ---set pek pek long irq time,ms,1000/1500/2000/2500
+;pmu_pekon_time         ---set pek on time,ms,128/1000/2000/3000
+;pmu_pwrok_time         ---set pmu pwrok delay time,ms,8/64
+;pmu_pwrnoe_time        ---set pmu n_oe power down delay time,ms,128/1000/2000/3000
+;pmu_intotp_en		  	---set pmu power down when overtempertur enable,0:关闭，1：打开
+;pmu_suspendpwroff_vol  ---set pmu shutdown voltage when cpu is suspend and battery voltage is low
+;pmu_batdeten			---set pmu battery detect enabled,0:关闭，1：打开
 ;-------------------------------------------------------------------------------
 [pmu_para]
 pmu_used                 = 1
@@ -1142,4 +1147,7 @@ pmu_test_pin1            = port:power01<1><default><default><1>
 pmu_test_pin2            = port:power02<1><default><default><1>
 pmu_test_pin3            = port:power03<1><default><default><1>
 pmu_test_pin4            = port:power04<1><default><default><1>
+[recovery_key]
+key_min			=4
+key_max			=6
 

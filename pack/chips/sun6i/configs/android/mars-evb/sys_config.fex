@@ -435,7 +435,7 @@ screen1_output_mode      = 4
 
 fb0_format               = 10
 fb0_pixel_sequence       = 0
-fb0_scaler_mode_enable   = 0
+fb0_scaler_mode_enable   = 1
 fb0_width                = 0
 fb0_height               = 0
 

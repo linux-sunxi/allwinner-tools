@@ -1229,3 +1229,24 @@ LV7_volt = 1000
 
 LV8_freq = 0
 LV8_volt = 1000
+
+;----------------------------------------------------------------------------------
+; gpio pad hold output config
+; gpio pad hold output will be disable by gpio_init when system startup
+; gpio pad hold output will be enable by axp_power_off when system shutdown
+; gpio_hold_used:
+;         0: not use gpio_hold_para, gpio hold output is SoC default value
+;         1: use gpio_hold_para to config gpio hold output
+; other entry:
+;         only gpio entry type valid and PL0~PL8 PM0~PM7 have pad hold
+;         output function. left value can be any string name
+;----------------------------------------------------------------------------------
+[gpio_hold_para]
+gpio_hold_used = 1
+pl02 =	port:PL02<default>
+pl03 =	port:PL03<default>
+pl04 =	port:PL04<default>
+pl05 =	port:PL05<default>
+pl06 =	port:PL06<default>
+pl07 =	port:PL07<default>
+pl08 =	port:PL08<default>

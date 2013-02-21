@@ -66,8 +66,8 @@ twi_sda             = port:PB1<2><default><default><default>
 
 [uart_para]
 uart_debug_port     = 0
-uart_debug_tx       = port:PB22<2><default><default><default>
-uart_debug_rx       = port:PB23<2><default><default><default>
+uart_debug_tx       = port:PB22<2><1><default><default>
+uart_debug_rx       = port:PB23<2><1><default><default>
 
 [jtag_para]
 jtag_enable         = 1
@@ -151,67 +151,67 @@ twi2_sda            = port:PB21<2><default><default><default>
 uart_used           = 1
 uart_port           = 0
 uart_type           = 2
-uart_tx             = port:PB22<2><default><default><default>
-uart_rx             = port:PB23<2><default><default><default>
+uart_tx             = port:PB22<2><1><default><default>
+uart_rx             = port:PB23<2><1><default><default>
 
 [uart_para1]
 uart_used           = 0
 uart_port           = 1
 uart_type           = 8
-uart_tx             = port:PA10<4><default><default><default>
-uart_rx             = port:PA11<4><default><default><default>
-uart_rts            = port:PA12<4><default><default><default>
-uart_cts            = port:PA13<4><default><default><default>
-uart_dtr            = port:PA14<4><default><default><default>
-uart_dsr            = port:PA15<4><default><default><default>
-uart_dcd            = port:PA16<4><default><default><default>
-uart_ring           = port:PA17<4><default><default><default>
+uart_tx             = port:PA10<4><1><default><default>
+uart_rx             = port:PA11<4><1><default><default>
+uart_rts            = port:PA12<4><1><default><default>
+uart_cts            = port:PA13<4><1><default><default>
+uart_dtr            = port:PA14<4><1><default><default>
+uart_dsr            = port:PA15<4><1><default><default>
+uart_dcd            = port:PA16<4><1><default><default>
+uart_ring           = port:PA17<4><1><default><default>
 
 [uart_para2]
 uart_used           = 0
 uart_port           = 2
 uart_type           = 4
-uart_tx             = port:PI18<3><default><default><default>
-uart_rx             = port:PI19<3><default><default><default>
-uart_rts            = port:PI16<3><default><default><default>
-uart_cts            = port:PI17<3><default><default><default>
+uart_tx             = port:PI18<3><1><default><default>
+uart_rx             = port:PI19<3><1><default><default>
+uart_rts            = port:PI16<3><1><default><default>
+uart_cts            = port:PI17<3><1><default><default>
 
 [uart_para3]
 uart_used           = 0
 uart_port           = 3
 uart_type           = 4
-uart_tx             = port:PH00<4><default><default><default>
-uart_rx             = port:PH01<4><default><default><default>
-uart_rts            = port:PH02<4><default><default><default>
-uart_cts            = port:PH03<4><default><default><default>
+uart_tx             = port:PH00<4><1><default><default>
+uart_rx             = port:PH01<4><1><default><default>
+uart_rts            = port:PH02<4><1><default><default>
+uart_cts            = port:PH03<4><1><default><default>
 
 [uart_para4]
 uart_used           = 0
 uart_port           = 4
 uart_type           = 2
-uart_tx             = port:PH04<4><default><default><default>
-uart_rx             = port:PH05<4><default><default><default>
+uart_tx             = port:PH04<4><1><default><default>
+uart_rx             = port:PH05<4><1><default><default>
 
 [uart_para5]
 uart_used           = 0
 uart_port           = 5
 uart_type           = 2
-uart_tx             = port:PH06<4><default><default><default>
-uart_rx             = port:PH07<4><default><default><default>
+uart_tx             = port:PH06<4><1><default><default>
+uart_rx             = port:PH07<4><1><default><default>
 
 [uart_para6]
 uart_used           = 0
 uart_port           = 6
 uart_type           = 2
-uart_tx             = port:PA12<4><default><default><default>
-uart_rx             = port:PA13<4><default><default><default>
+uart_tx             = port:PA12<4><1><default><default>
+uart_rx             = port:PA13<4><1><default><default>
 
 [uart_para7]
 uart_used           = 0
 uart_port           = 7
 uart_type           = 2
-uart_tx             = port:PA14<4><default><default><default>
-uart_rx             = port:PA15<4><default><default><default>
+uart_tx             = port:PA14<4><1><default><default>
+uart_rx             = port:PA15<4><1><default><default>
 
 ;-------------------------------------------------------------------------------
 ;spi configuration
@@ -693,9 +693,7 @@ sata_power_en       =
 ;   sdc_buswidth: card bus width, 1-1bit, 4-4bit, 8-8bit
 ;   sdc_use_wp: 1-with write protect IO, 0-no write protect IO
 ;   sdc_isio: for sdio card
-;   sdc_regulator: power control.if card supports UHS-I/DDR and HS200 timing for
-;                  SD3.0 or eMMC4.5, regulator must be configured. the value is
-;                  the ldo name of AXP221, eg: sdc_regulator = "axp22_eldo2"
+;   sdc_regulator: power control.
 ;   other: GPIO Mapping configuration
 ; ------------------------------------------------------------------------------
 ;   Note:
@@ -708,7 +706,7 @@ sata_power_en       =
 ;-------------------------------------------------------------------------------
 [mmc0_para]
 sdc_used            = 1
-sdc_detmode         = 3
+sdc_detmode         = 1
 sdc_buswidth        = 4
 sdc_clk             = port:PF02<2><1><2><default>
 sdc_cmd             = port:PF03<2><1><2><default>
@@ -735,36 +733,40 @@ sdc_d3              = port:PG05<2><1><2><default>
 sdc_det             =
 sdc_use_wp          = 0
 sdc_wp              =
-sdc_isio            = 1
+sdc_isio            = 0
 sdc_regulator       = "none"
 
 [mmc2_para]
-sdc_used                 = 0
-sdc_used                 = 0
-sdc_detmode              = 3
-bus_width                = 4
-sdc_cmd                  = port:PC6<3><1><2><default>
-sdc_clk                  = port:PC7<3><1><2><default>
-sdc_d0                   = port:PC8<3><1><2><default>
-sdc_d1                   = port:PC9<3><1><2><default>
-sdc_d2                   = port:PC10<3><1><2><default>
-sdc_d3                   = port:PC11<3><1><2><default>
-
+sdc_used            = 0
+sdc_detmode         = 3
+sdc_buswidth        = 4
+sdc_cmd             = port:PC06<3><1><2><default>
+sdc_clk             = port:PC07<3><1><2><default>
+sdc_d0              = port:PC08<3><1><2><default>
+sdc_d1              = port:PC09<3><1><2><default>
+sdc_d2              = port:PC10<3><1><2><default>
+sdc_d3              = port:PC11<3><1><2><default>
+sdc_det             =
+sdc_use_wp          = 0
+sdc_wp              =
+sdc_isio            = 0
+sdc_regulator       = "none"
 
 [mmc3_para]
-sdc_used                 = 1
-sdc_detmode              = 4
-bus_width                = 4
-sdc_cmd                  = port:PI04<2><1><2><default>
-sdc_clk                  = port:PI05<2><1><2><default>
-sdc_d0                   = port:PI06<2><1><2><default>
-sdc_d1                   = port:PI07<2><1><2><default>
-sdc_d2                   = port:PI08<2><1><2><default>
-sdc_d3                   = port:PI09<2><1><2><default>
-sdc_det                  =
-sdc_use_wp               = 0
-sdc_wp                   =
-
+sdc_used            = 1
+sdc_detmode         = 4
+sdc_buswidth        = 4
+sdc_cmd             = port:PI04<2><1><2><default>
+sdc_clk             = port:PI05<2><1><2><default>
+sdc_d0              = port:PI06<2><1><2><default>
+sdc_d1              = port:PI07<2><1><2><default>
+sdc_d2              = port:PI08<2><1><2><default>
+sdc_d3              = port:PI09<2><1><2><default>
+sdc_det             =
+sdc_use_wp          = 0
+sdc_wp              =
+sdc_isio            = 1
+sdc_regulator       = "none"
 
 ; ------------------------------------------------------------------------------
 ; memory stick configuration

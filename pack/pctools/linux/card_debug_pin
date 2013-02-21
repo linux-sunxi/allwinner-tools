@@ -1,2 +1,2 @@
 board   tx              rx              jtag_ms 	    jtag_ck		    jtag_do 	    jtag_di
-sun7i   port:PF2<4>     port:PF4<4>     port:PF0<4>     port:PF5<4>     port:PF3<4>     port:PF1<4>
+sun7i   port:PF2<4><1>  port:PF4<4><1>  port:PF0<4>     port:PF5<4>     port:PF3<4>     port:PF1<4>

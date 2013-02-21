@@ -380,9 +380,9 @@ lcd1_hue                = 50
 ;lcd_hv_smode:       0:RGB888 1:CCIR656
 ;lcd_hv_s888_if      serial RGB format
 ;lcd_hv_syuv_if:     serial YUV format
-;lcd_hv_hspw:        hsync plus width
-;lcd_hv_vspw:        vysnc plus width
-;lcd_lvds_ch:            0:single channel; 1:dual channel
+;lcd_hspw:           hsync plus width
+;lcd_vspw:           vysnc plus width
+;lcd_lvds_ch:        0:single channel; 1:dual channel
 ;lcd_lvds_mode:      0:NS mode; 1:JEIDA mode
 ;lcd_lvds_bitwidth:  0:24bit; 1:18bit
 ;lcd_lvds_io_cross:  0:normal; 1:pn cross
@@ -477,9 +477,9 @@ lcdvsync                = port:PD27<2><0><default><default>
 ;lcd_hv_smode:       0:RGB888 1:CCIR656
 ;lcd_hv_s888_if      serial RGB format
 ;lcd_hv_syuv_if:     serial YUV format
-;lcd_hv_hspw:        hsync plus width
-;lcd_hv_vspw:        vysnc plus width
-;lcd_lvds_ch:            0:single channel; 1:dual channel
+;lcd_hspw:           hsync plus width
+;lcd_vspw:           vysnc plus width
+;lcd_lvds_ch:        0:single channel; 1:dual channel
 ;lcd_lvds_mode:      0:NS mode; 1:JEIDA mode
 ;lcd_lvds_bitwidth:  0:24bit; 1:18bit
 ;lcd_lvds_io_cross:  0:normal; 1:pn cross
@@ -599,22 +599,36 @@ s5k4ec                  = 0
 ov5650_mv9335           = 0
 siv121d                 = 0
 
-;-------------------------------------------------------------------------------
+;--------------------------------------------------------------------------------
 ;csi gpio configuration
-;-------------------------------------------------------------------------------
+;csi_if: 0:hv_8bit 1:hv_16bit 2:hv_24bit 3:bt656 1ch 4:bt656 2ch 5:bt656 4ch
+;csi_mode: 0:sample one csi to one buffer 1:sample two csi to one buffer
+;csi_dev_qty: The quantity of devices linked to csi interface
+;csi_vflip: flip in vertical direction 0:disable 1:enable
+;csi_hflip: flip in horizontal direction 0:disable 1:enable
+;csi_stby_mode: 0:not shut down power at standby 1:shut down power at standby
+;csi_iovdd: camera module io power , pmu power supply
+;csi_avdd:	camera module analog power , pmu power supply
+;csi_dvdd:	camera module core power , pmu power supply
+;pmu_ldo3:  fill "axp20_pll"
+;pmu_ldo4:  fill "axp20_hdmi"
+;fill "" when not using any pmu power supply
+;csi_flash_pol: the active polority of the flash light IO 0:low active 1:high active
+;--------------------------------------------------------------------------------
+
 [csi0_para]
 csi_used            = 1
 
 csi_dev_qty         = 1
 csi_stby_mode       = 0
-csi_mname           = "ov5640"
+csi_mname           = "gt2005"
 csi_if              = 0
-csi_iovdd           = ""
-csi_avdd            = ""
+csi_iovdd           = "axp20_pll"
+csi_avdd            = "axp20_hdmi"
 csi_dvdd            = ""
-csi_vol_iovdd       = 0
-csi_vol_dvdd        = 0
-csi_vol_avdd        = 0
+csi_vol_iovdd       = 2800
+csi_vol_dvdd        = 1800
+csi_vol_avdd        = 2800
 csi_vflip           = 0
 csi_hflip           = 0
 csi_flash_pol       = 0
@@ -639,9 +653,25 @@ csi_power_en        = port:PH16<1><default><default><0>
 csi_stby            = port:PH18<1><default><default><0>
 
 [csi1_para]
-csi_used            = 0
+csi_used            = 1
+
+csi_dev_qty         = 1
+csi_stby_mode       = 0
+csi_mname           = "gc0308"
+csi_if              = 0
+csi_iovdd           = "axp20_pll"
+csi_avdd            = "axp20_hdmi"
+csi_dvdd            = ""
+csi_vol_iovdd       = 2800
+csi_vol_dvdd        = 1800
+csi_vol_avdd        = 2800
+csi_vflip           = 0
+csi_hflip           = 0
+csi_flash_pol       = 0
+csi_facing          = 1
+
 csi_twi_id          = 1
-csi_twi_addr        = 0x78
+csi_twi_addr        = 0x42
 csi_pck             = port:PG00<3><default><default><default>
 csi_ck              = port:PG01<3><default><default><default>
 csi_hsync           = port:PG02<3><default><default><default>
@@ -655,7 +685,7 @@ csi_d5              = port:PG09<3><default><default><default>
 csi_d6              = port:PG10<3><default><default><default>
 csi_d7              = port:PG11<3><default><default><default>
 csi_reset           = port:PH14<1><default><default><0>
-csi_power_en        = port:PH17<1><default><default><0>
+csi_power_en        = port:PH16<1><default><default><0>
 csi_stby            = port:PH19<1><default><default><0>
 
 ;-------------------------------------------------------------------------------

@@ -394,7 +394,7 @@ function do_pack_linux()
 
 function do_pack_dragonboard()
 {
-    pack_info "Packing for linux"
+    pack_info "Packing for dragonboard"
     
     cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/default/*           out/
     cp -f chips/${PACK_CHIP}/configs/${PACK_PLATFORM}/${PACK_BOARD}/*.fex out/

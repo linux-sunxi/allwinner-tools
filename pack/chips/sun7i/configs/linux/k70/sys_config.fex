@@ -81,7 +81,7 @@ jtag_di             = port:PB17<3><default><default><default>
 ;-------------------------------------------------------------------------------
 [dram_para]
 dram_baseaddr       = 0x40000000
-dram_clk            = 120
+dram_clk            = 360
 dram_type           = 3
 dram_rank_num       = 1
 dram_chip_density   = 2048
@@ -1195,11 +1195,6 @@ pmu_shutdown_chgcur2     = 1200
 pmu_suspendpwroff_vol    = 3500
 
 pmu_batdeten             = 1
-pmu_test_pin0            = port:power00<1><default><default><1>
-pmu_test_pin1            = port:power01<1><default><default><1>
-pmu_test_pin2            = port:power02<1><default><default><1>
-pmu_test_pin3            = port:power03<1><default><default><1>
-pmu_test_pin4            = port:power04<1><default><default><1>
 
 [recovery_key]
 key_min			    = 4
@@ -1240,3 +1235,4 @@ LV4_volt = 1300
 
 LV5_freq = 624000000
 LV5_volt = 1250
+

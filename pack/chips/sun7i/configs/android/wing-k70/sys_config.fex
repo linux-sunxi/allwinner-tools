@@ -261,16 +261,17 @@ spi_miso            = port:PA08<3><default><default><default>
 ;-------------------------------------------------------------------------------
 [ctp_para]
 ctp_used            = 1
+ctp_name            = "gs11680"
 ctp_twi_id          = 2
-ctp_twi_addr        = 0x70
-ctp_screen_max_x    = 800
-ctp_screen_max_y    = 480
+ctp_twi_addr        = 0x40
+ctp_screen_max_x    = 1024
+ctp_screen_max_y    = 600
 ctp_revert_x_flag   = 0
-ctp_revert_y_flag   = 0
+ctp_revert_y_flag   = 1
+ctp_exchange_x_y_flag = 1
 
 ctp_int_port        = port:PH21<6><default><default><default>
 ctp_wakeup          = port:PB13<1><default><default><1>
-ctp_io_port         = port:PH21<0><default><default><default>
 
 ;-------------------------------------------------------------------------------
 ;touch key configuration

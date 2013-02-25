@@ -838,7 +838,7 @@ serial_number       = "20080411"
 vendor_name         = "USB 2.0"
 product_name        = "USB Flash Driver"
 release             = 100
-luns                = 3
+luns                = 2
 
 ;--------------------------------------------------------------------------------
 ; G sensor configuration

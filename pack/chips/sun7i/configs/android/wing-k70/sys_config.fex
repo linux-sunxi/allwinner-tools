@@ -906,7 +906,7 @@ usb_restric_capacity= 5
 usb_used            = 1
 usb_port_type       = 1
 usb_detect_type     = 0
-usb_drv_vbus_gpio   = port:PH6<1><0><default><0>
+usb_drv_vbus_gpio   = port:PH06<1><0><default><0>
 usb_restrict_gpio   = 
 usb_host_init_state = 1
 usb_restric_flag    = 0
@@ -966,12 +966,12 @@ wifi_used          = 1
 wifi_sdc_id        = 3
 wifi_usbc_id       = 2
 wifi_usbc_type     = 1
-wifi_mod_sel       = 3
+wifi_mod_sel       = 6
 wifi_power         = ""
 
 ; 1 - bcm40181 sdio wifi gpio config
-;bcm40181_shdn          = port:PG10<1><default><default><0>
-;bcm40181_host_wake     = port:PG12<0><default><default><0>
+;bcm40181_shdn          = port:PH09<1><default><default><0>
+;bcm40181_host_wake     = port:PH10<0><default><default><0>
 
 ; 2 - bcm40183 sdio wifi gpio config
 ;bcm40183_wl_regon      = port:PG10<1><default><default><0>

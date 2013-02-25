@@ -261,7 +261,7 @@ spi_miso            = port:PA08<3><default><default><default>
 ;-------------------------------------------------------------------------------
 [ctp_para]
 ctp_used            = 1
-ctp_name            = "gs11680"
+ctp_name            = "gsl1680"
 ctp_twi_id          = 2
 ctp_twi_addr        = 0x40
 ctp_screen_max_x    = 1024

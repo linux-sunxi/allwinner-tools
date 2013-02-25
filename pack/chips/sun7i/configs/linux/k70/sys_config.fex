@@ -396,18 +396,18 @@ lcd1_hue                = 50
 [lcd0_para]
 lcd_used                = 1
 
-lcd_x                   = 800
-lcd_y                   = 480
-lcd_dclk_freq           = 33
+lcd_x                   = 1024
+lcd_y                   = 600
+lcd_dclk_freq           = 51
 lcd_pwm_not_used        = 0
 lcd_pwm_ch              = 0
 lcd_pwm_freq            = 10000
 lcd_pwm_pol             = 0
 lcd_if                  = 0
-lcd_hbp                 = 46
-lcd_ht                  = 1055
-lcd_vbp                 = 23
-lcd_vt                  = 1050
+lcd_hbp                 = 320
+lcd_ht                  = 1344
+lcd_vbp                 = 35
+lcd_vt                  = 1270
 lcd_vspw                = 0
 lcd_hspw                = 0
 lcd_hv_if               = 0
@@ -620,23 +620,36 @@ siv121d                 = 0
 [csi0_para]
 csi_used            = 1
 
-csi_dev_qty         = 1
+csi_dev_qty         = 2
 csi_stby_mode       = 0
-csi_mname           = "gt2005"
-csi_if              = 0
-csi_iovdd           = "axp20_pll"
-csi_avdd            = "axp20_hdmi"
-csi_dvdd            = ""
-csi_vol_iovdd       = 2800
-csi_vol_dvdd        = 1800
-csi_vol_avdd        = 2800
-csi_vflip           = 0
-csi_hflip           = 0
-csi_flash_pol       = 0
-csi_facing          = 0
-
+csi_mname           = "gc2035"
 csi_twi_id          = 1
 csi_twi_addr        = 0x78
+csi_if              = 0
+csi_vflip           = 0
+csi_hflip           = 0
+csi_iovdd           = "axp20_pll"
+csi_avdd            = ""
+csi_dvdd            = ""
+csi_vol_iovdd       = 2800
+csi_vol_dvdd        = 
+csi_vol_avdd        = 
+csi_flash_pol       = 0
+
+csi_mname_b         = "gc0308"
+csi_twi_id_b        = 1
+csi_twi_addr_b      = 0x42
+csi_if_b            = 0
+csi_vflip_b         = 1
+csi_hflip_b         = 0
+csi_iovdd_b         = "axp20_pll"
+csi_avdd_b          = ""
+csi_dvdd_b          = ""
+csi_vol_iovdd_b     = 2800
+csi_vol_avdd_b      = 
+csi_vol_dvdd_b      = 
+csi_flash_pol_b     = 0
+
 csi_pck             = port:PE00<3><default><default><default>
 csi_ck              = port:PE01<3><default><default><default>
 csi_hsync           = port:PE02<3><default><default><default>
@@ -652,20 +665,27 @@ csi_d7              = port:PE11<3><default><default><default>
 csi_reset           = port:PH13<1><default><default><0>
 csi_power_en        = port:PH16<1><default><default><0>
 csi_stby            = port:PH18<1><default><default><0>
+csi_flash           =
+csi_af_en           =
+csi_reset_b         = port:PH13<1><default><default><0>
+csi_power_en_b      = port:PH16<1><default><default><0>
+csi_stby_b          = port:PH19<1><default><default><0>
+csi_flash_b         =
+csi_af_en_b         =
 
 [csi1_para]
-csi_used            = 1
+csi_used            = 0
 
 csi_dev_qty         = 1
 csi_stby_mode       = 0
 csi_mname           = "gc0308"
 csi_if              = 0
 csi_iovdd           = "axp20_pll"
-csi_avdd            = "axp20_hdmi"
+csi_avdd            = ""
 csi_dvdd            = ""
 csi_vol_iovdd       = 2800
-csi_vol_dvdd        = 1800
-csi_vol_avdd        = 2800
+csi_vol_dvdd        = 
+csi_vol_avdd        = 
 csi_vflip           = 0
 csi_hflip           = 0
 csi_flash_pol       = 0
@@ -685,7 +705,7 @@ csi_d4              = port:PG08<3><default><default><default>
 csi_d5              = port:PG09<3><default><default><default>
 csi_d6              = port:PG10<3><default><default><default>
 csi_d7              = port:PG11<3><default><default><default>
-csi_reset           = port:PH14<1><default><default><0>
+csi_reset           = port:PH13<1><default><default><0>
 csi_power_en        = port:PH16<1><default><default><0>
 csi_stby            = port:PH19<1><default><default><0>
 

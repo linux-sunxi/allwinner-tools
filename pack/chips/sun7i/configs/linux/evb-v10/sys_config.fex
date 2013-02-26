@@ -892,7 +892,7 @@ usb_detect_type     = 1
 usb_id_gpio         = port:PH04<0><1><default><default>
 usb_det_vbus_gpio   = port:PH05<0><0><default><default>
 usb_drv_vbus_gpio   = port:PB09<1><0><default><0>
-usb_restrict_gpio   = port:PH0<1><0><default><0>
+usb_restrict_gpio   = port:PH00<1><0><default><0>
 usb_host_init_state = 0
 usb_restric_flag    = 0
 usb_restric_voltage = 3550000
@@ -905,7 +905,7 @@ usb_restric_capacity= 5
 usb_used            = 1
 usb_port_type       = 1
 usb_detect_type     = 0
-usb_drv_vbus_gpio   = port:PH6<1><0><default><0>
+usb_drv_vbus_gpio   = port:PH06<1><0><default><0>
 usb_restrict_gpio   = 
 usb_host_init_state = 1
 usb_restric_flag    = 0
@@ -958,37 +958,48 @@ gps_rx_en           = port:PI15<1><default><default><0>
 ;wifi_usbc_type --  1- EHCI(speed 2.0), 2- OHCI(speed 1.0)
 ;wifi_mod_sel   ---  0- none, 1- bcm40181, 2- bcm40183(wifi+bt),
 ;                    3 - rtl8723as(wifi+bt), 4- rtl8189es(SM89E00),
-;                    5 - rtl8192cu, 6 - rtl8188eu
+;                    5 - rtl8192cu, 6 - rtl8188eu, 7 - ap6210
 ;--------------------------------------------------------------------------------
 [wifi_para]
 wifi_used          = 1
 wifi_sdc_id        = 3
 wifi_usbc_id       = 2
 wifi_usbc_type     = 1
-wifi_mod_sel       = 3
+wifi_mod_sel       = 7
 wifi_power         = ""
 
 ; 1 - bcm40181 sdio wifi gpio config
-;bcm40181_shdn          = port:PG10<1><default><default><0>
-;bcm40181_host_wake     = port:PG12<0><default><default><0>
+;bcm40181_shdn          = port:PH09<1><default><default><0>
+;bcm40181_host_wake     = port:PH10<0><default><default><0>
 
 ; 2 - bcm40183 sdio wifi gpio config
-;bcm40183_wl_regon      = port:PG10<1><default><default><0>
-;bcm40183_wl_host_wake  = port:PG12<0><default><default><0>
-;bcm40183_bt_rst        = port:PG11<1><default><default><0>
-;bcm40183_bt_regon      = port:PG11<1><default><default><0>
-;bcm40183_bt_wake       = port:PG17<1><default><default><0>
-;bcm40183_bt_host_wake  = port:PG18<0><default><default><0>
+;bcm40183_wl_regon      = port:PH09<1><default><default><0>
+;bcm40183_wl_host_wake  = port:PH10<0><default><default><0>
+;bcm40183_bt_rst        = port:PB05<1><default><default><0>
+;bcm40183_bt_regon      = port:PB05<1><default><default><0>
+;bcm40183_bt_wake       = port:PI20<1><default><default><0>
+;bcm40183_bt_host_wake  = port:PI21<0><default><default><0>
 
 ; 3 - rtl8723as sdio wifi + bt gpio config
-rtk_rtl8723as_wl_dis       = port:PG10<1><default><default><0>
-rtk_rtl8723as_bt_dis       = port:PG11<1><default><default><0>
-rtk_rtl8723as_wl_host_wake = port:PG12<0><default><default><0>
-rtk_rtl8723as_bt_host_wake = port:PG17<0><default><default><0>
+rtk_rtl8723as_wl_dis       = port:PH09<1><default><default><0>
+rtk_rtl8723as_bt_dis       = port:PB05<1><default><default><0>
+rtk_rtl8723as_wl_host_wake = port:PH10<0><default><default><0>
+rtk_rtl8723as_bt_host_wake = port:PI21<0><default><default><0>
 
 ; 4 - rtl8189es sdio wifi gpio config
-;rtl8189es_shdn         = port:PG10<1><default><default><0>
-;rtl8189es_wakeup       = port:PG12<1><default><default><1>
+;rtl8189es_shdn         = port:PH09<1><default><default><0>
+;rtl8189es_wakeup       = port:PH10<1><default><default><1>
+
+; 5 - rtl8192cu usb wifi
+
+; 6 - rtl8188eu usb wifi
+
+; 7 - ap6210 sdio wifi + bt gpio config
+ap6xxx_wl_regon      = port:PH09<1><default><default><0>
+ap6xxx_wl_host_wake  = port:PH10<0><default><default><0>
+ap6xxx_bt_regon      = port:PB05<1><default><default><0>
+ap6xxx_bt_wake       = port:PI20<1><default><default><0>
+ap6xxx_bt_host_wake  = port:PI21<0><default><default><0>
 
 ;-------------------------------------------------------------------------------
 ;3G configuration

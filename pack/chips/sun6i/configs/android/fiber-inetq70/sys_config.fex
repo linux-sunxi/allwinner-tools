@@ -112,7 +112,7 @@ dram_tpr9       = 0x36353d8
 dram_tpr10      = 0
 dram_tpr11      = 0
 dram_tpr12      = 0
-dram_tpr13      = 0
+dram_tpr13      = 0x80000008
 
 ;----------------------------------------------------------------------------------
 ;os life cycle para configuration

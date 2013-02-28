@@ -18,7 +18,7 @@ machine             = "evb-v10"
 eraseflag           = 0
 
 [target]
-boot_clock          = 864
+boot_clock          = 600
 dcdc2_vol           = 1250
 dcdc3_vol           = 1200
 ldo2_vol            = 3000
@@ -81,7 +81,7 @@ jtag_di             = port:PB17<3><default><default><default>
 ;-------------------------------------------------------------------------------
 [dram_para]
 dram_baseaddr       = 0x40000000
-dram_clk            = 120
+dram_clk            = 240
 dram_type           = 3
 dram_rank_num       = 1
 dram_chip_density   = 2048

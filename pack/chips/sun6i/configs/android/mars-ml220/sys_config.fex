@@ -780,7 +780,7 @@ usb_restric_flag    = 0
 ;---       USB2控制标志
 ;--------------------------------
 [usbc2]
-usb_used            = 0
+usb_used            = 1
 usb_port_type       = 1
 usb_detect_type     = 0
 usb_id_gpio         =

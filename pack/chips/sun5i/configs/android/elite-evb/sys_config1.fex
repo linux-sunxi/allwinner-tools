@@ -331,7 +331,7 @@ fb1_format               = 10
 fb1_pixel_sequence       = 0
 fb1_scaler_mode_enable   = 0
 
-
+hdmi_cts_compatibility   = 0
 ;----------------------------------------------------------------------------------
 ;lcd0 configuration
 

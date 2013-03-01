@@ -18,7 +18,7 @@ machine             = "evb-v10"
 eraseflag           = 0
 
 [target]
-boot_clock          = 600
+boot_clock          = 864
 dcdc2_vol           = 1250
 dcdc3_vol           = 1200
 ldo2_vol            = 3000
@@ -31,7 +31,7 @@ pll3                = 297
 pll4                = 300
 pll6                = 600
 pll7                = 297
-pll8                = 360
+pll8                = 408
 
 [card_boot]
 logical_start       = 40960
@@ -81,7 +81,7 @@ jtag_di             = port:PB17<3><default><default><default>
 ;-------------------------------------------------------------------------------
 [dram_para]
 dram_baseaddr       = 0x40000000
-dram_clk            = 240
+dram_clk            = 384
 dram_type           = 3
 dram_rank_num       = 1
 dram_chip_density   = 2048
@@ -100,6 +100,13 @@ dram_tpr5           = 0x0
 dram_emr1           = 0x0
 dram_emr2           = 0x0
 dram_emr3           = 0x0
+
+;-------------------------------------------------------------------------------
+;Mali configuration
+;-------------------------------------------------------------------------------
+[mali_para]
+mali_used           = 1
+mali_clkdiv         = 1
 
 ;-------------------------------------------------------------------------------
 ;Ethernet MAC configuration
@@ -1220,7 +1227,7 @@ key_max			=6
 ;
 ;----------------------------------------------------------------------------------
 [dvfs_table]
-max_freq = 600000000
+max_freq = 864000000
 min_freq = 60000000
 
 LV_count = 5

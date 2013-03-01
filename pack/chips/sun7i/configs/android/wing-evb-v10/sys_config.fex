@@ -252,6 +252,17 @@ spi_sclk            = port:PA06<3><default><default><default>
 spi_mosi            = port:PA07<3><default><default><default>
 spi_miso            = port:PA08<3><default><default><default>
 
+;----------------------------------------------------------------------------------
+;resistance tp configuration
+;----------------------------------------------------------------------------------
+[rtp_para]
+rtp_used                   = 1
+rtp_screen_size            = 5
+rtp_regidity_level         = 5
+rtp_press_threshold_enable = 0
+rtp_press_threshold        = 0x1f40
+rtp_sensitive_level        = 0xf
+rtp_exchange_x_y_flag      = 0
 ;-------------------------------------------------------------------------------
 ;capacitor tp configuration
 ;external int function
@@ -260,17 +271,17 @@ spi_miso            = port:PA08<3><default><default><default>
 ;   tp_int_port &  tp_io_port use the same port
 ;-------------------------------------------------------------------------------
 [ctp_para]
-ctp_used            = 1
-ctp_twi_id          = 2
-ctp_twi_addr        = 0x70
-ctp_screen_max_x    = 800
-ctp_screen_max_y    = 480
-ctp_revert_x_flag   = 0
-ctp_revert_y_flag   = 0
+ctp_used                = 1
+ctp_twi_id              = 2
+ctp_twi_name            = 
+ctp_screen_max_x        = 800
+ctp_screen_max_y        = 480
+ctp_revert_x_flag       = 0
+ctp_revert_y_flag       = 0
+ctp_exchange_x_y_flag   = 0
 
-ctp_int_port        = port:PH21<6><default><default><default>
-ctp_wakeup          = port:PB13<1><default><default><1>
-ctp_io_port         = port:PH21<0><default><default><default>
+ctp_int_port            = port:PH21<6><default><default><default>
+ctp_wakeup              = port:PB13<1><default><default><1>
 
 ;-------------------------------------------------------------------------------
 ;touch key configuration

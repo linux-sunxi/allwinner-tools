@@ -48,13 +48,13 @@ size = 1024
 ;     4、size_hi + size_lo = 0, 表示此分区不存在
 ;********************************************************************************************************
 [part_num]
-num     = 4
+num     = 3
 
 [partition0]
     class_name  = DISK
     name        = bootloader
     size_hi     = 0
-    size_lo     = 32768
+    size_lo     = 65536
     user_type   = 0
     ro          = 0
 
@@ -67,14 +67,6 @@ num     = 4
     ro          = 0
 
 [partition2]
-    class_name  = DISK
-    name        = boot
-    size_hi     = 0
-    size_lo     = 16384
-    user_type   = 0
-    ro          = 0
-
-[partition3]
     class_name  = DISK
     name        = rootfs
     size_hi     = 0
@@ -104,7 +96,7 @@ num     = 4
 ;      verify_file  = VERIFY_000000000
 ;********************************************************************************************************************
 [down_num]
-down_num    = 4
+down_num    = 3
 
 [download0]
 part_name   = bootloader
@@ -117,11 +109,6 @@ pkt_name    = ENVIROMENT_00000
 encrypt     = 0
 
 [download2]
-part_name   = boot
-pkt_name    = KERNEL_000000000
-encrypt     = 0
-
-[download3]
 part_name   = rootfs
 pkt_name    = ROOTFS_000000000
 encrypt     = 0

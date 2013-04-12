@@ -542,7 +542,7 @@ static int probe_aw(struct usb_interface *intf,
 		usb_deregister_dev(intf, &usb_aw_class);
 		return -ENOMEM;
 	}
-	dbg("probe_aw: obuf address:%p", aw->obuf);
+	dev_dbg(&aw->aw_dev->dev, "probe_aw: obuf address:%p", aw->obuf);
 
 	aw->ibuf = kmalloc(IBUF_SIZE, GFP_KERNEL);
 	if (!(aw->ibuf)) {
@@ -552,7 +552,7 @@ static int probe_aw(struct usb_interface *intf,
 		kfree(aw->obuf);
 		return -ENOMEM;
 	}
-	dbg("probe_aw: ibuf address:%p", aw->ibuf);
+	dev_dbg(&aw->aw_dev->dev, "probe_aw: ibuf address:%p", aw->ibuf);
 
 	mutex_init(&(aw->lock));
 

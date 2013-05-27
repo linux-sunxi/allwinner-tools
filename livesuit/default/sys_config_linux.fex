@@ -1,5 +1,5 @@
 ;---------------------------------------------------------------------------------------------------------
-; ËµÃ÷£º ½Å±¾ÖÐµÄ×Ö·û´®Çø·Ö´óÐ¡Ð´£¬ÓÃ»§¿ÉÒÔÐÞ¸Ä"="ºóÃæµÄÊýÖµ£¬µ«ÊÇ²»ÒªÐÞ¸ÄÇ°ÃæµÄ×Ö·û´®
+; è¯´æ˜Žï¼š è„šæœ¬ä¸­çš„å­—ç¬¦ä¸²åŒºåˆ†å¤§å°å†™ï¼Œç”¨æˆ·å¯ä»¥ä¿®æ”¹"="åŽé¢çš„æ•°å€¼ï¼Œä½†æ˜¯ä¸è¦ä¿®æ”¹å‰é¢çš„å­—ç¬¦ä¸²
 ;---------------------------------------------------------------------------------------------------------
 
 [platform]
@@ -15,37 +15,37 @@ jtag        = 1
 [fex_misc]
 restore = 1
 ;--------------------------------------------------------------------------------------------------
-;                                   ¹Ì¼þÏÂÔØ²ÎÊýÅäÖÃ
+;                                   å›ºä»¶ä¸‹è½½å‚æ•°é…ç½®
 ;--------------------------------------------------------------------------------------------------
 ;-----------------------------------------------------------------------------------------
-;										·ÖÇøÅäÖÃ¹ÜÀí
+;										åˆ†åŒºé…ç½®ç®¡ç†
 ;-----------------------------------------------------------------------------------------
 ;****************************************************
-;    mbrµÄ´óÐ¡, ÒÔKbyteÎªµ¥Î»
+;    mbrçš„å¤§å°, ä»¥Kbyteä¸ºå•ä½
 ;****************************************************
 [mbr]
 size = 1024
 
 ;********************************************************************************************************
-;                                              ·ÖÇøÅäÖÃ
-;  µ±Ç°·ÖÇøµÄ¸öÊý£¬Ä¬ÈÏÓÐrootfsºÍuserfs0Á½¸ö·ÖÇø£¬×î´ó·ÖÇø¸öÊýÎª7¸ö.
+;                                              åˆ†åŒºé…ç½®
+;  å½“å‰åˆ†åŒºçš„ä¸ªæ•°ï¼Œé»˜è®¤æœ‰rootfså’Œuserfs0ä¸¤ä¸ªåˆ†åŒºï¼Œæœ€å¤§åˆ†åŒºä¸ªæ•°ä¸º7ä¸ª.
 ;
 ;  [part_num]
-;      num     = 2              ; //ÓÐ2¸ö·ÖÇø
-;      part0   = partiton0      ; //part0µÄÐÅÏ¢´æ·ÅÔÚpartiton0Àï
-;      parti   = partitoni      ; //partiµÄÐÅÏ¢´æ·ÅÔÚpartitoniÀï
+;      num     = 2              ; //æœ‰2ä¸ªåˆ†åŒº
+;      part0   = partiton0      ; //part0çš„ä¿¡æ¯å­˜æ”¾åœ¨partiton0é‡Œ
+;      parti   = partitoni      ; //partiçš„ä¿¡æ¯å­˜æ”¾åœ¨partitonié‡Œ
 ;
-;  partition ¶¨Òå·¶Àý:
-;    [partition2]                ;   //µÚ2¸ö·ÖÇø
-;    class_name  = DISK         ;   //Éè±¸ÀàÃû, Èç£º"DISK"¡£ ¿É²Î¿¼"..\ePDK\includes\emod\sys_dev.h"
-;    name        = USERFS2      ;   //Éè±¸½ÚµãÃû.  ¿É²Î¿¼"..\ePDK\includes\emod\sys_dev.h"
-;    size_hi     = 0            ;   //·ÖÇø´óÐ¡µÄ¸ß32Î», µ¥Î»: Kbyte.
-;    size_lo     = 32           ;   //·ÖÇø´óÐ¡µÄµÍ32Î», µ¥Î»: Kbyte.
+;  partition å®šä¹‰èŒƒä¾‹:
+;    [partition2]                ;   //ç¬¬2ä¸ªåˆ†åŒº
+;    class_name  = DISK         ;   //è®¾å¤‡ç±»å, å¦‚ï¼š"DISK"ã€‚ å¯å‚è€ƒ"..\ePDK\includes\emod\sys_dev.h"
+;    name        = USERFS2      ;   //è®¾å¤‡èŠ‚ç‚¹å.  å¯å‚è€ƒ"..\ePDK\includes\emod\sys_dev.h"
+;    size_hi     = 0            ;   //åˆ†åŒºå¤§å°çš„é«˜32ä½, å•ä½: Kbyte.
+;    size_lo     = 32           ;   //åˆ†åŒºå¤§å°çš„ä½Ž32ä½, å•ä½: Kbyte.
 ;
-; ×¢£º1¡¢nameÎ¨Ò», ²»ÔÊÐíÍ¬Ãû
-;     2¡¢×î´ó·ÖÇøºÅÎª6
-;     3¡¢class_nameºÍname×î´ó12¸ö×Ö·û
-;     4¡¢size_hi + size_lo = 0, ±íÊ¾´Ë·ÖÇø²»´æÔÚ
+; æ³¨ï¼š1ã€nameå”¯ä¸€, ä¸å…è®¸åŒå
+;     2ã€æœ€å¤§åˆ†åŒºå·ä¸º6
+;     3ã€class_nameå’Œnameæœ€å¤§12ä¸ªå­—ç¬¦
+;     4ã€size_hi + size_lo = 0, è¡¨ç¤ºæ­¤åˆ†åŒºä¸å­˜åœ¨
 ;********************************************************************************************************
 [part_num]
 num     = 3
@@ -76,20 +76,20 @@ num     = 3
 
 
 ;********************************************************************************************************************
-;                     ¹Ì¼þ°üÏÂÔØÎ»ÖÃ £º °ÑÄ³¸ö¹Ì¼þ°üÏÂÔØµ½Ö¸¶¨·ÖÇø, ÏÂÔØ´ÎÊý×î´óÎª7´Î
+;                     å›ºä»¶åŒ…ä¸‹è½½ä½ç½® ï¼š æŠŠæŸä¸ªå›ºä»¶åŒ…ä¸‹è½½åˆ°æŒ‡å®šåˆ†åŒº, ä¸‹è½½æ¬¡æ•°æœ€å¤§ä¸º7æ¬¡
 ;
-;[downloadi]                                //¹Ì¼þ°ü0ÏÂÔØÎ»ÖÃ
-;    part_name      = SYSDATAFS             //·ÖÇøÃû
-;    pkt_name       = ROOTFS_000000000      //¹Ì¼þ°üÃû³Æ
-;    verify_file    = VERIFY_000000000      //Ð£ÑéÎÄ¼þÃû³Æ
+;[downloadi]                                //å›ºä»¶åŒ…0ä¸‹è½½ä½ç½®
+;    part_name      = SYSDATAFS             //åˆ†åŒºå
+;    pkt_name       = ROOTFS_000000000      //å›ºä»¶åŒ…åç§°
+;    verify_file    = VERIFY_000000000      //æ ¡éªŒæ–‡ä»¶åç§°
 ;
-; ×¢£º1¡¢ downloadi ±íÊ¾µÚi´ÎÏÂÔØ¹Ì¼þ, download Î¨Ò», Çë²»ÒªËæÒâÐÞ¸Ä
-;     2¡¢ part_num Îª·ÖÇøºÅ, ¼´¹Ì¼þÏÂÔØµÄÎ»ÖÃ
-;     3¡¢ pkt_name ¹Ì¼þ°üÃû³Æ. ×î´ó³¤¶ÈÎª16byte, ÇÒÃû³Æ¹Ì¶¨. ¿É²Î¿¼"..\\ePDK\workspace\suni\liveclick\image.cfg"
-;     4¡¢ verify_file ÎªÐ£ÑéÎÄ¼þÃû³Æ. ¿É²Î¿¼"..\\ePDK\workspace\suni\liveclick\image.cfg"
-;     5¡¢ pkt_name ÄÚÈÝ²»Ìî, ±íÊ¾±¾´ÎÏÂÔØÈ¡Ïû.  verify_fileÄÚÈÝ²»Ìî, ±íÊ¾²»ÐèÒªÐ£Ñé.
+; æ³¨ï¼š1ã€ downloadi è¡¨ç¤ºç¬¬iæ¬¡ä¸‹è½½å›ºä»¶, download å”¯ä¸€, è¯·ä¸è¦éšæ„ä¿®æ”¹
+;     2ã€ part_num ä¸ºåˆ†åŒºå·, å³å›ºä»¶ä¸‹è½½çš„ä½ç½®
+;     3ã€ pkt_name å›ºä»¶åŒ…åç§°. æœ€å¤§é•¿åº¦ä¸º16byte, ä¸”åç§°å›ºå®š. å¯å‚è€ƒ"..\\ePDK\workspace\suni\liveclick\image.cfg"
+;     4ã€ verify_file ä¸ºæ ¡éªŒæ–‡ä»¶åç§°. å¯å‚è€ƒ"..\\ePDK\workspace\suni\liveclick\image.cfg"
+;     5ã€ pkt_name å†…å®¹ä¸å¡«, è¡¨ç¤ºæœ¬æ¬¡ä¸‹è½½å–æ¶ˆ.  verify_fileå†…å®¹ä¸å¡«, è¡¨ç¤ºä¸éœ€è¦æ ¡éªŒ.
 ;
-; Èç£ºÒª°Ñ¹Ì¼þ°üzdisk.img, ÏÂÔØÔÚµ½SYSDATAFS·ÖÇøÀï¡£ÆäÅäÖÃÎª£º
+; å¦‚ï¼šè¦æŠŠå›ºä»¶åŒ…zdisk.img, ä¸‹è½½åœ¨åˆ°SYSDATAFSåˆ†åŒºé‡Œã€‚å…¶é…ç½®ä¸ºï¼š
 ; [download0]
 ;      part_name   = SYSDATAFS
 ;      pkt_name     = ROOTFS_000000000

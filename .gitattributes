@@ -1,1 +1,4 @@
 * text=auto
+*.ini text eol=crlf
+*.cfg text eol=crlf
+*.fex text eol=crlf

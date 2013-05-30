@@ -1,4 +1,5 @@
 * text=auto
 *.ini text eol=crlf
-*.cfg text eol=crlf
-*.fex text eol=crlf
+*.cfg text eol=lf
+*.fex binary
+livesuit/default/*.fex text eol=crlf

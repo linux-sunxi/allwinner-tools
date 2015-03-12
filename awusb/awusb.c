@@ -1,6 +1,8 @@
 /*
  * Driver for AW USB which is for downloading firmware
  *
+ * It's obviously based on v0.4 from awdev-dkms_0.4_all.deb, for LiveSuit V3.05.
+ *
  * Cesc
  *
  * This program is free software; you can redistribute it and/or
@@ -45,7 +47,7 @@
  * Version Information
  */
 #define DRIVER_VERSION "v1.0"
-#define DRIVER_AUTHOR "Cesc"
+#define DRIVER_AUTHOR "Cesc, modified by linux-sunxi"
 #define DRIVER_DESC "AW USB driver"
 
 #define AW_MINOR	64
